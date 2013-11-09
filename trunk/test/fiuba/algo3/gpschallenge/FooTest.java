@@ -1,7 +1,9 @@
-package fiuba.algo3.ejemplo1;
+package fiuba.algo3.gpschallenge;
 
 import junit.framework.Assert;
 import org.junit.Test;
+
+import fiuba.algo3.gpschallenge.modelo.Foo;
 
 public class FooTest {
 
