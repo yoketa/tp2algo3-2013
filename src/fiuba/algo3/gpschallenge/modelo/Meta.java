@@ -2,17 +2,17 @@ package fiuba.algo3.gpschallenge.modelo;
 
 public class Meta {
 
-	private Vector vector;
+	private Vector posicion;
 
 	public Meta(int x,int y){
-		this.vector = new Vector(x,y);
+		this.posicion = new Vector(x,y);
 	}
 
 	public int getPosicionVertical() {
-		return this.vector.getY();
+		return this.posicion.getY();
 	}
 
 	public int getPosicionHorizontal() {
-		return this.vector.getX();
+		return this.posicion.getX();
 	}
 }
