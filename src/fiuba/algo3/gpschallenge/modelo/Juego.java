@@ -10,6 +10,7 @@ public class Juego {
 	private List<Evento> eventos;
 	private Ranking ranking;
 	private Vehiculo vehiculo;
+	private Meta meta;
 	
 	public static Juego crearJuegoConUsuario(String user){
 		Juego juego = new Juego(user);
@@ -26,15 +27,26 @@ public class Juego {
 		this.limiteVertical = 10;
 		this.eventos = this.crearEventos();
 		this.ranking = new Ranking();
-		this.vehiculo = Vehiculo.crearConPiloto(piloto);
+		this.vehiculo = this.crearVehiculo(piloto);
+		this.meta = this.crearMeta(limiteHorizontal,limiteVertical/2);
 	}
-	
+
 	public Juego(){
 		this.limiteHorizontal = 10;
 		this.limiteVertical = 10;
 		this.eventos = this.crearEventos();
 		this.ranking = new Ranking();
 		this.vehiculo = new Vehiculo();
+	}
+
+	private Meta crearMeta(int x,int y) {
+		Meta meta = new Meta(x,y);
+		return meta;
+	}
+	
+	private Vehiculo crearVehiculo(String piloto) {
+		Vehiculo vehiculo = Vehiculo.crearConPiloto(piloto);
+		return vehiculo;
 	}
 	
 	private List<Evento> crearEventos() {
@@ -60,6 +72,10 @@ public class Juego {
 
 	public String getUsuario() {
 		return this.vehiculo.getPiloto();
+	}
+
+	public Meta getMeta() {
+		return this.meta;
 	}
 	
 }

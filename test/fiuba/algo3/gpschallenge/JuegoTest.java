@@ -26,4 +26,11 @@ public class JuegoTest {
 		Juego juego = Juego.crearJuegoConUsuario("Pepe");
 		Assert.assertEquals("Pepe", juego.getUsuario());
 	}
+	
+	@Test
+	public void testDeberiaCrearUnJuegoConMetaEnPosicion(){
+		Juego juego = Juego.crearJuegoConUsuario("Pepe");
+		Assert.assertEquals(5, juego.getMeta().getPosicionVertical());
+		Assert.assertEquals(10, juego.getMeta().getPosicionHorizontal());
+	}
 }
