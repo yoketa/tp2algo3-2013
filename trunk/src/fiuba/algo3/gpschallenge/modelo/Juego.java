@@ -36,7 +36,7 @@ public class Juego {
 		this.limiteVertical = 10;
 		this.eventos = this.crearEventos();
 		this.ranking = new Ranking();
-		this.vehiculo = new Vehiculo();
+		this.vehiculo = new Vehiculo(1,limiteVertical/2);
 	}
 
 	private Meta crearMeta(int x,int y) {
@@ -45,7 +45,7 @@ public class Juego {
 	}
 	
 	private Vehiculo crearVehiculo(String piloto) {
-		Vehiculo vehiculo = Vehiculo.crearConPiloto(piloto);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto(piloto,1,limiteVertical/2);
 		return vehiculo;
 	}
 	
@@ -76,6 +76,10 @@ public class Juego {
 
 	public Meta getMeta() {
 		return this.meta;
+	}
+
+	public Vehiculo getVehiculo() {
+		return this.vehiculo;
 	}
 	
 }
