@@ -1,9 +1,15 @@
 package fiuba.algo3.gpschallenge.modelo;
 
+import java.util.ArrayList;
+
 public class Vehiculo {
 
 	private String piloto;
 	private Vector posicion;
+	private double puntaje;
+	
+	// TODO: Ver cómo se inicializa el tipo de vehículo (random?)
+	private EstadoVehiculo estadoActual = new Auto();
 	
 	public static Vehiculo crearConPiloto(String piloto,int x,int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
@@ -13,6 +19,7 @@ public class Vehiculo {
 
 	public Vehiculo(int x, int y){
 		this.posicion = new Vector(x,y);
+		this.puntaje = 0;
 	}
 	
 	private void setPiloto(String piloto) {
@@ -29,6 +36,49 @@ public class Vehiculo {
 
 	public int getPosicionHorizontal() {
 		return this.posicion.getX();
+	}
+	
+	//TODO: Tipo de excepción en caso de que la dirección no sea ortonormal
+	public void mover(Vector direccion) throws Exception {
+		int tamaño = direccion.getX() + direccion.getY();
+		
+		if (tamaño > 1)
+		{
+			throw new Exception();
+		}
+		
+		this.posicion.setX(this.posicion.getX() + direccion.getX());
+		this.posicion.setY(this.posicion.getY() + direccion.getY());
+		
+		this.puntaje++;
+	}
+	
+	public double getPuntaje() {
+		return this.puntaje;
+	}
+	
+	public void setPuntaje(double puntaje) {
+		this.puntaje = puntaje;
+	}
+	
+	public EstadoVehiculo getEstado() {
+		return this.estadoActual;
+	}
+	
+	public void setEstado(EstadoVehiculo estado) {
+		this.estadoActual = estado;
+	}
+	
+	public void penalizacionDesfavorable() {
+		this.estadoActual.penalizacionDesfavorable(this);
+	}
+	
+	public void penalizacionFavorable() {
+		this.estadoActual.penalizacionFavorable(this);
+	}
+	
+	public void cambiarEstado() {
+		this.estadoActual.cambiarEstado(this);
 	}
 
 }
