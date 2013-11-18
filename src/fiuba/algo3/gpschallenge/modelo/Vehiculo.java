@@ -22,6 +22,28 @@ public class Vehiculo {
 		this.puntaje = 0;
 	}
 	
+	//Luciana--Constructor con parametro de estadoInicial
+	public static Vehiculo crearConPiloto(String piloto,String estadoInicial,int x,int y) {
+		Vehiculo vehiculo = new Vehiculo(x,y);
+		vehiculo.setPiloto(piloto);
+		vehiculo.ComenzarConEstado(estadoInicial);
+		return vehiculo;
+	}
+
+	 private void ComenzarConEstado(String estadoInicial){
+		 switch ( estadoInicial ) {
+	      case "Auto":
+	           estadoActual= new Auto();
+	           break;
+	      case "Moto":
+	    	  estadoActual= new Moto();
+	           break;
+	      case "CuatroXCuatro":
+	      estadoActual= new CuatroXCuatro();
+	           break;
+	      }	
+		}
+	
 	private void setPiloto(String piloto) {
 		this.piloto = piloto;		
 	}
