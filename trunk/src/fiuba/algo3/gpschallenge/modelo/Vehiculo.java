@@ -7,9 +7,7 @@ public class Vehiculo {
 	private String piloto;
 	private Vector posicion;
 	private double puntaje;
-	
-	// TODO: Ver cómo se inicializa el tipo de vehículo (random?)
-	private EstadoVehiculo estadoActual = new Auto();
+	private EstadoVehiculo estadoActual;
 	
 	public static Vehiculo crearConPiloto(String piloto,int x,int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
