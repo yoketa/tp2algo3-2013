@@ -97,6 +97,18 @@ public class Vehiculo {
 		this.estadoActual.penalizacionFavorable(this);
 	}
 	
+	public void pasaPorPozo() {
+		this.estadoActual.pasaPorPozo();
+	}
+	
+	public void piquete() {
+		this.estadoActual.piquete();
+	}
+	
+	public void controlPolicial() {
+		this.estadoActual.controlPolicial();
+	}
+	
 	public void cambiarEstado() {
 		this.estadoActual.cambiarEstado(this);
 	}
