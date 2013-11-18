@@ -7,7 +7,7 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	}
 
 	@Override
-	public void piquete() {
+	public void piquete(Vehiculo vehiculo, Vector direccion) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -6,6 +6,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import fiuba.algo3.gpschallenge.modelo.EstadoVehiculo;
+import fiuba.algo3.gpschallenge.modelo.Vector;
 import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 public class AutoTest {
@@ -18,6 +19,23 @@ public class AutoTest {
 		auto.pasaPorPozo(vehiculo);
 		
 		Assert.assertEquals( puntaje , vehiculo.getPuntaje());
+	}
+	
+	@Test
+	public void testPuiqueteNoDebeDejarPasar() {
+		Vector direccion = new Vector(1,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("","Auto",0,0);
+		
+		try {
+			vehiculo.mover(direccion);
+			EstadoVehiculo auto = vehiculo.getEstado();
+			auto.piquete(vehiculo,direccion);
+			
+			Assert.assertEquals( 0 , vehiculo.getPosicionHorizontal());
+			Assert.assertEquals( 0 , vehiculo.getPosicionVertical());
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 }

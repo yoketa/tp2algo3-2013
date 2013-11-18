@@ -1,5 +1,7 @@
 package fiuba.algo3.gpschallenge.modelo;
 
+import static org.junit.Assert.fail;
+
 public class Auto implements EstadoVehiculo {
 	
 
@@ -11,9 +13,15 @@ public class Auto implements EstadoVehiculo {
 	}
 
 	@Override
-	public void piquete() {
-		// TODO Auto-generated method stub
-		
+	public void piquete(Vehiculo vehiculo, Vector direccion) {
+		direccion.setX(direccion.getX()*(-1));
+		direccion.setY(direccion.getY()*(-1));
+		try {
+			vehiculo.mover(direccion);	
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Override
