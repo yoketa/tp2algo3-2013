@@ -3,9 +3,7 @@ package fiuba.algo3.gpschallenge.modelo;
 public class CuatroXCuatro implements EstadoVehiculo {
 
 	@Override
-	public void pasaPorPozo() {
-		// TODO Auto-generated method stub
-		
+	public void pasaPorPozo(Vehiculo vehiculo) {	
 	}
 
 	@Override
