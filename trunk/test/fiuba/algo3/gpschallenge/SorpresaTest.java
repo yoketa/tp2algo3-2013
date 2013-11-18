@@ -13,7 +13,7 @@ public class SorpresaTest {
 	@Test
 	public void testSorpresaDesfavorableDebeImplementarEvento(){
 		Sorpresa sorpresa = new SorpresaDesfavorable();
-		Vehiculo vehiculo = new Vehiculo(0,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
 			sorpresa.afectar(vehiculo);
@@ -27,7 +27,7 @@ public class SorpresaTest {
 	@Test
 	public void testSorpresaFavorableDebeImplementarEvento() {
 		Sorpresa sorpresa = new SorpresaFavorable();
-		Vehiculo vehiculo = new Vehiculo(0,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
 			sorpresa.afectar(vehiculo);
@@ -41,7 +41,7 @@ public class SorpresaTest {
 	@Test
 	public void testCambioDeVehiculoDebeImplementarEvento() {
 		Sorpresa sorpresa = new CambioDeVehiculo();
-		Vehiculo vehiculo = new Vehiculo(0,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
 			sorpresa.afectar(vehiculo);
@@ -55,7 +55,7 @@ public class SorpresaTest {
 	@Test
 	public void testSorpresaDesfavorableSumaVeinticincoPorciento() {
 		Sorpresa sorpresa = new SorpresaDesfavorable();
-		Vehiculo vehiculo = new Vehiculo(0,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
 			vehiculo.mover(new Vector(1,0));
@@ -75,7 +75,7 @@ public class SorpresaTest {
 	@Test
 	public void testSorpresaFavorableRestaVeintePorciento() {
 		Sorpresa sorpresa = new SorpresaFavorable();
-		Vehiculo vehiculo = new Vehiculo(0,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
 			vehiculo.mover(new Vector(1,0));
@@ -95,8 +95,7 @@ public class SorpresaTest {
 	@Test
 	public void testCambioDeVehiculoCambiaMotoPorAuto() {
 		Sorpresa sorpresa = new CambioDeVehiculo();
-		Vehiculo vehiculo = new Vehiculo(0,0);
-		vehiculo.setEstado(new Moto());
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Moto", 0, 0);
 		
 		Auto auto = new Auto();
 		sorpresa.afectar(vehiculo);
@@ -108,8 +107,7 @@ public class SorpresaTest {
 	@Test
 	public void testCambioDeVehiculoCambiaAutoPorCuatroXCuatro() {
 		Sorpresa sorpresa = new CambioDeVehiculo();
-		Vehiculo vehiculo = new Vehiculo(0,0);
-		vehiculo.setEstado(new Auto());
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
 		sorpresa.afectar(vehiculo);
@@ -121,8 +119,7 @@ public class SorpresaTest {
 	@Test
 	public void testCambioDeVehiculoCambiaCuatroXCuatroPorMoto() {
 		Sorpresa sorpresa = new CambioDeVehiculo();
-		Vehiculo vehiculo = new Vehiculo(0,0);
-		vehiculo.setEstado(new CuatroXCuatro());
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "CuatroXCuatro", 0, 0);
 		
 		Moto moto = new Moto();
 		sorpresa.afectar(vehiculo);
