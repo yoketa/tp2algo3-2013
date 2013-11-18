@@ -88,7 +88,7 @@ public class Vehiculo {
 	public void setEstado(EstadoVehiculo estado) {
 		this.estadoActual = estado;
 	}
-	
+
 	public void penalizacionDesfavorable() {
 		this.estadoActual.penalizacionDesfavorable(this);
 	}
@@ -101,8 +101,8 @@ public class Vehiculo {
 		this.estadoActual.pasaPorPozo(this);
 	}
 	
-	public void piquete() {
-		this.estadoActual.piquete();
+	public void piquete(Vector direccion) {
+		this.estadoActual.piquete(this,direccion);
 	}
 	
 	public void controlPolicial() {
