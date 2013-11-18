@@ -1,7 +1,7 @@
 package fiuba.algo3.gpschallenge.modelo;
 
 public interface EstadoVehiculo {
-	public void pasaPorPozo();
+	public void pasaPorPozo(Vehiculo vehiculo);
 	public void piquete();
 	public void controlPolicial();
 	public void penalizacionFavorable(Vehiculo vehiculo);

@@ -98,7 +98,7 @@ public class Vehiculo {
 	}
 	
 	public void pasaPorPozo() {
-		this.estadoActual.pasaPorPozo();
+		this.estadoActual.pasaPorPozo(this);
 	}
 	
 	public void piquete() {

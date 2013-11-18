@@ -1,10 +1,12 @@
 package fiuba.algo3.gpschallenge.modelo;
 
 public class Auto implements EstadoVehiculo {
+	
 
 	@Override
-	public void pasaPorPozo() {
-		// TODO Auto-generated method stub
+	public void pasaPorPozo(Vehiculo vehiculo) {
+		double puntajeActual = vehiculo.getPuntaje();
+		vehiculo.setPuntaje(puntajeActual + 3);
 		
 	}
 
