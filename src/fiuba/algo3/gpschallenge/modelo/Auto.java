@@ -4,6 +4,12 @@ import static org.junit.Assert.fail;
 
 public class Auto implements EstadoVehiculo {
 	
+	private double probabilidadDePasarUnControlPolicial;
+	
+	public Auto(){
+		this.probabilidadDePasarUnControlPolicial = 0.5;
+	}
+	
 
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {
@@ -25,9 +31,14 @@ public class Auto implements EstadoVehiculo {
 	}
 
 	@Override
-	public void controlPolicial() {
-		// TODO Auto-generated method stub
-		
+	public void controlPolicial(Vehiculo vehiculo) {
+		double puntajeActual = vehiculo.getPuntaje();
+		vehiculo.setPuntaje(puntajeActual + 3);
+	}
+	
+	@Override
+	public double getProbabilidadDePasarUnControlPolicial(){
+		return this.probabilidadDePasarUnControlPolicial;
 	}
 
 	@Override
