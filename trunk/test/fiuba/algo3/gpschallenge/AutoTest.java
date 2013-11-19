@@ -37,5 +37,14 @@ public class AutoTest {
 			fail();
 		}
 	}
+	
+	@Test
+	public void testpasaPorControlPolicialSumaTreaMovimientos() {
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("","Auto",0,0);
+		double puntaje = vehiculo.getPuntaje()+ 3;
+		EstadoVehiculo auto = vehiculo.getEstado();
+		auto.controlPolicial(vehiculo);
+		Assert.assertEquals( puntaje , vehiculo.getPuntaje());
+	}
 
 }

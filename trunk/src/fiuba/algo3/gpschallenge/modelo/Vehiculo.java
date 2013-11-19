@@ -106,7 +106,7 @@ public class Vehiculo {
 	}
 	
 	public void controlPolicial() {
-		this.estadoActual.controlPolicial();
+		this.estadoActual.controlPolicial(this);
 	}
 	
 	public void cambiarEstado() {

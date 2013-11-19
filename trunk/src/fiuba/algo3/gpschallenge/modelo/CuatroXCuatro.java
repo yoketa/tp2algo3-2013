@@ -1,6 +1,12 @@
 package fiuba.algo3.gpschallenge.modelo;
 
 public class CuatroXCuatro implements EstadoVehiculo {
+	
+private double probabilidadDePasarUnControlPolicial;
+	
+	public CuatroXCuatro(){
+		this.probabilidadDePasarUnControlPolicial = 0.3;
+	}
 
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {	
@@ -10,6 +16,17 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	public void piquete(Vehiculo vehiculo, Vector direccion) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void controlPolicial(Vehiculo vehiculo) {
+		double puntajeActual = vehiculo.getPuntaje();
+		vehiculo.setPuntaje(puntajeActual + 3);
+	}
+	
+	@Override
+	public double getProbabilidadDePasarUnControlPolicial(){
+		return this.probabilidadDePasarUnControlPolicial;
 	}
 
 	@Override
@@ -27,12 +44,6 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	@Override
 	public void cambiarEstado(Vehiculo vehiculo) {
 		vehiculo.setEstado(new Moto());
-	}
-
-	@Override
-	public void controlPolicial() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

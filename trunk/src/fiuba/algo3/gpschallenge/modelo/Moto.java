@@ -1,6 +1,13 @@
 package fiuba.algo3.gpschallenge.modelo;
 
 public class Moto implements EstadoVehiculo {
+	
+	private double probabilidadDePasarUnControlPolicial;
+	
+	public Moto(){
+		this.probabilidadDePasarUnControlPolicial = 0.8;
+	}
+	
 
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {
@@ -16,9 +23,14 @@ public class Moto implements EstadoVehiculo {
 	}
 
 	@Override
-	public void controlPolicial() {
-		// TODO Auto-generated method stub
-		
+	public void controlPolicial(Vehiculo vehiculo) {
+		double puntajeActual = vehiculo.getPuntaje();
+		vehiculo.setPuntaje(puntajeActual + 3);
+	}
+	
+	@Override
+	public double getProbabilidadDePasarUnControlPolicial(){
+		return this.probabilidadDePasarUnControlPolicial;
 	}
 
 	@Override
