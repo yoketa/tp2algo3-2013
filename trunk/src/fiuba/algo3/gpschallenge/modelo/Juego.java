@@ -68,5 +68,18 @@ public class Juego {
 	public Vehiculo getVehiculo() {
 		return this.vehiculo;
 	}
+
+	public void agregarEvento(Evento evento) {
+		this.eventos.add(evento);
+	}
+
+	public boolean hayEvento(Vector posicion) {
+		
+		for(Evento evento : this.eventos ) {
+			if((evento.getPosicion().getX() == posicion.getX()) && (evento.getPosicion().getY() == posicion.getY()))
+				return true;
+		}
+		return false;
+	}
 	
 }
