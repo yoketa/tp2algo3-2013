@@ -16,5 +16,12 @@ public abstract class Sorpresa implements Evento {
 	public void afectar(Vehiculo vehiculo) {		
 		
 	}
+	
+	public void setPosicion(Vector posicion){
+		this.posicion = posicion;
+	}
 
+	public Vector getPosicion(){
+		return this.posicion;
+	}
 }

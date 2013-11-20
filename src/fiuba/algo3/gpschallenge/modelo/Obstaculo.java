@@ -16,5 +16,12 @@ public abstract class Obstaculo implements Evento {
 	public void afectar(Vehiculo vehiculo) {		
 		
 	}
+	
+	public void setPosicion(Vector posicion){
+		this.posicion = posicion;
+	}
 
+	public Vector getPosicion(){
+		return this.posicion;
+	}
 }
