@@ -1,6 +1,5 @@
 package fiuba.algo3.gpschallenge.modelo;
 
-import java.util.ArrayList;
 
 public class Vehiculo {
 
@@ -8,6 +7,16 @@ public class Vehiculo {
 	private Vector posicion;
 	private double puntaje;
 	private EstadoVehiculo estadoActual;
+
+
+	//Constructor Mejorado.
+	public static Vehiculo crearConPiloto(String piloto,EstadoVehiculo estadoInicial, int x, int y) {
+		Vehiculo vehiculo = new Vehiculo(x,y);
+		vehiculo.setPiloto(piloto);
+		vehiculo.setEstado(estadoInicial);
+		vehiculo.setPuntaje(0);
+		return vehiculo;
+	}	
 	
 	public static Vehiculo crearConPiloto(String piloto,int x,int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
@@ -113,13 +122,5 @@ public class Vehiculo {
 		this.estadoActual.cambiarEstado(this);
 	}
 
-	//Constructor Mejorado.
-	public static Vehiculo crearConPiloto(String piloto,EstadoVehiculo estadoInicial, int x, int y) {
-		Vehiculo vehiculo = new Vehiculo(x,y);
-		vehiculo.setPiloto(piloto);
-		vehiculo.setEstado(estadoInicial);
-		vehiculo.setPuntaje(0);
-		return vehiculo;
-	}
 
 }
