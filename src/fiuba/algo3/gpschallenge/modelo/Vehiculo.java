@@ -113,6 +113,7 @@ public class Vehiculo {
 		this.estadoActual.cambiarEstado(this);
 	}
 
+	//Constructor Mejorado.
 	public static Vehiculo crearConPiloto(String piloto,EstadoVehiculo estadoInicial, int x, int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
 		vehiculo.setPiloto(piloto);

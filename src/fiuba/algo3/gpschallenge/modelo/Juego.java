@@ -17,11 +17,6 @@ public class Juego {
 		return juego;
 	}
 	
-	public static Juego crearJuego(){
-		Juego juego = new Juego();
-		return juego;
-	}
-	
 	public Juego(String piloto){
 		this.limiteHorizontal = 10;
 		this.limiteVertical = 10;
@@ -29,14 +24,6 @@ public class Juego {
 		this.ranking = new Ranking();
 		this.vehiculo = this.crearVehiculo(piloto);
 		this.meta = this.crearMeta(limiteHorizontal,limiteVertical/2);
-	}
-
-	public Juego(){
-		this.limiteHorizontal = 10;
-		this.limiteVertical = 10;
-		this.eventos = this.crearEventos();
-		this.ranking = new Ranking();
-		this.vehiculo = new Vehiculo(1,limiteVertical/2);
 	}
 
 	private Meta crearMeta(int x,int y) {

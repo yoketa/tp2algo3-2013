@@ -1,6 +1,8 @@
 package fiuba.algo3.gpschallenge;
 
+import fiuba.algo3.gpschallenge.modelo.Evento;
 import fiuba.algo3.gpschallenge.modelo.Juego;
+import fiuba.algo3.gpschallenge.modelo.Pozo;
 
 import junit.framework.Assert;
 import org.junit.Test;
@@ -10,13 +12,13 @@ public class JuegoTest {
 	@Test
 	public void testDeberiaCrearUnJuegoConLimite() {
 		int limiteHorizontal = 10;
-		Juego juego = Juego.crearJuego();
+		Juego juego = Juego.crearJuegoConUsuario("Pepe");
 		Assert.assertEquals( limiteHorizontal , juego.getLimiteHorizontal() );
 	}
 
 	@Test
 	public void testDeberiaCrearUnJuegoConEventosYRankingVacio() {
-		Juego juego = Juego.crearJuego();
+		Juego juego = Juego.crearJuegoConUsuario("Pepe");
 		Assert.assertEquals(0, juego.getEventos().size());
 		Assert.assertEquals(0, juego.getRanking().getPuntajes().size());
 	}
@@ -40,5 +42,11 @@ public class JuegoTest {
 		Assert.assertEquals(5, juego.getVehiculo().getPosicionVertical());
 		Assert.assertEquals(1, juego.getVehiculo().getPosicionHorizontal());
 	}
+	
+//	@Test
+//	public void testDeberiaAplicarEvento(){
+//		Juego juego = Juego.crearJuegoConUsuario("Pepe");
+//		Evento pozo = new Pozo();
+//	}
 	
 }
