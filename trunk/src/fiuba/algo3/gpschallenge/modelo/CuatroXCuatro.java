@@ -1,5 +1,7 @@
 package fiuba.algo3.gpschallenge.modelo;
 
+import static org.junit.Assert.fail;
+
 public class CuatroXCuatro implements EstadoVehiculo {
 	
 private double probabilidadDePasarUnControlPolicial;
@@ -14,8 +16,14 @@ private double probabilidadDePasarUnControlPolicial;
 
 	@Override
 	public void piquete(Vehiculo vehiculo, Vector direccion) {
-		// TODO Auto-generated method stub
-		
+		direccion.setX(direccion.getX()*(-1));
+		direccion.setY(direccion.getY()*(-1));
+		try {
+			vehiculo.mover(direccion);	
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 	
 	@Override
