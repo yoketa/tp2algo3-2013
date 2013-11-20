@@ -1,5 +1,9 @@
 package fiuba.algo3.gpschallenge.modelo;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
+
 
 public class Vehiculo {
 
@@ -120,6 +124,23 @@ public class Vehiculo {
 	
 	public void cambiarEstado() {
 		this.estadoActual.cambiarEstado(this);
+	}
+
+	public Element serializarXML() {
+		Element element = new Element("Vehiculo");
+		Attribute att1 = new Attribute("puntaje",Double.valueOf(puntaje).toString());
+		Attribute att2 = new Attribute("piloto",String.valueOf(piloto).toString());
+		element.getAttributes().add(att1);
+		element.getAttributes().add(att2);
+		return element;
+	}
+	
+	public static Vehiculo cargarDesdeXML(Element element) {
+		String valorPuntaje = element.getAttributeValue("puntaje");
+		String valorPiloto = element.getAttributeValue("piloto");
+		Vehiculo vehiculo = Vehiculo.crearConPiloto(valorPiloto,"",0,0);
+		vehiculo.setPuntaje(Double.parseDouble(valorPuntaje)); 
+		return vehiculo;
 	}
 
 
