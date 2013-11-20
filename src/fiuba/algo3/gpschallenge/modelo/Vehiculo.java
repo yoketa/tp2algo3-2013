@@ -113,4 +113,12 @@ public class Vehiculo {
 		this.estadoActual.cambiarEstado(this);
 	}
 
+	public static Vehiculo crearConPiloto(String piloto,EstadoVehiculo estadoInicial, int x, int y) {
+		Vehiculo vehiculo = new Vehiculo(x,y);
+		vehiculo.setPiloto(piloto);
+		vehiculo.setEstado(estadoInicial);
+		vehiculo.setPuntaje(0);
+		return vehiculo;
+	}
+
 }

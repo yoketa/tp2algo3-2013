@@ -18,8 +18,8 @@ public class Moto implements EstadoVehiculo {
 
 	@Override
 	public void piquete(Vehiculo vehiculo, Vector direccion) {
-		// TODO Auto-generated method stub
-		
+		double puntajeActual = vehiculo.getPuntaje();
+		vehiculo.setPuntaje(puntajeActual + 2);
 	}
 
 	@Override
