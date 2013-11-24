@@ -1,8 +1,9 @@
 package fiuba.algo3.gpschallenge.modelo;
 
 import java.util.*;
-import java.util.Comparator;
-import java.util.List;
+
+import org.jdom.Attribute;
+import org.jdom.Element;
 
 /**
  * Clase que representa al ranking de puntajes.
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class Ranking {
 
+	public static String rankingPath = "C:\\Users\\27176876544\\Documents\\eclipse\\Ranking.xml";
 	private Comparator unComparador;
 	private List<Vehiculo> mejoresPuntajes;
 
@@ -19,11 +21,16 @@ public class Ranking {
 		this.unComparador = new ComparadorVehiculosPorPuntaje();
 	}
 
+	public Ranking(List<Vehiculo> mejoresPuntajes){
+		this.mejoresPuntajes = mejoresPuntajes;
+		this.unComparador = new ComparadorVehiculosPorPuntaje();
+	}
+	
 	public List<Vehiculo> getPuntajes() {
 		// TODO Auto-generated method stub
 		return this.mejoresPuntajes;
 	}
-	
+		
 	/**
 	 * agrego el puntaje del vehiculo al ranking de manera ordenada
 	 *
@@ -40,5 +47,37 @@ public class Ranking {
 		}
 	}
 
-
+	// BEGIN Serialización
+	public Element serializarXML() {
+		Element element = new Element("Ranking");
+		
+		for (Vehiculo puntajeJugador : mejoresPuntajes) {
+			Element entradaPuntaje = new Element("Puntaje");
+			Attribute att1 = new Attribute("puntaje",Double.valueOf(puntajeJugador.getPuntaje()).toString());
+			Attribute att2 = new Attribute("piloto",String.valueOf(puntajeJugador.getPiloto()).toString());
+			entradaPuntaje.getAttributes().add(att1);
+			entradaPuntaje.getAttributes().add(att2);
+			
+			element.addContent(entradaPuntaje);
+		}
+		
+		return element;
+	}
+	
+	public static Ranking cargarDesdeXML(Element element) {
+		List<Vehiculo> puntajes = new ArrayList<Vehiculo>();
+		for (Object puntajeGuardado : element.getChildren()) {
+			double puntaje = Double.parseDouble(((Element)puntajeGuardado).getAttributeValue("puntaje").toString());
+			String nombreJugador = ((Element)puntajeGuardado).getAttributeValue("piloto").toString();
+			Vehiculo mejorPuntaje = Vehiculo.crearConPiloto(nombreJugador, 0, 0);
+			mejorPuntaje.setPuntaje(puntaje);
+			
+			puntajes.add(mejorPuntaje);			
+		}
+		
+		Ranking ranking = new Ranking(puntajes);
+		
+		return ranking;
+	}	
+	// END Serialización
 }

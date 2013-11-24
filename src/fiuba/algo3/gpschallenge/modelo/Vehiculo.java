@@ -70,7 +70,7 @@ public class Vehiculo {
 	public int getPosicionHorizontal() {
 		return this.posicion.getX();
 	}
-	
+		
 	//TODO: Tipo de excepción en caso de que la dirección no sea ortonormal
 	public void mover(Vector direccion) throws Exception {
 		int tamaño = direccion.getX() + direccion.getY();
@@ -130,16 +130,23 @@ public class Vehiculo {
 		Element element = new Element("Vehiculo");
 		Attribute att1 = new Attribute("puntaje",Double.valueOf(puntaje).toString());
 		Attribute att2 = new Attribute("piloto",String.valueOf(piloto).toString());
+		Attribute att3 = new Attribute("x", String.valueOf(Integer.valueOf(this.posicion.getX())));
+		Attribute att4 = new Attribute("y", String.valueOf(Integer.valueOf(this.posicion.getY())));
 		element.getAttributes().add(att1);
 		element.getAttributes().add(att2);
+		element.getAttributes().add(att3);
+		element.getAttributes().add(att4);
 		return element;
 	}
 	
 	public static Vehiculo cargarDesdeXML(Element element) {
 		String valorPuntaje = element.getAttributeValue("puntaje");
 		String valorPiloto = element.getAttributeValue("piloto");
-		Vehiculo vehiculo = Vehiculo.crearConPiloto(valorPiloto,"",0,0);
+		String valorX = element.getAttributeValue("x");
+		String valorY = element.getAttributeValue("y");
+		Vehiculo vehiculo = Vehiculo.crearConPiloto(valorPiloto,valorPiloto,Integer.parseInt(valorX),Integer.parseInt(valorY));
 		vehiculo.setPuntaje(Double.parseDouble(valorPuntaje)); 
+		
 		return vehiculo;
 	}
 
