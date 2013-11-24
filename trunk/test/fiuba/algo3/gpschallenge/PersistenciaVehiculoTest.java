@@ -26,7 +26,7 @@ public class PersistenciaVehiculoTest {
 
 		Archivador.guardar(vehiculo, pathArchivo);
 
-		 otroVehiculo = Archivador.cargar(pathArchivo);
+		 otroVehiculo = Archivador.cargar(new Vehiculo(0,0), pathArchivo);
 		assertEquals(otroVehiculo.getPiloto(),"pepe");
 		assertEquals(otroVehiculo.getPuntaje(),50.0,1E-5);
 	}
