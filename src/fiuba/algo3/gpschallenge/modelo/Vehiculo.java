@@ -132,18 +132,38 @@ public class Vehiculo {
 		Attribute att2 = new Attribute("piloto",String.valueOf(piloto).toString());
 		element.getAttributes().add(att1);
 		element.getAttributes().add(att2);
+
 		element.addContent(posicion.serializarXML());
+		element.addContent(estadoActual.serializarXML());
+
+		element.addContent(posicion.serializarXML());
+
 		return element;
 	}
 	
 	public static Vehiculo cargarDesdeXML(Element element) {
 		String valorPuntaje = element.getAttributeValue("puntaje");
 		String valorPiloto = element.getAttributeValue("piloto");
+
 		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
-		
+		EstadoVehiculo estado = null;
+			if ((element.getChild("Auto")) != null){
+				estado = new Auto();
+				estado = Auto.cargarDesdeXML(element.getChild("Auto"));
+			}
+			if ((element.getChild("Moto")) != null){
+				estado = new Moto();
+				estado = Moto.cargarDesdeXML(element.getChild("Moto"));
+			}
+			if ((element.getChild("CuatroXCuatro")) != null){
+				estado = new CuatroXCuatro();
+				estado = CuatroXCuatro.cargarDesdeXML(element.getChild("CuatroXCuatro"));
+			}
+			
 		Vehiculo vehiculo = Vehiculo.crearConPiloto(valorPiloto,valorPiloto,vector.getX(),vector.getY());
+
 		vehiculo.setPuntaje(Double.parseDouble(valorPuntaje)); 
-		
+		vehiculo.setEstado(estado);	
 		return vehiculo;
 	}
 
