@@ -16,7 +16,7 @@ public class PersistenciaVehiculoTest {
 	@Before
 	public void setup() {
 		String piloto  = "pepe";
-		vehiculo = Vehiculo.crearConPiloto(piloto,"",0,0);
+		vehiculo = Vehiculo.crearConPiloto(piloto,"",2,3);
 		vehiculo.setPuntaje(50);
 	}
 
@@ -29,5 +29,7 @@ public class PersistenciaVehiculoTest {
 		 otroVehiculo = Archivador.cargar(new Vehiculo(0,0), pathArchivo);
 		assertEquals(otroVehiculo.getPiloto(),"pepe");
 		assertEquals(otroVehiculo.getPuntaje(),50.0,1E-5);
+		assertEquals(otroVehiculo.getPosicionHorizontal(),2,1E-5);
+		assertEquals(otroVehiculo.getPosicionVertical(),3,1E-5);
 	}
 }

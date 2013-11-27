@@ -12,7 +12,7 @@ import org.jdom.Element;
 
 public class Ranking {
 
-	public static String rankingPath = "C:\\Users\\27176876544\\Documents\\eclipse\\Ranking.xml";
+	public static String rankingPath = "C:\\Users\\Miguel\\workspace\\repositorio\\save\\Ranking.xml";
 	private Comparator unComparador;
 	private List<Vehiculo> mejoresPuntajes;
 
