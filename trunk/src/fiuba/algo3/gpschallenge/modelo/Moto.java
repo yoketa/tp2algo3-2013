@@ -1,5 +1,8 @@
 package fiuba.algo3.gpschallenge.modelo;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 public class Moto implements EstadoVehiculo {
 	
 	private double probabilidadDePasarUnControlPolicial;
@@ -34,6 +37,11 @@ public class Moto implements EstadoVehiculo {
 	}
 
 	@Override
+	public void setProbabilidadDePasarUnControlPolicial(double probabilidad){
+		this.probabilidadDePasarUnControlPolicial = probabilidad;
+	}
+	
+	@Override
 	public void penalizacionFavorable(Vehiculo vehiculo) {
 		double puntajeActual = vehiculo.getPuntaje();
 		vehiculo.setPuntaje(puntajeActual * 0.8);		
@@ -49,5 +57,18 @@ public class Moto implements EstadoVehiculo {
 	public void cambiarEstado(Vehiculo vehiculo) {
 		vehiculo.setEstado(new Auto());		
 	}
+	
+	public Element serializarXML() {
+		Element element = new Element("Moto");
+		Attribute att1 = new Attribute("probabilidadDePasarUnControlPolicial",Double.valueOf(probabilidadDePasarUnControlPolicial).toString());
+		element.getAttributes().add(att1);
+		return element;
+	}
 
+	public static Moto cargarDesdeXML(Element element) {
+		String probabilidad = element.getAttributeValue("probabilidadDePasarUnControlPolicial");
+		Moto moto = new Moto(); 
+		moto.setProbabilidadDePasarUnControlPolicial(Double.parseDouble(probabilidad));
+		return moto;
+	}
 }
