@@ -2,6 +2,9 @@ package fiuba.algo3.gpschallenge.modelo;
 
 import static org.junit.Assert.fail;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 public class Auto implements EstadoVehiculo {
 	
 	private double probabilidadDePasarUnControlPolicial;
@@ -37,6 +40,12 @@ public class Auto implements EstadoVehiculo {
 	}
 	
 	@Override
+	public void setProbabilidadDePasarUnControlPolicial(double probabilidad){
+		this.probabilidadDePasarUnControlPolicial = probabilidad;
+	}
+	
+	
+	@Override
 	public double getProbabilidadDePasarUnControlPolicial(){
 		return this.probabilidadDePasarUnControlPolicial;
 	}
@@ -58,4 +67,17 @@ public class Auto implements EstadoVehiculo {
 		vehiculo.setEstado(new CuatroXCuatro());
 	}
 
+	public Element serializarXML() {
+		Element element = new Element("Auto");
+		Attribute att1 = new Attribute("probabilidadDePasarUnControlPolicial",Double.valueOf(probabilidadDePasarUnControlPolicial).toString());
+		element.getAttributes().add(att1);
+		return element;
+	}
+
+	public static Auto cargarDesdeXML(Element element) {
+		String probabilidad = element.getAttributeValue("probabilidadDePasarUnControlPolicial");
+		Auto auto = new Auto(); 
+		auto.setProbabilidadDePasarUnControlPolicial(Double.parseDouble(probabilidad));
+		return auto;
+	}
 }
