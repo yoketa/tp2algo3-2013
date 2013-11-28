@@ -3,14 +3,13 @@ package fiuba.algo3.gpschallenge;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import junit.framework.Assert;
+import modelo.juego.Vector;
+import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
+import modelo.vehiculo.Vehiculo;
 
 import org.junit.Test;
-
-import fiuba.algo3.gpschallenge.modelo.Auto;
-import fiuba.algo3.gpschallenge.modelo.CuatroXCuatro;
-import fiuba.algo3.gpschallenge.modelo.Moto;
-import fiuba.algo3.gpschallenge.modelo.Vector;
-import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 public class VehiculoTest {
 	
