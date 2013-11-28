@@ -14,8 +14,12 @@ import org.jdom.Element;
  */
 
 public class Ranking {
-
-	public static String rankingPath = "C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Vehiculo.xml";
+	/* 
+	 * El archivo vehiculo.xml se encuentra en la siguiente direccion y en la carpeta save del tp.
+	 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
+	 * al sincronizar con el repositorio.
+	*/
+	public static String rankingPath = "C:\\Persistencia\\Vehiculo.xml";
 	private Comparator unComparador;
 	private List<Vehiculo> mejoresPuntajes;
 

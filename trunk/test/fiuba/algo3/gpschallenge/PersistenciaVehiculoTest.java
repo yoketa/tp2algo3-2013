@@ -44,7 +44,12 @@ public class PersistenciaVehiculoTest {
 
 	@Test
 	public void GuardarYCargarVehiculoEnEstadoAutoTest() {
-		String pathArchivo = "C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Auto.xml";
+		/* 
+		 * El archivo Auto.xml se encuentra en la siguiente direccion y en la carpeta save del tp.
+		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
+		 * al sincronizar con el repositorio.
+		*/
+		String pathArchivo = "C:\\Persistencia\\Auto.xml";
 
 		Archivador.guardar(vehiculoAuto, pathArchivo);
 
@@ -60,7 +65,12 @@ public class PersistenciaVehiculoTest {
 
 	@Test
 	public void GuardarYCargarVehiculoEnEstadoMotoTest() {
-		String pathArchivo = "C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Vehiculo.xml";
+		/* 
+		 * El archivo vehiculo.xml se encuentra en la siguiente direccion y en la carpeta save del tp.
+		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
+		 * al sincronizar con el repositorio.
+		*/
+		String pathArchivo = "C:\\Persistencia\\Vehiculo.xml";
 
 		Archivador.guardar(vehiculoMoto, pathArchivo);
 
@@ -75,7 +85,12 @@ public class PersistenciaVehiculoTest {
 	
 	@Test
 	public void GuardarYCargarVehiculoEnEstadoCuatroXCuatroTest() {
-		String pathArchivo ="C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Vehiculo.xml";
+		/* 
+		 * El archivo vehiculo.xml se encuentra en la siguiente direccion y en la carpeta save del tp.
+		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
+		 * al sincronizar con el repositorio.
+		*/
+		String pathArchivo ="C:\\Persistencia\\Vehiculo.xml";
 
 		Archivador.guardar(vehiculoCuatroXCuatro, pathArchivo);
 
