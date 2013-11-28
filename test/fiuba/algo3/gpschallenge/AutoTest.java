@@ -2,12 +2,11 @@ package fiuba.algo3.gpschallenge;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import modelo.interfaces.EstadoVehiculo;
+import modelo.juego.Vector;
+import modelo.vehiculo.Vehiculo;
 
 import org.junit.Test;
-
-import fiuba.algo3.gpschallenge.modelo.EstadoVehiculo;
-import fiuba.algo3.gpschallenge.modelo.Vector;
-import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 public class AutoTest {
 

@@ -4,9 +4,18 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import modelo.juego.Vector;
+import modelo.sorpresas.CambioDeVehiculo;
+import modelo.sorpresas.Sorpresa;
+import modelo.sorpresas.SorpresaDesfavorable;
+import modelo.sorpresas.SorpresaFavorable;
+import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
+import modelo.vehiculo.Vehiculo;
+
 import org.junit.Test;
 
-import fiuba.algo3.gpschallenge.modelo.*;
 
 public class SorpresaTest {
 	

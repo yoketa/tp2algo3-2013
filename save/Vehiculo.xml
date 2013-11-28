@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Vehiculo puntaje="50.0" piloto="pepe">
-  <Vector x="2" y="3" />
+<Vehiculo puntaje="80.0" piloto="juan">
+  <Vector x="1" y="2" />
+  <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  <Vector x="1" y="2" />
 </Vehiculo>
 

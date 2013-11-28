@@ -4,12 +4,13 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import modelo.juego.Ranking;
+import modelo.vehiculo.Vehiculo;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import persistencia.Archivador;
-import fiuba.algo3.gpschallenge.modelo.Ranking;
-import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 public class RankingTest {
 

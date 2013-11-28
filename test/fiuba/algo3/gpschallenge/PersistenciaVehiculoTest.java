@@ -1,16 +1,16 @@
 package fiuba.algo3.gpschallenge;
 
 import static org.junit.Assert.assertEquals;
+import modelo.interfaces.EstadoVehiculo;
+import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
+import modelo.vehiculo.Vehiculo;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import persistencia.Archivador;
-import fiuba.algo3.gpschallenge.modelo.Auto;
-import fiuba.algo3.gpschallenge.modelo.CuatroXCuatro;
-import fiuba.algo3.gpschallenge.modelo.EstadoVehiculo;
-import fiuba.algo3.gpschallenge.modelo.Moto;
-import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 
 public class PersistenciaVehiculoTest {
@@ -44,7 +44,7 @@ public class PersistenciaVehiculoTest {
 
 	@Test
 	public void GuardarYCargarVehiculoEnEstadoAutoTest() {
-		String pathArchivo = "C:\\Users\\Miguel\\workspace\\repositorio\\save\\VehiculoAuto.xml";
+		String pathArchivo = "C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Auto.xml";
 
 		Archivador.guardar(vehiculoAuto, pathArchivo);
 
@@ -60,7 +60,7 @@ public class PersistenciaVehiculoTest {
 
 	@Test
 	public void GuardarYCargarVehiculoEnEstadoMotoTest() {
-		String pathArchivo = "C:\\Users\\Miguel\\workspace\\repositorio\\save\\VehiculoMoto.xml";
+		String pathArchivo = "C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Vehiculo.xml";
 
 		Archivador.guardar(vehiculoMoto, pathArchivo);
 
@@ -75,7 +75,7 @@ public class PersistenciaVehiculoTest {
 	
 	@Test
 	public void GuardarYCargarVehiculoEnEstadoCuatroXCuatroTest() {
-		String pathArchivo = "C:\\Users\\Miguel\\workspace\\repositorio\\save\\VehiculoCuatroXCuatro.xml";
+		String pathArchivo ="C:\\Users\\nike\\workspace\\GpsChallenge\\save\\Vehiculo.xml";
 
 		Archivador.guardar(vehiculoCuatroXCuatro, pathArchivo);
 

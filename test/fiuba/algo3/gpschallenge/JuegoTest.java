@@ -1,11 +1,13 @@
 package fiuba.algo3.gpschallenge;
 
-import fiuba.algo3.gpschallenge.modelo.Evento;
-import fiuba.algo3.gpschallenge.modelo.Juego;
-import fiuba.algo3.gpschallenge.modelo.Pozo;
-import fiuba.algo3.gpschallenge.modelo.Vector;
-
 import junit.framework.Assert;
+import modelo.interfaces.Evento;
+import modelo.juego.Juego;
+import modelo.juego.Vector;
+
+
+import modelo.obstaculo.Pozo;
+
 import org.junit.Test;
 
 public class JuegoTest {

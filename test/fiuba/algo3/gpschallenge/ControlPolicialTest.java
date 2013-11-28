@@ -2,14 +2,17 @@ package fiuba.algo3.gpschallenge;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import modelo.interfaces.Evento;
+import modelo.obstaculo.ControlPolicial;
+import modelo.obstaculo.Obstaculo;
+import modelo.probabilidades.Probabilidad;
+import modelo.probabilidades.ProbabilidadFija;
+import modelo.vehiculo.Vehiculo;
+
+
+
 
 import org.junit.Test;
-
-import fiuba.algo3.gpschallenge.modelo.ControlPolicial;
-import fiuba.algo3.gpschallenge.modelo.Obstaculo;
-import fiuba.algo3.gpschallenge.modelo.Probabilidad;
-import fiuba.algo3.gpschallenge.modelo.ProbabilidadFija;
-import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 public class ControlPolicialTest {
 

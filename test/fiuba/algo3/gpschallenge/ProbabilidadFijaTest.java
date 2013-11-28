@@ -2,11 +2,10 @@ package fiuba.algo3.gpschallenge;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import modelo.probabilidades.ProbabilidadEquiprobable;
+import modelo.probabilidades.ProbabilidadFija;
 
 import org.junit.Test;
-
-import fiuba.algo3.gpschallenge.modelo.ProbabilidadEquiprobable;
-import fiuba.algo3.gpschallenge.modelo.ProbabilidadFija;
 
 public class ProbabilidadFijaTest {
 

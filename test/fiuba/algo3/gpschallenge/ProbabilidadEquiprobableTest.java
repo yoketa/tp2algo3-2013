@@ -2,12 +2,11 @@ package fiuba.algo3.gpschallenge;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import modelo.juego.Vector;
+import modelo.probabilidades.ProbabilidadEquiprobable;
+import modelo.vehiculo.Vehiculo;
 
 import org.junit.Test;
-
-import fiuba.algo3.gpschallenge.modelo.ProbabilidadEquiprobable;
-import fiuba.algo3.gpschallenge.modelo.Vector;
-import fiuba.algo3.gpschallenge.modelo.Vehiculo;
 
 public class ProbabilidadEquiprobableTest {
 
