@@ -47,7 +47,7 @@ public class PersistenciaVehiculoTest {
 		/* 
 		 * El archivo Auto.xml se encuentra en la siguiente direccion y en la carpeta save del tp.
 		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad   
-		 * al sincronizar con el repositorio.
+		 * al sincronizar con el repositorio.  
 		*/
 		String pathArchivo = "C:\\Persistencia\\Auto.xml";
 
