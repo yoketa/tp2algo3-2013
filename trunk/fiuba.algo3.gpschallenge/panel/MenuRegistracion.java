@@ -1,13 +1,7 @@
 package panel;
 
-
-/**
- *
- * @author Ramon
- */
 public class MenuRegistracion extends javax.swing.JFrame {
 
-    /** Creates new form MenuRegistracion */
     public PanelInicial menu;
     
     public MenuRegistracion() {
@@ -15,13 +9,15 @@ public class MenuRegistracion extends javax.swing.JFrame {
     }
 
     public MenuRegistracion(PanelInicial panel) {
+        this.setTitle("Gps Challenge");
         initComponents();
         menu = panel;
         panel.setVisible(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }   
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel = new javax.swing.JLabel();
@@ -76,21 +72,20 @@ public class MenuRegistracion extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }// </editor-fold>                        
 
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         menu.setVisible(true);
         this.dispose();
-    }
+    }                                         
 
-    private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                         
 
-    }
+    }                                        
 
-
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jBguardar;
     private javax.swing.JLabel jLabel;
     private javax.swing.JTextField jUsuario;
-    // End of variables declaration
+    // End of variables declaration                   
 }
