@@ -1,5 +1,7 @@
 package panel;
 
+import java.awt.Color;
+
 public class PanelInicial extends javax.swing.JFrame {
 
     private MenuRegistracion registracion;
@@ -7,11 +9,13 @@ public class PanelInicial extends javax.swing.JFrame {
     
     //Constructor
     public PanelInicial() {
+        this.setTitle("Gps Challenge");
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         Titulo = new javax.swing.JLabel();
@@ -80,29 +84,29 @@ public class PanelInicial extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }// </editor-fold>                        
 
     
-    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
         System.exit(0);
-    }                                      
+    }                                       
 
-    private void jBSoyNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                          
-    registracion = new MenuRegistracion(this);
-    registracion.setBounds(500,250,450,250);
-    registracion.setVisible(true);
-    }                                         
+    private void jBSoyNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        registracion = new MenuRegistracion(this);
+        registracion.setBounds(500,250,450,250);
+        registracion.setVisible(true);
+    }                                          
 
-    private void jBYaTengoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    eleccionDeUsuario = new MenuEleccionUsuario(this);
-    eleccionDeUsuario.setBounds(500,150,450,600);
-    eleccionDeUsuario.setVisible(true);
-    }                                        
+    private void jBYaTengoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        eleccionDeUsuario = new MenuEleccionUsuario(this);
+        eleccionDeUsuario.setBounds(500,150,300,300);
+        eleccionDeUsuario.setVisible(true);
+    }                                                
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton jBSoyNuevo;
     private javax.swing.JButton jBYaTengoUsuario;
     private javax.swing.JButton jBsalir;
-    // End of variables declaration
+    // End of variables declaration                   
 }
