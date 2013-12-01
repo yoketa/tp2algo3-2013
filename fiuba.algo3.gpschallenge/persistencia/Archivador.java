@@ -98,8 +98,7 @@ public class Archivador {
 	        outputter.output(document,writer);
 	        writer.close();
 	        
-	        
-		} catch(Exception e) {
+	      } catch(Exception e) {
 			throw new RuntimeException(e);
 		}
 		

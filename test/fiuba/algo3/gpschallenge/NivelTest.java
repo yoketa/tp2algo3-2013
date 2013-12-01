@@ -42,15 +42,8 @@ public class NivelTest {
 	private List<Obstaculo> obstaculos;
 	private Nivel nivel;
 	
-	private Vehiculo vehiculo1;
-	private Vehiculo vehiculo2;
-	private Vehiculo vehiculo3;
-	private Ranking ranking;
-	private List<Vehiculo> puntajes;
-		
 	@Before
 	public void setup() {
-		
 		sorpresa1 = new SorpresaDesfavorable(new Vector(1,1));
 		sorpresa2 = new SorpresaDesfavorable(new Vector(2,2));
 		sorpresa3 = new SorpresaFavorable(new Vector(1,2));
@@ -62,9 +55,6 @@ public class NivelTest {
 		obstaculo3 = new ControlPolicial(new Vector(1,6)) ;
 		obstaculo4 = new Piquete (new Vector(3,3));
 		nivel = new Nivel();
-		
-		
-		
 	}
 	
 	@Test
@@ -164,8 +154,6 @@ public class NivelTest {
 		nivel.agregarUnaSorpresa(sorpresa2);
 		nivel.agregarUnaSorpresa(sorpresa3);
 		nivel.agregarUnaSorpresa(sorpresa4);
-		nivel.agregarUnObstaculo(obstaculo1);
-		
 		try {
 			Archivador.guardar(nivel, Nivel.nivelPath);
 			Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelPath);
@@ -192,7 +180,6 @@ public class NivelTest {
 		nivel.agregarUnObstaculo(obstaculo2);
 		nivel.agregarUnObstaculo(obstaculo3);
 		nivel.agregarUnObstaculo(obstaculo4);
-		nivel.agregarUnaSorpresa(sorpresa1);
 		try {
 			Archivador.guardar(nivel, Nivel.nivelObstaculoPath);
 			Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelObstaculoPath);
