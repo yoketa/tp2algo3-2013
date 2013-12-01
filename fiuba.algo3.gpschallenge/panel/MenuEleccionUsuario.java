@@ -1,6 +1,10 @@
 package panel;
 
 import javax.swing.*;
+
+import modelo.vehiculo.Vehiculo;
+import persistencia.Archivador;
+
 import java.awt.event.*;
 
 public class MenuEleccionUsuario extends javax.swing.JFrame {
@@ -8,6 +12,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
     private PanelInicial menu;
     private MenuPrincipal menuPrincipal;
     private String usuario;
+    private Vehiculo vehiculo; 
     
     public MenuEleccionUsuario() {
         initComponents();
@@ -19,14 +24,23 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
         menu = panel;
         panel.setVisible(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
-        usuarios.addItem("Nico");
+        this.cargarUsuarios();
+
+    }
+    
+    private void cargarUsuarios() {
+//  
+//		this.vehiculo = Archivador.cargar(new Vehiculo(0,0), Vehiculo.vehiculoPath);
+//        String piloto = this.vehiculo.
+		usuarios.addItem("Nico");
         usuarios.addItem("Diego");
         usuarios.addItem("Pablo");
         usuarios.addItem("Juan");
         usuarios.addItem("Gabriel");
-    }
-    
-    @SuppressWarnings("unchecked")
+		
+	}
+
+	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
