@@ -143,7 +143,7 @@ public class Vehiculo extends Observable {
 		element.addContent(posicion.serializarXML());
 		element.addContent(estadoActual.serializarXML());
 
-		element.addContent(posicion.serializarXML());
+		//element.addContent(posicion.serializarXML());
 
 		return element;
 	}

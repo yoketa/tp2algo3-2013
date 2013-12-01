@@ -1,11 +1,23 @@
 package modelo.obstaculo;
 
+import org.jdom.Element;
+
+import modelo.juego.Vector;
 import modelo.probabilidades.Probabilidad;
 import modelo.vehiculo.Vehiculo;
 
 public class ControlPolicial extends Obstaculo {
 	
 	private double probabilidad;
+	
+	public ControlPolicial (){
+		super(new Vector(0,0));
+	}
+	
+	public ControlPolicial (Vector posicion){
+		super(posicion);
+	}
+	
 	
 	public ControlPolicial(Probabilidad probabilidad){
 		this.probabilidad = probabilidad.calcular();	
@@ -26,4 +38,10 @@ public class ControlPolicial extends Obstaculo {
 	 return this.probabilidad;
 	}
 
+	public Element serializarXML() {
+		Element element = new Element("SorpresaFavorable");
+		element.addContent(this.getPosicion().serializarXML());
+		
+		return element;
+	}
 }

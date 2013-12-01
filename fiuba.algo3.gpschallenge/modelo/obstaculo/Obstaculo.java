@@ -1,5 +1,7 @@
 package modelo.obstaculo;
 
+import org.jdom.Element;
+
 import modelo.interfaces.Evento;
 import modelo.juego.Vector;
 import modelo.vehiculo.Vehiculo;
@@ -28,4 +30,6 @@ public abstract class Obstaculo implements Evento {
 	public Vector getPosicion(){
 		return this.posicion;
 	}
+
+	public abstract Element serializarXML();
 }

@@ -11,6 +11,8 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import controladores.Nivel;
+
 
 public class Archivador {
 	
@@ -81,5 +83,38 @@ public class Archivador {
 		}
 	}	
 	// END Archivo de Ranking
+
+
+	public static void guardar(Nivel nivel, String pathArchivo) {
+		try {
+	        
+			Element root = nivel.serializarXML();
+	        Document document = new Document(root);
+
+	        XMLOutputter outputter = new XMLOutputter();
+	        outputter.setFormat(Format.getPrettyFormat());
+	        
+	        FileWriter writer = new FileWriter(pathArchivo);
+	        outputter.output(document,writer);
+	        writer.close();
+	        
+	        
+		} catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	/*public static Nivel cargar(Nivel dummy, String pathArchivo) {
+		try {
+	        SAXBuilder builder = new SAXBuilder();
+	        Document document = builder.build(pathArchivo);
+	        
+	        return Nivel.cargarDesdeXML(document.getRootElement());
+	        
+		} catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}*/	
 
 }
