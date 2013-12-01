@@ -15,7 +15,7 @@ public class PanelInicial extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         Titulo = new javax.swing.JLabel();
@@ -25,10 +25,11 @@ public class PanelInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Titulo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(0, 0, 153));
         Titulo.setText("Bienvenido a Gps Challence");
 
-        jBSoyNuevo.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jBSoyNuevo.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jBSoyNuevo.setText("Soy nuevo");
         jBSoyNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -36,7 +37,7 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         });
 
-        jBsalir.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jBsalir.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,7 +45,7 @@ public class PanelInicial extends javax.swing.JFrame {
             }
         });
 
-        jBYaTengoUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jBYaTengoUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jBYaTengoUsuario.setText("Ya tengo usuario");
         jBYaTengoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,34 +58,33 @@ public class PanelInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBSoyNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(jBYaTengoUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(jBsalir, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-                        .addGap(86, 86, 86))
-                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                .addGap(25, 25, 25)
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBSoyNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(jBYaTengoUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(jBsalir, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBSoyNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBYaTengoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>
 
     
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -93,20 +93,20 @@ public class PanelInicial extends javax.swing.JFrame {
 
     private void jBSoyNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                           
         registracion = new MenuRegistracion(this);
-        registracion.setBounds(500,250,450,250);
+        registracion.setBounds(500,250,450,275);
         registracion.setVisible(true);
     }                                          
 
     private void jBYaTengoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         eleccionDeUsuario = new MenuEleccionUsuario(this);
-        eleccionDeUsuario.setBounds(500,150,300,300);
+        eleccionDeUsuario.setBounds(500,150,300,350);
         eleccionDeUsuario.setVisible(true);
     }                                                
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton jBSoyNuevo;
     private javax.swing.JButton jBYaTengoUsuario;
     private javax.swing.JButton jBsalir;
-    // End of variables declaration                   
+    // End of variables declaration
 }

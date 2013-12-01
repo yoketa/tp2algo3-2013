@@ -2,17 +2,21 @@ package panel;
 
 import javax.swing.*;
 
+import modelo.juego.Ranking;
 import modelo.vehiculo.Vehiculo;
 import persistencia.Archivador;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuEleccionUsuario extends javax.swing.JFrame {
 
     private PanelInicial menu;
     private MenuPrincipal menuPrincipal;
     private String usuario;
-    private Vehiculo vehiculo; 
+	private List<Vehiculo> usuariosGuardados;
+	private Ranking ranking;
     
     public MenuEleccionUsuario() {
         initComponents();
@@ -23,25 +27,28 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
         initComponents();
         menu = panel;
         panel.setVisible(false);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
-        this.cargarUsuarios();
-
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        //Agrego los usuarios
+        this.agregarUsuarios();
     }
     
-    private void cargarUsuarios() {
-//  
-//		this.vehiculo = Archivador.cargar(new Vehiculo(0,0), Vehiculo.vehiculoPath);
-//        String piloto = this.vehiculo.
-		usuarios.addItem("Nico");
-        usuarios.addItem("Diego");
-        usuarios.addItem("Pablo");
-        usuarios.addItem("Juan");
-        usuarios.addItem("Gabriel");
-		
+    private void agregarUsuarios() {
+
+        this.usuariosGuardados = new ArrayList();
+		this.ranking = Archivador.cargar(new Ranking(), "\\Level\\Ranking.xml");
+        this.usuariosGuardados = this.ranking.getPuntajes();
+        
+        String user;
+        
+        for( int i=0; i<this.usuariosGuardados.size() ; i++ ){
+            user = this.usuariosGuardados.get(i).getPiloto();
+        	usuarios.addItem(user);
+        }
 	}
 
 	@SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,12 +69,13 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 1, 24));
+        jLabel1.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Elija un usuario");
 
         jTextField1.setText("jTextField1");
 
-        aceptar.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        aceptar.setFont(new java.awt.Font("Consolas", 0, 18));
         aceptar.setText("Aceptar");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +89,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
             }
         });
 
-        volver.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        volver.setFont(new java.awt.Font("Consolas", 0, 12));
         volver.setText("Volver a menu anterior");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +114,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(volver)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,12 +126,12 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(volver, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {                                        
         int num = usuarios.getSelectedIndex();
@@ -142,7 +150,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
         this.dispose();
     }                                      
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify
     private javax.swing.JButton aceptar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
@@ -151,5 +159,5 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox usuarios;
     private javax.swing.JButton volver;
-    // End of variables declaration                   
+    // End of variables declaration
 }

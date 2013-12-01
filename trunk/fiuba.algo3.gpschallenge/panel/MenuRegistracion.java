@@ -28,10 +28,11 @@ public class MenuRegistracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel.setFont(new java.awt.Font("Consolas", 1, 24));
+        jLabel.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
+        jLabel.setForeground(new java.awt.Color(0, 0, 153));
         jLabel.setText("Por favor elija un nombre");
 
-        BotonGuardar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        BotonGuardar.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         BotonGuardar.setText("Guardar");
         BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,7 +46,7 @@ public class MenuRegistracion extends javax.swing.JFrame {
             }
         });
 
-        BotonVolver.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        BotonVolver.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         BotonVolver.setText("Volver");
         BotonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +69,7 @@ public class MenuRegistracion extends javax.swing.JFrame {
                             .addComponent(BotonGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CampoUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(BotonVolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,21 +88,21 @@ public class MenuRegistracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                             
         String usuario = CampoUsuario.getText();
         this.menuPrincipal = new MenuPrincipal(this,usuario);
         this.menuPrincipal.setBounds(500,250,450,250);
         this.menuPrincipal.setVisible(true);
-    }                                         
+    }                                            
 
-    private void CampoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void CampoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
-    }                                        
+    }                                            
 
-    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {
+    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {                                            
         menu.setVisible(true);
         this.dispose();
-    }
+    }                                           
 
 
     // Variables declaration - do not modify

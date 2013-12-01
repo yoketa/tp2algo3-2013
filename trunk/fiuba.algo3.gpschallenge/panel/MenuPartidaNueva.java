@@ -6,6 +6,7 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
     private PanelDelJuego juegoNuevo;
     private String usuario;
     private String dificultad;
+    private String vehiculo;
     
 
     public MenuPartidaNueva() {
@@ -14,7 +15,7 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
 
     MenuPartidaNueva(MenuPrincipal principal,String user) {
         this.usuario = user;
-        this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
+        this.setTitle("Hola "+this.usuario+"         Gps Challenge    Nueva Partida");
         initComponents();
         this.menuPrincipal = principal;
         principal.setVisible(false);
@@ -26,6 +27,12 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         if (botonFacil.isSelected())this.dificultad = "Facil";
         if (botonModerado.isSelected())this.dificultad = "Moderado";
         if (botonDificil.isSelected())this.dificultad = "Dificil";
+    }
+    
+    private void setTipoDeVehiculo() {
+        if (botonAuto.isSelected())this.vehiculo = "Auto";
+        if (botonMoto.isSelected())this.vehiculo = "Moto";
+        if (boton4x4.isSelected())this.vehiculo = "4x4";
     }
     
     public void stateChanged() {
@@ -227,8 +234,9 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {                                      
         this.setDificultad();
-        juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario);
-        juegoNuevo.setBounds(500,250,450,450);
+        this.setTipoDeVehiculo();
+        juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario,this.vehiculo);
+        juegoNuevo.setBounds(300,100,1000,500);
         juegoNuevo.setVisible(true);
     }                                     
 
@@ -245,4 +253,5 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
     private javax.swing.JButton jugar;
     private javax.swing.JButton volver;
     // End of variables declaration                   
+
 }
