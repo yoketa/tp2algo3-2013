@@ -83,7 +83,8 @@ public class MenuPuntajes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 204));
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Mejores Puntajes");
 
         volver.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N

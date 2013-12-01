@@ -29,7 +29,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.menuRegistracion = menuRegistracion;
         menuRegistracion.setVisible(false);
-        this.retornarPartida.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
 
