@@ -75,9 +75,10 @@ public class RankingTest {
 	
 	@Test
 	public void testGuardaTodosLosPuntajes() {
+		Ranking ranking = new Ranking();
 		ranking.agregarPuntaje(vehiculo1);
 		ranking.agregarPuntaje(vehiculo2);
-		ranking.agregarPuntaje(vehiculo3);
+		//ranking.agregarPuntaje(vehiculo3);
 		
 		try {
 			Archivador.guardar(ranking, Ranking.rankingPath);

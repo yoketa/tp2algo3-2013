@@ -105,7 +105,7 @@ public class Archivador {
 		
 	}
 
-	/*public static Nivel cargar(Nivel dummy, String pathArchivo) {
+	public static Nivel cargar(Nivel dummy, String pathArchivo) {
 		try {
 	        SAXBuilder builder = new SAXBuilder();
 	        Document document = builder.build(pathArchivo);
@@ -115,6 +115,6 @@ public class Archivador {
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-	}*/	
+	}
 
 }

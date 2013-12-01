@@ -5,8 +5,15 @@ import java.util.List;
 
 import modelo.juego.Ranking;
 import modelo.juego.Vector;
+import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
+import modelo.obstaculo.Piquete;
+import modelo.obstaculo.Pozo;
+import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
+import modelo.sorpresas.SorpresaDesfavorable;
+import modelo.sorpresas.SorpresaFavorable;
+import modelo.vehiculo.Auto;
 import modelo.vehiculo.ComparadorVehiculosPorPuntaje;
 import modelo.vehiculo.Vehiculo;
 
@@ -16,7 +23,8 @@ import org.jdom.Element;
 public class Nivel {
 
 	public static String nivelPath = "C:\\Persistencia\\Nivel.xml";
-	
+	public static String nivelSorpresaPath = "C:\\Persistencia\\Sorpresa.xml";
+	public static String nivelObstaculoPath = "C:\\Persistencia\\Obstaculo.xml";
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	public Nivel(){
@@ -25,26 +33,37 @@ public class Nivel {
 	}
 
 	
-	
-	
-		
 	/**
 	 * agrego un obstaculo al nivel
-	 *
 	 * @param unObstaculo
 	 */
-	public void agregarObstaculo(Obstaculo unObstaculo){
+	public void agregarUnObstaculo(Obstaculo unObstaculo){
 		obstaculos.add(unObstaculo);
 	}
 
 	
 	/**
 	 * agrego una sorpresa al nivel
-	 *
-	 * @param unaSaorpresa
+	 *@param unaSaorpresa
 	 */
-	public void agregarSorpresa(Sorpresa unaSorpresa){
+	public void agregarUnaSorpresa(Sorpresa unaSorpresa){
 		sorpresas.add(unaSorpresa);
+	}
+	
+	/**
+	 * agrego una lista de sorpresas al nivel
+	 *@param sorpresas
+	 */
+	public void agregarSorpresas (List<Sorpresa> sorpresas){
+		this.sorpresas= sorpresas;
+	}
+	
+	/**
+	 * agrego una lista de obstaculs al nivel
+	 *@param obstaculos
+	 */
+	public void agregarObstaculos (List<Obstaculo> obstaculos){
+		this.obstaculos= obstaculos;
 	}
 	
 	public List<Sorpresa> getSorpresas(){
@@ -73,22 +92,59 @@ public class Nivel {
 		return element;
 	}
 	
-	/*public static Ranking cargarDesdeXML(Element element) {
-		List<Sorpresa> puntajes = new ArrayList<Sorpresa>();
-		for (Object SorpresaGuardada : element.getChildren()) {
-			Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
+	public static Nivel cargarDesdeXML(Element element) {
+		List<Sorpresa> sorpresas = new ArrayList<Sorpresa>();
+		List<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
+		for (Object sorpresaGuardada : element.getChildren()) {
 			
-			double puntaje = Double.parseDouble(((Element)puntajeGuardado).getAttributeValue("puntaje").toString());
-			String nombreJugador = ((Element)puntajeGuardado).getAttributeValue("piloto").toString();
-			Vehiculo mejorPuntaje = Vehiculo.crearConPiloto(nombreJugador, 0, 0);
-			mejorPuntaje.setPuntaje(puntaje);
+				
+				Sorpresa miSorpresa= null;
+				if ((((Element)sorpresaGuardada).getChild("SorpresaFavorable")) != null){
+					SorpresaFavorable tipoSorpresa = null;
+					tipoSorpresa = SorpresaFavorable.cargarDesdeXML(((Element)sorpresaGuardada).getChild("SorpresaFavorable"));
+					miSorpresa=tipoSorpresa;	
+				}
+				if ((((Element)sorpresaGuardada).getChild("SorpresaDesfavorable")) != null){
+					SorpresaDesfavorable tipoSorpresa;
+					tipoSorpresa = SorpresaDesfavorable.cargarDesdeXML(((Element)sorpresaGuardada).getChild("SorpresaDesfavorable"));
+					miSorpresa=tipoSorpresa;	
+				}
+				if ((((Element)sorpresaGuardada).getChild("CambioDeVehiculo")) != null){
+					CambioDeVehiculo tipoSorpresa;
+					tipoSorpresa = CambioDeVehiculo.cargarDesdeXML(((Element)sorpresaGuardada).getChild("CambioDeVehiculo"));
+					miSorpresa=tipoSorpresa;	
+				}
+				
+				Obstaculo miObstaculo= null;
+				if ((((Element)sorpresaGuardada).getChild("Pozo")) != null){
+					Pozo tipoObstaculo = null;
+					tipoObstaculo = Pozo.cargarDesdeXML(((Element)sorpresaGuardada).getChild("Pozo"));
+					miObstaculo =tipoObstaculo;	
+				}
+				if ((((Element)sorpresaGuardada).getChild("Piquete")) != null){
+					Piquete tipoObstaculo = null;
+					tipoObstaculo = Piquete.cargarDesdeXML(((Element)sorpresaGuardada).getChild("Piquete"));
+					miObstaculo = tipoObstaculo;	
+				}
+				if ((((Element)sorpresaGuardada).getChild("ControlPolicial")) != null){
+					ControlPolicial tipoObstaculo = null;
+					tipoObstaculo = ControlPolicial.cargarDesdeXML(((Element)sorpresaGuardada).getChild("ControlPolicial"));
+					miObstaculo = tipoObstaculo;	
+				}
+				
+			if(miSorpresa != null){
+			sorpresas.add(miSorpresa);
+			}
+			if(miObstaculo != null){
+				obstaculos.add(miObstaculo);
+				}
 			
-			puntajes.add(mejorPuntaje);			
 		}
 		
-		Ranking ranking = new Ranking(puntajes);
-		
-		return ranking;
+		Nivel nivel = new Nivel ();
+		nivel.agregarSorpresas(sorpresas);
+		nivel.agregarObstaculos(obstaculos);
+		return nivel;
 	}	
-	// END Serialización*/
+	// END Serialización
 }

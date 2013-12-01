@@ -32,10 +32,9 @@ public class SorpresaFavorable extends Sorpresa {
 		return element;
 	}
 
-	public static Sorpresa cargarDesdeXML(Element element) {
-		
+	public static SorpresaFavorable cargarDesdeXML(Element element) {
 		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
-		Sorpresa sorpresaFavorable = new SorpresaFavorable(vector);
+		SorpresaFavorable sorpresaFavorable = new SorpresaFavorable(vector);
 		
 		return sorpresaFavorable;
 	}
