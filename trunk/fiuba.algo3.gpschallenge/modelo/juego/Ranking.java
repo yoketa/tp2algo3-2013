@@ -59,32 +59,30 @@ public class Ranking {
 		Element element = new Element("Ranking");
 		
 		for (Vehiculo puntajeJugador : mejoresPuntajes) {
-			Element entradaPuntaje = new Element("Puntaje");
-			Attribute att1 = new Attribute("puntaje",Double.valueOf(puntajeJugador.getPuntaje()).toString());
-			Attribute att2 = new Attribute("piloto",String.valueOf(puntajeJugador.getPiloto()).toString());
-			entradaPuntaje.getAttributes().add(att1);
-			entradaPuntaje.getAttributes().add(att2);
 			
-			element.addContent(entradaPuntaje);
+			//Attribute att1 = new Attribute("puntaje",Double.valueOf(puntajeJugador.getPuntaje()).toString());
+			//Attribute att2 = new Attribute("piloto",String.valueOf(puntajeJugador.getPiloto()).toString());
+			//entradaPuntaje.getAttributes().add(att1);
+			//entradaPuntaje.getAttributes().add(att2);
+			element.addContent(puntajeJugador.serializarXML());
+			
+			
 		}
-		
 		return element;
 	}
 	
 	public static Ranking cargarDesdeXML(Element element) {
 		List<Vehiculo> puntajes = new ArrayList<Vehiculo>();
 		for (Object puntajeGuardado : element.getChildren()) {
-			double puntaje = Double.parseDouble(((Element)puntajeGuardado).getAttributeValue("puntaje").toString());
-			String nombreJugador = ((Element)puntajeGuardado).getAttributeValue("piloto").toString();
-			Vehiculo mejorPuntaje = Vehiculo.crearConPiloto(nombreJugador, 0, 0);
-			mejorPuntaje.setPuntaje(puntaje);
-			
+			//double puntaje = Double.parseDouble(((Element)puntajeGuardado).getAttributeValue("puntaje").toString());
+			//String nombreJugador = ((Element)puntajeGuardado).getAttributeValue("piloto").toString();
+			Vehiculo mejorPuntaje = Vehiculo.cargarDesdeXML(((Element)puntajeGuardado));
 			puntajes.add(mejorPuntaje);			
 		}
 		
 		Ranking ranking = new Ranking(puntajes);
 		
 		return ranking;
-	}	
+	}
 	// END Serialización
 }
