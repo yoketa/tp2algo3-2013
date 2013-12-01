@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Ranking;
+import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
 
 import org.junit.Before;
@@ -14,17 +18,27 @@ import persistencia.Archivador;
 
 public class RankingTest {
 
+	
 	private Vehiculo vehiculo1;
 	private Vehiculo vehiculo2;
 	private Vehiculo vehiculo3;
 	private Ranking ranking;
 	private List<Vehiculo> puntajes;
-		
+	private String pilotoAuto  = "pepe";
+	private String pilotoMoto  = "juan";
+	private String pilotoCuatroXCuatro  = "luis";	
+	private EstadoVehiculo estadoAuto = new Auto();
+	private EstadoVehiculo estadoMoto = new Moto();
+	private EstadoVehiculo estadoCuatroXCuatro = new CuatroXCuatro();
+	
 	@Before
 	public void setup() {
-		vehiculo1 = Vehiculo.crearConPiloto("pepe","",0,0);
-		vehiculo2 = Vehiculo.crearConPiloto("lucas","",1,0);
-		vehiculo3 = Vehiculo.crearConPiloto("juan","",0,1);
+		vehiculo1 =  Vehiculo.crearConPiloto(pilotoAuto,estadoAuto,2,3);
+		vehiculo1.setPuntaje(50);
+		vehiculo2 = Vehiculo.crearConPiloto(pilotoMoto,estadoMoto, 1, 2);
+		vehiculo2.setPuntaje(85);
+		vehiculo3 = Vehiculo.crearConPiloto(pilotoCuatroXCuatro,estadoCuatroXCuatro, 4, 2);
+		vehiculo3.setPuntaje(90);
 		ranking = new Ranking();
 	}
 	
@@ -59,13 +73,14 @@ public class RankingTest {
 		assertEquals(150.0,puntajeMayor,1E-5);
 		assertEquals(50.0,puntajeMenor,1E-5);
 		assertEquals(100.0,puntajeMedio,1E-5);
-	
 	}
 	
 	@Test
 	public void testPersistenciaRanking() {
 		try {
+			ranking.agregarPuntaje(vehiculo1);
 			Archivador.guardar(ranking, Ranking.rankingPath);
+			ranking.agregarPuntaje(vehiculo1);
 			assertTrue(true);
 		}
 		catch (Exception ex) {
@@ -74,11 +89,11 @@ public class RankingTest {
 	}
 	
 	@Test
-	public void testGuardaTodosLosPuntajes() {
-		Ranking ranking = new Ranking();
+	public void testGuardarYCargarTodosLosPuntajes() {
+		
 		ranking.agregarPuntaje(vehiculo1);
 		ranking.agregarPuntaje(vehiculo2);
-		//ranking.agregarPuntaje(vehiculo3);
+		ranking.agregarPuntaje(vehiculo3);
 		
 		try {
 			Archivador.guardar(ranking, Ranking.rankingPath);
@@ -87,65 +102,31 @@ public class RankingTest {
 			puntajes = ranking.getPuntajes();
 			
 			assertEquals(puntajes.size(), puntajesRecargados.size());				
+			assertEquals(puntajes.get(0).getEstado().getClass(), puntajesRecargados.get(0).getEstado().getClass());
+			assertEquals(puntajes.get(1).getEstado().getClass(), puntajesRecargados.get(1).getEstado().getClass());
+			assertEquals(puntajes.get(2).getEstado().getClass(), puntajesRecargados.get(2).getEstado().getClass());
+		
+			assertEquals(puntajes.get(0).getPiloto(), puntajesRecargados.get(0).getPiloto());
+			assertEquals(puntajes.get(1).getPiloto(), puntajesRecargados.get(1).getPiloto());
+			assertEquals(puntajes.get(2).getPiloto(), puntajesRecargados.get(2).getPiloto());
+			
+			assertEquals(puntajes.get(0).getPuntaje(), puntajesRecargados.get(0).getPuntaje(),1E-5);
+			assertEquals(puntajes.get(1).getPuntaje(), puntajesRecargados.get(1).getPuntaje(),1E-5);
+			assertEquals(puntajes.get(2).getPuntaje(), puntajesRecargados.get(2).getPuntaje(),1E-5);
+			
+			assertEquals(puntajes.get(0).getPosicionHorizontal(), puntajesRecargados.get(0).getPosicionHorizontal(),1E-5);
+			assertEquals(puntajes.get(1).getPosicionHorizontal(), puntajesRecargados.get(1).getPosicionHorizontal(),1E-5);
+			assertEquals(puntajes.get(2).getPosicionHorizontal(), puntajesRecargados.get(2).getPosicionHorizontal(),1E-5);
+			
+			assertEquals(puntajes.get(0).getPosicionVertical(), puntajesRecargados.get(0).getPosicionVertical(),1E-5);
+			assertEquals(puntajes.get(1).getPosicionVertical(), puntajesRecargados.get(1).getPosicionVertical(),1E-5);
+			assertEquals(puntajes.get(2).getPosicionVertical(), puntajesRecargados.get(2).getPosicionVertical(),1E-5);
+			
 		}
 		catch (Exception ex) {
 			fail();
 		}		
 	}
-
-	@Test
-	public void testGuardaLosPilotosCorrectamente() {
-		vehiculo1.setPuntaje(100);
-		vehiculo2.setPuntaje(50);
-		vehiculo3.setPuntaje(150);
-		ranking.agregarPuntaje(vehiculo1);
-		ranking.agregarPuntaje(vehiculo2);
-		ranking.agregarPuntaje(vehiculo3);
-		
-		try {
-			Archivador.guardar(ranking, Ranking.rankingPath);
-			Ranking rankingRecargado = Archivador.cargar(new Ranking(), Ranking.rankingPath);
-			List<Vehiculo> puntajesRecargados = rankingRecargado.getPuntajes();
-			puntajes = ranking.getPuntajes();
-			
-			if (puntajes.size() != puntajesRecargados.size()) {
-				fail();
-			}
-			
-			assertEquals(puntajes.get(0).getPiloto(), puntajesRecargados.get(0).getPiloto());
-			assertEquals(puntajes.get(1).getPiloto(), puntajesRecargados.get(1).getPiloto());
-			assertEquals(puntajes.get(2).getPiloto(), puntajesRecargados.get(2).getPiloto());				
-		}
-		catch (Exception ex) {
-			fail();
-		}	
-	}
 	
-	@Test
-	public void testGuardaLosPuntajesCorrectamente() {
-		vehiculo1.setPuntaje(100);
-		vehiculo2.setPuntaje(50);
-		vehiculo3.setPuntaje(150);
-		ranking.agregarPuntaje(vehiculo1);
-		ranking.agregarPuntaje(vehiculo2);
-		ranking.agregarPuntaje(vehiculo3);
-		
-		try {
-			Archivador.guardar(ranking, Ranking.rankingPath);
-			Ranking rankingRecargado = Archivador.cargar(new Ranking(), Ranking.rankingPath);
-			List<Vehiculo> puntajesRecargados = rankingRecargado.getPuntajes();
-			puntajes = ranking.getPuntajes();
-			
-			if (puntajes.size() != puntajesRecargados.size()) {
-				fail();
-			}
-			
-			assertEquals(puntajes.get(0).getPuntaje(), puntajesRecargados.get(0).getPuntaje(), 0.001);
-			assertEquals(puntajes.get(1).getPuntaje(), puntajesRecargados.get(1).getPuntaje(), 0.001);
-			assertEquals(puntajes.get(2).getPuntaje(), puntajesRecargados.get(2).getPuntaje(), 0.001);				
-		}
-		catch (Exception ex) {
-			fail();
-		}	
-	}
+
 }
