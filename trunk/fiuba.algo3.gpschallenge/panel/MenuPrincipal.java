@@ -126,7 +126,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void verPuntajesActionPerformed(java.awt.event.ActionEvent evt) {                                            
         menuPuntajes = new MenuPuntajes(this,usuario);
-        menuPuntajes.setBounds(500,250,350,250);
+        menuPuntajes.setBounds(500,250,400,450);
         menuPuntajes.setVisible(true);
     }                                           
 

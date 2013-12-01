@@ -1,8 +1,18 @@
 package panel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JLabel;
+
+import modelo.juego.Ranking;
+import modelo.vehiculo.Vehiculo;
+
 public class MenuPuntajes extends javax.swing.JFrame {
     
     private MenuPrincipal menuPrincipal;
+    private Ranking ranking;
+    private List<Vehiculo> puntajes;
 
     public MenuPuntajes() {
         initComponents();
@@ -13,10 +23,55 @@ public class MenuPuntajes extends javax.swing.JFrame {
         initComponents();
         this.menuPrincipal = principal;
         principal.setVisible(false);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        //Ranking
+        this.marcarPuntajes();
     }
 
-    @SuppressWarnings("unchecked")
+    private void marcarPuntajes() {
+    	
+        //this.ranking = new Ranking();
+        //this.puntajes = new ArrayList();
+        //this.puntajes = ranking.getPuntajes();
+        
+        //String puntaje = Double.toString(puntajes.get(0).getPuntaje());
+        //String usuario = puntajes.get(0).getPiloto();
+    	int num = 50;
+    	
+		JLabel etiquetaOrdenInicial = new JLabel("N°:");
+        JLabel etiquetaUsuarioInicial = new JLabel("Usuario:");
+        JLabel etiquetaPuntajeInicial = new JLabel("Puntaje:");
+
+        etiquetaOrdenInicial.setBounds(50, num, 50, 50);
+        etiquetaUsuarioInicial.setBounds(125, num, 50, 50);
+        etiquetaPuntajeInicial.setBounds(250, num, 50, 50);
+        add(etiquetaOrdenInicial);
+        add(etiquetaUsuarioInicial);
+        add(etiquetaPuntajeInicial);
+        
+        num+=15;
+        int orden = 1;
+        String user = "pepe";
+        
+    	for(int i=0; i<10;i++){
+   
+    		JLabel etiquetaOrden = new JLabel(Integer.toString(orden));
+            JLabel etiquetaUsuario = new JLabel(user);
+            JLabel etiquetaPuntaje = new JLabel(Integer.toString(i));
+
+            etiquetaOrden.setBounds(50, num, 50, 50);
+            etiquetaUsuario.setBounds(125, num, 50, 50);
+            etiquetaPuntaje.setBounds(250, num, 50, 50);
+            add(etiquetaOrden);
+            add(etiquetaUsuario);
+            add(etiquetaPuntaje);
+            num+=15;
+            orden++;
+    	}
+	}
+
+	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
