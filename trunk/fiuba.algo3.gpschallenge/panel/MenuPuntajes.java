@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JLabel;
 
+import persistencia.Archivador;
+
 import modelo.juego.Ranking;
 import modelo.vehiculo.Vehiculo;
 
@@ -31,42 +33,42 @@ public class MenuPuntajes extends javax.swing.JFrame {
 
     private void marcarPuntajes() {
     	
-        //this.ranking = new Ranking();
-        //this.puntajes = new ArrayList();
-        //this.puntajes = ranking.getPuntajes();
+        this.puntajes = new ArrayList();
+		this.ranking = Archivador.cargar(new Ranking(), Ranking.rankingPath);
+        this.puntajes = this.ranking.getPuntajes();
         
-        //String puntaje = Double.toString(puntajes.get(0).getPuntaje());
-        //String usuario = puntajes.get(0).getPiloto();
-    	int num = 50;
+    	int numPosicion = 50;
     	
 		JLabel etiquetaOrdenInicial = new JLabel("N°:");
         JLabel etiquetaUsuarioInicial = new JLabel("Usuario:");
         JLabel etiquetaPuntajeInicial = new JLabel("Puntaje:");
 
-        etiquetaOrdenInicial.setBounds(50, num, 50, 50);
-        etiquetaUsuarioInicial.setBounds(125, num, 50, 50);
-        etiquetaPuntajeInicial.setBounds(250, num, 50, 50);
+        etiquetaOrdenInicial.setBounds(50, numPosicion, 50, 50);
+        etiquetaUsuarioInicial.setBounds(125, numPosicion, 50, 50);
+        etiquetaPuntajeInicial.setBounds(250, numPosicion, 50, 50);
         add(etiquetaOrdenInicial);
         add(etiquetaUsuarioInicial);
         add(etiquetaPuntajeInicial);
         
-        num+=15;
+        numPosicion+=15;
         int orden = 1;
-        String user = "pepe";
         
-    	for(int i=0; i<10;i++){
-   
-    		JLabel etiquetaOrden = new JLabel(Integer.toString(orden));
-            JLabel etiquetaUsuario = new JLabel(user);
-            JLabel etiquetaPuntaje = new JLabel(Integer.toString(i));
+    	for( int i=0 ; i < this.puntajes.size() ; i++ ){
+    		
+    		String puntaje = Double.toString(puntajes.get(i).getPuntaje());
+    	    String usuario = puntajes.get(i).getPiloto();
+    		
+    	    JLabel etiquetaOrden = new JLabel(Integer.toString(orden));
+            JLabel etiquetaUsuario = new JLabel(usuario);
+            JLabel etiquetaPuntaje = new JLabel(puntaje);
 
-            etiquetaOrden.setBounds(50, num, 50, 50);
-            etiquetaUsuario.setBounds(125, num, 50, 50);
-            etiquetaPuntaje.setBounds(250, num, 50, 50);
+            etiquetaOrden.setBounds(50, numPosicion, 50, 50);
+            etiquetaUsuario.setBounds(125, numPosicion, 50, 50);
+            etiquetaPuntaje.setBounds(250, numPosicion, 50, 50);
             add(etiquetaOrden);
             add(etiquetaUsuario);
             add(etiquetaPuntaje);
-            num+=15;
+            numPosicion+=15;
             orden++;
     	}
 	}

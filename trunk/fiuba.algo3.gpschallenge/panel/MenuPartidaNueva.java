@@ -3,13 +3,18 @@ package panel;
 public class MenuPartidaNueva extends javax.swing.JFrame {
     
     private MenuPrincipal menuPrincipal;
+    private PanelDelJuego juegoNuevo;
+    private String usuario;
+    private String dificultad;
+    
 
     public MenuPartidaNueva() {
         initComponents();
     }
 
     MenuPartidaNueva(MenuPrincipal principal,String user) {
-        this.setTitle("Hola "+user+"         Gps Challenge");
+        this.usuario = user;
+        this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
         initComponents();
         this.menuPrincipal = principal;
         principal.setVisible(false);
@@ -17,6 +22,12 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
 
+    public void setDificultad(){
+        if (botonFacil.isSelected())this.dificultad = "Facil";
+        if (botonModerado.isSelected())this.dificultad = "Moderado";
+        if (botonDificil.isSelected())this.dificultad = "Dificil";
+    }
+    
     public void stateChanged() {
         boolean facil = botonFacil.isSelected();
         boolean moderado = botonModerado.isSelected();
@@ -103,11 +114,16 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         jugar.setText("Jugar");
+        jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jugarActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Consolas", 0, 14));
         jLabel1.setText("Nivel de Dificultad");
 
-        jLabel2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Consolas", 0, 14));
         jLabel2.setText("Tipo de Vehiculo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,6 +224,13 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         botonAuto.setSelected(false);
         botonMoto.setSelected(false);
     }                                        
+
+    private void jugarActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        this.setDificultad();
+        juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario);
+        juegoNuevo.setBounds(500,250,450,450);
+        juegoNuevo.setVisible(true);
+    }                                     
 
     // Variables declaration - do not modify                     
     private javax.swing.JRadioButton boton4x4;
