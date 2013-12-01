@@ -22,23 +22,32 @@ public class RankingTest {
 	private Vehiculo vehiculo1;
 	private Vehiculo vehiculo2;
 	private Vehiculo vehiculo3;
+	private Vehiculo vehiculo4;
+	private Vehiculo vehiculo5;
 	private Ranking ranking;
 	private List<Vehiculo> puntajes;
-	private String pilotoAuto  = "pepe";
-	private String pilotoMoto  = "juan";
-	private String pilotoCuatroXCuatro  = "luis";	
+	private String pilotoAuto  = "Nico";
+	private String pilotoMoto  = "Diego";
+	private String pilotoCuatroXCuatro  = "Pablo";	
+	private String pilotoAuto2  = "Juan";
+	private String pilotoAuto3  = "Gabriel";
+	
 	private EstadoVehiculo estadoAuto = new Auto();
 	private EstadoVehiculo estadoMoto = new Moto();
 	private EstadoVehiculo estadoCuatroXCuatro = new CuatroXCuatro();
 	
 	@Before
 	public void setup() {
-		vehiculo1 =  Vehiculo.crearConPiloto(pilotoAuto,estadoAuto,2,3);
+		vehiculo1 =  Vehiculo.crearConPiloto(pilotoAuto,estadoAuto,200,200);
 		vehiculo1.setPuntaje(50);
-		vehiculo2 = Vehiculo.crearConPiloto(pilotoMoto,estadoMoto, 1, 2);
+		vehiculo2 = Vehiculo.crearConPiloto(pilotoMoto,estadoMoto, 210, 210);
 		vehiculo2.setPuntaje(85);
-		vehiculo3 = Vehiculo.crearConPiloto(pilotoCuatroXCuatro,estadoCuatroXCuatro, 4, 2);
+		vehiculo3 = Vehiculo.crearConPiloto(pilotoCuatroXCuatro,estadoCuatroXCuatro, 180, 180);
 		vehiculo3.setPuntaje(90);
+		vehiculo4 = Vehiculo.crearConPiloto(pilotoAuto2,estadoAuto, 185, 185);
+		vehiculo4.setPuntaje(40);
+		vehiculo5 = Vehiculo.crearConPiloto(pilotoAuto3,estadoAuto, 230, 230);
+		vehiculo5.setPuntaje(24);
 		ranking = new Ranking();
 	}
 	
@@ -126,5 +135,47 @@ public class RankingTest {
 		}		
 	}
 	
+	@Test
+	public void testCrearRanking() {
+		
+		
+		
+		ranking.agregarPuntaje(vehiculo1);
+		ranking.agregarPuntaje(vehiculo2);
+		ranking.agregarPuntaje(vehiculo3);
+		ranking.agregarPuntaje(vehiculo4);
+		ranking.agregarPuntaje(vehiculo5);
+		try {
+			Archivador.guardar(ranking, "\\Level\\Ranking.xml");
+			Ranking rankingRecargado = Archivador.cargar(new Ranking(), "\\Level\\Ranking.xml");
+			List<Vehiculo> puntajesRecargados = rankingRecargado.getPuntajes();
+			puntajes = ranking.getPuntajes();
+			
+			assertEquals(puntajes.size(), puntajesRecargados.size());				
+			assertEquals(puntajes.get(0).getEstado().getClass(), puntajesRecargados.get(0).getEstado().getClass());
+			assertEquals(puntajes.get(1).getEstado().getClass(), puntajesRecargados.get(1).getEstado().getClass());
+			assertEquals(puntajes.get(2).getEstado().getClass(), puntajesRecargados.get(2).getEstado().getClass());
+		
+			assertEquals(puntajes.get(0).getPiloto(), puntajesRecargados.get(0).getPiloto());
+			assertEquals(puntajes.get(1).getPiloto(), puntajesRecargados.get(1).getPiloto());
+			assertEquals(puntajes.get(2).getPiloto(), puntajesRecargados.get(2).getPiloto());
+			
+			assertEquals(puntajes.get(0).getPuntaje(), puntajesRecargados.get(0).getPuntaje(),1E-5);
+			assertEquals(puntajes.get(1).getPuntaje(), puntajesRecargados.get(1).getPuntaje(),1E-5);
+			assertEquals(puntajes.get(2).getPuntaje(), puntajesRecargados.get(2).getPuntaje(),1E-5);
+			
+			assertEquals(puntajes.get(0).getPosicionHorizontal(), puntajesRecargados.get(0).getPosicionHorizontal(),1E-5);
+			assertEquals(puntajes.get(1).getPosicionHorizontal(), puntajesRecargados.get(1).getPosicionHorizontal(),1E-5);
+			assertEquals(puntajes.get(2).getPosicionHorizontal(), puntajesRecargados.get(2).getPosicionHorizontal(),1E-5);
+			
+			assertEquals(puntajes.get(0).getPosicionVertical(), puntajesRecargados.get(0).getPosicionVertical(),1E-5);
+			assertEquals(puntajes.get(1).getPosicionVertical(), puntajesRecargados.get(1).getPosicionVertical(),1E-5);
+			assertEquals(puntajes.get(2).getPosicionVertical(), puntajesRecargados.get(2).getPosicionVertical(),1E-5);
+			
+		}
+		catch (Exception ex) {
+			fail();
+		}		
+	}
 
 }
