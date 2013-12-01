@@ -2,7 +2,8 @@ package panel;
 
 public class MenuRegistracion extends javax.swing.JFrame {
 
-    public PanelInicial menu;
+    private PanelInicial menu;
+    private MenuPrincipal menuPrincipal;
     
     public MenuRegistracion() {
         initComponents();
@@ -17,29 +18,38 @@ public class MenuRegistracion extends javax.swing.JFrame {
     }   
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jLabel = new javax.swing.JLabel();
-        jBguardar = new javax.swing.JButton();
-        jUsuario = new javax.swing.JTextField();
+        BotonGuardar = new javax.swing.JButton();
+        CampoUsuario = new javax.swing.JTextField();
+        BotonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jLabel.setFont(new java.awt.Font("Consolas", 1, 24));
         jLabel.setText("Por favor elija un nombre");
 
-        jBguardar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jBguardar.setText("Guardar");
-        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+        BotonGuardar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        BotonGuardar.setText("Guardar");
+        BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBguardarActionPerformed(evt);
+                BotonGuardarActionPerformed(evt);
             }
         });
 
-        jUsuario.addActionListener(new java.awt.event.ActionListener() {
+        CampoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jUsuarioActionPerformed(evt);
+                CampoUsuarioActionPerformed(evt);
+            }
+        });
+
+        BotonVolver.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        BotonVolver.setText("Volver");
+        BotonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVolverActionPerformed(evt);
             }
         });
 
@@ -48,44 +58,56 @@ public class MenuRegistracion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jBguardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                            .addComponent(BotonGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CampoUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(BotonVolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>
 
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        menu.setVisible(true);
-        this.dispose();
+    private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        String usuario = CampoUsuario.getText();
+        this.menuPrincipal = new MenuPrincipal(this,usuario);
+        this.menuPrincipal.setBounds(500,250,450,250);
+        this.menuPrincipal.setVisible(true);
     }                                         
 
-    private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
+    private void CampoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
     }                                        
 
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton jBguardar;
+    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {
+        menu.setVisible(true);
+        this.dispose();
+    }
+
+
+    // Variables declaration - do not modify
+    private javax.swing.JButton BotonGuardar;
+    private javax.swing.JButton BotonVolver;
+    private javax.swing.JTextField CampoUsuario;
     private javax.swing.JLabel jLabel;
-    private javax.swing.JTextField jUsuario;
-    // End of variables declaration                   
+    // End of variables declaration
 }

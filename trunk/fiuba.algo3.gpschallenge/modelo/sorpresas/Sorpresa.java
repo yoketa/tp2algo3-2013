@@ -1,6 +1,5 @@
 package modelo.sorpresas;
 
-import org.jdom.Attribute;
 import org.jdom.Element;
 
 import modelo.interfaces.Evento;

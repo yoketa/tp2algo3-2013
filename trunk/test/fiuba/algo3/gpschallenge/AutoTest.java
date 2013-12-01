@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import junit.framework.Assert;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Vector;
+import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
 
 import org.junit.Test;
@@ -12,7 +13,8 @@ public class AutoTest {
 
 	@Test
 	public void testpasaPorPozoDeberiaSumarTresMovimientos() {
-		Vehiculo vehiculo = Vehiculo.crearConPiloto("","Auto",0,0);
+		EstadoVehiculo estadoAuto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("",estadoAuto,0,0);
 		double puntaje = vehiculo.getPuntaje()+ 3;
 		EstadoVehiculo auto = vehiculo.getEstado();
 		auto.pasaPorPozo(vehiculo);
@@ -22,8 +24,9 @@ public class AutoTest {
 	
 	@Test
 	public void testPuiqueteNoDebeDejarPasar() {
+		EstadoVehiculo estadoAuto = new Auto();
 		Vector direccion = new Vector(1,0);
-		Vehiculo vehiculo = Vehiculo.crearConPiloto("","Auto",0,0);
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("",estadoAuto,0,0);
 		
 		try {
 			vehiculo.mover(direccion);
@@ -39,7 +42,8 @@ public class AutoTest {
 	
 	@Test
 	public void testpasaPorControlPolicialSumaTreaMovimientos() {
-		Vehiculo vehiculo = Vehiculo.crearConPiloto("","Auto",0,0);
+		EstadoVehiculo estadoAuto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPiloto("",estadoAuto,0,0);
 		double puntaje = vehiculo.getPuntaje()+ 3;
 		
 		EstadoVehiculo auto = vehiculo.getEstado();
