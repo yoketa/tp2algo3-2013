@@ -3,9 +3,11 @@ package panel;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     private MenuEleccionUsuario menuDeEleccion;
+    private MenuRegistracion menuRegistracion;
     private MenuPartidaNueva menuPartidaNueva;
     private MenuPuntajes menuPuntajes;
-    private  String usuario;
+    private String usuario;
+    private boolean accionPreviaEsRegistracion = false;
     
     public MenuPrincipal() {
         initComponents();
@@ -19,9 +21,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuEleccion.setVisible(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
+    
+    MenuPrincipal(MenuRegistracion menuRegistracion, String user) {
+        this.accionPreviaEsRegistracion = true;
+        this.usuario = user;
+        this.setTitle("Hola "+usuario+"                       Gps Challenge");
+        initComponents();
+        this.menuRegistracion = menuRegistracion;
+        menuRegistracion.setVisible(false);
+        this.retornarPartida.setEnabled(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
+    }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         comenzarPartida = new javax.swing.JButton();
@@ -108,7 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }// </editor-fold>                        
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {                                      
         System.exit(0);
@@ -116,7 +129,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void comenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {                                                
         menuPartidaNueva = new MenuPartidaNueva(this,usuario);
-        menuPartidaNueva.setBounds(500,250,350,250);
+        menuPartidaNueva.setBounds(500,250,425,250);
         menuPartidaNueva.setVisible(true);
     }                                               
 
@@ -130,16 +143,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuPuntajes.setVisible(true);
     }                                           
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {
-        menuDeEleccion.setVisible(true);
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        if (this.accionPreviaEsRegistracion){
+            this.menuRegistracion.setVisible(true);
+        }else{
+            this.menuDeEleccion.setVisible(true);
+        }
         this.dispose();
-    }
+    }                                      
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify                     
     private javax.swing.JButton comenzarPartida;
     private javax.swing.JButton retornarPartida;
     private javax.swing.JButton salir;
     private javax.swing.JButton verPuntajes;
     private javax.swing.JButton volver;
-    // End of variables declaration
+    // End of variables declaration                   
 }
