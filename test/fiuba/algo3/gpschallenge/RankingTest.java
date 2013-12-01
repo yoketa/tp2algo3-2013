@@ -78,9 +78,7 @@ public class RankingTest {
 	@Test
 	public void testPersistenciaRanking() {
 		try {
-			ranking.agregarPuntaje(vehiculo1);
 			Archivador.guardar(ranking, Ranking.rankingPath);
-			ranking.agregarPuntaje(vehiculo1);
 			assertTrue(true);
 		}
 		catch (Exception ex) {
