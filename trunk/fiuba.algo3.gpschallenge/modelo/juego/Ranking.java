@@ -19,7 +19,7 @@ public class Ranking {
 	 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
 	 * al sincronizar con el repositorio.
 	*/
-	public static String rankingPath = "C:\\Persistencia\\Vehiculo.xml";
+	public static String rankingPath = "C:\\Persistencia\\Ranking.xml";
 	private Comparator unComparador;
 	private List<Vehiculo> mejoresPuntajes;
 
