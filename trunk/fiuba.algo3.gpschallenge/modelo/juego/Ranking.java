@@ -22,15 +22,18 @@ public class Ranking {
 	public static String rankingPath = "C:\\Persistencia\\Ranking.xml";
 	private Comparator unComparador;
 	private List<Vehiculo> mejoresPuntajes;
-
+	private boolean vehiculoActualizado;
+	
 	public Ranking(){
 		this.mejoresPuntajes = new ArrayList<Vehiculo>();
 		this.unComparador = new ComparadorVehiculosPorPuntaje();
+		vehiculoActualizado = false;
 	}
 
 	public Ranking(List<Vehiculo> mejoresPuntajes){
 		this.mejoresPuntajes = mejoresPuntajes;
 		this.unComparador = new ComparadorVehiculosPorPuntaje();
+		vehiculoActualizado = false;
 	}
 	
 	public List<Vehiculo> getPuntajes() {
@@ -40,7 +43,7 @@ public class Ranking {
 		
 	/**
 	 * agrego el puntaje del vehiculo al ranking de manera ordenada
-	 *
+	 * si ya existía el piloto actualizo el puntaje y la posicion del mismo 
 	 * @param unVehiculo
 	 */
 	public void agregarPuntaje(Vehiculo unVehiculo){
@@ -48,9 +51,19 @@ public class Ranking {
 			this.mejoresPuntajes.add(unVehiculo);
 		}
 		else {
+			for (Vehiculo puntajeJugador : mejoresPuntajes){
+				if((puntajeJugador.getPiloto()) == (unVehiculo.getPiloto())){
+					puntajeJugador.setPuntaje(unVehiculo.getPuntaje());
+					puntajeJugador.setEstado(unVehiculo.getEstado());
+					this.vehiculoActualizado = true;
+				}
+			}
+				
+			if(vehiculoActualizado == false){
 			this.mejoresPuntajes.add(unVehiculo);
 			java.util.Collections.sort(mejoresPuntajes,unComparador);
 			java.util.Collections.reverse(mejoresPuntajes);
+			}
 		}
 	}
 
@@ -59,14 +72,7 @@ public class Ranking {
 		Element element = new Element("Ranking");
 		
 		for (Vehiculo puntajeJugador : mejoresPuntajes) {
-			
-			//Attribute att1 = new Attribute("puntaje",Double.valueOf(puntajeJugador.getPuntaje()).toString());
-			//Attribute att2 = new Attribute("piloto",String.valueOf(puntajeJugador.getPiloto()).toString());
-			//entradaPuntaje.getAttributes().add(att1);
-			//entradaPuntaje.getAttributes().add(att2);
 			element.addContent(puntajeJugador.serializarXML());
-			
-			
 		}
 		return element;
 	}
@@ -74,8 +80,6 @@ public class Ranking {
 	public static Ranking cargarDesdeXML(Element element) {
 		List<Vehiculo> puntajes = new ArrayList<Vehiculo>();
 		for (Object puntajeGuardado : element.getChildren()) {
-			//double puntaje = Double.parseDouble(((Element)puntajeGuardado).getAttributeValue("puntaje").toString());
-			//String nombreJugador = ((Element)puntajeGuardado).getAttributeValue("piloto").toString();
 			Vehiculo mejorPuntaje = Vehiculo.cargarDesdeXML(((Element)puntajeGuardado));
 			puntajes.add(mejorPuntaje);			
 		}
