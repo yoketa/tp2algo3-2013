@@ -23,18 +23,18 @@ public class SorpresaDesfavorable extends Sorpresa {
 	}
 	
 	public Element serializarXML() {
-		Element element = new Element("SorpresaDesFavorable");
+		Element element = new Element("SorpresaDesfavorable");
 		element.addContent(this.getPosicion().serializarXML());
 		
 		return element;
 	}
 
-public static Sorpresa cargarDesdeXML(Element element) {
+public static SorpresaDesfavorable cargarDesdeXML(Element element) {
 		
 		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
-		Sorpresa sorpresaDesFavorable = new SorpresaDesfavorable(vector);
+		SorpresaDesfavorable sorpresaDesfavorable = new SorpresaDesfavorable(vector);
 		
-		return sorpresaDesFavorable;
+		return sorpresaDesfavorable;
 	}
 
 }

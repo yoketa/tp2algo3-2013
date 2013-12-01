@@ -39,9 +39,16 @@ public class ControlPolicial extends Obstaculo {
 	}
 
 	public Element serializarXML() {
-		Element element = new Element("SorpresaFavorable");
+		Element element = new Element("ControlPolicial");
 		element.addContent(this.getPosicion().serializarXML());
 		
 		return element;
 	}
+
+	public static ControlPolicial cargarDesdeXML(Element element) {
+		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
+		ControlPolicial controlPolicial = new ControlPolicial(vector);
+		
+		return controlPolicial;
+	}	
 }

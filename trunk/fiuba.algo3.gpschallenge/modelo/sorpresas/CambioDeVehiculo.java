@@ -27,4 +27,13 @@ public class CambioDeVehiculo extends Sorpresa {
 		
 		return element;
 	}
+
+public static CambioDeVehiculo cargarDesdeXML(Element element) {
+		
+		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
+		CambioDeVehiculo cambioDeVehiculo = new CambioDeVehiculo(vector);
+		
+		return cambioDeVehiculo;
+	}
+
 }

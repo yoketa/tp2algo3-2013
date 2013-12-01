@@ -76,22 +76,35 @@ public class NivelTest {
 
 	@Test
 	public void testAgregarSorpresasAlNivel() {
-		 nivel.agregarSorpresa(sorpresa1);
+		 nivel.agregarUnaSorpresa(sorpresa1);
 		assertEquals(1,nivel.getSorpresas().size());
-		nivel.agregarSorpresa(sorpresa2);
+		nivel.agregarUnaSorpresa(sorpresa2);
 		assertEquals(2,nivel.getSorpresas().size());
-		nivel.agregarSorpresa(sorpresa3);
+		nivel.agregarUnaSorpresa(sorpresa3);
 		assertEquals(3,nivel.getSorpresas().size());
-		nivel.agregarSorpresa(sorpresa4);
+		nivel.agregarUnaSorpresa(sorpresa4);
 		assertEquals(4,nivel.getSorpresas().size());
 	}
 
 	@Test
+	public void testAgregarObstaculosAlNivel() {
+		 nivel.agregarUnObstaculo(obstaculo1);
+		assertEquals(1,nivel.getObstaculos().size());
+		nivel.agregarUnObstaculo(obstaculo2);
+		assertEquals(2,nivel.getObstaculos().size());
+		nivel.agregarUnObstaculo(obstaculo3);
+		assertEquals(3,nivel.getObstaculos().size());
+		nivel.agregarUnObstaculo(obstaculo4);
+		assertEquals(4,nivel.getObstaculos().size());
+	}
+
+	
+	@Test
 	public void testObtenerSorpresasDelNivel() {
-		nivel.agregarSorpresa(sorpresa1);
-		nivel.agregarSorpresa(sorpresa2);
-		nivel.agregarSorpresa(sorpresa3);
-		nivel.agregarSorpresa(sorpresa4);
+		nivel.agregarUnaSorpresa(sorpresa1);
+		nivel.agregarUnaSorpresa(sorpresa2);
+		nivel.agregarUnaSorpresa(sorpresa3);
+		nivel.agregarUnaSorpresa(sorpresa4);
 		sorpresas = nivel.getSorpresas();
 		Vector posicionSopresa1 = sorpresas.get(0).getPosicion();
 		Vector posicionSopresa2 = sorpresas.get(1).getPosicion();
@@ -111,10 +124,10 @@ public class NivelTest {
 	
 	@Test
 	public void testObtenerObstaculosDelNivel() {
-		nivel.agregarObstaculo(obstaculo1);
-		nivel.agregarObstaculo(obstaculo2);
-		nivel.agregarObstaculo(obstaculo3);
-		nivel.agregarObstaculo(obstaculo4);
+		nivel.agregarUnObstaculo(obstaculo1);
+		nivel.agregarUnObstaculo(obstaculo2);
+		nivel.agregarUnObstaculo(obstaculo3);
+		nivel.agregarUnObstaculo(obstaculo4);
 		obstaculos = nivel.getObstaculos();
 		Vector posicionObstaculo1 = obstaculos.get(0).getPosicion();
 		Vector posicionObstaculo2 = obstaculos.get(1).getPosicion();
@@ -146,21 +159,57 @@ public class NivelTest {
 	
 	@Test
 	public void testGuardarYCargarSorpresas() {
-		nivel.agregarSorpresa(sorpresa1);
-		nivel.agregarSorpresa(sorpresa2);
-		nivel.agregarSorpresa(sorpresa3);
-		nivel.agregarSorpresa(sorpresa4);
+		Nivel nivel = new Nivel();
+		nivel.agregarUnaSorpresa(sorpresa1);
+		nivel.agregarUnaSorpresa(sorpresa2);
+		nivel.agregarUnaSorpresa(sorpresa3);
+		nivel.agregarUnaSorpresa(sorpresa4);
+		nivel.agregarUnObstaculo(obstaculo1);
+		
 		try {
 			Archivador.guardar(nivel, Nivel.nivelPath);
-			/*Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelPath);
+			Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelPath);
 			List<Sorpresa> sorpresasRecargadas = nivelRecargado.getSorpresas();
 			sorpresas = nivel.getSorpresas();
 			
-			assertEquals(sorpresas.size(), sorpresasRecargadas);	*/			
+		assertEquals(sorpresas.size(), sorpresasRecargadas.size());			
+		assertEquals(sorpresas.get(0).getClass(), sorpresasRecargadas.get(0).getClass());
+		assertEquals(sorpresas.get(1).getClass(), sorpresasRecargadas.get(1).getClass());
+		assertEquals(sorpresas.get(2).getClass(), sorpresasRecargadas.get(2).getClass());
+		assertEquals(sorpresas.get(3).getClass(), sorpresasRecargadas.get(3).getClass());
+		
 		}
 		catch (Exception ex) {
 			fail();
 		}		
 	}
+
+
+	@Test
+	public void testGuardarYCargarObstaculos() {
+		Nivel nivel = new Nivel();
+		nivel.agregarUnObstaculo(obstaculo1);
+		nivel.agregarUnObstaculo(obstaculo2);
+		nivel.agregarUnObstaculo(obstaculo3);
+		nivel.agregarUnObstaculo(obstaculo4);
+		nivel.agregarUnaSorpresa(sorpresa1);
+		try {
+			Archivador.guardar(nivel, Nivel.nivelObstaculoPath);
+			Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelObstaculoPath);
+			List<Obstaculo> obstaculosRecargados = nivelRecargado.getObstaculos();
+			obstaculos = nivel.getObstaculos();
+			
+			assertEquals(obstaculos.size(), obstaculosRecargados.size());			
+			assertEquals(obstaculos.get(0).getClass(), obstaculosRecargados.get(0).getClass());
+			assertEquals(obstaculos.get(1).getClass(), obstaculosRecargados.get(1).getClass());
+			assertEquals(obstaculos.get(2).getClass(), obstaculosRecargados.get(2).getClass());
+			assertEquals(obstaculos.get(3).getClass(), obstaculosRecargados.get(3).getClass());
+			
+		}
+		catch (Exception ex) {
+			fail();
+		}		
+	}
+
 
 }

@@ -21,9 +21,16 @@ public class Piquete extends Obstaculo {
 		
 	}
 	public Element serializarXML() {
-		Element element = new Element("SorpresaFavorable");
+		Element element = new Element("Piquete");
 		element.addContent(this.getPosicion().serializarXML());
 		
 		return element;
 	}
+
+	public static Piquete cargarDesdeXML(Element element) {
+		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
+		Piquete piquete = new Piquete(vector);
+		
+		return piquete;
+	}	
 }
