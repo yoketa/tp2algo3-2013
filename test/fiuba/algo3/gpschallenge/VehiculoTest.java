@@ -24,7 +24,7 @@ public class VehiculoTest {
 	public void testDeberiaCrearUnVehiculoEnLaPosicionHorizontalIndicada() {
 		int x  = 1;
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("","",x,0);
-		Assert.assertEquals( x , vehiculo.getPosicionHorizontal() );
+		Assert.assertEquals( x , vehiculo.getX() );
 	}
 	
 	@Test
@@ -72,8 +72,8 @@ public void testMoverDeberiaCambiarLaPosicionEnLaDireccionHorizontal() {
 	
 	try {
 		vehiculo.mover(direccion);
-		Assert.assertEquals( 1 , vehiculo.getPosicionHorizontal() );
-		Assert.assertEquals( 0 , vehiculo.getPosicionVertical() );
+		Assert.assertEquals( 1 , vehiculo.getX() );
+		Assert.assertEquals( 0 , vehiculo.getY() );
 	}
 	catch (Exception e) {
 	}
@@ -87,8 +87,8 @@ public void testMoverDeberiaCambiarLaPosicionEnLaDireccionVertical() {
 	
 	try {
 		vehiculo.mover(direccion);
-		Assert.assertEquals( 1 , vehiculo.getPosicionVertical() );
-		Assert.assertEquals( 0 , vehiculo.getPosicionHorizontal() );
+		Assert.assertEquals( 1 , vehiculo.getY() );
+		Assert.assertEquals( 0 , vehiculo.getX() );
 	}
 	catch (Exception e) {
 	}

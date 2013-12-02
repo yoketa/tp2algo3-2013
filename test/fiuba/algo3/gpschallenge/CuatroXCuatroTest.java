@@ -23,8 +23,8 @@ public class CuatroXCuatroTest {
 			EstadoVehiculo cuatroXcuatro = vehiculo.getEstado();
 			cuatroXcuatro.pasaPorPozo(vehiculo);
 			
-			Assert.assertEquals( 1 , vehiculo.getPosicionHorizontal());
-			Assert.assertEquals( 0 , vehiculo.getPosicionVertical());	
+			Assert.assertEquals( 1 , vehiculo.getX());
+			Assert.assertEquals( 0 , vehiculo.getY());	
 		} catch (Exception e) {
 			fail();
 		}
@@ -41,8 +41,8 @@ public class CuatroXCuatroTest {
 			EstadoVehiculo cuatroXcuatro = vehiculo.getEstado();
 			cuatroXcuatro.piquete(vehiculo,direccion);
 			
-			Assert.assertEquals( 0 , vehiculo.getPosicionHorizontal());
-			Assert.assertEquals( 0 , vehiculo.getPosicionVertical());
+			Assert.assertEquals( 0 , vehiculo.getX());
+			Assert.assertEquals( 0 , vehiculo.getY());
 		} catch (Exception e) {
 			fail();
 		}
