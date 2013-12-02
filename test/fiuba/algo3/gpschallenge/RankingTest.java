@@ -155,23 +155,32 @@ public class RankingTest {
 			assertEquals(puntajes.get(0).getEstado().getClass(), puntajesRecargados.get(0).getEstado().getClass());
 			assertEquals(puntajes.get(1).getEstado().getClass(), puntajesRecargados.get(1).getEstado().getClass());
 			assertEquals(puntajes.get(2).getEstado().getClass(), puntajesRecargados.get(2).getEstado().getClass());
-		
+			assertEquals(puntajes.get(3).getEstado().getClass(), puntajesRecargados.get(3).getEstado().getClass());
+			assertEquals(puntajes.get(4).getEstado().getClass(), puntajesRecargados.get(4).getEstado().getClass());
+			
 			assertEquals(puntajes.get(0).getPiloto(), puntajesRecargados.get(0).getPiloto());
 			assertEquals(puntajes.get(1).getPiloto(), puntajesRecargados.get(1).getPiloto());
 			assertEquals(puntajes.get(2).getPiloto(), puntajesRecargados.get(2).getPiloto());
+			assertEquals(puntajes.get(3).getPiloto(), puntajesRecargados.get(3).getPiloto());
+			assertEquals(puntajes.get(4).getPiloto(), puntajesRecargados.get(4).getPiloto());
 			
 			assertEquals(puntajes.get(0).getPuntaje(), puntajesRecargados.get(0).getPuntaje(),1E-5);
 			assertEquals(puntajes.get(1).getPuntaje(), puntajesRecargados.get(1).getPuntaje(),1E-5);
 			assertEquals(puntajes.get(2).getPuntaje(), puntajesRecargados.get(2).getPuntaje(),1E-5);
+			assertEquals(puntajes.get(3).getPuntaje(), puntajesRecargados.get(3).getPuntaje(),1E-5);
+			assertEquals(puntajes.get(4).getPuntaje(), puntajesRecargados.get(4).getPuntaje(),1E-5);
 			
 			assertEquals(puntajes.get(0).getPosicionHorizontal(), puntajesRecargados.get(0).getPosicionHorizontal(),1E-5);
 			assertEquals(puntajes.get(1).getPosicionHorizontal(), puntajesRecargados.get(1).getPosicionHorizontal(),1E-5);
 			assertEquals(puntajes.get(2).getPosicionHorizontal(), puntajesRecargados.get(2).getPosicionHorizontal(),1E-5);
+			assertEquals(puntajes.get(3).getPosicionHorizontal(), puntajesRecargados.get(3).getPosicionHorizontal(),1E-5);
+			assertEquals(puntajes.get(4).getPosicionHorizontal(), puntajesRecargados.get(4).getPosicionHorizontal(),1E-5);
 			
 			assertEquals(puntajes.get(0).getPosicionVertical(), puntajesRecargados.get(0).getPosicionVertical(),1E-5);
 			assertEquals(puntajes.get(1).getPosicionVertical(), puntajesRecargados.get(1).getPosicionVertical(),1E-5);
 			assertEquals(puntajes.get(2).getPosicionVertical(), puntajesRecargados.get(2).getPosicionVertical(),1E-5);
-			
+			assertEquals(puntajes.get(3).getPosicionVertical(), puntajesRecargados.get(3).getPosicionVertical(),1E-5);
+			assertEquals(puntajes.get(4).getPosicionVertical(), puntajesRecargados.get(4).getPosicionVertical(),1E-5);
 		}
 		catch (Exception ex) {
 			fail();

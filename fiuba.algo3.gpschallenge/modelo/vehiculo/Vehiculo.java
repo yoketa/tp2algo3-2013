@@ -76,6 +76,13 @@ public class Vehiculo extends Observable {
 		return this.posicion.getX();
 	}
 		
+	public void setPosicionVertical(int posVertical) {
+		this.posicion.setY(posVertical);
+	}
+	
+	public void setPosicionHorizontal(int posHorizontal) {
+		this.posicion.setX(posHorizontal);
+	}
 	//TODO: Tipo de excepción en caso de que la dirección no sea ortonormal
 	public void mover(Vector direccion) throws Exception {
 		int tamaño = direccion.getX() + direccion.getY();
@@ -142,8 +149,6 @@ public class Vehiculo extends Observable {
 
 		element.addContent(posicion.serializarXML());
 		element.addContent(estadoActual.serializarXML());
-
-		//element.addContent(posicion.serializarXML());
 
 		return element;
 	}

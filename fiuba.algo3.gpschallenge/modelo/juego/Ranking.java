@@ -55,6 +55,8 @@ public class Ranking {
 				if((puntajeJugador.getPiloto()) == (unVehiculo.getPiloto())){
 					puntajeJugador.setPuntaje(unVehiculo.getPuntaje());
 					puntajeJugador.setEstado(unVehiculo.getEstado());
+					puntajeJugador.setPosicionHorizontal(unVehiculo.getPosicionHorizontal());
+					puntajeJugador.setPosicionVertical(unVehiculo.getPosicionVertical());
 					this.vehiculoActualizado = true;
 				}
 			}
