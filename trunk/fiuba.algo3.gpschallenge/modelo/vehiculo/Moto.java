@@ -8,31 +8,48 @@ import org.jdom.Element;
 
 public class Moto implements EstadoVehiculo {
 	
+
 	private double probabilidadDePasarUnControlPolicial;
+	private final double PUNTOS_PIQUETE = 50;
+	private final double PUNTOS_POZO = 30;
+	private final double PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION = 40;
+	private final double PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION = 100;
+
 	
 	public Moto(){
 		this.probabilidadDePasarUnControlPolicial = 0.8;
 	}
 	
-
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual + 3);
 		
+		vehiculo.sumarMovimientos(3);
+		vehiculo.sumarPuntos(PUNTOS_POZO);
+		vehiculo.avanzarAFinalDeCuadra();
+
 	}
 
 	@Override
-	public void piquete(Vehiculo vehiculo, Vector direccion) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual + 2);
+	public void piquete(Vehiculo vehiculo) {
+		
+		vehiculo.sumarMovimientos(2);
+		vehiculo.sumarPuntos(PUNTOS_PIQUETE);
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 
 	@Override
-	public void controlPolicial(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual + 3);
+	public void controlPolicial(Vehiculo vehiculo, double probabilidad) {
+		
+		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial())
+		{
+			vehiculo.sumarMovimientos(3);
+			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION);
+		}else{
+			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION);
+		}
+		vehiculo.avanzarAFinalDeCuadra();
 	}
+
 	
 	@Override
 	public double getProbabilidadDePasarUnControlPolicial(){

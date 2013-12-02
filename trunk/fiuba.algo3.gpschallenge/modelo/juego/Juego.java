@@ -3,6 +3,7 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.vehiculo.Vehiculo;
 
@@ -17,29 +18,42 @@ public class Juego {
 	private Meta meta;
 	
 	// Metodos
-	public static Juego crearJuegoConUsuario(String user){
-		Juego juego = new Juego(user);
+	public static Juego crearJuego(String user,EstadoVehiculo vehiculo){
+		Juego juego = new Juego(user,vehiculo);
 		return juego;
 	}
 	
 	public Juego(String piloto){
-		this.limiteHorizontal = 10;
-		this.limiteVertical = 10;
+		//persistencia
+		this.setLimiteHorizontal(10);
+		this.setLimiteVertical(10);
+		this.meta = this.crearMeta();
+		
 		this.eventos = this.crearEventos();
 		this.ranking = new Ranking();
-		this.vehiculo = this.crearVehiculo(piloto);
-		this.meta = this.crearMeta(limiteHorizontal,limiteVertical/2);
+		this.vehiculo = Vehiculo.crearConPiloto(piloto,0,0);
+	}
+	
+	public Juego(String piloto, EstadoVehiculo vehiculo){
+		//persistencia
+		this.setLimiteHorizontal(10);
+		this.setLimiteVertical(10);
+		this.meta = this.crearMeta();
+		
+		this.eventos = this.crearEventos();
+		this.ranking = new Ranking();
+		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
 	}
 
-	private Meta crearMeta(int x,int y) {
-		Meta meta = new Meta(x,y);
+	private Meta crearMeta() {
+		Meta meta = new Meta(limiteHorizontal,limiteVertical/2);
 		return meta;
 	}
 	
-	private Vehiculo crearVehiculo(String piloto) {
-		Vehiculo vehiculo = Vehiculo.crearConPiloto(piloto,1,limiteVertical/2);
-		return vehiculo;
-	}
+//	private Vehiculo crearVehiculo(String piloto) {
+//	Vehiculo vehiculo = Vehiculo.crearConPiloto(piloto,1,limiteVertical/2);
+//	return vehiculo;
+//}
 	
 	private List<Evento> crearEventos() {
 		ArrayList<Evento> nuevosEventos = new ArrayList<Evento>();
@@ -50,8 +64,16 @@ public class Juego {
 		return this.limiteHorizontal;
 	}
 	
+	public void setLimiteHorizontal(int i) {
+		this.limiteHorizontal = i;
+	}
+	
 	public int getLimiteVertical() {
 		return this.limiteVertical;
+	}
+	
+	public void setLimiteVertical(int i) {
+		this.limiteVertical = i;
 	}
 	
 	public List<Evento> getEventos() {
@@ -78,7 +100,7 @@ public class Juego {
 		this.eventos.add(evento);
 	}
 
-	public boolean hayEvento(Vector posicion) {
+	private boolean hayEvento(Vector posicion) {
 		
 		for(Evento evento : this.eventos ) {
 			if((evento.getPosicion().getX() == posicion.getX()) && (evento.getPosicion().getY() == posicion.getY()))
@@ -87,4 +109,32 @@ public class Juego {
 		return false;
 	}
 	
+	private Evento obtenerEvento(Vector posicion) {
+		
+		Evento eventoADevolver = null;
+		
+		for(Evento evento : this.eventos ) {
+			if((evento.getPosicion().getX() == posicion.getX()) && (evento.getPosicion().getY() == posicion.getY()))
+				eventoADevolver = evento;
+		}
+		return eventoADevolver;
+	}
+	
+	public void aplicarEvento(){
+		Vector posicion = this.vehiculo.getPosicion();
+		
+		boolean hayEvento = this.hayEvento(posicion);
+		
+		if ( hayEvento ) {
+			obtenerEvento(posicion).afectar(this.vehiculo);
+		}else{
+			this.vehiculo.avanzarAFinalDeCuadra();
+		}
+	}
+
+	public boolean llegoALaMeta() {
+		if ( this.meta.getX() == this.vehiculo.getX() && this.meta.getY() == this.vehiculo.getY())
+			return true;
+		return false;
+	}
 }

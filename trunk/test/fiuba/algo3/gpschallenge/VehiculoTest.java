@@ -94,18 +94,18 @@ public void testMoverDeberiaCambiarLaPosicionEnLaDireccionVertical() {
 	}
 }
 
-@Test
-public void testMoverDeberiaLanzarUnaExcepcionSiLaDireccionDeMovimientoNoEsOrtonormal() {
-
-	Vector direccion = new Vector(1,1);
-	Vehiculo vehiculo = Vehiculo.crearConPiloto("","",0,0);
-	
-	try {
-		vehiculo.mover(direccion);
-		fail();
-	}
-	catch (Exception e) {
-	}
-}
+//@Test
+//public void testMoverDeberiaLanzarUnaExcepcionSiLaDireccionDeMovimientoNoEsOrtonormal() {
+//
+//	Vector direccion = new Vector(1,1);
+//	Vehiculo vehiculo = Vehiculo.crearConPiloto("","",0,0);
+//	
+//	try {
+//		vehiculo.mover(direccion);
+//		fail();
+//	}
+//	catch (Exception e) {
+//	}
+//}
 }
 	

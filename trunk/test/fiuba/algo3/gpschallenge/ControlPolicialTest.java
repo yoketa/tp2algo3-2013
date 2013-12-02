@@ -2,90 +2,116 @@ package fiuba.algo3.gpschallenge;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
-import modelo.interfaces.Evento;
+
+import modelo.interfaces.EstadoVehiculo;
+import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
 import modelo.probabilidades.Probabilidad;
 import modelo.probabilidades.ProbabilidadFija;
+import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
-
-
-
 
 import org.junit.Test;
 
 public class ControlPolicialTest {
 
 	@Test
-	public void testafectarDeberiaSumarTresMovimientosSiLaProbabilidadDelControlPolicialEsMayorAlaDelAuto(){
+	public void testafectarDeberiaSumarTresPenalizacionessSiLaProbabilidadDelControlPolicialEsMenorAlaDelaMoto(){
+	
+		EstadoVehiculo moto = new Moto();
+		Vector posicion = new Vector(0,0);
 		
-		Probabilidad probabilidad = new ProbabilidadFija(0.51);
-		Obstaculo controlPolicial = new ControlPolicial(probabilidad);
-		Vehiculo auto = Vehiculo.crearConPiloto("","Auto",0,0);
-		double puntaje = auto.getPuntaje()+ 3;
+		Probabilidad probabilidad = new ProbabilidadFija(0.79);
+		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",moto);
+		int movimientos = vehiculo.getMovimientos()+ 3;
 		
-		controlPolicial.afectar(auto);
-		Assert.assertEquals( puntaje , auto.getPuntaje());	
-	}
+		controlPolicial.afectar(vehiculo);
+		
+		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
+		}
 	
 	@Test
-	public void testafectarDeberiaSumarTresMovimientosSiLaProbabilidadDelControlPolicialEsMenorAlaDelAuto(){
-		
-		Probabilidad probabilidad = new ProbabilidadFija(0.50);
-		Obstaculo controlPolicial = new ControlPolicial(probabilidad);
-		Vehiculo auto = Vehiculo.crearConPiloto("","Auto",0,0);
-		double puntaje = auto.getPuntaje();
-		
-		controlPolicial.afectar(auto);
-		Assert.assertEquals( puntaje , auto.getPuntaje());	
-	}
+	public void testafectarNoDeberiaSumarTresPenalizacionessSiLaProbabilidadDelControlPolicialEsMayorAlaDelaMoto(){
 	
-	@Test
-	public void testafectarDeberiaSumarTresMovimientosSiLaProbabilidadDelControlPolicialEsMayorAlaDelaMoto(){
+		EstadoVehiculo moto = new Moto();
+		Vector posicion = new Vector(0,0);
 		
 		Probabilidad probabilidad = new ProbabilidadFija(0.81);
-		Obstaculo controlPolicial = new ControlPolicial(probabilidad);
-		Vehiculo auto = Vehiculo.crearConPiloto("","Moto",0,0);
-		double puntaje = auto.getPuntaje()+ 3;
+		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",moto);
+		int movimientos = vehiculo.getMovimientos();
 		
-		controlPolicial.afectar(auto);
-		Assert.assertEquals( puntaje , auto.getPuntaje());	
+		controlPolicial.afectar(vehiculo);
+		
+		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
+		}
+	
+	@Test
+	public void testAfectarDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMenorAlaDelCuatroXCuatro(){
+		
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vector posicion = new Vector(0,0);
+		
+		Probabilidad probabilidad = new ProbabilidadFija(0.29);
+		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		int movimientos = vehiculo.getMovimientos()+ 3;
+		
+		controlPolicial.afectar(vehiculo);
+		
+		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
 	}
 	
 	@Test
-	public void testafectarDeberiaSumarTresMovimientosSiLaProbabilidadDelControlPolicialEsMenorAlaDelaMoto(){
+	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayotAlaDelCuatroXCuatro(){
 		
-		Probabilidad probabilidad = new ProbabilidadFija(0.80);
-		Obstaculo controlPolicial = new ControlPolicial(probabilidad);
-		Vehiculo auto = Vehiculo.crearConPiloto("","Moto",0,0);
-		double puntaje = auto.getPuntaje();
-		
-		controlPolicial.afectar(auto);
-		Assert.assertEquals( puntaje , auto.getPuntaje());	
-	}
-	
-	@Test
-	public void testafectarDeberiaSumarTresMovimientosSiLaProbabilidadDelControlPolicialEsMayorAlaDeUnaCuatroXCuatro(){
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vector posicion = new Vector(0,0);
 		
 		Probabilidad probabilidad = new ProbabilidadFija(0.31);
-		Obstaculo controlPolicial = new ControlPolicial(probabilidad);
-		Vehiculo auto = Vehiculo.crearConPiloto("","CuatroXCuatro",0,0);
-		double puntaje = auto.getPuntaje()+ 3;
+		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		int movimientos = vehiculo.getMovimientos();
 		
-		controlPolicial.afectar(auto);
-		Assert.assertEquals( puntaje , auto.getPuntaje());	
+		controlPolicial.afectar(vehiculo);
+		
+		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
 	}
 	
 	@Test
-	public void testafectarDeberiaSumarTresMovimientosSiLaProbabilidadDelControlPolicialEsMenorAlaDeUnaCuatroXCuatro(){
+	public void testAfectarDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMenorAlaDelAuto(){
 		
-		Probabilidad probabilidad = new ProbabilidadFija(0.30);
-		Obstaculo controlPolicial = new ControlPolicial(probabilidad);
-		Vehiculo auto = Vehiculo.crearConPiloto("","CuatroXCuatro",0,0);
-		double puntaje = auto.getPuntaje();
+		EstadoVehiculo auto = new Auto();
+		Vector posicion = new Vector(0,0);
 		
-		controlPolicial.afectar(auto);
-		Assert.assertEquals( puntaje , auto.getPuntaje());	
+		Probabilidad probabilidad = new ProbabilidadFija(0.49);
+		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		int movimientos = vehiculo.getMovimientos()+ 3;
+		
+		controlPolicial.afectar(vehiculo);
+		
+		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
+	}
+	
+	@Test
+	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayotAlaDelAuto(){
+		
+		EstadoVehiculo auto = new Auto();
+		Vector posicion = new Vector(0,0);
+		
+		Probabilidad probabilidad = new ProbabilidadFija(0.51);
+		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		int movimientos = vehiculo.getMovimientos();
+		
+		controlPolicial.afectar(vehiculo);
+		
+		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
 	}
 
 }

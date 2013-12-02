@@ -4,6 +4,7 @@ import org.jdom.Element;
 
 import modelo.juego.Vector;
 import modelo.probabilidades.Probabilidad;
+import modelo.probabilidades.ProbabilidadEquiprobable;
 import modelo.vehiculo.Vehiculo;
 
 public class ControlPolicial extends Obstaculo {
@@ -14,24 +15,15 @@ public class ControlPolicial extends Obstaculo {
 		super(new Vector(0,0));
 	}
 	
-	public ControlPolicial (Vector posicion){
+	public ControlPolicial (Vector posicion,Probabilidad proba){
 		super(posicion);
-	}
-	
-	
-	public ControlPolicial(Probabilidad probabilidad){
-		this.probabilidad = probabilidad.calcular();	
+		this.probabilidad = proba.calcular();	
 	}
 	
 	@Override
 	public void afectar(Vehiculo vehiculo) {
 		
-		double probabilidadDelvehiculo = vehiculo.getEstado().getProbabilidadDePasarUnControlPolicial();
-
-		if ( this.getProbabilidad() > probabilidadDelvehiculo)
-		{
-			vehiculo.controlPolicial();
-		}
+			vehiculo.controlPolicial(this.getProbabilidad());
 	}
 	
 	public double getProbabilidad(){
@@ -46,8 +38,9 @@ public class ControlPolicial extends Obstaculo {
 	}
 
 	public static ControlPolicial cargarDesdeXML(Element element) {
+		ProbabilidadEquiprobable proba = new ProbabilidadEquiprobable();
 		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
-		ControlPolicial controlPolicial = new ControlPolicial(vector);
+		ControlPolicial controlPolicial = new ControlPolicial(vector,proba);
 		
 		return controlPolicial;
 	}	

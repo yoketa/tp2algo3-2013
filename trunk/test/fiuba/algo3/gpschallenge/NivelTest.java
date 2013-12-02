@@ -12,6 +12,7 @@ import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
 import modelo.obstaculo.Piquete;
 import modelo.obstaculo.Pozo;
+import modelo.probabilidades.ProbabilidadEquiprobable;
 import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
@@ -60,13 +61,19 @@ public class NivelTest {
 		sorpresa7 = new SorpresaDesfavorable(new Vector(140,120));
 		sorpresa8 = new SorpresaDesfavorable(new Vector(150,120));
 		
+		ProbabilidadEquiprobable proba = new ProbabilidadEquiprobable();
+		
 		obstaculo1 = new Pozo (new Vector(155,185));
 		obstaculo2 = new Pozo (new Vector(135,156));
-		obstaculo3 = new ControlPolicial(new Vector(170,156)) ;
+		
+		obstaculo3 = new ControlPolicial(new Vector(170,156),proba) ;
+		
 		obstaculo4 = new Piquete (new Vector(130,180));
 		obstaculo5 = new Piquete (new Vector(128,240));
-		obstaculo6 = new ControlPolicial (new Vector(220,210));
-		obstaculo7 = new ControlPolicial (new Vector(240,210));
+		
+		obstaculo6 = new ControlPolicial (new Vector(220,210),proba);
+		obstaculo7 = new ControlPolicial (new Vector(240,210),proba);
+		
 		obstaculo8 = new Pozo (new Vector(270,240));
 		
 		nivel = new Nivel();
