@@ -235,8 +235,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {                                      
         this.setDificultad();
         this.setTipoDeVehiculo();
+        juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario,this.vehiculo);
         juegoNuevo.frame.setVisible(true);
-		juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario,this.vehiculo);
         //juegoNuevo.setBounds(500,250,450,450);
         //juegoNuevo.setVisible(true);
     }                                     

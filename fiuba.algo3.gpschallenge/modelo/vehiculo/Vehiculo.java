@@ -18,11 +18,22 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 
 	private String piloto;
 	private Vector posicion;
+	private Vector direccion;
 	private double puntaje;
+	private int movimientos;
 	private EstadoVehiculo estadoActual;
+	
+	private final int X=0;
+	private final int Y=0;
+	 final Vector SUBIR = new Vector(0,1);
+	 final Vector BAJAR = new Vector(0,-1);
+	 final Vector DERECHA = new Vector(1,0);
+	 final Vector IZQUIERDA = new Vector(-1,0);
+	
 
 
-	//Constructor Mejorado.
+//	-------------------------------Constructor Mejorado. Para Cambiar------------------------------------
+// constructor 1: 
 	public static Vehiculo crearConPiloto(String piloto,EstadoVehiculo estadoInicial, int x, int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
 		vehiculo.setPiloto(piloto);
@@ -30,19 +41,42 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		vehiculo.setPuntaje(0);
 		return vehiculo;
 	}	
+
+	public Vehiculo(int x, int y){
+		this.posicion = new Vector(x,y);
+		this.puntaje = 0;
+	}
+//---------------------------------------------------------------------------------------------------------
+	//constructor 2: definido
+	public static Vehiculo crearConPilotoYVehiculo(String piloto,EstadoVehiculo estadoInicial) {
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setPiloto(piloto);
+		vehiculo.setEstado(estadoInicial);
+		vehiculo.setPuntaje(0);
+		
+		// se debe cargar por persistencia
+		vehiculo.setMovimientos(0);
+		
+		return vehiculo;
+	}
+
+	public Vehiculo(){
+		this.posicion = new Vector(this.X,this.Y);
+		this.direccion = new Vector(0,0);
+	}
 	
+//-------------------------------------------------------------------------------------------------------------	
+	//constructor 3: 
 	public static Vehiculo crearConPiloto(String piloto,int x,int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
 		vehiculo.setPiloto(piloto);
 		return vehiculo;
 	}
 
-	public Vehiculo(int x, int y){
-		this.posicion = new Vector(x,y);
-		this.puntaje = 0;
-	}
+
 	
-	//Luciana--Constructor con parametro de estadoInicial
+	// constructor 4:  
+	//Arreglar persistencia primero
 	public static Vehiculo crearConPiloto(String piloto,String estadoInicial,int x,int y) {
 		Vehiculo vehiculo = new Vehiculo(x,y);
 		vehiculo.setPiloto(piloto);
@@ -63,7 +97,7 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	           break;
 	      }	
 		}
-	
+	//-------------------------------------------------------------------------
 	private void setPiloto(String piloto) {
 		this.piloto = piloto;
 		ActualizarObservadores();
@@ -82,15 +116,23 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	public int getX() {
 		return this.posicion.getX();
 	}
-		
-	public void mover(Vector direccion) {
-		
-		this.posicion.setX(this.posicion.getX() + direccion.getX());
-		this.posicion.setY(this.posicion.getY() + direccion.getY());
-		
-		this.puntaje++;
+	
+	private void setMovimientos(int i) {
+		this.movimientos = i;
 	}
 	
+	public void setX(int x) {
+		this.posicion.setX(x);
+	}
+
+	public void setY(int y) {
+		this.posicion.setY(y);		
+	}
+
+	public Vector getPosicion() {
+		return this.posicion;
+	}
+
 	public double getPuntaje() {
 		return this.puntaje;
 	}
@@ -108,6 +150,45 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		this.estadoActual = estado;
 		ActualizarObservadores();
 	}
+	
+	public void sumarMovimientos(int movimientoNuevo) {
+		this.movimientos = this.movimientos + movimientoNuevo;
+	}
+
+	public void sumarPuntos(double puntos){
+		this.puntaje = this.puntaje + puntos;
+	}
+	
+//Mover a sacar
+	public void mover(Vector direccion) {
+		
+		this.posicion.setX(this.posicion.getX() + direccion.getX());
+		this.posicion.setY(this.posicion.getY() + direccion.getY());
+		
+		this.puntaje++;
+	}
+	
+	// Mueve el vehiculo a mitad de cuadra en una direccion
+	public void mover() {
+		
+		this.posicion.setX(this.posicion.getX() + direccion.getX());
+		this.posicion.setY(this.posicion.getY() + direccion.getY());
+		
+		this.movimientos++;
+	}
+	
+	// No debe haber un evento que no te permita el avance
+	public void avanzarAFinalDeCuadra() {
+		
+		this.posicion.setX(this.posicion.getX() + direccion.getX());
+		this.posicion.setY(this.posicion.getY() + direccion.getY());
+	}
+	
+	public void pegarLaVuelta() {
+		
+		this.posicion.setX(this.posicion.getX() + direccion.getX()*(-1));
+		this.posicion.setY(this.posicion.getY() + direccion.getY()*(-1));
+	}
 
 	public void penalizacionDesfavorable() {
 		this.estadoActual.penalizacionDesfavorable(this);
@@ -121,12 +202,12 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		this.estadoActual.pasaPorPozo(this);
 	}
 	
-	public void piquete(Vector direccion) {
-		this.estadoActual.piquete(this,direccion);
+	public void piquete() {
+		this.estadoActual.piquete(this);
 	}
 	
-	public void controlPolicial() {
-		this.estadoActual.controlPolicial(this);
+	public void controlPolicial(double probabilidad) {
+		this.estadoActual.controlPolicial(this,probabilidad);
 	}
 	
 	public void cambiarEstado() {
@@ -175,40 +256,23 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	}
 	
 	public void subir() {
-		Vector arriba = new Vector(1,0);
-		try {
-			this.mover(arriba);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.direccion = SUBIR;
+		this.mover();
 	}
 	
 	public void bajar() {
-		Vector arriba = new Vector(1,0);
-		try {
-			this.mover(arriba);
-		} catch (Exception e) {
-	
-		}
+		this.direccion = BAJAR;
+		this.mover();
 	}
 	
 	public void derecha() {
-		Vector arriba = new Vector(1,0);
-		try {
-			this.mover(arriba);
-		} catch (Exception e) {
-		
-		}
+		this.direccion = DERECHA;
+		this.mover();
 	}
 	
 	public void izquierda() {
-		Vector arriba = new Vector(1,0);
-		try {
-			this.mover(arriba);
-		} catch (Exception e) {
-			
-		}
+		this.direccion = IZQUIERDA;
+		this.mover();
 	}
 	
 	public void ActualizarObservadores()
@@ -222,6 +286,9 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 				
 	}
 
+	public int getMovimientos() {
+		return this.movimientos;
+	}
 
 
 }

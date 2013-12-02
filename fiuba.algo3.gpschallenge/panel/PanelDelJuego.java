@@ -32,7 +32,7 @@ import vistas.VistaDeVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
 import modelo.juego.Vector;
-import modelo.vehiculo.Cuadra;
+import modelo.juego.Cuadra;
 import modelo.vehiculo.Vehiculo;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
@@ -46,9 +46,11 @@ public class PanelDelJuego {
 	public JFrame frame;
 	private GameLoop gameLoop;
 	private Juego modelo;
+	private String vehiculo;
 
-    public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario) {
+    public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
+    	this.vehiculo = vehiculo;
         this.usuario = usuario;
         this.dificultad = dificultad;
         this.menuPartidaNueva = menuPartida;
@@ -83,7 +85,7 @@ public class PanelDelJuego {
 		//TODO: Tamaño del panel según la dificultad
 		JPanel panel = this.addSuperficiePanel();
 		
-		BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\27176876544\\Downloads\\cuadra.png"));
+		BufferedImage myPicture = ImageIO.read(new File("Escritorio\\cuadra.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		panel.add(picLabel);
 		

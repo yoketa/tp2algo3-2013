@@ -39,4 +39,8 @@ public class Meta implements ObjetoPosicionable, ObjetoVivo {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public Vector getPosicion() {
+		return this.posicion;
+	}
 }
