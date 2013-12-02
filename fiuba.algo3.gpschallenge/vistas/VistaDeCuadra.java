@@ -24,7 +24,7 @@ public class VistaDeCuadra extends Imagen {
                 ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
                 URL url = classLoader.getResource("auto.png");
                 try {
-                        return new File("Escritorio\\cuadra.png").toURI().toURL();
+                        return new File("C:\\Persistencia\\cuadra.png").toURI().toURL();
                 } catch (MalformedURLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

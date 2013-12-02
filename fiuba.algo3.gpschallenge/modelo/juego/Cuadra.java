@@ -16,8 +16,7 @@ public class Cuadra extends Observable implements ObjetoPosicionable, ObjetoVivo
 
 
         public Cuadra(int x, int y){
-        	this.posicion.setX(x);
-        	this.posicion.setY(y);
+        	this.posicion = new Vector(x,y);
         }
         
 	@Override

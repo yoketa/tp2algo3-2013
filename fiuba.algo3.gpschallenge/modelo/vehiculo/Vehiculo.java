@@ -4,6 +4,8 @@ import modelo.interfaces.EstadoVehiculo;
 
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
+
 import modelo.juego.Vector;
 
 import org.jdom.Attribute;
@@ -19,18 +21,22 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	private String piloto;
 	private Vector posicion;
 	private Vector direccion;
+	private Vector direccionAFinalDeCuadra;
 	private double puntaje;
 	private int movimientos;
 	private EstadoVehiculo estadoActual;
 	
 	private final int X=0;
 	private final int Y=0;
-	 final Vector SUBIR = new Vector(0,1);
-	 final Vector BAJAR = new Vector(0,-1);
-	 final Vector DERECHA = new Vector(1,0);
-	 final Vector IZQUIERDA = new Vector(-1,0);
-	
-
+	final Vector SUBIR = new Vector(0,-40);
+	final Vector BAJAR = new Vector(0,40);
+	final Vector DERECHA = new Vector(40,0);
+	final Vector IZQUIERDA = new Vector(-40,0);
+	 
+	final Vector SUBIRCUADRA = new Vector(0,-30);
+	final Vector BAJARCUADRA = new Vector(0,30);
+	final Vector DERECHACUADRA = new Vector(30,0);
+	final Vector IZQUIERDACUADRA = new Vector(-30,0);
 
 //	-------------------------------Constructor Mejorado. Para Cambiar------------------------------------
 // constructor 1: 
@@ -180,14 +186,14 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	// No debe haber un evento que no te permita el avance
 	public void avanzarAFinalDeCuadra() {
 		
-		this.posicion.setX(this.posicion.getX() + direccion.getX());
-		this.posicion.setY(this.posicion.getY() + direccion.getY());
+		this.posicion.setX(this.posicion.getX() + direccionAFinalDeCuadra.getX());
+		this.posicion.setY(this.posicion.getY() + direccionAFinalDeCuadra.getY());
 	}
 	
 	public void pegarLaVuelta() {
-		
-		this.posicion.setX(this.posicion.getX() + direccion.getX()*(-1));
-		this.posicion.setY(this.posicion.getY() + direccion.getY()*(-1));
+		JOptionPane.showMessageDialog(null, "pegoVuelta");
+		this.posicion.setX(this.posicion.getX() + (direccion.getX()*(-1)));
+		this.posicion.setY(this.posicion.getY() + (direccion.getY()*(-1)));
 	}
 
 	public void penalizacionDesfavorable() {
@@ -257,21 +263,25 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	
 	public void subir() {
 		this.direccion = SUBIR;
+		this.direccionAFinalDeCuadra = SUBIRCUADRA;
 		this.mover();
 	}
 	
 	public void bajar() {
 		this.direccion = BAJAR;
+		this.direccionAFinalDeCuadra = BAJARCUADRA;
 		this.mover();
 	}
 	
 	public void derecha() {
 		this.direccion = DERECHA;
+		this.direccionAFinalDeCuadra = DERECHACUADRA;
 		this.mover();
 	}
 	
 	public void izquierda() {
 		this.direccion = IZQUIERDA;
+		this.direccionAFinalDeCuadra = IZQUIERDACUADRA;
 		this.mover();
 	}
 	

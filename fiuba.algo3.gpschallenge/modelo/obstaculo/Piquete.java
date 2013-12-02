@@ -17,8 +17,8 @@ public class Piquete extends Obstaculo {
 	}
 	
 	@Override
-	public void afectar(Vehiculo vahiculo){
-		
+	public void afectar(Vehiculo vehiculo){
+		vehiculo.getEstado().piquete(vehiculo);
 	}
 	public Element serializarXML() {
 		Element element = new Element("Piquete");
