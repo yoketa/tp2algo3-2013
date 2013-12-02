@@ -23,6 +23,9 @@ import org.jdom.Element;
 public class Nivel {
 
 	public static String nivelPath = "C:\\Persistencia\\Nivel.xml";
+	public static String nivelFacilPath = "C:\\Level\\NivelFacil.xml";
+	public static String nivelMedioPath = "C:\\Level\\NivelMedio.xml";
+	public static String nivelDificilPath = "C:\\Level\\NivelDificil.xml";
 	public static String nivelSorpresaPath = "C:\\Persistencia\\Sorpresa.xml";
 	public static String nivelObstaculoPath = "C:\\Persistencia\\Obstaculo.xml";
 	private List<Sorpresa> sorpresas;
