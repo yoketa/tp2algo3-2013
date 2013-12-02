@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Nivel>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="1" y="1" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="2" y="2" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaFavorable>
+      <Vector x="1" y="2" />
+    </SorpresaFavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaFavorable>
+      <Vector x="4" y="2" />
+    </SorpresaFavorable>
+  </Sorpresa>
+</Nivel>
+
