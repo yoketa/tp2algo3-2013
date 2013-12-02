@@ -35,15 +35,15 @@ public class JuegoTest {
 	@Test
 	public void testDeberiaCrearUnJuegoConMetaEnPosicion(){
 		Juego juego = Juego.crearJuegoConUsuario("Pepe");
-		Assert.assertEquals(5, juego.getMeta().getPosicionVertical());
-		Assert.assertEquals(10, juego.getMeta().getPosicionHorizontal());
+		Assert.assertEquals(5, juego.getMeta().getY());
+		Assert.assertEquals(10, juego.getMeta().getX());
 	}
 
 	@Test
 	public void testDeberiaCrearUnJuegoConVehiculoConPosicion(){
 		Juego juego = Juego.crearJuegoConUsuario("Pepe");
-		Assert.assertEquals(5, juego.getVehiculo().getPosicionVertical());
-		Assert.assertEquals(1, juego.getVehiculo().getPosicionHorizontal());
+		Assert.assertEquals(5, juego.getVehiculo().getY());
+		Assert.assertEquals(1, juego.getVehiculo().getX());
 	}
 	
 	@Test

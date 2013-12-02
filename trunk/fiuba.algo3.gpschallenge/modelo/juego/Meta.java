@@ -1,8 +1,10 @@
 package modelo.juego;
 
+import fiuba.algo3.titiritero.modelo.*;
 
 
-public class Meta {
+
+public class Meta implements ObjetoPosicionable, ObjetoVivo {
 
 	private Vector posicion;
 
@@ -10,11 +12,31 @@ public class Meta {
 		this.posicion = new Vector(x,y);
 	}
 
-	public int getPosicionVertical() {
+	@Override
+	public int getY() {
 		return this.posicion.getY();
 	}
 
-	public int getPosicionHorizontal() {
+	@Override
+	public int getX() {
 		return this.posicion.getX();
+	}
+	
+	//TODO: Borrar métodos de prueba
+	public void setY(int y)
+	{
+		this.posicion.setY(y);
+	}
+
+	public void setX(int x)
+	{
+		this.posicion.setX(x);
+	}
+	//END TODO
+
+	@Override
+	public void vivir() {
+		// TODO Auto-generated method stub
+		
 	}
 }

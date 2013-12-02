@@ -15,7 +15,7 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
 
     MenuPartidaNueva(MenuPrincipal principal,String user) {
         this.usuario = user;
-        this.setTitle("Hola "+this.usuario+"         Gps Challenge    Nueva Partida");
+        this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
         initComponents();
         this.menuPrincipal = principal;
         principal.setVisible(false);
@@ -235,9 +235,10 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {                                      
         this.setDificultad();
         this.setTipoDeVehiculo();
-        juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario,this.vehiculo);
-        juegoNuevo.setBounds(300,100,1000,500);
-        juegoNuevo.setVisible(true);
+        juegoNuevo.frame.setVisible(true);
+		juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario,this.vehiculo);
+        //juegoNuevo.setBounds(500,250,450,450);
+        //juegoNuevo.setVisible(true);
     }                                     
 
     // Variables declaration - do not modify                     

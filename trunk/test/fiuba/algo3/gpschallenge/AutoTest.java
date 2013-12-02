@@ -33,8 +33,8 @@ public class AutoTest {
 			EstadoVehiculo auto = vehiculo.getEstado();
 			auto.piquete(vehiculo,direccion);
 			
-			Assert.assertEquals( 0 , vehiculo.getPosicionHorizontal());
-			Assert.assertEquals( 0 , vehiculo.getPosicionVertical());
+			Assert.assertEquals( 0 , vehiculo.getX());
+			Assert.assertEquals( 0 , vehiculo.getY());
 		} catch (Exception e) {
 			fail();
 		}
