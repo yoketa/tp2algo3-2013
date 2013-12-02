@@ -29,10 +29,13 @@ import javax.swing.JPanel;
 import vistas.VistaDeCuadra;
 import vistas.VistaDeMeta;
 import vistas.VistaDeVehiculo;
+import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
 import modelo.juego.Vector;
 import modelo.juego.Cuadra;
+import modelo.obstaculo.Piquete;
+import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
@@ -85,7 +88,7 @@ public class PanelDelJuego {
 		//TODO: Tamaño del panel según la dificultad
 		JPanel panel = this.addSuperficiePanel();
 		
-		BufferedImage myPicture = ImageIO.read(new File("Escritorio\\cuadra.png"));
+		BufferedImage myPicture = ImageIO.read(new File("C:\\Persistencia\\cuadra.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		panel.add(picLabel);
 		
@@ -108,6 +111,13 @@ public class PanelDelJuego {
 		Juego modelo = new Juego(this.usuario);
 		VistaDeVehiculo vista = new VistaDeVehiculo(modelo.getVehiculo());
 		this.modelo = modelo;
+		
+		EstadoVehiculo auto = new Auto();
+		modelo.getVehiculo().setEstado(auto);
+		Vector posicion = new Vector(110,0);
+		Piquete piquete = new Piquete();
+		piquete.setPosicion(posicion);
+		modelo.agregarEvento(piquete);
 		
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
@@ -188,16 +198,20 @@ public class PanelDelJuego {
 				// (para ponerse en el medio de la calle) pixeles
 			    switch( keyCode ) { 
 			        case KeyEvent.VK_UP: // ARRIBA
-			            modelo.getVehiculo().mover(new Vector(0, -70));
+			        	modelo.getVehiculo().subir();
+			        	modelo.aplicarEvento();
 			            break;
 			        case KeyEvent.VK_DOWN: // ABAJO
-			            modelo.getVehiculo().mover(new Vector(0, 70));
+			        	modelo.getVehiculo().bajar();
+			        	modelo.aplicarEvento();
 			            break;
 			        case KeyEvent.VK_LEFT: // IZQUIERDA
-			            modelo.getVehiculo().mover(new Vector(-70, 0));
+			        	modelo.getVehiculo().izquierda();
+			        	modelo.aplicarEvento();
 			            break;
 			        case KeyEvent.VK_RIGHT : // DERECHA
-			            modelo.getVehiculo().mover(new Vector(70, 0));
+			        	modelo.getVehiculo().derecha();
+			        	modelo.aplicarEvento();
 			            break;
 			     }
 			}  
