@@ -23,16 +23,12 @@ public class Auto implements EstadoVehiculo {
 
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {
-		
 		vehiculo.sumarMovimientos(3);
-		vehiculo.sumarPuntos(PUNTOS_POZO);
-		vehiculo.avanzarAFinalDeCuadra();
-		
+		vehiculo.avanzarAFinalDeCuadra();	
 	}
 
 	@Override
 	public void piquete(Vehiculo vehiculo) {
-		
 		vehiculo.pegarLaVuelta();
 	}
 
@@ -42,10 +38,6 @@ public class Auto implements EstadoVehiculo {
 		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial())
 		{
 			vehiculo.sumarMovimientos(3);
-			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION);
-		}else{
-
-			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION);
 		}
 		vehiculo.avanzarAFinalDeCuadra();
 	}
