@@ -76,7 +76,7 @@ public class PanelDelJuego {
 		frame.setForeground(new Color(0, 0, 0));
 		
 		// TODO: Tamaño según dificultad
-		frame.setBounds(100, 100, 1450, 1300);
+		frame.setBounds(0, 0, 1450, 1300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Hola "+this.usuario+"         Partida "+this.dificultad);
@@ -108,9 +108,19 @@ public class PanelDelJuego {
 	 * 
 	 * */
 	private void inicializarModelo() throws IOException {
+		
 		Juego modelo = new Juego(this.usuario);
 		VistaDeVehiculo vista = new VistaDeVehiculo(modelo.getVehiculo());
 		this.modelo = modelo;
+		
+		// Agrega la meta en el límite izquierdo
+		Meta meta = this.modelo.getMeta();
+		meta.setX(700);
+		meta.setY(360);
+		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
+		
+		this.gameLoop.agregar(meta);
+		this.gameLoop.agregar(vistaMeta);
 		
 		EstadoVehiculo auto = new Auto();
 		modelo.getVehiculo().setEstado(auto);
@@ -146,15 +156,6 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(cuadra);
 			this.gameLoop.agregar(vistaCuadra);
 		}
-		
-		// Agrega la meta en el límite izquierdo
-		Meta meta = this.modelo.getMeta();
-		meta.setX(700);
-		meta.setY(360);
-		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
-		
-		this.gameLoop.agregar(meta);
-		this.gameLoop.agregar(vistaMeta);
 		
 	}
 
