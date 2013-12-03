@@ -1,39 +1,30 @@
 package modelo.vehiculo;
 
-import java.util.Observable;
-
-import modelo.juego.Vector;
-
-import org.jdom.Attribute;
-import org.jdom.Element;
-
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public class Cuadra extends Observable implements ObjetoPosicionable, ObjetoVivo {
+public class Cuadra implements ObjetoPosicionable, ObjetoVivo {
 
-    private Vector posicion;
+	private int x;
+	private int y;
 
-
-        public Cuadra(int x, int y){
-        	this.posicion = new Vector(x,y);
-        }
-        
+	public Cuadra(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	@Override
-        public int getY() {
-                return this.posicion.getY();
-        }
+	public void vivir() {		
+	}
 
-        @Override
-        public int getX() {
-                return this.posicion.getX();
-        }
+	@Override
+	public int getX() {
+		return this.x;
+	}
 
-        @Override
-        public void vivir() {
-                                
-        }
-
-
+	@Override
+	public int getY() {
+		return this.y;
+	}
 
 }

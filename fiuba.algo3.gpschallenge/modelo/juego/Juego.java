@@ -3,6 +3,7 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import controladores.Nivel;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.obstaculo.Obstaculo;
@@ -15,6 +16,7 @@ public class Juego {
 	private int limiteVertical;
 	private int limiteHorizontal;
 	private List<Evento> eventos;
+	private Nivel nivel;
 	private Ranking ranking;
 	private Vehiculo vehiculo;
 	private Meta meta;
@@ -46,9 +48,39 @@ public class Juego {
 		this.ranking = new Ranking();
 		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
 	}
+	
+	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
+		//persistencia
+		this.nivel = nivel;
+		SetLimitesSegunDificultad(nivel.getDificultad());
+		this.meta = this.crearMeta();
+		
+		this.eventos = this.crearEventos();
+		this.ranking = new Ranking();
+		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
+	}
 
+	/* Setea los límites del Juego según la dificultad
+	 * 
+	 * */
+	private void SetLimitesSegunDificultad(String dificultad) {
+		switch (this.nivel.getDificultad()) {
+		case "Facil":
+			this.limiteHorizontal = 450;
+			break;
+		case "Moderado":
+			this.limiteHorizontal = 590;
+			break;
+		case "Dificil":
+			this.limiteHorizontal = 940;
+			break;
+		}
+
+		this.limiteVertical = 450;
+	}
+	
 	private Meta crearMeta() {
-		Meta meta = new Meta(limiteHorizontal,limiteVertical/2);
+		Meta meta = new Meta(limiteHorizontal - 30, 220);
 		return meta;
 	}
 	

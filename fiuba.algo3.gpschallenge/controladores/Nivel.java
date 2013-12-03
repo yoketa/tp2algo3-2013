@@ -28,13 +28,15 @@ public class Nivel {
 	public static String nivelDificilPath = "C:\\Level\\NivelDificil.xml";
 	public static String nivelSorpresaPath = "C:\\Persistencia\\Sorpresa.xml";
 	public static String nivelObstaculoPath = "C:\\Persistencia\\Obstaculo.xml";
+	
+	private String dificultad = "";
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	public Nivel(){
 		this.sorpresas = new ArrayList<Sorpresa>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 	}
-
+	
 	
 	/**
 	 * agrego un obstaculo al nivel
@@ -150,4 +152,29 @@ public class Nivel {
 		return nivel;
 	}	
 	// END Serialización
+
+	/* Devuelve el path de dónde cargar el nivel según la dificultad
+	 * elegida
+	 * 
+	 * */
+	public static String GetNivelPath(String dificultad) {
+		switch (dificultad) {
+		case "Facil":
+			return Nivel.nivelFacilPath;
+		case "Moderado":
+			return Nivel.nivelMedioPath;
+		case "Dificil":
+			return Nivel.nivelDificilPath;
+		default:
+			return "";
+		}
+	}
+	
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
+	}
+	
+	public String getDificultad() {
+		return this.dificultad;
+	}
 }
