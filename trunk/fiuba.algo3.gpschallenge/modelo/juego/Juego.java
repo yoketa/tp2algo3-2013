@@ -5,6 +5,8 @@ import java.util.List;
 
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
+import modelo.obstaculo.Obstaculo;
+import modelo.sorpresas.Sorpresa;
 import modelo.vehiculo.Vehiculo;
 
 public class Juego {
@@ -100,6 +102,18 @@ public class Juego {
 		this.eventos.add(evento);
 	}
 
+	public void agregarSorpresas(List<Sorpresa> sorpresas){
+		for (Sorpresa sorpresa : sorpresas) {
+			this.eventos.add(sorpresa);
+		}
+		
+	}
+	public void agregarObstaculos(List<Obstaculo> obstaculos){
+		for (Obstaculo obstaculo : obstaculos){
+			this.eventos.add(obstaculo);
+		}
+	} 
+	
 	private boolean hayEvento(Vector posicion) {
 		
 		for(Evento evento : this.eventos ) {
