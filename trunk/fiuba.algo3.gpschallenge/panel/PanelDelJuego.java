@@ -50,7 +50,7 @@ public class PanelDelJuego {
     private MenuPartidaNueva menuPartidaNueva;
 	public JFrame frame;
 	private GameLoop gameLoop;
-	private Juego modelo;
+	public Juego modelo;
 	private String vehiculo;
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
@@ -59,6 +59,9 @@ public class PanelDelJuego {
         this.usuario = usuario;
         this.dificultad = dificultad;
         this.menuPartidaNueva = menuPartida;
+        Nivel nivel = new Nivel();
+        nivel.setDificultad(dificultad);
+        this.modelo = new Juego(usuario, nivel, new Auto());
         try {
 			initialize();
 		} catch (IOException e) {
@@ -77,7 +80,7 @@ public class PanelDelJuego {
 		frame = new JFrame();
 		frame.setForeground(new Color(0, 0, 0));
 		
-		// TODO: Tamaño según dificultad
+		// Tamaño de toda la pantalla
 		frame.setBounds(0, 0, 1450, 1300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -86,17 +89,13 @@ public class PanelDelJuego {
 		JButton btnIniciar = this.addBotonIniciar();
 		
 		JButton btnGuardar = this.addBtnGuardar();
-		
+
 		//TODO: Tamaño del panel según la dificultad
 		JPanel panel = this.addSuperficiePanel();
 		
-		BufferedImage myPicture = ImageIO.read(new File("GpsChallenge/images/cuadra.png"));
-		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		panel.add(picLabel);
-		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
 		
-		this.inicializarModelo();
+		this.inicializarModelo();		
 		
 		this.addMouseListener(panel);
 		
@@ -110,34 +109,30 @@ public class PanelDelJuego {
 	 * 
 	 * */
 	private void inicializarModelo() throws IOException {
-		
-		Juego modelo = new Juego(this.usuario);
 		VistaDeVehiculo vista = new VistaDeVehiculo(modelo.getVehiculo());
-		this.modelo = modelo;
 		
 		// Agrega la meta en el límite izquierdo
 		Meta meta = this.modelo.getMeta();
-		meta.setX(700);
-		meta.setY(360);
 		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
 		
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
 		
-		EstadoVehiculo auto = new Auto();
-		modelo.getVehiculo().setEstado(auto);
-		Vector posicion = new Vector(110,0);
-		Nivel nivel = new Nivel ();
-		nivel = Archivador.cargar(new Nivel(), Nivel.nivelFacilPath);
+		/*Nivel nivel = new Nivel ();
+		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
+		nivel.setDificultad(this.dificultad);
 		
+		// TODO: Agregar Vistas y modelos de Sorpresas y Obstáculos
 		modelo.agregarSorpresas(nivel.getSorpresas());
-		modelo.agregarObstaculos(nivel.getObstaculos());;
+		modelo.agregarObstaculos(nivel.getObstaculos());
+		*/
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
 		
 		int ultimaCuadraX = 30;
 		int ultimaCuadraY = 30;
-		for (int i = 0; i < 100; i++) {
+		
+		for (int i = 0; i < DeterminarCantidadDeCuadras(modelo); i++) {
 			
 			/* 	Las cuadras miden 40x40 px. Debe quedar un espacio
 			 * 	de 40px entre ellas para que pueda pasar el vehículo.
@@ -151,7 +146,7 @@ public class PanelDelJuego {
 			ultimaCuadraX += 70;
 			
 			// Se llega al límite de X -> se va a la fila que sigue
-			if (ultimaCuadraX > 730) {
+			if (ultimaCuadraX > modelo.getLimiteHorizontal() - 70) {
 				ultimaCuadraX = 30;
 				ultimaCuadraY += 70;
 			}			
@@ -246,7 +241,7 @@ public class PanelDelJuego {
 		// TODO: Tamaño según la dificultad del juego
 		
 		// Ejemplo con 10 X 10 cuadras
-		panel.setBounds(40, 40, 730, 730);
+		panel.setBounds(40, 40, this.modelo.getLimiteHorizontal(), this.modelo.getLimiteVertical());
 		frame.getContentPane().add(panel);
 		return panel;
 	}
@@ -262,7 +257,7 @@ public class PanelDelJuego {
 				gameLoop.detenerEjecucion();
 			}
 		});
-		btnDetener.setBounds(325, 16, 92, 25);
+		btnDetener.setBounds(325, 10, 92, 19);
 		frame.getContentPane().add(btnDetener);
 		return btnDetener;
 	}
@@ -278,9 +273,20 @@ public class PanelDelJuego {
 				gameLoop.iniciarEjecucion();
 			}
 		});
-		btnIniciar.setBounds(42, 16, 77, 25);
+		btnIniciar.setBounds(42, 10, 77, 19);
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
+	}
+	
+	/* Determina la cantidad de cuadras a renderear dependiendo el 
+	 * nivel del juego
+	 * 
+	 * */
+	private int DeterminarCantidadDeCuadras(Juego juego) {
+		int cuadrasHorizontales = (juego.getLimiteHorizontal() - 30) / 70;
+		
+		// Se determina que son siempre 6 cuadras de alto
+		return cuadrasHorizontales * 6;
 	}
 	
 }
