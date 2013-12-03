@@ -24,7 +24,6 @@ public class Moto implements EstadoVehiculo {
 	public void pasaPorPozo(Vehiculo vehiculo) {
 		
 		vehiculo.sumarMovimientos(3);
-		vehiculo.sumarPuntos(PUNTOS_POZO);
 		vehiculo.avanzarAFinalDeCuadra();
 
 	}
@@ -33,7 +32,6 @@ public class Moto implements EstadoVehiculo {
 	public void piquete(Vehiculo vehiculo) {
 		
 		vehiculo.sumarMovimientos(2);
-		vehiculo.sumarPuntos(PUNTOS_PIQUETE);
 		vehiculo.avanzarAFinalDeCuadra();
 	}
 
