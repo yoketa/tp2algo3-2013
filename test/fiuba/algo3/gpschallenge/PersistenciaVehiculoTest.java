@@ -31,13 +31,13 @@ public class PersistenciaVehiculoTest {
 	@Before
 	public void setup() {
 
-		vehiculoAuto = Vehiculo.crearConPiloto(pilotoAuto,estadoAuto,2,3);
+		vehiculoAuto = Vehiculo.crearConPilotoYVehiculo(pilotoAuto,estadoAuto);
 		vehiculoAuto.setPuntaje(50);
 		
-		vehiculoMoto = Vehiculo.crearConPiloto(pilotoMoto,estadoMoto, 1, 2);
+		vehiculoMoto = Vehiculo.crearConPilotoYVehiculo(pilotoMoto,estadoMoto);
 		vehiculoMoto.setPuntaje(80);
 	
-		vehiculoCuatroXCuatro = Vehiculo.crearConPiloto(pilotoCuatroXCuatro,estadoCuatroXCuatro, 4, 2);
+		vehiculoCuatroXCuatro = Vehiculo.crearConPilotoYVehiculo(pilotoCuatroXCuatro,estadoCuatroXCuatro);
 		vehiculoCuatroXCuatro.setPuntaje(95);
 
 	}
@@ -56,10 +56,11 @@ public class PersistenciaVehiculoTest {
 		otroVehiculoAuto = Archivador.cargar(new Vehiculo(0,0), pathArchivo);
 		assertEquals(otroVehiculoAuto.getPiloto(),"pepe");
 		assertEquals(otroVehiculoAuto.getPuntaje(),50.0,1E-5);
-		assertEquals(otroVehiculoAuto.getX(),2,1E-5);
-		assertEquals(otroVehiculoAuto.getY(),3,1E-5);
+		assertEquals(otroVehiculoAuto.getX(),0,1E-5);
+		assertEquals(otroVehiculoAuto.getY(),0,1E-5);
+		assertEquals(otroVehiculoAuto.getMovimientos(),0,1E-5);
 		assertEquals(otroVehiculoAuto.getEstado().getClass(),estadoAuto.getClass());
-	
+		
 	
 	}
 
@@ -77,9 +78,11 @@ public class PersistenciaVehiculoTest {
 		otroVehiculoMoto = Archivador.cargar(new Vehiculo(0,0), pathArchivo);
 		assertEquals(otroVehiculoMoto.getPiloto(),"juan");
 		assertEquals(otroVehiculoMoto.getPuntaje(),80.0,1E-5);
-		assertEquals(otroVehiculoMoto.getX(),1,1E-5);
-		assertEquals(otroVehiculoMoto.getY(),2,1E-5);
+		assertEquals(otroVehiculoMoto.getX(),0,1E-5);
+		assertEquals(otroVehiculoMoto.getY(),0,1E-5);
+		assertEquals(otroVehiculoMoto.getMovimientos(),0,1E-5);
 		assertEquals(otroVehiculoMoto.getEstado().getClass(),estadoMoto.getClass());
+		
 	
 	}
 	
@@ -97,8 +100,9 @@ public class PersistenciaVehiculoTest {
 		otroVehiculoCuatroXCuatro = Archivador.cargar(new Vehiculo(0,0), pathArchivo);
 		assertEquals(otroVehiculoCuatroXCuatro.getPiloto(),"luis");
 		assertEquals(otroVehiculoCuatroXCuatro.getPuntaje(),95.0,1E-5);
-		assertEquals(otroVehiculoCuatroXCuatro.getX(),4,1E-5);
-		assertEquals(otroVehiculoCuatroXCuatro.getY(),2,1E-5);
+		assertEquals(otroVehiculoCuatroXCuatro.getX(),0,1E-5);
+		assertEquals(otroVehiculoCuatroXCuatro.getY(),0,1E-5);
+		assertEquals(otroVehiculoCuatroXCuatro.getMovimientos(),0,1E-5);
 		assertEquals(otroVehiculoCuatroXCuatro.getEstado().getClass(),estadoCuatroXCuatro.getClass());
 	
 	}

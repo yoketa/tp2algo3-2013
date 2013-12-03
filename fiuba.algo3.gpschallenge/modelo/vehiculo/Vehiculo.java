@@ -224,21 +224,19 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		Element element = new Element("Vehiculo");
 		Attribute att1 = new Attribute("puntaje",Double.valueOf(puntaje).toString());
 		Attribute att2 = new Attribute("piloto",String.valueOf(piloto).toString());
+		Attribute att3 = new Attribute("movimientos",Integer.valueOf(movimientos).toString());
 		element.getAttributes().add(att1);
 		element.getAttributes().add(att2);
-
+		element.getAttributes().add(att3);
 		element.addContent(posicion.serializarXML());
 		element.addContent(estadoActual.serializarXML());
-
-		//element.addContent(posicion.serializarXML());
-
 		return element;
 	}
 	
 	public static Vehiculo cargarDesdeXML(Element element) {
 		String valorPuntaje = element.getAttributeValue("puntaje");
 		String valorPiloto = element.getAttributeValue("piloto");
-
+		String valorMovimientos = element.getAttributeValue("movimientos");
 		Vector vector = Vector.cargarDesdeXML(element.getChild("Vector"));
 		EstadoVehiculo estado = null;
 			if ((element.getChild("Auto")) != null){
@@ -254,10 +252,10 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 				estado = CuatroXCuatro.cargarDesdeXML(element.getChild("CuatroXCuatro"));
 			}
 			
-		Vehiculo vehiculo = Vehiculo.crearConPiloto(valorPiloto,valorPiloto,vector.getX(),vector.getY());
-
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo(valorPiloto,estado);
 		vehiculo.setPuntaje(Double.parseDouble(valorPuntaje)); 
-		vehiculo.setEstado(estado);	
+		vehiculo.setMovimientos(Integer.parseInt(valorMovimientos));	
+		vehiculo.setPosicion(vector);
 		return vehiculo;
 	}
 	
@@ -299,6 +297,8 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	public int getMovimientos() {
 		return this.movimientos;
 	}
-
+	public void setPosicion(Vector vector){
+		this.posicion = vector;
+	}
 
 }
