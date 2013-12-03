@@ -6,9 +6,13 @@ import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.juego.Juego;
 import modelo.juego.Vector;
+import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Piquete;
 import modelo.obstaculo.Pozo;
+import modelo.probabilidades.Probabilidad;
+import modelo.probabilidades.ProbabilidadFija;
 import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
 
 import org.junit.Test;
 
@@ -21,22 +25,177 @@ public class IntegracionTest {
 			Juego juego = new Juego ("Pepe",auto);
 			int movimientos = 0;	
 			
-			/** Ante un piquete no avanza **/
-			
+			/** Ante un piquete debe pegar la vuelta **/
+			/* Arrange */
 			Vector posicion = new Vector(40,0);
 			Evento piquete = new Piquete (posicion);
-			
 			juego.agregarEvento(piquete);
+			movimientos = 1;
 			
+			/* Act */
+			juego.getVehiculo().derecha();
+			juego.aplicarEvento();
+	
+	
+			assertEquals( 0 , juego.getVehiculo().getX() );
+			assertEquals( 0, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			
+			/** Ante un pozo es penalizado con 3 movimientos **/
+			/* Arrange */
+			Vector posicion_1 = new Vector(0,40);
+			Evento pozo = new Pozo (posicion_1);
+			juego.agregarEvento(pozo);
+			movimientos = 5;
+			
+			/* Act */
+			juego.getVehiculo().bajar();
+			juego.aplicarEvento();
+			
+
+			/* Assert*/
+			assertEquals( 0 , juego.getVehiculo().getX() );
+			assertEquals( 70, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			/**Ante un ControPolicial con probabilidad MENOR al Auto es penalizado con 3 movimientos**/
+			/* Arrange */
+			Probabilidad probabilidadMayor = new ProbabilidadFija(0.40);
+			Vector posicion_2 = new Vector(40,70);
+			Evento unControlPolicial = new ControlPolicial (posicion_2, probabilidadMayor);
+			juego.agregarEvento(unControlPolicial);
+			movimientos = 9;
+		
+			/* Act */
 			juego.getVehiculo().derecha();
 			juego.aplicarEvento();
 			
-			movimientos = 1;
+			/* Assert*/
+			assertEquals( 70 , juego.getVehiculo().getX() );
+			assertEquals( 70, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
 			
+			/**Ante un ControPolicial con probabilidad MAYOR al Auto avanza sin penalizacion**/
+			/* Arrange */
+			Probabilidad probabilidadMenor = new ProbabilidadFija(0.60);
+			Vector posicion_3 = new Vector(70,40);
+			Evento otroControlPolicial = new ControlPolicial (posicion_3, probabilidadMenor);
+			juego.agregarEvento(otroControlPolicial);
+			movimientos = 10;
+		
+			/* Act */
+			juego.getVehiculo().subir();
+			juego.aplicarEvento();
+			
+			/* Assert*/
+			assertEquals( 70 , juego.getVehiculo().getX() );
+			assertEquals( 0, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			/**Ante una cuadra sin Eventos solo suma el movimiento**/
+			/* Arrange */
+			movimientos = 11;
+			
+			/* Act */
+			juego.getVehiculo().izquierda();
+			juego.aplicarEvento();
+
+			/* Assert*/
 			assertEquals( 0 , juego.getVehiculo().getX() );
 			assertEquals( 0, juego.getVehiculo().getY() );
-			Assert.assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+	}
+	
+	
+	@Test
+	public void testAtravezarObtaculosConCuatroXcuatro() {
+		
+			EstadoVehiculo cuatro = new CuatroXCuatro();
+			Juego juego = new Juego ("Pepe",cuatro);
+			int movimientos = 0;	
+			
+			/** Ante un piquete debe pegar la vuelta **/
+			/* Arrange */
+			Vector posicion = new Vector(40,0);
+			Evento piquete = new Piquete (posicion);
+			juego.agregarEvento(piquete);
+			movimientos = 1;
+			
+			/* Act */
+			juego.getVehiculo().derecha();
+			juego.aplicarEvento();
+	
+	
+			assertEquals( 0 , juego.getVehiculo().getX() );
+			assertEquals( 0, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			
+			/** Ante un pozo avanza sin penalizacion **/
+			/* Arrange */
+			Vector posicion_1 = new Vector(0,40);
+			Evento pozo = new Pozo (posicion_1);
+			juego.agregarEvento(pozo);
+			movimientos = 2;
+			
+			/* Act */
+			juego.getVehiculo().bajar();
+			juego.aplicarEvento();
+			
+
+			/* Assert*/
+			assertEquals( 0 , juego.getVehiculo().getX() );
+			assertEquals( 70, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			
+			/**Ante un ControPolicial con probabilidad MENOR a CuatroXCuatro es penalizado con 3 movimientos**/
+			/* Arrange */
+			Probabilidad probabilidadMayor = new ProbabilidadFija(0.20);
+			Vector posicion_2 = new Vector(40,70);
+			Evento unControlPolicial = new ControlPolicial (posicion_2, probabilidadMayor);
+			juego.agregarEvento(unControlPolicial);
+			movimientos = 6;
+		
+			/* Act */
+			juego.getVehiculo().derecha();
+			juego.aplicarEvento();
+			
+			/* Assert*/
+			assertEquals( 70 , juego.getVehiculo().getX() );
+			assertEquals( 70, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			/**Ante un ControPolicial con probabilidad MAYOR al Auto avanza sin penalizacion**/
+			/* Arrange */
+			Probabilidad probabilidadMenor = new ProbabilidadFija(0.60);
+			Vector posicion_3 = new Vector(70,40);
+			Evento otroControlPolicial = new ControlPolicial (posicion_3, probabilidadMenor);
+			juego.agregarEvento(otroControlPolicial);
+			movimientos = 7;
+		
+			/* Act */
+			juego.getVehiculo().subir();
+			juego.aplicarEvento();
+			
+			/* Assert*/
+			assertEquals( 70 , juego.getVehiculo().getX() );
+			assertEquals( 0, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
+			
+			/**Ante una cuadra sin Eventos solo suma el movimiento**/
+			/* Arrange */
+			movimientos = 8;
+			
+			/* Act */
+			juego.getVehiculo().izquierda();
+			juego.aplicarEvento();
+
+			/* Assert*/
+			assertEquals( 0 , juego.getVehiculo().getX() );
+			assertEquals( 0, juego.getVehiculo().getY() );
+			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
 	}
 }
-			
 			

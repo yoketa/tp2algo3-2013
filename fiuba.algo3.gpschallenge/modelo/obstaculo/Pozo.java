@@ -19,7 +19,7 @@ public class Pozo extends Obstaculo {
 	
 	@Override
 	public void afectar(Vehiculo vehiculo){
-		
+		vehiculo.pasaPorPozo();
 	}
 	
 	public Element serializarXML() {
