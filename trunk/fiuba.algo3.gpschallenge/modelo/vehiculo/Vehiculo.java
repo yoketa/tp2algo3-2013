@@ -28,15 +28,15 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	
 	private final int X=0;
 	private final int Y=0;
-	final Vector SUBIR = new Vector(0,-40);
+	final Vector SUBIR = new Vector(0,-30);
 	final Vector BAJAR = new Vector(0,40);
 	final Vector DERECHA = new Vector(40,0);
-	final Vector IZQUIERDA = new Vector(-40,0);
+	final Vector IZQUIERDA = new Vector(-30,0);
 	 
-	final Vector SUBIRCUADRA = new Vector(0,-30);
+	final Vector SUBIRCUADRA = new Vector(0,-40);
 	final Vector BAJARCUADRA = new Vector(0,30);
 	final Vector DERECHACUADRA = new Vector(30,0);
-	final Vector IZQUIERDACUADRA = new Vector(-30,0);
+	final Vector IZQUIERDACUADRA = new Vector(-40,0);
 
 //	-------------------------------Constructor Mejorado. Para Cambiar------------------------------------
 // constructor 1: 

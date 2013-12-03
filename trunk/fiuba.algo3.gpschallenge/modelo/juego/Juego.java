@@ -101,6 +101,10 @@ public class Juego {
 	public void agregarEvento(Evento evento) {
 		this.eventos.add(evento);
 	}
+	
+	public void quitarEvento(Evento evento) {
+		this.eventos.remove(evento);
+	}
 
 	public void agregarSorpresas(List<Sorpresa> sorpresas){
 		for (Sorpresa sorpresa : sorpresas) {
