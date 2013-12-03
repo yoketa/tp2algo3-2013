@@ -26,6 +26,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import persistencia.Archivador;
+import controladores.Nivel;
 import vistas.VistaDeCuadra;
 import vistas.VistaDeMeta;
 import vistas.VistaDeVehiculo;
@@ -40,7 +42,7 @@ import modelo.vehiculo.Vehiculo;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
-
+import modelo.vehiculo.*;
 public class PanelDelJuego {
     
     private String usuario;
@@ -50,7 +52,7 @@ public class PanelDelJuego {
 	private GameLoop gameLoop;
 	private Juego modelo;
 	private String vehiculo;
-
+	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
     	this.vehiculo = vehiculo;
@@ -125,10 +127,11 @@ public class PanelDelJuego {
 		EstadoVehiculo auto = new Auto();
 		modelo.getVehiculo().setEstado(auto);
 		Vector posicion = new Vector(110,0);
-		Piquete piquete = new Piquete();
-		piquete.setPosicion(posicion);
-		modelo.agregarEvento(piquete);
+		Nivel nivel = new Nivel ();
+		nivel = Archivador.cargar(new Nivel(), Nivel.nivelFacilPath);
 		
+		modelo.agregarSorpresas(nivel.getSorpresas());
+		modelo.agregarObstaculos(nivel.getObstaculos());;
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
 		
