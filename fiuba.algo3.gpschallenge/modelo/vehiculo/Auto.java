@@ -34,8 +34,6 @@ public class Auto implements EstadoVehiculo {
 	public void piquete(Vehiculo vehiculo) {
 		
 		vehiculo.pegarLaVuelta();
-		vehiculo.sumarMovimientos(1);
-		vehiculo.sumarPuntos(PUNTOS_PIQUETE);
 	}
 
 
