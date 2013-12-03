@@ -22,13 +22,13 @@ public class VistaDeVehiculo extends Imagen {
 	private static URL getURLImagenVehiculo() {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		URL url = classLoader.getResource("auto.png");
-		try {
-			return new File("C:\\Persistencia\\auto.png").toURI().toURL();
+		/*try {
+			return new File(".../GpsChallenge/images/auto.png").toURI().toURL();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		return null;
+		}*/
+		return url;
 	}
 }
 

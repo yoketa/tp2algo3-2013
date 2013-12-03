@@ -88,7 +88,7 @@ public class PanelDelJuego {
 		//TODO: Tamaño del panel según la dificultad
 		JPanel panel = this.addSuperficiePanel();
 		
-		BufferedImage myPicture = ImageIO.read(new File("C:\\Persistencia\\cuadra.png"));
+		BufferedImage myPicture = ImageIO.read(new File("GpsChallenge/images/cuadra.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		panel.add(picLabel);
 		
@@ -132,7 +132,7 @@ public class PanelDelJuego {
 			 * 	de mover el vehículo la cantidad de pixeles necesarios
 			 * 	para que quede siempre en una esquina (40 + 20 px)
 			*/
-			Cuadra cuadra = new Cuadra (ultimaCuadraX, ultimaCuadraY);
+			modelo.vehiculo.Cuadra cuadra = new modelo.vehiculo.Cuadra (ultimaCuadraX, ultimaCuadraY);
 			VistaDeCuadra vistaCuadra = new VistaDeCuadra(cuadra);
 			
 			ultimaCuadraX += 70;
