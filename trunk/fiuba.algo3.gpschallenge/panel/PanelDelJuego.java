@@ -120,7 +120,7 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(vistaMeta);
 	
 		Piquete piquete = new Piquete();
-		piquete.setPosicion(new Vector(70, 70));
+		piquete.setPosicion(new Vector(0, 40));
 		VistaDeObstaculo vistaPiquete = new VistaDeObstaculo(piquete);
 		modelo.agregarEvento(piquete);
 		
@@ -128,7 +128,7 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(vistaPiquete);
 		
 		Pozo pozo = new Pozo();
-		pozo.setPosicion(new Vector(140, 70));
+		pozo.setPosicion(new Vector(140, 40));
 		VistaDeObstaculo vistaPozo = new VistaDeObstaculo(pozo);
 		modelo.agregarEvento(pozo);
 		
@@ -136,7 +136,7 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(vistaPozo);
 		
 		ControlPolicial control = new ControlPolicial();
-		control.setPosicion(new Vector(140, 140));
+		control.setPosicion(new Vector(110, 140));
 		VistaDeObstaculo vistaControl = new VistaDeObstaculo(control);
 		modelo.agregarEvento(control);
 		
@@ -144,7 +144,7 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(vistaControl);
 
 		Sorpresa sorpresa = new SorpresaFavorable();
-		sorpresa.setPosicion(new Vector(140, 210));
+		sorpresa.setPosicion(new Vector(110, 180));
 		VistaDeSorpresa vistaSorpresa = new VistaDeSorpresa(sorpresa);
 		modelo.agregarEvento(sorpresa);
 		
@@ -243,7 +243,6 @@ public class PanelDelJuego {
 			    switch( keyCode ) { 
 			        case KeyEvent.VK_UP: // ARRIBA
 			        	posicionActual = modelo.getVehiculo().getY();
-			        	int a = modelo.getVehiculo().getX();
 			        	if (posicionActual - Nivel.tamañoCuadra > 0) {
 				        	modelo.getVehiculo().subir();
 				        	modelo.aplicarEvento();			        		
