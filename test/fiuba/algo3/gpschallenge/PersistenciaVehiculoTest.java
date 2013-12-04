@@ -49,7 +49,7 @@ public class PersistenciaVehiculoTest {
 		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad   
 		 * al sincronizar con el repositorio.  
 		*/
-		String pathArchivo = "C:\\Persistencia\\Auto.xml";
+		String pathArchivo = "persistenciaTest/Auto.xml";
 
 		Archivador.guardar(vehiculoAuto, pathArchivo);
 
@@ -71,7 +71,7 @@ public class PersistenciaVehiculoTest {
 		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
 		 * al sincronizar con el repositorio.
 		*/
-		String pathArchivo = "C:\\Persistencia\\VehiculoMoto.xml";
+		String pathArchivo = "persistenciaTest/VehiculoMoto.xml";
 
 		Archivador.guardar(vehiculoMoto, pathArchivo);
 
@@ -93,7 +93,7 @@ public class PersistenciaVehiculoTest {
 		 * para hacer la prueba se debe crear la carpeta persistencia en el disco C por un motivo de comodidad
 		 * al sincronizar con el repositorio.
 		*/
-		String pathArchivo ="C:\\Persistencia\\VehiculoCuatroXCuatro.xml";
+		String pathArchivo ="persistenciaTest/VehiculoCuatroXCuatro.xml";
 
 		Archivador.guardar(vehiculoCuatroXCuatro, pathArchivo);
 

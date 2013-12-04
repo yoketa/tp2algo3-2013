@@ -147,8 +147,8 @@ public class RankingTest {
 		ranking.agregarPuntaje(vehiculo4);
 		ranking.agregarPuntaje(vehiculo5);
 		try {
-			Archivador.guardar(ranking, "\\Level\\Ranking.xml");
-			Ranking rankingRecargado = Archivador.cargar(new Ranking(), "\\Level\\Ranking.xml");
+			Archivador.guardar(ranking, "persistencia/Ranking.xml");
+			Ranking rankingRecargado = Archivador.cargar(new Ranking(), "persistencia/Ranking.xml");
 			List<Vehiculo> puntajesRecargados = rankingRecargado.getPuntajes();
 			puntajes = ranking.getPuntajes();
 			

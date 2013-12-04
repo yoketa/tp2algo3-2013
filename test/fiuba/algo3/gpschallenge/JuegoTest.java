@@ -4,6 +4,7 @@ import junit.framework.Assert;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.juego.Juego;
+import modelo.juego.Nivel;
 import modelo.juego.Vector;
 
 
@@ -12,7 +13,6 @@ import modelo.vehiculo.Auto;
 
 import org.junit.Test;
 
-import controladores.Nivel;
 import excepciones.MovimientoFueraDeMapaException;
 
 public class JuegoTest {

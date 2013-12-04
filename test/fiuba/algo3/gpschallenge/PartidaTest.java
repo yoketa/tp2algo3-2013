@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import modelo.juego.Nivel;
 import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
@@ -21,7 +22,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistencia.Archivador;
-import controladores.Nivel;
 
 public class PartidaTest {
 	private Sorpresa sorpresa1;

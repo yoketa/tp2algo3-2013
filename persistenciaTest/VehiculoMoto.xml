@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vehiculo puntaje="80.0" piloto="juan" movimientos="0">
+  <Vector x="0" y="0" />
+  <Moto probabilidadDePasarUnControlPolicial="0.8" />
+</Vehiculo>
+

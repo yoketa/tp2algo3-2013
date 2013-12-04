@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import persistencia.Archivador;
-import controladores.Nivel;
 import vistas.*;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
+import modelo.juego.Nivel;
 import modelo.obstaculo.*;
 import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
@@ -113,7 +113,7 @@ public class PanelDelJuego {
 		Nivel nivel = modelo.getNivel();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		
-		obstaculos = modelo.getNivel().getObstaculos();
+		obstaculos = nivel.getObstaculos();
 		for(Obstaculo obstaculo : this.obstaculos ) {
 			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
 			modelo.agregarEvento(obstaculo);		
@@ -121,7 +121,7 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(vistaObstaculo);
 		}
 
-		sorpresas = modelo.getNivel().getSorpresas();
+		sorpresas = nivel.getSorpresas();
 		for(Sorpresa sorpresa : this.sorpresas ) {
 			VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
 			modelo.agregarEvento(sorpresa);		

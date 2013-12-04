@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.jdom.Element;
 
-import controladores.Nivel;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
 import modelo.obstaculo.Piquete;
@@ -28,7 +27,7 @@ public class Partida {
 		this.sorpresas = new ArrayList<Sorpresa>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.vehiculo = vehiculo;
-		this.partidaPath = "C:\\Persistencia\\Partida"+this.vehiculo.getPiloto()+".xml";
+		this.partidaPath = "partidas/Partida"+this.vehiculo.getPiloto()+".xml";
 	}
 
 	public void setUsuario(String usuario){

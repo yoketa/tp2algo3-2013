@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Nivel>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="110" y="140" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="420" y="280" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaFavorable>
+      <Vector x="530" y="280" />
+    </SorpresaFavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaFavorable>
+      <Vector x="160" y="160" />
+    </SorpresaFavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <CambioDeVehiculo>
+      <Vector x="160" y="170" />
+    </CambioDeVehiculo>
+  </Sorpresa>
+  <Obstaculo>
+    <Pozo>
+      <Vector x="180" y="210" />
+    </Pozo>
+  </Obstaculo>
+  <Obstaculo>
+    <Pozo>
+      <Vector x="460" y="210" />
+    </Pozo>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="110" y="0" />
+    </Piquete>
+  </Obstaculo>
+  <Obstaculo>
+    <ControlPolicial>
+      <Vector x="170" y="156" />
+    </ControlPolicial>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="128" y="240" />
+    </Piquete>
+  </Obstaculo>
+</Nivel>
+

@@ -3,7 +3,6 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
-import controladores.Nivel;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.obstaculo.Obstaculo;
