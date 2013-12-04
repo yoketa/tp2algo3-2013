@@ -193,6 +193,20 @@ public class PanelDelJuego {
 		btnIniciar.setFocusable(false);
 	}
 
+	//Chequea si llego a la meta
+	public void llegoAMeta(){
+		int movimientosHechos = modelo.getVehiculo().getMovimientos();
+		double puntajeLogrado = modelo.getVehiculo().getPuntaje();
+		if( this.modelo.llegoALaMeta() ){
+	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,movimientosHechos,puntajeLogrado);
+	        panelGanador.setBounds(400,50,700,600);
+	        
+	        panelGanador.setVisible(true);
+	        
+		}
+	}
+	
+	
 	/* Captura que se haya apretado una tecla
 	 * */
 	private void addKeyListener() {
@@ -231,6 +245,7 @@ public class PanelDelJuego {
 				        	modelo.getVehiculo().subir();
 				        	modelo.aplicarEvento();			        		
 			        	}
+			        	llegoAMeta();
 			            break;
 			        case KeyEvent.VK_DOWN: // ABAJO
 			        	posicionActual = modelo.getVehiculo().getY();
@@ -238,6 +253,7 @@ public class PanelDelJuego {
 			        		modelo.getVehiculo().bajar();
 				        	modelo.aplicarEvento();	
 			        	}			        	
+			        	llegoAMeta();
 			            break;
 			        case KeyEvent.VK_LEFT: // IZQUIERDA
 			        	posicionActual = modelo.getVehiculo().getX();
@@ -245,6 +261,7 @@ public class PanelDelJuego {
 			        		modelo.getVehiculo().izquierda();
 				        	modelo.aplicarEvento();
 			        	}			        	
+			        	llegoAMeta();
 			            break;
 			        case KeyEvent.VK_RIGHT : // DERECHA
 			        	posicionActual = modelo.getVehiculo().getX();
@@ -252,6 +269,7 @@ public class PanelDelJuego {
 			        		modelo.getVehiculo().derecha();
 				        	modelo.aplicarEvento();	
 			        	}			        	
+			        	llegoAMeta();
 			            break;
 			     }
 			}  
@@ -344,5 +362,4 @@ public class PanelDelJuego {
 		}
 		return new Auto();
 	}
-	
 }
