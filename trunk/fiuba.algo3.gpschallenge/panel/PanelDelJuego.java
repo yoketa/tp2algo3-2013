@@ -179,11 +179,9 @@ public class PanelDelJuego {
 
 	//Chequea si llego a la meta
 	public void llegoAMeta(){
-		int movimientosHechos = modelo.getVehiculo().getMovimientos();
-		double puntajeLogrado = modelo.getVehiculo().getPuntaje();
 		if( this.modelo.llegoALaMeta() ){
-	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,movimientosHechos,puntajeLogrado);
-	        panelGanador.setBounds(400,50,700,600);
+	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,modelo);
+	        panelGanador.setBounds(400,50,panelGanador.getWidth(),panelGanador.getHeight());
 	        
 	        panelGanador.setVisible(true);
 	        
@@ -295,7 +293,13 @@ public class PanelDelJuego {
 		JButton btnDetener = new JButton("Guardar");
 		btnDetener.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				guardar();
 				gameLoop.detenerEjecucion();
+			}
+
+			private void guardar() {
+//				modelo.
+//				Archivador.guardar(nivel, Nivel.nivelPath);
 			}
 		});
 		btnDetener.setBounds(325, 10, 92, 19);
