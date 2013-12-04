@@ -2,12 +2,12 @@
 <Nivel>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="110" y="180" />
+      <Vector x="70" y="320" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="460" y="320" />
+      <Vector x="740" y="0" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
@@ -17,28 +17,38 @@
   </Sorpresa>
   <Sorpresa>
     <SorpresaFavorable>
-      <Vector x="250" y="390" />
+      <Vector x="250" y="350" />
     </SorpresaFavorable>
   </Sorpresa>
   <Sorpresa>
     <CambioDeVehiculo>
-      <Vector x="160" y="170" />
+      <Vector x="250" y="0" />
     </CambioDeVehiculo>
   </Sorpresa>
   <Sorpresa>
     <CambioDeVehiculo>
-      <Vector x="195" y="188" />
+      <Vector x="110" y="140" />
     </CambioDeVehiculo>
   </Sorpresa>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="110" y="530" />
+      <Vector x="320" y="70" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="250" y="600" />
+      <Vector x="740" y="350" />
     </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="670" y="210" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaFavorable>
+      <Vector x="880" y="420" />
+    </SorpresaFavorable>
   </Sorpresa>
   <Obstaculo>
     <Pozo>
@@ -57,28 +67,38 @@
   </Obstaculo>
   <Obstaculo>
     <ControlPolicial>
-      <Vector x="110" y="530" />
+      <Vector x="420" y="180" />
     </ControlPolicial>
   </Obstaculo>
   <Obstaculo>
     <Piquete>
-      <Vector x="110" y="250" />
+      <Vector x="280" y="250" />
     </Piquete>
   </Obstaculo>
   <Obstaculo>
     <ControlPolicial>
-      <Vector x="320" y="180" />
+      <Vector x="670" y="140" />
     </ControlPolicial>
   </Obstaculo>
   <Obstaculo>
     <ControlPolicial>
-      <Vector x="600" y="670" />
+      <Vector x="460" y="70" />
     </ControlPolicial>
   </Obstaculo>
   <Obstaculo>
     <Pozo>
-      <Vector x="320" y="600" />
+      <Vector x="390" y="420" />
     </Pozo>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="810" y="70" />
+    </Piquete>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="810" y="280" />
+    </Piquete>
   </Obstaculo>
 </Nivel>
 

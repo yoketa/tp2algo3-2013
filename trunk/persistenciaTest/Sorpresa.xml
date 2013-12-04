@@ -2,12 +2,12 @@
 <Nivel>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="110" y="180" />
+      <Vector x="70" y="320" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="460" y="320" />
+      <Vector x="740" y="0" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
@@ -17,7 +17,7 @@
   </Sorpresa>
   <Sorpresa>
     <SorpresaFavorable>
-      <Vector x="250" y="390" />
+      <Vector x="250" y="350" />
     </SorpresaFavorable>
   </Sorpresa>
 </Nivel>
