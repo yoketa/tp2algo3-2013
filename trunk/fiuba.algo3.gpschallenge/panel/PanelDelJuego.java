@@ -1,28 +1,18 @@
 package panel;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import persistencia.Archivador;
@@ -31,12 +21,9 @@ import vistas.*;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
-import modelo.juego.Vector;
-import modelo.juego.Cuadra;
 import modelo.obstaculo.*;
 import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
-import modelo.vehiculo.Vehiculo;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
@@ -50,6 +37,9 @@ public class PanelDelJuego {
 	private GameLoop gameLoop;
 	public Juego modelo;
 	private String vehiculo;
+	private List<Sorpresa> sorpresas;
+	private List<Obstaculo> obstaculos;
+	
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
@@ -119,38 +109,28 @@ public class PanelDelJuego {
 		
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
-	
-		Piquete piquete = new Piquete();
-		piquete.setPosicion(new Vector(0, 40));
-		VistaDeObstaculo vistaPiquete = new VistaDeObstaculo(piquete);
-		modelo.agregarEvento(piquete);
 		
-		this.gameLoop.agregar(piquete);
-		this.gameLoop.agregar(vistaPiquete);
+		Nivel nivel = modelo.getNivel();
+		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		
-		Pozo pozo = new Pozo();
-		pozo.setPosicion(new Vector(140, 40));
-		VistaDeObstaculo vistaPozo = new VistaDeObstaculo(pozo);
-		modelo.agregarEvento(pozo);
-		
-		this.gameLoop.agregar(pozo);
-		this.gameLoop.agregar(vistaPozo);
-		
-		ControlPolicial control = new ControlPolicial();
-		control.setPosicion(new Vector(110, 140));
-		VistaDeObstaculo vistaControl = new VistaDeObstaculo(control);
-		modelo.agregarEvento(control);
-		
-		this.gameLoop.agregar(control);
-		this.gameLoop.agregar(vistaControl);
+		obstaculos = modelo.getNivel().getObstaculos();
+		for(Obstaculo obstaculo : this.obstaculos ) {
+			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
+			modelo.agregarEvento(obstaculo);		
+			this.gameLoop.agregar(obstaculo);
+			this.gameLoop.agregar(vistaObstaculo);
+		}
 
-		Sorpresa sorpresa = new SorpresaFavorable();
-		sorpresa.setPosicion(new Vector(110, 180));
-		VistaDeSorpresa vistaSorpresa = new VistaDeSorpresa(sorpresa);
-		modelo.agregarEvento(sorpresa);
+		sorpresas = modelo.getNivel().getSorpresas();
+		for(Sorpresa sorpresa : this.sorpresas ) {
+			VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
+			modelo.agregarEvento(sorpresa);		
+			this.gameLoop.agregar(sorpresa);
+			this.gameLoop.agregar(vistaDrpresa);
+		}
+		JOptionPane.showMessageDialog(null, "direccion"+Nivel.GetNivelPath(dificultad));
 		
-		this.gameLoop.agregar(sorpresa);
-		this.gameLoop.agregar(vistaSorpresa);
+		JOptionPane.showMessageDialog(null, "sorpresas " +sorpresas.size()+"obstaculos "+obstaculos.size());
 		/*Nivel nivel = new Nivel ();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		nivel.setDificultad(this.dificultad);

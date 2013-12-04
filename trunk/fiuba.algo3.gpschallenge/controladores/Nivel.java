@@ -53,7 +53,7 @@ public class Nivel {
 	
 	/**
 	 * agrego una sorpresa al nivel
-	 *@param unaSaorpresa
+	 *@param unaSorpresa
 	 */
 	public void agregarUnaSorpresa(Sorpresa unaSorpresa){
 		sorpresas.add(unaSorpresa);
