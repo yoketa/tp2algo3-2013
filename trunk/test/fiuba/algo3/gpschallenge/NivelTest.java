@@ -37,6 +37,7 @@ public class NivelTest {
 	private Sorpresa sorpresa8;
 	private Sorpresa sorpresa9;
 	private Sorpresa sorpresa10;
+	private Sorpresa sorpresa11;
 	
 	private Obstaculo obstaculo1;
 	private Obstaculo obstaculo2;
@@ -48,6 +49,8 @@ public class NivelTest {
 	private Obstaculo obstaculo8;
 	private Obstaculo obstaculo9;
 	private Obstaculo obstaculo10;
+	private Obstaculo obstaculo11;
+	private Obstaculo obstaculo12;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private Nivel nivel;
@@ -64,6 +67,8 @@ public class NivelTest {
 		sorpresa8 = new SorpresaDesfavorable(new Vector(740,350));
 		sorpresa9 = new SorpresaDesfavorable(new Vector(670,210));
 		sorpresa10 = new SorpresaFavorable(new Vector(880,420));
+		sorpresa11 = new SorpresaDesfavorable(new Vector(0,180));
+		
 		ProbabilidadEquiprobable proba = new ProbabilidadEquiprobable();
 		
 		obstaculo1 = new Pozo (new Vector(180,210));
@@ -76,6 +81,8 @@ public class NivelTest {
 		obstaculo8 = new Pozo (new Vector(390,420));
 		obstaculo9 = new Piquete (new Vector(810,70));
 		obstaculo10 = new Piquete (new Vector(810,280));
+		obstaculo11 = new Piquete (new Vector(530,70));
+		obstaculo12 = new Piquete (new Vector(250,140));
 		nivel = new Nivel();
 	}
 	
@@ -266,11 +273,18 @@ public class NivelTest {
 		nivel.agregarUnObstaculo(obstaculo3);
 		nivel.agregarUnObstaculo(obstaculo4);
 		nivel.agregarUnObstaculo(obstaculo5);
+		nivel.agregarUnObstaculo(obstaculo8);
+		nivel.agregarUnObstaculo(obstaculo11);
+		nivel.agregarUnObstaculo(obstaculo12);
 		nivel.agregarUnaSorpresa(sorpresa1);
 		nivel.agregarUnaSorpresa(sorpresa2);
 		nivel.agregarUnaSorpresa(sorpresa3);
 		nivel.agregarUnaSorpresa(sorpresa4);
 		nivel.agregarUnaSorpresa(sorpresa5);
+		nivel.agregarUnaSorpresa(sorpresa6);
+		nivel.agregarUnaSorpresa(sorpresa7);
+		nivel.agregarUnaSorpresa(sorpresa11);
+		
 		try {
 			Archivador.guardar(nivel, Nivel.nivelMedioPath);
 			Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelMedioPath);

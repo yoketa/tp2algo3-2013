@@ -25,6 +25,21 @@
       <Vector x="250" y="0" />
     </CambioDeVehiculo>
   </Sorpresa>
+  <Sorpresa>
+    <CambioDeVehiculo>
+      <Vector x="110" y="140" />
+    </CambioDeVehiculo>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="320" y="70" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
+  <Sorpresa>
+    <SorpresaDesfavorable>
+      <Vector x="0" y="180" />
+    </SorpresaDesfavorable>
+  </Sorpresa>
   <Obstaculo>
     <Pozo>
       <Vector x="180" y="210" />
@@ -48,6 +63,21 @@
   <Obstaculo>
     <Piquete>
       <Vector x="280" y="250" />
+    </Piquete>
+  </Obstaculo>
+  <Obstaculo>
+    <Pozo>
+      <Vector x="390" y="420" />
+    </Pozo>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="530" y="70" />
+    </Piquete>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="250" y="140" />
     </Piquete>
   </Obstaculo>
 </Nivel>
