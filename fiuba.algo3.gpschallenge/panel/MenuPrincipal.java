@@ -6,6 +6,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private MenuRegistracion menuRegistracion;
     private MenuPartidaNueva menuPartidaNueva;
     private MenuPuntajes menuPuntajes;
+    private PanelGanador panelGanador;
     private String usuario;
     private boolean accionPreviaEsRegistracion = false;
     
@@ -13,6 +14,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
     }
 
+    //Constructor si viene de eleccion de usuario
     MenuPrincipal(MenuEleccionUsuario menuEleccion, String user) {
         this.usuario = user;
         this.setTitle("Hola "+usuario+"                       Gps Challenge");
@@ -22,6 +24,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     
+    //Constructor si viene de crear un usuario
     MenuPrincipal(MenuRegistracion menuRegistracion, String user) {
         this.accionPreviaEsRegistracion = true;
         this.usuario = user;
@@ -32,6 +35,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
 
+    //Constructor si viene de ganar el juego
+    MenuPrincipal(PanelGanador panelGanador,String user) {
+        this.usuario = user;
+        this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
+        initComponents();
+        this.panelGanador = panelGanador;
+        panelGanador.setVisible(false);
+        volver.setEnabled(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
