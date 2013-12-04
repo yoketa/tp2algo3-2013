@@ -1,21 +1,34 @@
 package panel;
 
+
+import javax.swing.JOptionPane;
+
+import modelo.juego.Juego;
+
 public class PanelGanador extends javax.swing.JFrame {
 
     private String usuario;
     private String dificultad;
     private PanelDelJuego panel;
     private MenuPrincipal menuPrincipal;
+	private int movimientos;
+	private int puntaje;
     
-public PanelGanador(String dificultad, String usuario,int movimientos, double puntaje) {
+public PanelGanador(String dificultad, String usuario,Juego juego) {
         
         this.usuario = usuario;
         this.dificultad = dificultad;
         this.setTitle("Hola "+this.usuario+"                         Partida"+this.dificultad);
-//        this.movimientos.setText(String.valueOf(movimientos));
-//        this.puntaje.setText(String.valueOf(puntaje));
+        
+        this.movimientos = juego.movimientosLimites(dificultad)-juego.getVehiculo().getMovimientos();
+        this.puntaje = juego.puntajePorMovimiento(dificultad);
+        
+
+        
         initComponents();
+        
         this.panel = panel;
+        
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     
@@ -28,11 +41,13 @@ public PanelGanador(String dificultad, String usuario,int movimientos, double pu
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        movimientos = new javax.swing.JLabel();
-        puntaje = new javax.swing.JLabel();
+        etiqueteMovimientos = new javax.swing.JLabel();
+        etiquetaPuntaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        botonJugarDeNuevo.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        botonJugarDeNuevo.setForeground(new java.awt.Color(0, 0, 102));
         botonJugarDeNuevo.setText("Jugar de nuevo");
         botonJugarDeNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,6 +55,8 @@ public PanelGanador(String dificultad, String usuario,int movimientos, double pu
             }
         });
 
+        botonSalir.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        botonSalir.setForeground(new java.awt.Color(0, 0, 102));
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,22 +64,21 @@ public PanelGanador(String dificultad, String usuario,int movimientos, double pu
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Gabriola", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gabriola", 1, 48));
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("¡ Ganaste !");
         jLabel1.setAutoscrolls(true);
 
-        jLabel2.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Gabriola", 1, 24));
         jLabel2.setForeground(new java.awt.Color(153, 0, 0));
         jLabel2.setText("Te sobraron: ");
 
-        jLabel3.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Gabriola", 1, 24));
         jLabel3.setForeground(new java.awt.Color(153, 0, 0));
         jLabel3.setText("Tu Puntaje es: ");
 
-        movimientos.setText("...");
-
-        puntaje.setText("...");
+        etiqueteMovimientos.setText(Integer.toString(this.movimientos));
+        etiquetaPuntaje.setText(Integer.toString(this.puntaje));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,42 +87,43 @@ public PanelGanador(String dificultad, String usuario,int movimientos, double pu
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(botonJugarDeNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
-                        .addComponent(botonSalir))
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jLabel1)))
-                .addContainerGap())
+                        .addGap(115, 115, 115)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonJugarDeNuevo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiquetaPuntaje)
+                                    .addComponent(etiqueteMovimientos))))))
+                .addContainerGap(125, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(puntaje)
-                    .addComponent(movimientos))
-                .addGap(241, 241, 241))
+                .addContainerGap(324, Short.MAX_VALUE)
+                .addComponent(botonSalir)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(movimientos))
+                    .addComponent(etiqueteMovimientos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(puntaje))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonSalir)
-                    .addComponent(botonJugarDeNuevo))
+                    .addComponent(etiquetaPuntaje))
+                .addGap(33, 33, 33)
+                .addComponent(botonJugarDeNuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addComponent(botonSalir)
                 .addContainerGap())
         );
 
@@ -129,8 +146,8 @@ public PanelGanador(String dificultad, String usuario,int movimientos, double pu
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel movimientos;
-    private javax.swing.JLabel puntaje;
+    private javax.swing.JLabel etiqueteMovimientos;
+    private javax.swing.JLabel etiquetaPuntaje;
     // End of variables declaration
 }
 
