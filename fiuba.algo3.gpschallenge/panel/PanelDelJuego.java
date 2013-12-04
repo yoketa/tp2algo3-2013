@@ -28,15 +28,14 @@ import javax.swing.JPanel;
 
 import persistencia.Archivador;
 import controladores.Nivel;
-import vistas.VistaDeCuadra;
-import vistas.VistaDeMeta;
-import vistas.VistaDeVehiculo;
+import vistas.*;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
 import modelo.juego.Vector;
 import modelo.juego.Cuadra;
-import modelo.obstaculo.Piquete;
+import modelo.obstaculo.*;
+import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
@@ -61,7 +60,7 @@ public class PanelDelJuego {
         this.menuPartidaNueva = menuPartida;
         Nivel nivel = new Nivel();
         nivel.setDificultad(dificultad);
-        this.modelo = new Juego(usuario, nivel, new Auto());
+        this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(vehiculo));
         try {
 			initialize();
 		} catch (IOException e) {
@@ -110,6 +109,9 @@ public class PanelDelJuego {
 	 * */
 	private void inicializarModelo() throws IOException {
 		VistaDeVehiculo vista = new VistaDeVehiculo(modelo.getVehiculo());
+
+		this.gameLoop.agregar(modelo.getVehiculo());
+		this.gameLoop.agregar(vista);
 		
 		// Agrega la meta en el límite izquierdo
 		Meta meta = this.modelo.getMeta();
@@ -118,6 +120,33 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
 		
+		Piquete piquete = new Piquete();
+		piquete.setPosicion(new Vector(70, 70));
+		VistaDeObstaculo vistaPiquete = new VistaDeObstaculo(piquete);
+		
+		this.gameLoop.agregar(piquete);
+		this.gameLoop.agregar(vistaPiquete);
+		
+		Pozo pozo = new Pozo();
+		pozo.setPosicion(new Vector(140, 70));
+		VistaDeObstaculo vistaPozo = new VistaDeObstaculo(pozo);
+		
+		this.gameLoop.agregar(pozo);
+		this.gameLoop.agregar(vistaPozo);
+		
+		ControlPolicial control = new ControlPolicial();
+		control.setPosicion(new Vector(140, 140));
+		VistaDeObstaculo vistaControl = new VistaDeObstaculo(control);
+		
+		this.gameLoop.agregar(control);
+		this.gameLoop.agregar(vistaControl);
+
+		Sorpresa sorpresa = new SorpresaFavorable();
+		sorpresa.setPosicion(new Vector(140, 210));
+		VistaDeSorpresa vistaSorpresa = new VistaDeSorpresa(sorpresa);
+		
+		this.gameLoop.agregar(sorpresa);
+		this.gameLoop.agregar(vistaSorpresa);
 		/*Nivel nivel = new Nivel ();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		nivel.setDificultad(this.dificultad);
@@ -126,13 +155,11 @@ public class PanelDelJuego {
 		modelo.agregarSorpresas(nivel.getSorpresas());
 		modelo.agregarObstaculos(nivel.getObstaculos());
 		*/
-		this.gameLoop.agregar(modelo.getVehiculo());
-		this.gameLoop.agregar(vista);
 		
-		int ultimaCuadraX = 30;
-		int ultimaCuadraY = 30;
+		int ultimaCuadraX = Nivel.tamañoCalle;
+		int ultimaCuadraY = Nivel.tamañoCalle;
 		
-		for (int i = 0; i < DeterminarCantidadDeCuadras(modelo); i++) {
+		for (int i = 0; i < determinarCantidadDeCuadras(modelo); i++) {
 			
 			/* 	Las cuadras miden 40x40 px. Debe quedar un espacio
 			 * 	de 40px entre ellas para que pueda pasar el vehículo.
@@ -143,12 +170,12 @@ public class PanelDelJuego {
 			modelo.vehiculo.Cuadra cuadra = new modelo.vehiculo.Cuadra (ultimaCuadraX, ultimaCuadraY);
 			VistaDeCuadra vistaCuadra = new VistaDeCuadra(cuadra);
 			
-			ultimaCuadraX += 70;
+			ultimaCuadraX += Nivel.tamañoCuadraCalle;
 			
 			// Se llega al límite de X -> se va a la fila que sigue
-			if (ultimaCuadraX > modelo.getLimiteHorizontal() - 70) {
-				ultimaCuadraX = 30;
-				ultimaCuadraY += 70;
+			if (ultimaCuadraX > modelo.getLimiteHorizontal() - Nivel.tamañoCuadraCalle) {
+				ultimaCuadraX = Nivel.tamañoCalle;
+				ultimaCuadraY += Nivel.tamañoCuadraCalle;
 			}			
 
 			this.gameLoop.agregar(cuadra);
@@ -195,22 +222,36 @@ public class PanelDelJuego {
 				// Dependiendo del código de la tecla
 				// La cantidad a mover es 40 (tamaño de cuadra) + 30
 				// (para ponerse en el medio de la calle) pixeles
+				int posicionActual = 0;
 			    switch( keyCode ) { 
 			        case KeyEvent.VK_UP: // ARRIBA
-			        	modelo.getVehiculo().subir();
-			        	modelo.aplicarEvento();
+			        	posicionActual = modelo.getVehiculo().getY();
+			        	int a = modelo.getVehiculo().getX();
+			        	if (posicionActual - Nivel.tamañoCuadra > 0) {
+				        	modelo.getVehiculo().subir();
+				        	modelo.aplicarEvento();			        		
+			        	}
 			            break;
 			        case KeyEvent.VK_DOWN: // ABAJO
-			        	modelo.getVehiculo().bajar();
-			        	modelo.aplicarEvento();
+			        	posicionActual = modelo.getVehiculo().getY();
+			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteVertical()) {
+			        		modelo.getVehiculo().bajar();
+				        	modelo.aplicarEvento();	
+			        	}			        	
 			            break;
 			        case KeyEvent.VK_LEFT: // IZQUIERDA
-			        	modelo.getVehiculo().izquierda();
-			        	modelo.aplicarEvento();
+			        	posicionActual = modelo.getVehiculo().getX();
+			        	if (posicionActual - Nivel.tamañoCuadra > 0) {
+			        		modelo.getVehiculo().izquierda();
+				        	modelo.aplicarEvento();
+			        	}			        	
 			            break;
 			        case KeyEvent.VK_RIGHT : // DERECHA
-			        	modelo.getVehiculo().derecha();
-			        	modelo.aplicarEvento();
+			        	posicionActual = modelo.getVehiculo().getX();
+			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
+			        		modelo.getVehiculo().derecha();
+				        	modelo.aplicarEvento();	
+			        	}			        	
 			            break;
 			     }
 			}  
@@ -240,7 +281,6 @@ public class PanelDelJuego {
 		panel.setBackground(Color.WHITE);
 		// TODO: Tamaño según la dificultad del juego
 		
-		// Ejemplo con 10 X 10 cuadras
 		panel.setBounds(40, 40, this.modelo.getLimiteHorizontal(), this.modelo.getLimiteVertical());
 		frame.getContentPane().add(panel);
 		return panel;
@@ -282,11 +322,27 @@ public class PanelDelJuego {
 	 * nivel del juego
 	 * 
 	 * */
-	private int DeterminarCantidadDeCuadras(Juego juego) {
-		int cuadrasHorizontales = (juego.getLimiteHorizontal() - 30) / 70;
+	private int determinarCantidadDeCuadras(Juego juego) {
+		int cuadrasHorizontales = (juego.getLimiteHorizontal() - Nivel.tamañoCalle) / Nivel.tamañoCuadraCalle;
 		
 		// Se determina que son siempre 6 cuadras de alto
 		return cuadrasHorizontales * 6;
+	}
+	
+	/* Devuelve un objeto de tipo EstadoVehiculo según el tipo de 
+	 * vehículo que se haya elegido
+	 * 
+	 * */
+	private EstadoVehiculo getVehiculoDesdeString(String tipoVehiculo) {
+		switch (tipoVehiculo) {
+		case "Auto":
+			return new Auto();
+		case "Moto":
+			return new Moto();
+		case "4x4":
+			return new CuatroXCuatro(); 
+		}
+		return new Auto();
 	}
 	
 }

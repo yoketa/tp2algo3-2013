@@ -13,7 +13,7 @@ public class VistaDeCuadra extends Imagen {
 
 	public VistaDeCuadra(Cuadra modelo)
 			throws IOException {
-		super(new File("C:\\Users\\27176876544\\Downloads\\cuadra.png").toURI().toURL(), modelo);
+		super(new File("GpsChallenge/images/cuadra.png").toURI().toURL(), modelo);
 		// TODO Auto-generated constructor stub
 	}
 

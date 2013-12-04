@@ -43,5 +43,21 @@ public class ControlPolicial extends Obstaculo {
 		ControlPolicial controlPolicial = new ControlPolicial(vector,proba);
 		
 		return controlPolicial;
+	}
+
+
+	@Override
+	public int getX() {
+		return this.getPosicion().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosicion().getY();
+	}
+
+	@Override
+	public void vivir() {
+		
 	}	
 }

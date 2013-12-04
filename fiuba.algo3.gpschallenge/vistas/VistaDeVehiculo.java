@@ -16,17 +16,20 @@ import modelo.vehiculo.Vehiculo;
 public class VistaDeVehiculo extends Imagen {
 
 	public VistaDeVehiculo(Vehiculo modelo) throws IOException {		
-		super(getURLImagenVehiculo(), modelo);
+		super(new File(getImagen(modelo)).toURI().toURL(), modelo);
 	}
 	
-	private static URL getURLImagenVehiculo() {
-		try {
-			return new File("GpsChallenge/images/auto.png").toURI().toURL();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private static String getImagen(Vehiculo modelo) {
+		String clase = modelo.getEstado().getClass().toString();
+		switch (clase) {
+		case "class modelo.vehiculo.Auto":
+			return "GpsChallenge/images/auto.png";
+		case "class modelo.vehiculo.CuatroXCuatro":
+			return "GpsChallenge/images/4x4.gif";
+		case "class modelo.vehiculo.Moto":
+			return "GpsChallenge/images/moto.png";
 		}
-		return null;
+		return "";
 	}
 }
 

@@ -32,5 +32,20 @@ public class Piquete extends Obstaculo {
 		Piquete piquete = new Piquete(vector);
 		
 		return piquete;
+	}
+
+	@Override
+	public int getX() {
+		return this.getPosicion().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosicion().getY();
+	}
+
+	@Override
+	public void vivir() {
+		
 	}	
 }

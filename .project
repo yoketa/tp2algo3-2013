@@ -16,14 +16,44 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>images/4x4.gif</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/Downloads/4x4.gif</location>
+		</link>
+		<link>
 			<name>images/auto.png</name>
 			<type>1</type>
 			<location>C:/Users/27176876544/Downloads/auto.png</location>
 		</link>
 		<link>
+			<name>images/controlPolicial.png</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/Downloads/controlPolicial.png</location>
+		</link>
+		<link>
 			<name>images/cuadra.png</name>
 			<type>1</type>
 			<location>C:/Users/27176876544/Downloads/cuadra.png</location>
+		</link>
+		<link>
+			<name>images/moto.png</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/Downloads/moto.png</location>
+		</link>
+		<link>
+			<name>images/piquete.png</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/Downloads/piquete.png</location>
+		</link>
+		<link>
+			<name>images/pozo.jpg</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/Downloads/pozo.jpg</location>
+		</link>
+		<link>
+			<name>images/sorpresa.png</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/Downloads/sorpresa.png</location>
 		</link>
 	</linkedResources>
 </projectDescription>

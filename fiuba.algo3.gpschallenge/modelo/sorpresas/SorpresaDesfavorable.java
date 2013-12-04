@@ -7,6 +7,21 @@ import modelo.vehiculo.Vehiculo;
 
 public class SorpresaDesfavorable extends Sorpresa {
 
+
+	@Override
+	public int getX() {
+		return this.getPosicion().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosicion().getY();
+	}
+
+	@Override
+	public void vivir() {
+		
+	}	
 	
 	public SorpresaDesfavorable(){
 		super(new Vector(0,0));
