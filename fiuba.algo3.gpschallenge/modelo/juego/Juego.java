@@ -171,7 +171,10 @@ public class Juego {
 		Evento eventoADevolver = null;
 		
 		for(Evento evento : this.eventos ) {
-			if((evento.getPosicion().getX() == posicion.getX()) && (evento.getPosicion().getY() == posicion.getY()))
+			int limiteSuperiorEvento = evento.getPosicion().getY()+30;
+			int limiteInferiorEvento = evento.getPosicion().getY()-30;
+			
+			if((evento.getPosicion().getX() == posicion.getX())&& ( limiteSuperiorEvento >= posicion.getY()) && (limiteInferiorEvento <= posicion.getY()))
 				eventoADevolver = evento;
 		}
 		return eventoADevolver;

@@ -192,7 +192,7 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 	}
 	
 	public void pegarLaVuelta() {
-		JOptionPane.showMessageDialog(null, "pegoVuelta");
+
 		this.posicion.setX(this.posicion.getX() + (direccion.getX()*(-1)));
 		this.posicion.setY(this.posicion.getY() + (direccion.getY()*(-1)));
 	}

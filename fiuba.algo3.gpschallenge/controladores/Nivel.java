@@ -35,6 +35,7 @@ public class Nivel {
 	private String dificultad = "";
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
+	
 	public Nivel(){
 		this.sorpresas = new ArrayList<Sorpresa>();
 		this.obstaculos = new ArrayList<Obstaculo>();
