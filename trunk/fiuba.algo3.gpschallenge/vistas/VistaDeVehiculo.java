@@ -23,11 +23,11 @@ public class VistaDeVehiculo extends Imagen {
 		String clase = modelo.getEstado().getClass().toString();
 		switch (clase) {
 		case "class modelo.vehiculo.Auto":
-			return "GpsChallenge/images/auto.png";
+			return "images/auto.png";
 		case "class modelo.vehiculo.CuatroXCuatro":
-			return "GpsChallenge/images/4x4.gif";
+			return "images/4x4.gif";
 		case "class modelo.vehiculo.Moto":
-			return "GpsChallenge/images/moto.png";
+			return "images/moto.png";
 		}
 		return "";
 	}
