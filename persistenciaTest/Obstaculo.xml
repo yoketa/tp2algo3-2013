@@ -17,7 +17,7 @@
   </Obstaculo>
   <Obstaculo>
     <ControlPolicial>
-      <Vector x="170" y="156" />
+      <Vector x="110" y="530" />
     </ControlPolicial>
   </Obstaculo>
 </Nivel>

@@ -52,14 +52,14 @@ public class NivelTest {
 	
 	@Before
 	public void setup() {
-		sorpresa1 = new SorpresaDesfavorable(new Vector(110,140));
-		sorpresa2 = new SorpresaDesfavorable(new Vector(420,280));
+		sorpresa1 = new SorpresaDesfavorable(new Vector(110,180));
+		sorpresa2 = new SorpresaDesfavorable(new Vector(460,320));
 		sorpresa3 = new SorpresaFavorable(new Vector(530,280));
-		sorpresa4 = new SorpresaFavorable(new Vector(160,160));
+		sorpresa4 = new SorpresaFavorable(new Vector(250,390));
 		sorpresa5 = new CambioDeVehiculo(new Vector(160,170));
 		sorpresa6 = new CambioDeVehiculo(new Vector(195,188));
-		sorpresa7 = new SorpresaDesfavorable(new Vector(140,120));
-		sorpresa8 = new SorpresaDesfavorable(new Vector(150,120));
+		sorpresa7 = new SorpresaDesfavorable(new Vector(110,530));
+		sorpresa8 = new SorpresaDesfavorable(new Vector(250,600));
 		
 		ProbabilidadEquiprobable proba = new ProbabilidadEquiprobable();
 		
@@ -68,13 +68,13 @@ public class NivelTest {
 		
 		obstaculo3 = new Piquete (new Vector(110,0));
 				
-		obstaculo4 = new ControlPolicial(new Vector(170,156),proba) ;
-		obstaculo5 = new Piquete (new Vector(128,240));
+		obstaculo4 = new ControlPolicial(new Vector(110,530),proba) ;
+		obstaculo5 = new Piquete (new Vector(110,250));
 		
-		obstaculo6 = new ControlPolicial (new Vector(220,210),proba);
-		obstaculo7 = new ControlPolicial (new Vector(240,210),proba);
+		obstaculo6 = new ControlPolicial (new Vector(320,180),proba);
+		obstaculo7 = new ControlPolicial (new Vector(600,670),proba);
 		
-		obstaculo8 = new Pozo (new Vector(270,240));
+		obstaculo8 = new Pozo (new Vector(320,600));
 		
 		nivel = new Nivel();
 	}
@@ -124,13 +124,13 @@ public class NivelTest {
 		Vector posicionSopresa4 = sorpresas.get(3).getPosicion();
 		
 		assertEquals(posicionSopresa1.getX(),110,1E-5);
-		assertEquals(posicionSopresa1.getY(),140,1E-5);
-		assertEquals(posicionSopresa2.getX(),420,1E-5);
-		assertEquals(posicionSopresa2.getY(),280,1E-5);
+		assertEquals(posicionSopresa1.getY(),180,1E-5);
+		assertEquals(posicionSopresa2.getX(),460,1E-5);
+		assertEquals(posicionSopresa2.getY(),320,1E-5);
 		assertEquals(posicionSopresa3.getX(),530,1E-5);
 		assertEquals(posicionSopresa3.getY(),280,1E-5);
-		assertEquals(posicionSopresa4.getX(),160,1E-5);
-		assertEquals(posicionSopresa4.getY(),160,1E-5);
+		assertEquals(posicionSopresa4.getX(),250,1E-5);
+		assertEquals(posicionSopresa4.getY(),390,1E-5);
 	}
 	
 	
@@ -152,8 +152,8 @@ public class NivelTest {
 		assertEquals(posicionObstaculo2.getY(),210,1E-5);
 		assertEquals(posicionObstaculo3.getX(),110,1E-5);
 		assertEquals(posicionObstaculo3.getY(),0,1E-5);
-		assertEquals(posicionObstaculo4.getX(),170,1E-5);
-		assertEquals(posicionObstaculo4.getY(),156,1E-5);
+		assertEquals(posicionObstaculo4.getX(),110,1E-5);
+		assertEquals(posicionObstaculo4.getY(),530,1E-5);
 	}
 	
 	
