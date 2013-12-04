@@ -20,7 +20,7 @@ public class Juego {
 	private Ranking ranking;
 	private Vehiculo vehiculo;
 	private Meta meta;
-	
+	private String dificultadDeNivel;
 	// Metodos
 	public static Juego crearJuego(String user,EstadoVehiculo vehiculo){
 		Juego juego = new Juego(user,vehiculo);
@@ -109,6 +109,14 @@ public class Juego {
 		return this.limiteVertical;
 	}
 	
+	public String getDificultadDeNivel(){
+		return this.dificultadDeNivel;
+	}
+	
+	public void setDificultadDeNivel(String dificultad){
+		this.dificultadDeNivel = dificultad;
+	}
+	
 	public void setLimiteVertical(int i) {
 		this.limiteVertical = i;
 	}
@@ -153,6 +161,14 @@ public class Juego {
 		}
 	} 
 	
+	public void carlcularPuntajeDeVehiculo(){
+		int movimientosRealizados = this.vehiculo.getMovimientos();
+		int puntajePorMovimiento = this.puntajePorMovimiento(this.dificultadDeNivel);
+		int movimientosLimites = this.movimientosLimites(this.dificultadDeNivel);
+		double puntajeTotal = (movimientosLimites - movimientosRealizados)*puntajePorMovimiento;
+		this.vehiculo.setPuntaje(puntajeTotal);;
+	}
+	
 	private boolean hayEvento(Vector posicion) {
 		
 		for(Evento evento : this.eventos ) {
@@ -192,6 +208,32 @@ public class Juego {
 		}
 	}
 
+	public int puntajePorMovimiento(String dificultad){
+		switch (dificultad) {
+		case "Facil":
+			return 1;
+		case "Moderado":
+			return 2;
+		case "Dificil":
+			return 3;
+		default:
+			return 0;
+		}
+	}
+	
+	public int movimientosLimites(String dificultad){
+		switch (dificultad) {
+		case "Facil":
+			return 38;
+		case "Moderado":
+			return 32;
+		case "Dificil":
+			return 25;
+		default:
+			return 0;
+		}
+	}
+	
 	public boolean llegoALaMeta() {
 		
 		int limiteSuperiorMeta = this.meta.getY()+30;

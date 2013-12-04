@@ -13,6 +13,7 @@ import modelo.vehiculo.Auto;
 import org.junit.Test;
 
 import controladores.Nivel;
+import excepciones.MovimientoFueraDeMapaException;
 
 public class JuegoTest {
 	
@@ -90,7 +91,7 @@ public class JuegoTest {
 	}
 	
 	@Test 
-	public void testDeberiaLlegarALaMeta(){
+	public void testDeberiaLlegarALaMeta() throws MovimientoFueraDeMapaException{
 		
 		/* Arrange */
 		EstadoVehiculo auto = new Auto();
