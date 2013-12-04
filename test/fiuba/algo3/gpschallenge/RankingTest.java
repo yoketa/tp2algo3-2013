@@ -14,6 +14,7 @@ import modelo.vehiculo.Vehiculo;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.MovimientoFueraDeMapaException;
 import persistencia.Archivador;
 
 public class RankingTest {
@@ -58,7 +59,7 @@ public class RankingTest {
 	}
 
 	@Test
-	public void testAgregarPuntajesAlRanking() {
+	public void testAgregarPuntajesAlRanking() throws MovimientoFueraDeMapaException {
 		 ranking.agregarPuntaje(vehiculo1);
 		assertEquals(1,ranking.getPuntajes().size());
 		ranking.agregarPuntaje(vehiculo2);
@@ -68,7 +69,7 @@ public class RankingTest {
 	}
 
 	@Test
-	public void testObtenerPuntajesDelRankingOrdenadoDeMayorAMenor() {
+	public void testObtenerPuntajesDelRankingOrdenadoDeMayorAMenor() throws MovimientoFueraDeMapaException {
 		vehiculo1.setPuntaje(100);
 		vehiculo2.setPuntaje(50);
 		vehiculo3.setPuntaje(150);
@@ -96,7 +97,7 @@ public class RankingTest {
 	}
 	
 	@Test
-	public void testGuardarYCargarTodosLosPuntajes() {
+	public void testGuardarYCargarTodosLosPuntajes() throws MovimientoFueraDeMapaException {
 		
 		ranking.agregarPuntaje(vehiculo1);
 		ranking.agregarPuntaje(vehiculo2);
@@ -136,7 +137,7 @@ public class RankingTest {
 	}
 	
 	@Test
-	public void testCrearRanking() {
+	public void testCrearRanking() throws MovimientoFueraDeMapaException {
 		
 		
 		

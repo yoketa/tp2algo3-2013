@@ -60,6 +60,7 @@ public class PanelDelJuego {
         Nivel nivel = new Nivel();
         nivel.setDificultad(dificultad);
         this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(vehiculo));
+        this.modelo.setDificultadDeNivel(dificultad);
         try {
 			initialize();
 		} catch (IOException e) {

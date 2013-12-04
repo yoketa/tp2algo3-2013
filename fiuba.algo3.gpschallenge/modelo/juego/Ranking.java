@@ -8,6 +8,8 @@ import modelo.vehiculo.Vehiculo;
 import org.jdom.Attribute;
 import org.jdom.Element;
 
+import excepciones.MovimientoFueraDeMapaException;
+
 /**
  * Clase que representa al ranking de puntajes.
  * 
@@ -45,8 +47,9 @@ public class Ranking {
 	 * agrego el puntaje del vehiculo al ranking de manera ordenada
 	 * si ya existía el piloto actualizo el puntaje y la posicion del mismo 
 	 * @param unVehiculo
+	 * @throws MovimientoFueraDeMapaException 
 	 */
-	public void agregarPuntaje(Vehiculo unVehiculo){
+	public void agregarPuntaje(Vehiculo unVehiculo) throws MovimientoFueraDeMapaException{
 		if(this.mejoresPuntajes.size()==0){
 			this.mejoresPuntajes.add(unVehiculo);
 		}
