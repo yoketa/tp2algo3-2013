@@ -13,7 +13,7 @@ public class VistaDeSorpresa extends Imagen {
 
         public VistaDeSorpresa(Sorpresa modelo)
                         throws IOException {
-                super(new File("GpsChallenge/images/sorpresa.png").toURI().toURL(), modelo);
+                super(new File("images/sorpresa.png").toURI().toURL(), modelo);
                 // TODO Auto-generated constructor stub
         }
 }

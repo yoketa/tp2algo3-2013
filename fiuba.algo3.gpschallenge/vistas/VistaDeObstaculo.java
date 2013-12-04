@@ -21,11 +21,11 @@ public class VistaDeObstaculo extends Imagen {
 		String clase = modelo.getClass().toString();
 		switch (clase) {
 		case "class modelo.obstaculo.Pozo":
-			return "GpsChallenge/images/pozo.png";
+			return "images/pozo.png";
 		case "class modelo.obstaculo.ControlPolicial":
-			return "GpsChallenge/images/controlPolicial.png";
+			return "images/controlPolicial.png";
 		case "class modelo.obstaculo.Piquete":
-			return "GpsChallenge/images/piquete.png";
+			return "images/piquete.png";
 
 		}
 		return "";
