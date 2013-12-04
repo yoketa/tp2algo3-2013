@@ -29,8 +29,8 @@ public class Juego {
 	
 	public Juego(String piloto){
 		//persistencia
-		this.setLimiteHorizontal(10);
-		this.setLimiteVertical(10);
+		this.setLimiteHorizontal(Nivel.tamañoCuadraCalle);
+		this.setLimiteVertical(Nivel.tamañoCuadraCalle);
 		this.meta = this.crearMeta();
 		
 		this.eventos = this.crearEventos();
@@ -40,8 +40,8 @@ public class Juego {
 	
 	public Juego(String piloto, EstadoVehiculo vehiculo){
 		//persistencia
-		this.setLimiteHorizontal(10);
-		this.setLimiteVertical(10);
+		this.setLimiteHorizontal(Nivel.tamañoCuadraCalle);
+		this.setLimiteVertical(Nivel.tamañoCuadraCalle);
 		this.meta = this.crearMeta();
 		
 		this.eventos = this.crearEventos();
@@ -52,7 +52,7 @@ public class Juego {
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
 		//persistencia
 		this.nivel = nivel;
-		SetLimitesSegunDificultad(nivel.getDificultad());
+		setLimitesSegunDificultad(nivel.getDificultad());
 		this.meta = this.crearMeta();
 		
 		this.eventos = this.crearEventos();
@@ -63,24 +63,32 @@ public class Juego {
 	/* Setea los límites del Juego según la dificultad
 	 * 
 	 * */
-	private void SetLimitesSegunDificultad(String dificultad) {
+	private void setLimitesSegunDificultad(String dificultad) {
 		switch (this.nivel.getDificultad()) {
 		case "Facil":
-			this.limiteHorizontal = 450;
+			this.limiteHorizontal = pixelesPorCuadras(6);
 			break;
 		case "Moderado":
-			this.limiteHorizontal = 590;
+			this.limiteHorizontal = pixelesPorCuadras(8);
 			break;
 		case "Dificil":
-			this.limiteHorizontal = 940;
+			this.limiteHorizontal = pixelesPorCuadras(13);
 			break;
 		}
 
-		this.limiteVertical = 450;
+		this.limiteVertical = pixelesPorCuadras(6);
+	}
+	
+	/* Devuelve cuál debe ser el tamaño en píxeles para que el 
+	 * escenario pueda tener tantas cuadras como se quieren
+	 * 
+	 * */
+	private int pixelesPorCuadras(int tamañoEnCuadras) {
+		return (Nivel.tamañoCalle + Nivel.tamañoCuadraCalle * tamañoEnCuadras);
 	}
 	
 	private Meta crearMeta() {
-		Meta meta = new Meta(limiteHorizontal - 30, 220);
+		Meta meta = new Meta(limiteHorizontal - Nivel.tamañoCalle, pixelesPorCuadras(3) - 20);
 		return meta;
 	}
 	

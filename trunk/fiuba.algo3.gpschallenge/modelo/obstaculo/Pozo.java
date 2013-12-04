@@ -35,4 +35,19 @@ public class Pozo extends Obstaculo {
 		
 		return pozo;
 	}	
+
+	@Override
+	public int getX() {
+		return this.getPosicion().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosicion().getY();
+	}
+
+	@Override
+	public void vivir() {
+		
+	}	
 }

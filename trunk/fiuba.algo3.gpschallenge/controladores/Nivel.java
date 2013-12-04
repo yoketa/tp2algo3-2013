@@ -28,6 +28,9 @@ public class Nivel {
 	public static String nivelDificilPath = "C:\\Level\\NivelDificil.xml";
 	public static String nivelSorpresaPath = "C:\\Persistencia\\Sorpresa.xml";
 	public static String nivelObstaculoPath = "C:\\Persistencia\\Obstaculo.xml";
+	public static int tamañoCuadraCalle = 70;
+	public static int tamañoCuadra = 40;
+	public static int tamañoCalle = 30;
 	
 	private String dificultad = "";
 	private List<Sorpresa> sorpresas;
