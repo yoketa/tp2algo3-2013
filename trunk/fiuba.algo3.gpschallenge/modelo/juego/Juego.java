@@ -92,11 +92,6 @@ public class Juego {
 		return meta;
 	}
 	
-//	private Vehiculo crearVehiculo(String piloto) {
-//	Vehiculo vehiculo = Vehiculo.crearConPiloto(piloto,1,limiteVertical/2);
-//	return vehiculo;
-//}
-	
 	private List<Evento> crearEventos() {
 		ArrayList<Evento> nuevosEventos = new ArrayList<Evento>();
 		return nuevosEventos;
@@ -191,7 +186,11 @@ public class Juego {
 	}
 
 	public boolean llegoALaMeta() {
-		if ( this.meta.getX() == this.vehiculo.getX() && this.meta.getY() == this.vehiculo.getY())
+		
+		int limiteSuperiorMeta = this.meta.getY()+30;
+		int limiteInferiorMeta = this.meta.getY()-30;
+		
+		if ( this.meta.getX() == this.vehiculo.getX() &&  limiteSuperiorMeta >= this.vehiculo.getY() && limiteInferiorMeta <= this.vehiculo.getY())
 			return true;
 		return false;
 	}
