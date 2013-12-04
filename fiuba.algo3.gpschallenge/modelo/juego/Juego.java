@@ -243,4 +243,8 @@ public class Juego {
 			return true;
 		return false;
 	}
+
+	public Nivel getNivel() {
+		return this.nivel;
+	}
 }
