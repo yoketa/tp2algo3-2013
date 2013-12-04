@@ -35,6 +35,8 @@ public class NivelTest {
 	private Sorpresa sorpresa6;
 	private Sorpresa sorpresa7;
 	private Sorpresa sorpresa8;
+	private Sorpresa sorpresa9;
+	private Sorpresa sorpresa10;
 	
 	private Obstaculo obstaculo1;
 	private Obstaculo obstaculo2;
@@ -44,38 +46,36 @@ public class NivelTest {
 	private Obstaculo obstaculo6;
 	private Obstaculo obstaculo7;
 	private Obstaculo obstaculo8;
-	
-	
+	private Obstaculo obstaculo9;
+	private Obstaculo obstaculo10;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private Nivel nivel;
 	
 	@Before
 	public void setup() {
-		sorpresa1 = new SorpresaDesfavorable(new Vector(110,180));
-		sorpresa2 = new SorpresaDesfavorable(new Vector(460,320));
+		sorpresa1 = new SorpresaDesfavorable(new Vector(70,320));
+		sorpresa2 = new SorpresaDesfavorable(new Vector(740,0));
 		sorpresa3 = new SorpresaFavorable(new Vector(530,280));
-		sorpresa4 = new SorpresaFavorable(new Vector(250,390));
-		sorpresa5 = new CambioDeVehiculo(new Vector(160,170));
-		sorpresa6 = new CambioDeVehiculo(new Vector(195,188));
-		sorpresa7 = new SorpresaDesfavorable(new Vector(110,530));
-		sorpresa8 = new SorpresaDesfavorable(new Vector(250,600));
-		
+		sorpresa4 = new SorpresaFavorable(new Vector(250,350));
+		sorpresa5 = new CambioDeVehiculo(new Vector(250,0));
+		sorpresa6 = new CambioDeVehiculo(new Vector(110,140));
+		sorpresa7 = new SorpresaDesfavorable(new Vector(320,70));
+		sorpresa8 = new SorpresaDesfavorable(new Vector(740,350));
+		sorpresa9 = new SorpresaDesfavorable(new Vector(670,210));
+		sorpresa10 = new SorpresaFavorable(new Vector(880,420));
 		ProbabilidadEquiprobable proba = new ProbabilidadEquiprobable();
 		
 		obstaculo1 = new Pozo (new Vector(180,210));
 		obstaculo2 = new Pozo (new Vector(460,210));
-		
 		obstaculo3 = new Piquete (new Vector(110,0));
-				
-		obstaculo4 = new ControlPolicial(new Vector(110,530),proba) ;
-		obstaculo5 = new Piquete (new Vector(110,250));
-		
-		obstaculo6 = new ControlPolicial (new Vector(320,180),proba);
-		obstaculo7 = new ControlPolicial (new Vector(600,670),proba);
-		
-		obstaculo8 = new Pozo (new Vector(320,600));
-		
+		obstaculo4 = new ControlPolicial(new Vector(420,180),proba) ;
+		obstaculo5 = new Piquete (new Vector(280,250));
+		obstaculo6 = new ControlPolicial (new Vector(670,140),proba);
+		obstaculo7 = new ControlPolicial (new Vector(460,70),proba);
+		obstaculo8 = new Pozo (new Vector(390,420));
+		obstaculo9 = new Piquete (new Vector(810,70));
+		obstaculo10 = new Piquete (new Vector(810,280));
 		nivel = new Nivel();
 	}
 	
@@ -309,6 +309,8 @@ public class NivelTest {
 		nivel.agregarUnObstaculo(obstaculo6);
 		nivel.agregarUnObstaculo(obstaculo7);
 		nivel.agregarUnObstaculo(obstaculo8);
+		nivel.agregarUnObstaculo(obstaculo9);
+		nivel.agregarUnObstaculo(obstaculo10);
 		nivel.agregarUnaSorpresa(sorpresa1);
 		nivel.agregarUnaSorpresa(sorpresa2);
 		nivel.agregarUnaSorpresa(sorpresa3);
@@ -317,6 +319,9 @@ public class NivelTest {
 		nivel.agregarUnaSorpresa(sorpresa6);
 		nivel.agregarUnaSorpresa(sorpresa7);
 		nivel.agregarUnaSorpresa(sorpresa8);
+		nivel.agregarUnaSorpresa(sorpresa9);
+		nivel.agregarUnaSorpresa(sorpresa10);
+		
 		try {
 			Archivador.guardar(nivel, Nivel.nivelDificilPath);
 			Nivel nivelRecargado = Archivador.cargar(new Nivel(), Nivel.nivelDificilPath);

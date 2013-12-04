@@ -2,12 +2,12 @@
 <Nivel>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="110" y="180" />
+      <Vector x="70" y="320" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="460" y="320" />
+      <Vector x="740" y="0" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
@@ -17,12 +17,12 @@
   </Sorpresa>
   <Sorpresa>
     <SorpresaFavorable>
-      <Vector x="250" y="390" />
+      <Vector x="250" y="350" />
     </SorpresaFavorable>
   </Sorpresa>
   <Sorpresa>
     <CambioDeVehiculo>
-      <Vector x="160" y="170" />
+      <Vector x="250" y="0" />
     </CambioDeVehiculo>
   </Sorpresa>
   <Obstaculo>
@@ -42,12 +42,12 @@
   </Obstaculo>
   <Obstaculo>
     <ControlPolicial>
-      <Vector x="110" y="530" />
+      <Vector x="420" y="180" />
     </ControlPolicial>
   </Obstaculo>
   <Obstaculo>
     <Piquete>
-      <Vector x="110" y="250" />
+      <Vector x="280" y="250" />
     </Piquete>
   </Obstaculo>
 </Nivel>
