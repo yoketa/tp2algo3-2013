@@ -4,13 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import junit.framework.Assert;
 import modelo.interfaces.EstadoVehiculo;
-import modelo.juego.Vector;
-import modelo.obstaculo.ControlPolicial;
-import modelo.obstaculo.Obstaculo;
-import modelo.probabilidades.Probabilidad;
-import modelo.probabilidades.ProbabilidadFija;
 import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
 
@@ -18,107 +12,116 @@ import modelo.vehiculo.Vehiculo;
 public class AutoTest {
 
 	@Test
-	public void testpasaPorPozoDeberiaSumarTresMovimientos() {
+	public void testpasaPorPozoDeberiaSumarTresPenalizaciones() {
 		
 		/* Arrange */
+		int penalizacion = 3;
 		EstadoVehiculo auto = new Auto();
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		int movimientos = 3;
 		
 		/* Act */
+		vehiculo.derecha();
+		int movimientos = vehiculo.getMovimientos()+ penalizacion;
 		auto.pasaPorPozo(vehiculo);
 		
 		/* Assert*/
-		Assert.assertEquals(movimientos, vehiculo.getMovimientos());
+		assertEquals(movimientos, vehiculo.getMovimientos());
 	}
 	
 	@Test
-	public void testpasaPorPozoDeberiaSumarPuntos() {
+	public void testpasaPorPozoDeberiaMoverALaSiguenteEsquina() {
 		
 		/* Arrange */
 		EstadoVehiculo auto = new Auto();
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		double puntaje = 40;
 		
 		/* Act */
+		vehiculo.derecha();
 		auto.pasaPorPozo(vehiculo);
 		
 		/* Assert*/
-		Assert.assertEquals(puntaje, vehiculo.getPuntaje());
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
 	}
 	
 	@Test
-	public void testpasaPorPozoDeberiaMoverEnLaDireccionDelVehiculo() {
+	public void testpasaPorPiqueteDeberiaSumarSoloUnMovimientos() {
 		
 		/* Arrange */
-		EstadoVehiculo auto = new Auto();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		vehiculo.subir();
-		
-		/* Act */
-		auto.pasaPorPozo(vehiculo);
-		
-		/* Assert*/
-		Assert.assertEquals( 0 , vehiculo.getX());
-		Assert.assertEquals( 2 , vehiculo.getY());
-		
-	}
-	
-	@Test
-	public void testpasaPorPiqueteDeberiaSumarUnMovimientos() {
-		
-		/* Arrange */
-		EstadoVehiculo auto = new Auto();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
 		int movimientos = 1;
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
 		
 		/* Act */
+		vehiculo.derecha();
 		auto.piquete(vehiculo);
 		
 		/* Assert*/
-		Assert.assertEquals(movimientos, vehiculo.getMovimientos());
+		assertEquals(movimientos, vehiculo.getMovimientos());
 	}
 	
 	@Test
-	public void testpasaPorPiqueteDeberiaSumarPuntos() {
+	public void testpiqueteDeberiaHacerloRetroceder() {
 		
 		/* Arrange */
 		EstadoVehiculo auto = new Auto();
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		double puntaje = 30;
 		
 		/* Act */
+		vehiculo.derecha();
 		auto.piquete(vehiculo);
 		
 		/* Assert*/
-		Assert.assertEquals(puntaje, vehiculo.getPuntaje());
+		assertEquals( 0 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
 	}
 	
 	@Test
 	public void testAfectarDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMenorAlaDelAuto(){
 		
+		/* Arrange */
+		int penalizacion =3;
 		EstadoVehiculo auto = new Auto();
-		Vector posicion = new Vector(0,0);
-		
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		int movimientos = vehiculo.getMovimientos()+ 3;
-		
+
+		/* Act */
+		vehiculo.derecha();
+		int movimientos = vehiculo.getMovimientos()+ penalizacion;
 		auto.controlPolicial(vehiculo,0.49);
-		
-		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
+
+		/* Assert*/
+		assertEquals( movimientos , vehiculo.getMovimientos());	
 	}
 	
 	@Test
 	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayotAlaDelAuto(){
 		
+		/* Arrange */
+		int penalizacion = 0;
 		EstadoVehiculo auto = new Auto();
-		Vector posicion = new Vector(0,0);
-
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		int movimientos = vehiculo.getMovimientos();
 		
+		/* Act */
+		vehiculo.derecha();
+		int movimientos = vehiculo.getMovimientos()+ penalizacion;
 		auto.controlPolicial(vehiculo,0.51);
 		
-		Assert.assertEquals( movimientos , vehiculo.getMovimientos());	
+		/* Assert*/
+		assertEquals( movimientos , vehiculo.getMovimientos());	
+	}
+	
+	@Test
+	public void testcontrolPolicialDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.controlPolicial(vehiculo,0.51);
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
 	}
 }
