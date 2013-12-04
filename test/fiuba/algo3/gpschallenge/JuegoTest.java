@@ -12,6 +12,8 @@ import modelo.vehiculo.Auto;
 
 import org.junit.Test;
 
+import controladores.Nivel;
+
 public class JuegoTest {
 	
 	
@@ -20,12 +22,17 @@ public class JuegoTest {
 	public void testDeberiaCrearUnJuegoConLimite() {
 		
 		/* Arrange */
-		int limiteHorizontal = 10;
 		EstadoVehiculo auto = new Auto();
-		Juego juego = Juego.crearJuego("Pepe",auto);
+		Nivel facil = new Nivel();
+		facil.setDificultad("facil");
+		Juego juego = new Juego("Pepe",facil,auto);
+		
+		int limiteHorizontal = 0;
+		int limiteVertical = 450;
 		
 		/* Assert */
 		Assert.assertEquals( limiteHorizontal , juego.getLimiteHorizontal() );
+		Assert.assertEquals( limiteVertical , juego.getLimiteVertical() );
 	}
 
 	@Test
@@ -50,19 +57,6 @@ public class JuegoTest {
 		/* Assert */
 		Assert.assertEquals("Pepe", juego.getUsuario());
 		Assert.assertEquals(auto.getClass(), juego.getVehiculo().getEstado().getClass());
-	}
-	
-//	Adaptarlo a persistencia por nivel
-	@Test
-	public void testDeberiaCrearUnJuegoConMetaEnPosicion(){
-		
-		/* Arrange */
-		EstadoVehiculo auto = new Auto();
-		Juego juego = Juego.crearJuego("Pepe",auto);		
-		
-		/* Assert */
-		Assert.assertEquals(5, juego.getMeta().getY());
-		Assert.assertEquals(10, juego.getMeta().getX());
 	}
 
 	@Test
@@ -103,14 +97,11 @@ public class JuegoTest {
 		Juego juego = Juego.crearJuego("Pepe",auto);
 		
 		/* Act */
-		juego.getVehiculo().setX(juego.getLimiteHorizontal());
-		juego.getVehiculo().setY(juego.getLimiteVertical()/2);
+		juego.getVehiculo().setX(juego.getMeta().getX());
+		juego.getVehiculo().setY(juego.getMeta().getY());
 		
 		
 		/* Assert */
-		Assert.assertEquals(juego.getVehiculo().getX(), juego.getMeta().getX());
-		Assert.assertEquals(juego.getVehiculo().getY(), juego.getMeta().getY());
-		
 		Assert.assertTrue(juego.llegoALaMeta());
 	}
 	
