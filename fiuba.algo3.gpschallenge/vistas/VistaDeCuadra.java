@@ -19,4 +19,3 @@ public class VistaDeCuadra extends Imagen {
 
 
 }
-
