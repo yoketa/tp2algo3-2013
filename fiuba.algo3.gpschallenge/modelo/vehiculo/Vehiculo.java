@@ -12,6 +12,7 @@ import org.jdom.Attribute;
 import org.jdom.Element;
 
 import controladores.Nivel;
+import excepciones.MovimientoFueraDeMapaException;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
@@ -128,14 +129,24 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		this.movimientos = i;
 	}
 	
-	public void setX(int x) {
-		this.posicion.setX(x);
+	public void setX(int x) throws MovimientoFueraDeMapaException {
+		
+		if ( x >= 0){
+			this.posicion.setX(x);
+		}else{ 
+			throw new MovimientoFueraDeMapaException("Intenta moverse a una direccion fuera del mapa");
+		}		
 	}
 
-	public void setY(int y) {
-		this.posicion.setY(y);		
+	public void setY(int y) throws MovimientoFueraDeMapaException {
+		
+		if ( y >= 0){
+			this.posicion.setY(y);
+		}else{ 
+			throw new MovimientoFueraDeMapaException("Intenta moverse a una direccion fuera del mapa");
+		}	
 	}
-
+	
 	public Vector getPosicion() {
 		return this.posicion;
 	}
