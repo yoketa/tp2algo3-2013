@@ -23,7 +23,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import persistencia.Archivador;
@@ -123,6 +122,7 @@ public class PanelDelJuego {
 		Piquete piquete = new Piquete();
 		piquete.setPosicion(new Vector(70, 70));
 		VistaDeObstaculo vistaPiquete = new VistaDeObstaculo(piquete);
+		modelo.agregarEvento(piquete);
 		
 		this.gameLoop.agregar(piquete);
 		this.gameLoop.agregar(vistaPiquete);
@@ -130,6 +130,7 @@ public class PanelDelJuego {
 		Pozo pozo = new Pozo();
 		pozo.setPosicion(new Vector(140, 70));
 		VistaDeObstaculo vistaPozo = new VistaDeObstaculo(pozo);
+		modelo.agregarEvento(pozo);
 		
 		this.gameLoop.agregar(pozo);
 		this.gameLoop.agregar(vistaPozo);
@@ -137,6 +138,7 @@ public class PanelDelJuego {
 		ControlPolicial control = new ControlPolicial();
 		control.setPosicion(new Vector(140, 140));
 		VistaDeObstaculo vistaControl = new VistaDeObstaculo(control);
+		modelo.agregarEvento(control);
 		
 		this.gameLoop.agregar(control);
 		this.gameLoop.agregar(vistaControl);
@@ -144,6 +146,7 @@ public class PanelDelJuego {
 		Sorpresa sorpresa = new SorpresaFavorable();
 		sorpresa.setPosicion(new Vector(140, 210));
 		VistaDeSorpresa vistaSorpresa = new VistaDeSorpresa(sorpresa);
+		modelo.agregarEvento(sorpresa);
 		
 		this.gameLoop.agregar(sorpresa);
 		this.gameLoop.agregar(vistaSorpresa);
@@ -267,7 +270,7 @@ public class PanelDelJuego {
 			        	posicionActual = modelo.getVehiculo().getX();
 			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
 			        		modelo.getVehiculo().derecha();
-				        	modelo.aplicarEvento();	
+				        	modelo.aplicarEvento();
 			        	}			        	
 			        	llegoAMeta();
 			            break;
