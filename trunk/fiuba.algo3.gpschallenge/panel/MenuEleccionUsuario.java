@@ -36,7 +36,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
     private void agregarUsuarios() {
 
         this.usuariosGuardados = new ArrayList();
-		this.ranking = Archivador.cargar(new Ranking(), "\\Level\\Ranking.xml");
+		this.ranking = Archivador.cargar(new Ranking(), "c:\\Level\\Ranking.xml");
         this.usuariosGuardados = this.ranking.getPuntajes();
         
         String user;
