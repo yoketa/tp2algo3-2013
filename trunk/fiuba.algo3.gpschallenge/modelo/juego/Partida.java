@@ -14,6 +14,7 @@ import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
+import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
 
 public class Partida {
@@ -21,10 +22,13 @@ public class Partida {
 	private Vehiculo vehiculo;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
-
-	public Partida(){
+	private String partidaPath; ;
+	
+	public Partida(Vehiculo vehiculo){
 		this.sorpresas = new ArrayList<Sorpresa>();
 		this.obstaculos = new ArrayList<Obstaculo>();
+		this.vehiculo = vehiculo;
+		this.partidaPath = "C:\\Persistencia\\Partida"+this.vehiculo.getPiloto()+".xml";
 	}
 
 	public void setUsuario(String usuario){
@@ -67,9 +71,22 @@ public class Partida {
 			return obstaculos;
 		}
 	
+		
+		public void setVehiculo(Vehiculo vehiculo){
+			this.vehiculo = vehiculo;
+		} 
+		
+		public Vehiculo getVehiculo(){
+			return this.vehiculo;
+		}
+		
+		public String getPath(){
+			return this.partidaPath;
+		}
+		
 		public Element serializarXML() {
 			Element element = new Element("Partida");
-			
+			element.addContent(vehiculo.serializarXML());
 			for (Sorpresa sorpresa : sorpresas) {
 				Element entradaSorpresa = new Element("Sorpresa");
 				entradaSorpresa.addContent(sorpresa.serializarXML());
@@ -81,20 +98,20 @@ public class Partida {
 				entradaObstaculo.addContent(obstaculo.serializarXML());
 				element.addContent(entradaObstaculo);
 			}
-			Element EntradaVehiculo = new Element("Vehiculo");
-			EntradaVehiculo.addContent(vehiculo.serializarXML());
-			element.addContent(EntradaVehiculo);
+			
+			
 			return element;
 		}
 
 		
 		
-		public static Nivel cargarDesdeXML(Element element) {
+		public static Partida cargarDesdeXML(Element element) {
 			List<Sorpresa> sorpresas = new ArrayList<Sorpresa>();
 			List<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
+			Vehiculo vehiculo = Vehiculo.cargarDesdeXML(element.getChild("Vehiculo"));
 			for (Object sorpresaGuardada : element.getChildren()) {
 				
-					
+				
 					Sorpresa miSorpresa= null;
 					if ((((Element)sorpresaGuardada).getChild("SorpresaFavorable")) != null){
 						SorpresaFavorable tipoSorpresa = null;
@@ -129,6 +146,8 @@ public class Partida {
 						miObstaculo = tipoObstaculo;	
 					}
 					
+					
+				
 				if(miSorpresa != null){
 				sorpresas.add(miSorpresa);
 				}
@@ -138,10 +157,10 @@ public class Partida {
 				
 			}
 			
-			Nivel nivel = new Nivel ();
-			nivel.agregarSorpresas(sorpresas);
-			nivel.agregarObstaculos(obstaculos);
-			return nivel;
+			Partida partida = new Partida (vehiculo);
+			partida.agregarSorpresas(sorpresas);
+			partida.agregarObstaculos(obstaculos);
+			return partida;
 		}	
 
 }
