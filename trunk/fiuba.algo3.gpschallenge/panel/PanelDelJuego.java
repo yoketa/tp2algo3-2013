@@ -118,7 +118,7 @@ public class PanelDelJuego {
 		
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
-		
+	
 		Piquete piquete = new Piquete();
 		piquete.setPosicion(new Vector(70, 70));
 		VistaDeObstaculo vistaPiquete = new VistaDeObstaculo(piquete);

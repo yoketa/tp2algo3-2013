@@ -160,7 +160,7 @@ public class Juego {
 			int limiteSuperiorEvento = evento.getPosicion().getY()+30;
 			int limiteInferiorEvento = evento.getPosicion().getY()-30;
 			
-			if((evento.getPosicion().getX() == posicion.getX()) && ( limiteSuperiorEvento <= posicion.getY()) && (limiteInferiorEvento >= posicion.getY()))
+			if((evento.getPosicion().getX() == posicion.getX())&& ( limiteSuperiorEvento >= posicion.getY()) && (limiteInferiorEvento <= posicion.getY()))
 				return true;
 		}
 		return false;
