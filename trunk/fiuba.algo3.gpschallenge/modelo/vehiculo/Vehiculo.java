@@ -6,12 +6,12 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 
+import modelo.juego.Nivel;
 import modelo.juego.Vector;
 
 import org.jdom.Attribute;
 import org.jdom.Element;
 
-import controladores.Nivel;
 import excepciones.MovimientoFueraDeMapaException;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;

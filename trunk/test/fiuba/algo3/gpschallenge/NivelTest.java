@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import modelo.juego.Nivel;
 import modelo.juego.Ranking;
 import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
@@ -22,7 +23,6 @@ import modelo.vehiculo.Vehiculo;
 import org.junit.Before;
 import org.junit.Test;
 
-import controladores.Nivel;
 import persistencia.Archivador;
 
 public class NivelTest {

@@ -2,6 +2,7 @@ package persistencia;
 
 import java.io.FileWriter;
 
+import modelo.juego.Nivel;
 import modelo.juego.Partida;
 import modelo.juego.Ranking;
 import modelo.vehiculo.Vehiculo;
@@ -12,7 +13,6 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import controladores.Nivel;
 
 
 public class Archivador {

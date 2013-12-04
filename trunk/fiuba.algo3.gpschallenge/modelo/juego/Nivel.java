@@ -1,10 +1,8 @@
-package controladores;
+package modelo.juego;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.juego.Ranking;
-import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
 import modelo.obstaculo.Piquete;
@@ -22,12 +20,12 @@ import org.jdom.Element;
 
 public class Nivel {
 
-	public static String nivelPath = "C:\\Persistencia\\Nivel.xml";
-	public static String nivelFacilPath = "C:\\Level\\NivelFacil.xml";
-	public static String nivelMedioPath = "C:\\Level\\NivelMedio.xml";
-	public static String nivelDificilPath = "C:\\Level\\NivelDificil.xml";
-	public static String nivelSorpresaPath = "C:\\Persistencia\\Sorpresa.xml";
-	public static String nivelObstaculoPath = "C:\\Persistencia\\Obstaculo.xml";
+	public static String nivelPath = "persistenciaTest/Nivel.xml";	
+	public static String nivelFacilPath = "persistencia/NivelFacil.xml";
+	public static String nivelMedioPath = "persistencia/NivelMedio.xml";
+	public static String nivelDificilPath = "persistencia/NivelDificil.xml";
+	public static String nivelSorpresaPath = "persistenciaTest/Sorpresa.xml";
+	public static String nivelObstaculoPath = "persistenciaTest/Obstaculo.xml";
 	public static int tamañoCuadraCalle = 70;
 	public static int tamañoCuadra = 40;
 	public static int tamañoCalle = 30;

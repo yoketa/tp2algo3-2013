@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Nivel>
+  <Obstaculo>
+    <Pozo>
+      <Vector x="180" y="210" />
+    </Pozo>
+  </Obstaculo>
+  <Obstaculo>
+    <Pozo>
+      <Vector x="460" y="210" />
+    </Pozo>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="110" y="0" />
+    </Piquete>
+  </Obstaculo>
+  <Obstaculo>
+    <ControlPolicial>
+      <Vector x="170" y="156" />
+    </ControlPolicial>
+  </Obstaculo>
+</Nivel>
+
