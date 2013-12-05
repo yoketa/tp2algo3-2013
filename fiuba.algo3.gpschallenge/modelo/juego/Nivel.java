@@ -11,11 +11,6 @@ import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
-import modelo.vehiculo.Auto;
-import modelo.vehiculo.ComparadorVehiculosPorPuntaje;
-import modelo.vehiculo.Vehiculo;
-
-import org.jdom.Attribute;
 import org.jdom.Element;
 
 public class Nivel {

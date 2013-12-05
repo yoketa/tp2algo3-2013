@@ -1,7 +1,6 @@
 package Integracion;
 
 import static org.junit.Assert.*;
-import junit.framework.Assert;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.juego.Juego;
