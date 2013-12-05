@@ -1,23 +1,16 @@
 package panel;
 
 
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import excepciones.MovimientoFueraDeMapaException;
-
 import persistencia.Archivador;
 
 import modelo.juego.Juego;
 import modelo.juego.Ranking;
-import modelo.vehiculo.Vehiculo;
 
+@SuppressWarnings("serial")
 public class PanelGanador extends javax.swing.JFrame {
 
     private String usuario;
     private String dificultad;
-    private PanelDelJuego panel;
     private MenuPrincipal menuPrincipal;
 	private int movimientos;
 	private int puntaje;
@@ -39,12 +32,10 @@ public PanelGanador(String dificultad, String usuario,Juego juego) throws Except
         
         initComponents();
         
-        this.panel = panel;
-        
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     
-    @SuppressWarnings("unchecked")
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 

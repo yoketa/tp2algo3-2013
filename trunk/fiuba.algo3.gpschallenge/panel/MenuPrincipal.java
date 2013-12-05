@@ -7,8 +7,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private MenuPartidaNueva menuPartidaNueva;
     private MenuPuntajes menuPuntajes;
     private PanelGanador panelGanador;
+	private PanelPerdedor panelPerdedor;
     private String usuario;
     private boolean accionPreviaEsRegistracion = false;
+
     
     public MenuPrincipal() {
         initComponents();
@@ -42,6 +44,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.panelGanador = panelGanador;
         panelGanador.setVisible(false);
+        volver.setEnabled(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
+    }
+    
+    //Constructor si viene de perder el juego
+    MenuPrincipal(PanelPerdedor panelPerdedor,String user) {
+        this.usuario = user;
+        this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
+        initComponents();
+        this.panelPerdedor = panelPerdedor;
+        panelPerdedor.setVisible(false);
         volver.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
