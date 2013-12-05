@@ -28,13 +28,13 @@ import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
+import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import modelo.vehiculo.*;
 public class PanelDelJuego {
     
     private String usuario;
     private String dificultad;
-    private MenuPartidaNueva menuPartidaNueva;
 	public JFrame frame;
 	private GameLoop gameLoop;
 	public Juego modelo;
@@ -44,13 +44,13 @@ public class PanelDelJuego {
 	private PanelPerdedor panelPerdedor;
 	private int movimientosRestantes;
 	private JLabel etiquetaMovimientos;
+	private VistaDeVehiculo vista;
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
     	this.vehiculo = vehiculo;
         this.usuario = usuario;
         this.dificultad = dificultad;
-        this.menuPartidaNueva = menuPartida;
         Nivel nivel = new Nivel();
         nivel.setDificultad(dificultad);
         this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(vehiculo));
@@ -58,7 +58,6 @@ public class PanelDelJuego {
         try {
 			initialize();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         menuPartida.setVisible(false);
@@ -111,7 +110,7 @@ public class PanelDelJuego {
 	 * 
 	 * */
 	private void inicializarModelo() throws IOException {
-		VistaDeVehiculo vista = new VistaDeVehiculo(modelo.getVehiculo());
+		vista = new VistaDeVehiculo(modelo.getVehiculo());
 
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
@@ -213,6 +212,28 @@ public class PanelDelJuego {
 
 	} 
 	
+	private void cambioDeVista() throws IOException{
+
+		this.gameLoop.remover(vista);
+		vista = new VistaDeVehiculo(modelo.getVehiculo());
+		this.gameLoop.agregar(modelo.getVehiculo());
+		this.gameLoop.agregar(vista);
+	}
+	
+	
+	//Chequea todo cambio en la vista, si llego a la meta, si posee movimientos restante
+	private void actualizar() throws IOException {
+		try {
+			llegoAMeta();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
+		chequeoDeMovimientosValidos();
+		
+		cambioDeVista();
+	}
+	
 	/* Captura que se haya apretado una tecla
 	 * */
 	private void addKeyListener() {
@@ -242,79 +263,58 @@ public class PanelDelJuego {
 				// Dependiendo del código de la tecla
 				// La cantidad a mover es 40 (tamaño de cuadra) + 30
 				// (para ponerse en el medio de la calle) pixeles
-				int posicionActual = 0;
+	    		int posicionActual = 0;
 			    switch( keyCode ) { 
 			        case KeyEvent.VK_UP: // ARRIBA
-			        	posicionActual = modelo.getVehiculo().getY();
-			        	if (posicionActual - Nivel.tamañoCuadra > 0) {
-				        	modelo.getVehiculo().subir();
-				        	modelo.aplicarEvento();			        		
-			        	}
-			        	
-						try {
-							llegoAMeta();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
-						
-						chequeoDeMovimientosValidos();
-						
+				        	posicionActual = modelo.getVehiculo().getX();
+				        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
+				        		modelo.getVehiculo().subir();
+				            	modelo.aplicarEvento();
+				        	}
+							try {
+								actualizar();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 				            break;
 			        case KeyEvent.VK_DOWN: // ABAJO
-			        	posicionActual = modelo.getVehiculo().getY();
-			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteVertical()) {
-			        		modelo.getVehiculo().bajar();
-				        	modelo.aplicarEvento();	
-			        	}	
-			        	
-						try {
-							llegoAMeta();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
-						
-						chequeoDeMovimientosValidos();
-						
+				        	posicionActual = modelo.getVehiculo().getX();
+				        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
+				        		modelo.getVehiculo().bajar();
+				            	modelo.aplicarEvento();
+				        	}
+							try {
+								actualizar();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 				            break;
 			        case KeyEvent.VK_LEFT: // IZQUIERDA
 			        	posicionActual = modelo.getVehiculo().getX();
-			        	if (posicionActual - Nivel.tamañoCuadra > 0) {
-			        		modelo.getVehiculo().izquierda();
-				        	modelo.aplicarEvento();
-			        	}	
-			        	
-						try {
-							llegoAMeta();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
-						chequeoDeMovimientosValidos();
-						
-			            break;
-			        case KeyEvent.VK_RIGHT : // DERECHA
-			        	posicionActual = modelo.getVehiculo().getX();
 			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
-			        		modelo.getVehiculo().derecha();
-				        	modelo.aplicarEvento();
+			        		modelo.getVehiculo().izquierda();
+			            	modelo.aplicarEvento();
 			        	}
-			        	
-						try {
-							llegoAMeta();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
-						
-						chequeoDeMovimientosValidos();
-			            break;
+			        		try {
+								actualizar();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+			        		break;
+			        case KeyEvent.VK_RIGHT : // DERECHA
+				        	posicionActual = modelo.getVehiculo().getX();
+				        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
+				        		modelo.getVehiculo().derecha();
+				            	modelo.aplicarEvento();
+				        	}
+							try {
+								actualizar();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+			        		break;
 			     }
 			}
-
- 
-			 	
 		});
 	}
 
