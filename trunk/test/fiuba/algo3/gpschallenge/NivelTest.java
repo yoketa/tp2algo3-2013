@@ -38,6 +38,7 @@ public class NivelTest {
 	private Sorpresa sorpresa9;
 	private Sorpresa sorpresa10;
 	private Sorpresa sorpresa11;
+	private Sorpresa sorpresa12;
 	
 	private Obstaculo obstaculo1;
 	private Obstaculo obstaculo2;
@@ -51,6 +52,9 @@ public class NivelTest {
 	private Obstaculo obstaculo10;
 	private Obstaculo obstaculo11;
 	private Obstaculo obstaculo12;
+	private Obstaculo obstaculo13;
+	private Obstaculo obstaculo14;
+	private Obstaculo obstaculo15;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private Nivel nivel;
@@ -68,7 +72,7 @@ public class NivelTest {
 		sorpresa9 = new SorpresaDesfavorable(new Vector(670,210));
 		sorpresa10 = new SorpresaFavorable(new Vector(880,420));
 		sorpresa11 = new SorpresaDesfavorable(new Vector(0,180));
-		
+		sorpresa12 = new SorpresaFavorable(new Vector(180,70));
 		ProbabilidadEquiprobable proba = new ProbabilidadEquiprobable();
 		
 		obstaculo1 = new Pozo (new Vector(180,210));
@@ -83,6 +87,9 @@ public class NivelTest {
 		obstaculo10 = new Piquete (new Vector(810,280));
 		obstaculo11 = new Piquete (new Vector(530,70));
 		obstaculo12 = new Piquete (new Vector(250,140));
+		obstaculo13 = new ControlPolicial (new Vector(320,70),proba);
+		obstaculo14 = new ControlPolicial (new Vector(390,280),proba);
+		obstaculo15 = new Piquete (new Vector(180,420));
 		nivel = new Nivel();
 	}
 	
@@ -130,14 +137,14 @@ public class NivelTest {
 		Vector posicionSopresa3 = sorpresas.get(2).getPosicion();
 		Vector posicionSopresa4 = sorpresas.get(3).getPosicion();
 		
-		assertEquals(posicionSopresa1.getX(),110,1E-5);
-		assertEquals(posicionSopresa1.getY(),180,1E-5);
-		assertEquals(posicionSopresa2.getX(),460,1E-5);
-		assertEquals(posicionSopresa2.getY(),320,1E-5);
+		assertEquals(posicionSopresa1.getX(),70,1E-5);
+		assertEquals(posicionSopresa1.getY(),320,1E-5);
+		assertEquals(posicionSopresa2.getX(),740,1E-5);
+		assertEquals(posicionSopresa2.getY(),0,1E-5);
 		assertEquals(posicionSopresa3.getX(),530,1E-5);
 		assertEquals(posicionSopresa3.getY(),280,1E-5);
 		assertEquals(posicionSopresa4.getX(),250,1E-5);
-		assertEquals(posicionSopresa4.getY(),390,1E-5);
+		assertEquals(posicionSopresa4.getY(),350,1E-5);
 	}
 	
 	
@@ -159,8 +166,8 @@ public class NivelTest {
 		assertEquals(posicionObstaculo2.getY(),210,1E-5);
 		assertEquals(posicionObstaculo3.getX(),110,1E-5);
 		assertEquals(posicionObstaculo3.getY(),0,1E-5);
-		assertEquals(posicionObstaculo4.getX(),110,1E-5);
-		assertEquals(posicionObstaculo4.getY(),530,1E-5);
+		assertEquals(posicionObstaculo4.getX(),420,1E-5);
+		assertEquals(posicionObstaculo4.getY(),180,1E-5);
 	}
 	
 	
@@ -231,11 +238,18 @@ public class NivelTest {
 	public void testGuardarYCargarNivelFacil() {
 		Nivel nivel = new Nivel();
 		nivel.agregarUnObstaculo(obstaculo1);
-		nivel.agregarUnObstaculo(obstaculo2);
+		nivel.agregarUnObstaculo(obstaculo12);
 		nivel.agregarUnObstaculo(obstaculo3);
+		nivel.agregarUnObstaculo(obstaculo13);
+		nivel.agregarUnObstaculo(obstaculo14);
+		nivel.agregarUnObstaculo(obstaculo15);
+		
 		nivel.agregarUnaSorpresa(sorpresa1);
-		nivel.agregarUnaSorpresa(sorpresa2);
-		nivel.agregarUnaSorpresa(sorpresa3);
+		nivel.agregarUnaSorpresa(sorpresa11);
+		nivel.agregarUnaSorpresa(sorpresa4);
+		nivel.agregarUnaSorpresa(sorpresa5);
+		nivel.agregarUnaSorpresa(sorpresa6);
+		nivel.agregarUnaSorpresa(sorpresa12);
 		
 		try {
 			Archivador.guardar(nivel, Nivel.nivelFacilPath);
@@ -276,8 +290,9 @@ public class NivelTest {
 		nivel.agregarUnObstaculo(obstaculo8);
 		nivel.agregarUnObstaculo(obstaculo11);
 		nivel.agregarUnObstaculo(obstaculo12);
+		nivel.agregarUnObstaculo(obstaculo14);
+		nivel.agregarUnObstaculo(obstaculo15);
 		nivel.agregarUnaSorpresa(sorpresa1);
-		nivel.agregarUnaSorpresa(sorpresa2);
 		nivel.agregarUnaSorpresa(sorpresa3);
 		nivel.agregarUnaSorpresa(sorpresa4);
 		nivel.agregarUnaSorpresa(sorpresa5);
@@ -325,6 +340,9 @@ public class NivelTest {
 		nivel.agregarUnObstaculo(obstaculo8);
 		nivel.agregarUnObstaculo(obstaculo9);
 		nivel.agregarUnObstaculo(obstaculo10);
+		nivel.agregarUnObstaculo(obstaculo14);
+		nivel.agregarUnObstaculo(obstaculo15);
+		
 		nivel.agregarUnaSorpresa(sorpresa1);
 		nivel.agregarUnaSorpresa(sorpresa2);
 		nivel.agregarUnaSorpresa(sorpresa3);

@@ -100,5 +100,15 @@
       <Vector x="810" y="280" />
     </Piquete>
   </Obstaculo>
+  <Obstaculo>
+    <ControlPolicial>
+      <Vector x="390" y="280" />
+    </ControlPolicial>
+  </Obstaculo>
+  <Obstaculo>
+    <Piquete>
+      <Vector x="180" y="420" />
+    </Piquete>
+  </Obstaculo>
 </Nivel>
 
