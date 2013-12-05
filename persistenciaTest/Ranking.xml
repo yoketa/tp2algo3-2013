@@ -12,5 +12,13 @@
     <Vector x="200" y="200" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />
   </Vehiculo>
+  <Vehiculo puntaje="40.0" piloto="Juan" movimientos="0">
+    <Vector x="185" y="185" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
+  <Vehiculo puntaje="24.0" piloto="Gabriel" movimientos="0">
+    <Vector x="230" y="230" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
 </Ranking>
 

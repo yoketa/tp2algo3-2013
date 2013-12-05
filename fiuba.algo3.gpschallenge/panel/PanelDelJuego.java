@@ -178,7 +178,7 @@ public class PanelDelJuego {
 	}
 
 	//Chequea si llego a la meta
-	public void llegoAMeta(){
+	public void llegoAMeta() throws Exception{
 		if( this.modelo.llegoALaMeta() ){
 	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,modelo);
 	        panelGanador.setBounds(400,50,panelGanador.getWidth(),panelGanador.getHeight());
@@ -226,7 +226,12 @@ public class PanelDelJuego {
 				        	modelo.getVehiculo().subir();
 				        	modelo.aplicarEvento();			        		
 			        	}
-			        	llegoAMeta();
+					try {
+						llegoAMeta();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			            break;
 			        case KeyEvent.VK_DOWN: // ABAJO
 			        	posicionActual = modelo.getVehiculo().getY();
@@ -234,7 +239,12 @@ public class PanelDelJuego {
 			        		modelo.getVehiculo().bajar();
 				        	modelo.aplicarEvento();	
 			        	}			        	
-			        	llegoAMeta();
+					try {
+						llegoAMeta();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			            break;
 			        case KeyEvent.VK_LEFT: // IZQUIERDA
 			        	posicionActual = modelo.getVehiculo().getX();
@@ -242,7 +252,12 @@ public class PanelDelJuego {
 			        		modelo.getVehiculo().izquierda();
 				        	modelo.aplicarEvento();
 			        	}			        	
-			        	llegoAMeta();
+					try {
+						llegoAMeta();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			            break;
 			        case KeyEvent.VK_RIGHT : // DERECHA
 			        	posicionActual = modelo.getVehiculo().getX();
@@ -250,7 +265,12 @@ public class PanelDelJuego {
 			        		modelo.getVehiculo().derecha();
 				        	modelo.aplicarEvento();
 			        	}			        	
-			        	llegoAMeta();
+					try {
+						llegoAMeta();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			            break;
 			     }
 			}  

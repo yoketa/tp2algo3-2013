@@ -88,7 +88,7 @@ public class RankingTest {
 	@Test
 	public void testPersistenciaRanking() {
 		try {
-			Archivador.guardar(ranking, Ranking.rankingPath);
+			Archivador.guardar(ranking, "persistenciaTest/Ranking.xml");
 			assertTrue(true);
 		}
 		catch (Exception ex) {
@@ -104,8 +104,8 @@ public class RankingTest {
 		ranking.agregarPuntaje(vehiculo3);
 		
 		try {
-			Archivador.guardar(ranking, Ranking.rankingPath);
-			Ranking rankingRecargado = Archivador.cargar(new Ranking(), Ranking.rankingPath);
+			Archivador.guardar(ranking, "persistenciaTest/Ranking.xml");
+			Ranking rankingRecargado = Archivador.cargar(new Ranking(), "persistenciaTest/Ranking.xml");
 			List<Vehiculo> puntajesRecargados = rankingRecargado.getPuntajes();
 			puntajes = ranking.getPuntajes();
 			
@@ -147,8 +147,8 @@ public class RankingTest {
 		ranking.agregarPuntaje(vehiculo4);
 		ranking.agregarPuntaje(vehiculo5);
 		try {
-			Archivador.guardar(ranking, "persistencia/Ranking.xml");
-			Ranking rankingRecargado = Archivador.cargar(new Ranking(), "persistencia/Ranking.xml");
+			Archivador.guardar(ranking, "persistenciaTest/Ranking.xml");
+			Ranking rankingRecargado = Archivador.cargar(new Ranking(), "persistenciaTest/Ranking.xml");
 			List<Vehiculo> puntajesRecargados = rankingRecargado.getPuntajes();
 			puntajes = ranking.getPuntajes();
 			
