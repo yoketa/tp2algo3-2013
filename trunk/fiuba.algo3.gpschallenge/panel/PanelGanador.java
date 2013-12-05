@@ -1,9 +1,17 @@
 package panel;
 
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
+import excepciones.MovimientoFueraDeMapaException;
+
+import persistencia.Archivador;
+
 import modelo.juego.Juego;
+import modelo.juego.Ranking;
+import modelo.vehiculo.Vehiculo;
 
 public class PanelGanador extends javax.swing.JFrame {
 
@@ -13,8 +21,9 @@ public class PanelGanador extends javax.swing.JFrame {
     private MenuPrincipal menuPrincipal;
 	private int movimientos;
 	private int puntaje;
+	private Ranking ranking;
     
-public PanelGanador(String dificultad, String usuario,Juego juego) {
+public PanelGanador(String dificultad, String usuario,Juego juego) throws Exception {
         
         this.usuario = usuario;
         this.dificultad = dificultad;
@@ -23,7 +32,10 @@ public PanelGanador(String dificultad, String usuario,Juego juego) {
         this.movimientos = juego.movimientosLimites(dificultad)-juego.getVehiculo().getMovimientos();
         this.puntaje = juego.puntajePorMovimiento(dificultad);
         
-
+        this.ranking = new Ranking();
+        this.ranking = Archivador.cargar(ranking, ranking.rankingPath);
+        this.ranking.agregarPuntaje(juego.getVehiculo());
+		Archivador.guardar(ranking, Ranking.rankingPath);
         
         initComponents();
         
