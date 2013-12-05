@@ -1,36 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ranking>
-  <Vehiculo puntaje="24.0" piloto="Ramon" movimientos="14">
+  <Vehiculo puntaje="24.0" piloto="CR7" movimientos="14">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="24.0" piloto="CR7" movimientos="14">
     <Vector x="420" y="210" />
     <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
   </Vehiculo>
-  <Vehiculo puntaje="18.0" piloto="Ramon" movimientos="20">
+  <Vehiculo puntaje="23.0" piloto="Messi" movimientos="15">
     <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="18.0" piloto="CR7" movimientos="23">
+    <Vector x="560" y="210" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />
   </Vehiculo>
-  <Vehiculo puntaje="18.0" piloto="Ramon" movimientos="20">
+  <Vehiculo puntaje="10.0" piloto="Messi" movimientos="28">
     <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="14.0" piloto="Ramon" movimientos="24">
-    <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="11.0" piloto="Ramon" movimientos="27">
-    <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="8.0" piloto="Ramon" movimientos="30">
-    <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="0.0" piloto="Ramon" movimientos="9">
-    <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="0.0" piloto="Juan" movimientos="9">
-    <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
   </Vehiculo>
 </Ranking>
 

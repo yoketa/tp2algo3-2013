@@ -39,11 +39,15 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 		this.ranking = Archivador.cargar(new Ranking(), "persistencia/Ranking.xml");
         this.usuariosGuardados = this.ranking.getPuntajes();
         
-        String user;
-        
-        for( int i=0; i<this.usuariosGuardados.size() ; i++ ){
-            user = this.usuariosGuardados.get(i).getPiloto();
-        	usuarios.addItem(user);
+        if (this.usuariosGuardados.size() != 0){
+            String user;
+            
+            for( int i=0; i<this.usuariosGuardados.size() ; i++ ){
+                user = this.usuariosGuardados.get(i).getPiloto();
+            	grupoDeUsuarios.addItem(user);
+            }
+        } else {
+            botonAceptar.setEnabled(false);
         }
 	}
 
@@ -56,9 +60,9 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        aceptar = new javax.swing.JButton();
-        usuarios = new javax.swing.JComboBox();
-        volver = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
+        grupoDeUsuarios = new javax.swing.JComboBox();
+        botonVolver = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -75,23 +79,23 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        aceptar.setFont(new java.awt.Font("Consolas", 0, 18));
-        aceptar.setText("Aceptar");
-        aceptar.addActionListener(new java.awt.event.ActionListener() {
+        botonAceptar.setFont(new java.awt.Font("Consolas", 0, 18));
+        botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarActionPerformed(evt);
             }
         });
 
-        usuarios.addActionListener(new java.awt.event.ActionListener() {
+        grupoDeUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuariosActionPerformed(evt);
             }
         });
 
-        volver.setFont(new java.awt.Font("Consolas", 0, 12));
-        volver.setText("Volver a menu anterior");
-        volver.addActionListener(new java.awt.event.ActionListener() {
+        botonVolver.setFont(new java.awt.Font("Consolas", 0, 12));
+        botonVolver.setText("Volver a menu anterior");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
             }
@@ -109,11 +113,11 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(aceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(grupoDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(volver)))
+                        .addComponent(botonVolver)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,11 +126,11 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(grupoDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
-                .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -134,8 +138,8 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        int num = usuarios.getSelectedIndex();
-        this.usuario = (String) usuarios.getSelectedItem();
+        int num = grupoDeUsuarios.getSelectedIndex();
+        this.usuario = (String) grupoDeUsuarios.getSelectedItem();
         menuPrincipal = new MenuPrincipal(this,this.usuario);
         menuPrincipal.setBounds(500,250,450,250);
         menuPrincipal.setVisible(true);
@@ -151,13 +155,13 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
     }                                      
 
     // Variables declaration - do not modify
-    private javax.swing.JButton aceptar;
+    private javax.swing.JButton botonAceptar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JComboBox usuarios;
-    private javax.swing.JButton volver;
+    private javax.swing.JComboBox grupoDeUsuarios;
+    private javax.swing.JButton botonVolver;
     // End of variables declaration
 }
