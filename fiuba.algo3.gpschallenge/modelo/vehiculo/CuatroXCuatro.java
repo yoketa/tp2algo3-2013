@@ -1,6 +1,9 @@
 package modelo.vehiculo;
 
 import static org.junit.Assert.fail;
+
+import javax.swing.JOptionPane;
+
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Vector;
 
@@ -10,10 +13,6 @@ import org.jdom.Element;
 public class CuatroXCuatro implements EstadoVehiculo {
 	
 	private double probabilidadDePasarUnControlPolicial;
-	private final double PUNTOS_PIQUETE = 40;
-	private final double PUNTOS_POZO = 60;
-	private final double PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION =50;
-	private final double PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION =80;
 	
 	public CuatroXCuatro(){
 		this.probabilidadDePasarUnControlPolicial = 0.3;
@@ -21,7 +20,6 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {
 		
-		vehiculo.sumarPuntos(PUNTOS_POZO);
 		vehiculo.avanzarAFinalDeCuadra();
 	}
 
@@ -29,7 +27,6 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	public void piquete(Vehiculo vehiculo) {
 		
 		vehiculo.pegarLaVuelta();
-		vehiculo.sumarPuntos(PUNTOS_PIQUETE);
 
 	}
 	
@@ -39,9 +36,6 @@ public class CuatroXCuatro implements EstadoVehiculo {
 		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial())
 		{
 			vehiculo.sumarMovimientos(3);
-			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION);
-		}else{
-			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION);
 		}
 		vehiculo.avanzarAFinalDeCuadra();
 	}
@@ -59,19 +53,25 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	
 	@Override
 	public void penalizacionFavorable(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual * 0.8);		
+		int movimientosActuales = vehiculo.getMovimientos();
+		vehiculo.sumarMovimientos((int) (-movimientosActuales * 0.2));
+		JOptionPane.showMessageDialog(null, "Utilizas Nitro!! Has encontrado una Sorpresa Favorable");
+		vehiculo.avanzarAFinalDeCuadra();		
 	}
 
 	@Override
 	public void penalizacionDesfavorable(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual * 1.25);
+		int movimientosActuales = vehiculo.getMovimientos();
+		vehiculo.sumarMovimientos((int) (movimientosActuales * 0.25));
+		JOptionPane.showMessageDialog(null, "Pinchaste una rueda, Has encontrado una Sorpresa Desfavorable");
+		vehiculo.avanzarAFinalDeCuadra();	
 	}
 
 	@Override
 	public void cambiarEstado(Vehiculo vehiculo) {
 		vehiculo.setEstado(new Moto());
+		JOptionPane.showMessageDialog(null, "Chocas con tu 4x4, pero te robas una moto");
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 
 	public Element serializarXML() {

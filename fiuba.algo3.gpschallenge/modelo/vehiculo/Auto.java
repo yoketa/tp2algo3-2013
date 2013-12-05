@@ -1,6 +1,9 @@
 package modelo.vehiculo;
 
 import static org.junit.Assert.fail;
+
+import javax.swing.JOptionPane;
+
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Vector;
 
@@ -8,11 +11,6 @@ import org.jdom.Attribute;
 import org.jdom.Element;
 
 public class Auto implements EstadoVehiculo {
-	
-	 final double PUNTOS_PIQUETE = 30;
-	 final double PUNTOS_POZO = 40;
-	 final double PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION = 20;
-	 final double PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION = 70;
 	
 	private double probabilidadDePasarUnControlPolicial;
 	
@@ -23,8 +21,9 @@ public class Auto implements EstadoVehiculo {
 
 	@Override
 	public void pasaPorPozo(Vehiculo vehiculo) {
+		
 		vehiculo.sumarMovimientos(3);
-		vehiculo.avanzarAFinalDeCuadra();	
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 
 	@Override
@@ -56,19 +55,25 @@ public class Auto implements EstadoVehiculo {
 
 	@Override
 	public void penalizacionFavorable(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual * 0.8);		
+		int movimientosActuales = vehiculo.getMovimientos();
+		vehiculo.sumarMovimientos((int) (-movimientosActuales * 0.2));
+		JOptionPane.showMessageDialog(null, "Utilizas Nitro!! Has encontrado una Sorpresa Favorable");
+		vehiculo.avanzarAFinalDeCuadra();		
 	}
 
 	@Override
 	public void penalizacionDesfavorable(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual * 1.25);
+		int movimientosActuales = vehiculo.getMovimientos();
+		vehiculo.sumarMovimientos((int) (movimientosActuales * 0.25));
+		JOptionPane.showMessageDialog(null, "Pinchaste una rueda, Has encontrado una Sorpresa Desfavorable");
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 	
 	@Override
 	public void cambiarEstado(Vehiculo vehiculo) {
 		vehiculo.setEstado(new CuatroXCuatro());
+		JOptionPane.showMessageDialog(null, "Cambias tu auto por una buena 4x4");
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 
 	public Element serializarXML() {

@@ -1,5 +1,7 @@
 package modelo.vehiculo;
 
+import javax.swing.JOptionPane;
+
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Vector;
 
@@ -10,11 +12,6 @@ public class Moto implements EstadoVehiculo {
 	
 
 	private double probabilidadDePasarUnControlPolicial;
-	private final double PUNTOS_PIQUETE = 50;
-	private final double PUNTOS_POZO = 30;
-	private final double PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION = 40;
-	private final double PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION = 100;
-
 	
 	public Moto(){
 		this.probabilidadDePasarUnControlPolicial = 0.8;
@@ -41,9 +38,6 @@ public class Moto implements EstadoVehiculo {
 		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial())
 		{
 			vehiculo.sumarMovimientos(3);
-			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_CON_PENALIZACION);
-		}else{
-			vehiculo.sumarPuntos(PUNTOS_CONTROLPOLICIAL_SIN_PENALIZACION);
 		}
 		vehiculo.avanzarAFinalDeCuadra();
 	}
@@ -61,19 +55,25 @@ public class Moto implements EstadoVehiculo {
 	
 	@Override
 	public void penalizacionFavorable(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual * 0.8);		
+		int movimientosActuales = vehiculo.getMovimientos();
+		vehiculo.sumarMovimientos((int) (-movimientosActuales * 0.2));
+		JOptionPane.showMessageDialog(null, "Utilizas Nitro!! Has encontrado una Sorpresa Favorable");
+		vehiculo.avanzarAFinalDeCuadra();		
 	}
 
 	@Override
 	public void penalizacionDesfavorable(Vehiculo vehiculo) {
-		double puntajeActual = vehiculo.getPuntaje();
-		vehiculo.setPuntaje(puntajeActual * 1.25);
+		int movimientosActuales = vehiculo.getMovimientos();
+		vehiculo.sumarMovimientos((int) (movimientosActuales * 0.25));
+		JOptionPane.showMessageDialog(null, "Pinchaste una rueda, Has encontrado una Sorpresa Desfavorable");
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 
 	@Override
 	public void cambiarEstado(Vehiculo vehiculo) {
-		vehiculo.setEstado(new Auto());		
+		vehiculo.setEstado(new Auto());
+		JOptionPane.showMessageDialog(null, "Vendes tu moto y consigues un Auto");
+		vehiculo.avanzarAFinalDeCuadra();
 	}
 	
 	public Element serializarXML() {
