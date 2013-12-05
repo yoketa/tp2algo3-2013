@@ -6,6 +6,7 @@ import modelo.juego.Ranking;
 import modelo.vehiculo.Vehiculo;
 import persistencia.Archivador;
 
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,8 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        getContentPane().setBackground(Color.black);
+        
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Elija un usuario");
@@ -81,12 +84,16 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 
         botonAceptar.setFont(new java.awt.Font("Consolas", 0, 18));
         botonAceptar.setText("Aceptar");
+        botonAceptar.setForeground(Color.white);
+        botonAceptar.setBackground(new java.awt.Color(0, 0, 153));
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarActionPerformed(evt);
             }
         });
 
+        grupoDeUsuarios.setForeground(Color.white);
+        grupoDeUsuarios.setBackground(new java.awt.Color(0, 0, 153));
         grupoDeUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuariosActionPerformed(evt);
@@ -95,6 +102,8 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 
         botonVolver.setFont(new java.awt.Font("Consolas", 0, 12));
         botonVolver.setText("Volver a menu anterior");
+        botonVolver.setForeground(Color.white);
+        botonVolver.setBackground(new java.awt.Color(0, 0, 153));
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);

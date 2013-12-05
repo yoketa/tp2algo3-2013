@@ -1,5 +1,7 @@
 package panel;
 
+import java.awt.Color;
+
 public class MenuPrincipal extends javax.swing.JFrame {
 
     private MenuEleccionUsuario menuDeEleccion;
@@ -71,8 +73,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("meu"); // NOI18N
 
+        getContentPane().setBackground(Color.black);
+        
         comenzarPartida.setFont(new java.awt.Font("Consolas", 0, 14));
         comenzarPartida.setText("Comenzar Partida");
+        comenzarPartida.setForeground(Color.white);
+        comenzarPartida.setBackground(new java.awt.Color(0, 0, 153));
         comenzarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comenzarPartidaActionPerformed(evt);
@@ -81,6 +87,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         verPuntajes.setFont(new java.awt.Font("Consolas", 0, 14));
         verPuntajes.setText("Ver puntajes");
+        verPuntajes.setForeground(Color.white);
+        verPuntajes.setBackground(new java.awt.Color(0, 0, 153));
         verPuntajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verPuntajesActionPerformed(evt);
@@ -89,6 +97,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         retornarPartida.setFont(new java.awt.Font("Consolas", 0, 14));
         retornarPartida.setText("Retomar partida guardada");
+        retornarPartida.setForeground(Color.white);
+        retornarPartida.setBackground(new java.awt.Color(0, 0, 153));
         retornarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retornarPartidaActionPerformed(evt);
@@ -97,6 +107,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         salir.setFont(new java.awt.Font("Consolas", 0, 14));
         salir.setText("Salir");
+        salir.setForeground(Color.white);
+        salir.setBackground(new java.awt.Color(0, 0, 153));
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
@@ -105,6 +117,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         volver.setFont(new java.awt.Font("Consolas", 0, 14));
         volver.setText("Volver");
+        volver.setForeground(Color.white);
+        volver.setBackground(new java.awt.Color(0, 0, 153));
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);

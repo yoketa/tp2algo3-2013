@@ -1,5 +1,7 @@
 package panel;
 
+import java.awt.Color;
+
 public class MenuPartidaNueva extends javax.swing.JFrame {
     
     private MenuPrincipal menuPrincipal;
@@ -71,7 +73,11 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        getContentPane().setBackground(Color.black);
+        
         botonModerado.setText("Moderado");
+        botonModerado.setForeground(Color.white);
+        botonModerado.setBackground(Color.black);
         botonModerado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModeradoActionPerformed(evt);
@@ -79,6 +85,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         botonDificil.setText("Dificil");
+        botonDificil.setForeground(Color.white);
+        botonDificil.setBackground(Color.black);
         botonDificil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonDificilActionPerformed(evt);
@@ -86,6 +94,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         botonMoto.setText("Moto");
+        botonMoto.setForeground(Color.white);
+        botonMoto.setBackground(Color.black);
         botonMoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMotoActionPerformed(evt);
@@ -93,6 +103,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         boton4x4.setText("4x4");
+        boton4x4.setForeground(Color.white);
+        boton4x4.setBackground(Color.black);
         boton4x4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton4x4ActionPerformed(evt);
@@ -100,6 +112,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         botonAuto.setText("Auto");
+        botonAuto.setForeground(Color.white);
+        botonAuto.setBackground(Color.black);
         botonAuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAutoActionPerformed(evt);
@@ -107,6 +121,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         botonFacil.setText("Facil");
+        botonFacil.setForeground(Color.white);
+        botonFacil.setBackground(Color.black);
         botonFacil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonFacilActionPerformed(evt);
@@ -114,6 +130,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         volver.setText("Volver");
+        volver.setForeground(Color.white);
+        volver.setBackground(new java.awt.Color(0, 0, 153));
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
@@ -121,6 +139,8 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         });
 
         jugar.setText("Jugar");
+        jugar.setForeground(Color.white);
+        jugar.setBackground(new java.awt.Color(0, 0, 153));
         jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jugarActionPerformed(evt);
@@ -129,10 +149,12 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Consolas", 0, 14));
         jLabel1.setText("Nivel de Dificultad");
+        jLabel1.setForeground(Color.white);
 
         jLabel2.setFont(new java.awt.Font("Consolas", 0, 14));
         jLabel2.setText("Tipo de Vehiculo");
-
+        jLabel2.setForeground(Color.white);
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
