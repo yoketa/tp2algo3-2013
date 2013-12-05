@@ -4,9 +4,6 @@ import java.util.Observable;
 
 import modelo.juego.Vector;
 
-import org.jdom.Attribute;
-import org.jdom.Element;
-
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 

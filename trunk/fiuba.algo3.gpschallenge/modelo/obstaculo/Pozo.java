@@ -3,7 +3,6 @@ package modelo.obstaculo;
 import org.jdom.Element;
 
 import modelo.juego.Vector;
-import modelo.sorpresas.SorpresaFavorable;
 import modelo.vehiculo.Vehiculo;
 
 

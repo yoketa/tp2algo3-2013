@@ -1,6 +1,8 @@
 package panel;
 
 
+import java.awt.Color;
+
 import persistencia.Archivador;
 
 import modelo.juego.Juego;

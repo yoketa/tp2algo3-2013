@@ -34,9 +34,11 @@ public class Auto implements EstadoVehiculo {
 
 	public void controlPolicial(Vehiculo vehiculo, double probabilidad) {
 	
-		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial())
-		{
+		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial()){
 			vehiculo.sumarMovimientos(3);
+			JOptionPane.showMessageDialog(null,"Te ha detenido un Control Policial, sumas 3 movimientos");
+		}else{
+			JOptionPane.showMessageDialog(null,"Tuviste suerte, el Control Policial te dejo pasar");
 		}
 		vehiculo.avanzarAFinalDeCuadra();
 	}

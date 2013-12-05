@@ -4,8 +4,6 @@ import java.util.*;
 
 import modelo.vehiculo.ComparadorVehiculosPorPuntaje;
 import modelo.vehiculo.Vehiculo;
-
-import org.jdom.Attribute;
 import org.jdom.Element;
 
 import excepciones.MovimientoFueraDeMapaException;

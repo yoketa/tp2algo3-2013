@@ -13,7 +13,6 @@ import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
-import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
 
 public class Partida {

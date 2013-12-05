@@ -1,7 +1,5 @@
 package modelo.obstaculo;
 
-import javax.swing.JOptionPane;
-
 import org.jdom.Element;
 
 import modelo.juego.Vector;

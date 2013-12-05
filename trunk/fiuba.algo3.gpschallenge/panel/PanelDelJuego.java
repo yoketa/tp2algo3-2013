@@ -78,15 +78,6 @@ public class PanelDelJuego {
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Hola "+this.usuario+"         Partida "+this.dificultad);
 		
-		
-		//contador de movimientos disponibles
-		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
-		etiquetaMovimientos = new JLabel(String.valueOf(movimientosRestantes));
-		etiquetaMovimientos.setLocation(850, 650);
-	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 18));
-        etiquetaMovimientos.setForeground(new java.awt.Color(0, 0, 102));
-        this.frame.add(etiquetaMovimientos);
-		
         JButton btnIniciar = this.addBotonIniciar();
 		
 		JButton btnGuardar = this.addBtnGuardar();
@@ -141,6 +132,14 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(vistaDrpresa);
 		}
 		
+		//contador de movimientos disponibles
+		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
+		etiquetaMovimientos = new JLabel(String.valueOf(movimientosRestantes));
+		etiquetaMovimientos.setLocation(850, 650);
+	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 18));
+        etiquetaMovimientos.setForeground(new java.awt.Color(0, 0, 102));
+        this.frame.add(etiquetaMovimientos);
+			
 		/*Nivel nivel = new Nivel ();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		nivel.setDificultad(this.dificultad);

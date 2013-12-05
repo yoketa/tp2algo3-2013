@@ -33,9 +33,14 @@ public class CuatroXCuatro implements EstadoVehiculo {
 	@Override
 	public void controlPolicial(Vehiculo vehiculo, double probabilidad) {
 		
-		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial())
-		{
+		if ( probabilidad <= this.getProbabilidadDePasarUnControlPolicial()){
+			
+			JOptionPane.showMessageDialog(null,"Te ha detenido un Control Policial, sumas 3 movimientos");
 			vehiculo.sumarMovimientos(3);
+			
+		}else{
+			
+			JOptionPane.showMessageDialog(null,"Tuviste suerte, el Control Policial te dejo pasar");
 		}
 		vehiculo.avanzarAFinalDeCuadra();
 	}

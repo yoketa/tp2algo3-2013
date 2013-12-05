@@ -1,7 +1,5 @@
 package modelo.interfaces;
 
-import org.jdom.Element;
-
 import modelo.juego.Vector;
 import modelo.vehiculo.Vehiculo;
 
