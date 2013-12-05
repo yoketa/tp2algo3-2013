@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,6 +40,7 @@ public class PanelDelJuego {
 	private String vehiculo;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
+	private PanelPerdedor panelPerdedor;
 	
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
@@ -179,15 +181,28 @@ public class PanelDelJuego {
 
 	//Chequea si llego a la meta
 	public void llegoAMeta() throws Exception{
+		
 		if( this.modelo.llegoALaMeta() ){
 	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,modelo);
 	        panelGanador.setBounds(400,50,panelGanador.getWidth(),panelGanador.getHeight());
-	        
 	        panelGanador.setVisible(true);
+	        
 	        
 		}
 	}
 	
+	//Chequea si ya agoto los movimientos permitidos
+	private void chequeoDeMovimientosValidos() {
+
+		int movimientos = modelo.movimientosLimites(this.dificultad) - modelo.getVehiculo().getMovimientos();
+		
+		if(movimientos == 0){
+	        PanelPerdedor panelPerdedor= new PanelPerdedor(this.dificultad,this.usuario);
+	        panelPerdedor.setBounds(400,50,panelPerdedor.getWidth(),panelPerdedor.getHeight());
+	        panelPerdedor.setVisible(true);
+		}
+
+	} 
 	
 	/* Captura que se haya apretado una tecla
 	 * */
@@ -226,54 +241,67 @@ public class PanelDelJuego {
 				        	modelo.getVehiculo().subir();
 				        	modelo.aplicarEvento();			        		
 			        	}
-					try {
-						llegoAMeta();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-			            break;
+			        	
+						try {
+							llegoAMeta();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						
+						chequeoDeMovimientosValidos();
+						
+				            break;
 			        case KeyEvent.VK_DOWN: // ABAJO
 			        	posicionActual = modelo.getVehiculo().getY();
 			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteVertical()) {
 			        		modelo.getVehiculo().bajar();
 				        	modelo.aplicarEvento();	
-			        	}			        	
-					try {
-						llegoAMeta();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-			            break;
+			        	}	
+			        	
+						try {
+							llegoAMeta();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						
+						chequeoDeMovimientosValidos();
+						
+				            break;
 			        case KeyEvent.VK_LEFT: // IZQUIERDA
 			        	posicionActual = modelo.getVehiculo().getX();
 			        	if (posicionActual - Nivel.tamañoCuadra > 0) {
 			        		modelo.getVehiculo().izquierda();
 				        	modelo.aplicarEvento();
-			        	}			        	
-					try {
-						llegoAMeta();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+			        	}	
+			        	
+						try {
+							llegoAMeta();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						
+						chequeoDeMovimientosValidos();
+						
 			            break;
 			        case KeyEvent.VK_RIGHT : // DERECHA
 			        	posicionActual = modelo.getVehiculo().getX();
 			        	if (posicionActual + Nivel.tamañoCuadra < modelo.getLimiteHorizontal()) {
 			        		modelo.getVehiculo().derecha();
 				        	modelo.aplicarEvento();
-			        	}			        	
-					try {
-						llegoAMeta();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+			        	}
+			        	
+						try {
+							llegoAMeta();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						
+						chequeoDeMovimientosValidos();
 			            break;
 			     }
-			}  
+			}
+
+ 
 			 	
 		});
 	}
