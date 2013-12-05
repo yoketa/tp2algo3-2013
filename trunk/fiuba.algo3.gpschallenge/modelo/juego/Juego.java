@@ -20,33 +20,7 @@ public class Juego {
 	private Vehiculo vehiculo;
 	private Meta meta;
 	private String dificultadDeNivel;
-	// Metodos
-	public static Juego crearJuego(String user,EstadoVehiculo vehiculo){
-		Juego juego = new Juego(user,vehiculo);
-		return juego;
-	}
 	
-	public Juego(String piloto){
-		//persistencia
-		this.setLimiteHorizontal(Nivel.tamañoCuadraCalle);
-		this.setLimiteVertical(Nivel.tamañoCuadraCalle);
-		this.meta = this.crearMeta();
-		
-		this.eventos = this.crearEventos();
-		this.ranking = new Ranking();
-		this.vehiculo = Vehiculo.crearConPiloto(piloto,0,0);
-	}
-	
-	public Juego(String piloto, EstadoVehiculo vehiculo){
-		//persistencia
-		this.setLimiteHorizontal(Nivel.tamañoCuadraCalle);
-		this.setLimiteVertical(Nivel.tamañoCuadraCalle);
-		this.meta = this.crearMeta();
-		
-		this.eventos = this.crearEventos();
-		this.ranking = new Ranking();
-		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
-	}
 	
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
 		//persistencia
@@ -134,6 +108,10 @@ public class Juego {
 
 	public Meta getMeta() {
 		return this.meta;
+	}
+	
+	public Nivel getNivel() {
+		return this.nivel;
 	}
 
 	public Vehiculo getVehiculo() {
@@ -241,9 +219,5 @@ public class Juego {
 		if ( this.meta.getX() == this.vehiculo.getX() &&  limiteSuperiorMeta >= this.vehiculo.getY() && limiteInferiorMeta <= this.vehiculo.getY())
 			return true;
 		return false;
-	}
-
-	public Nivel getNivel() {
-		return this.nivel;
 	}
 }

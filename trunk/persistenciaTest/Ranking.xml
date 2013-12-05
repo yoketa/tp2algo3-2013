@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ranking>
   <Vehiculo puntaje="90.0" piloto="Pablo" movimientos="0">
-    <Vector x="180" y="180" />
+    <Vector x="0" y="0" />
     <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
   </Vehiculo>
   <Vehiculo puntaje="85.0" piloto="Diego" movimientos="0">
-    <Vector x="210" y="210" />
+    <Vector x="0" y="0" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
   <Vehiculo puntaje="50.0" piloto="Nico" movimientos="0">
-    <Vector x="200" y="200" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="40.0" piloto="Juan" movimientos="0">
-    <Vector x="185" y="185" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="24.0" piloto="Gabriel" movimientos="0">
-    <Vector x="230" y="230" />
+    <Vector x="0" y="0" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />
   </Vehiculo>
 </Ranking>

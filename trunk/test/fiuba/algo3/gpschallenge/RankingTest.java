@@ -39,15 +39,15 @@ public class RankingTest {
 	
 	@Before
 	public void setup() {
-		vehiculo1 =  Vehiculo.crearConPiloto(pilotoAuto,estadoAuto,200,200);
+		vehiculo1 =  Vehiculo.crearConPilotoYVehiculo(pilotoAuto,estadoAuto);
 		vehiculo1.setPuntaje(50);
-		vehiculo2 = Vehiculo.crearConPiloto(pilotoMoto,estadoMoto, 210, 210);
+		vehiculo2 = Vehiculo.crearConPilotoYVehiculo(pilotoMoto,estadoMoto);
 		vehiculo2.setPuntaje(85);
-		vehiculo3 = Vehiculo.crearConPiloto(pilotoCuatroXCuatro,estadoCuatroXCuatro, 180, 180);
+		vehiculo3 = Vehiculo.crearConPilotoYVehiculo(pilotoCuatroXCuatro,estadoCuatroXCuatro);
 		vehiculo3.setPuntaje(90);
-		vehiculo4 = Vehiculo.crearConPiloto(pilotoAuto2,estadoAuto, 185, 185);
+		vehiculo4 = Vehiculo.crearConPilotoYVehiculo(pilotoAuto2,estadoAuto);
 		vehiculo4.setPuntaje(40);
-		vehiculo5 = Vehiculo.crearConPiloto(pilotoAuto3,estadoAuto, 230, 230);
+		vehiculo5 = Vehiculo.crearConPilotoYVehiculo(pilotoAuto3,estadoAuto);
 		vehiculo5.setPuntaje(24);
 		ranking = new Ranking();
 	}

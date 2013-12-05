@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ranking>
+  <Vehiculo puntaje="24.0" piloto="Ramon" movimientos="14">
+    <Vector x="420" y="210" />
+    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
+  </Vehiculo>
+  <Vehiculo puntaje="18.0" piloto="Ramon" movimientos="20">
+    <Vector x="420" y="210" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
+  <Vehiculo puntaje="18.0" piloto="Ramon" movimientos="20">
+    <Vector x="420" y="210" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
+  <Vehiculo puntaje="14.0" piloto="Ramon" movimientos="24">
+    <Vector x="420" y="210" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
+  <Vehiculo puntaje="11.0" piloto="Ramon" movimientos="27">
+    <Vector x="420" y="210" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
+  <Vehiculo puntaje="8.0" piloto="Ramon" movimientos="30">
+    <Vector x="420" y="210" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
   <Vehiculo puntaje="0.0" piloto="Ramon" movimientos="9">
     <Vector x="420" y="210" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />

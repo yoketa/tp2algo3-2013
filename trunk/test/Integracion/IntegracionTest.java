@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.juego.Juego;
+import modelo.juego.Nivel;
 import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Piquete;
@@ -23,7 +24,8 @@ public class IntegracionTest {
 	public void testAtravezarObtaculosConAuto() {
 		
 			EstadoVehiculo auto = new Auto();
-			Juego juego = new Juego ("Pepe",auto);
+			Nivel facil = new Nivel();
+			Juego juego = new Juego("Pepe",facil,auto);
 			int movimientos = 0;	
 			
 			/** Ante un piquete debe pegar la vuelta **/
@@ -114,7 +116,8 @@ public class IntegracionTest {
 	public void testAtravezarObtaculosConCuatroXcuatro() {
 		
 			EstadoVehiculo cuatro = new CuatroXCuatro();
-			Juego juego = new Juego ("Pepe",cuatro);
+			Nivel facil = new Nivel();
+			Juego juego = new Juego("Pepe",facil,cuatro);
 			int movimientos = 0;	
 			
 			/** Ante un piquete debe pegar la vuelta **/
@@ -205,7 +208,8 @@ public class IntegracionTest {
 	public void testAtravezarObtaculosConMoto() {
 		
 			EstadoVehiculo moto = new Moto();
-			Juego juego = new Juego ("Pepe",moto);
+			Nivel facil = new Nivel();
+			Juego juego = new Juego("Pepe",facil,moto);
 			int movimientos = 0;	
 			
 			/** Ante un piquete pasa con una penalizacion de 2 movimientos **/
