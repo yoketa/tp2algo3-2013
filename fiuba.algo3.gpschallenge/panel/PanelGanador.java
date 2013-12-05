@@ -52,9 +52,12 @@ public PanelGanador(String dificultad, String usuario,Juego juego) throws Except
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        getContentPane().setBackground(Color.black);
+        
         botonJugarDeNuevo.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
-        botonJugarDeNuevo.setForeground(new java.awt.Color(0, 0, 102));
         botonJugarDeNuevo.setText("Jugar de nuevo");
+        botonJugarDeNuevo.setForeground(Color.white);
+        botonJugarDeNuevo.setBackground(new java.awt.Color(0, 0, 153));
         botonJugarDeNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonJugarDeNuevoActionPerformed(evt);
@@ -62,8 +65,9 @@ public PanelGanador(String dificultad, String usuario,Juego juego) throws Except
         });
 
         botonSalir.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
-        botonSalir.setForeground(new java.awt.Color(0, 0, 102));
         botonSalir.setText("Salir");
+        botonSalir.setForeground(Color.white);
+        botonSalir.setBackground(new java.awt.Color(0, 0, 153));
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
@@ -71,20 +75,24 @@ public PanelGanador(String dificultad, String usuario,Juego juego) throws Except
         });
 
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 48));
-        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setForeground(Color.white);
         jLabel1.setText("¡ Ganaste !");
         jLabel1.setAutoscrolls(true);
 
         jLabel2.setFont(new java.awt.Font("Gabriola", 1, 24));
-        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(200, 0, 0));
         jLabel2.setText("Te sobraron: ");
 
         jLabel3.setFont(new java.awt.Font("Gabriola", 1, 24));
-        jLabel3.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(200, 0, 0));
         jLabel3.setText("Tu Puntaje es: ");
 
         etiqueteMovimientos.setText(Integer.toString(this.movimientos));
+        etiqueteMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
+        etiqueteMovimientos.setForeground(new java.awt.Color(200, 0, 0));
         etiquetaPuntaje.setText(Double.toString(this.puntaje));
+        etiquetaPuntaje.setFont(new java.awt.Font("Gabriola", 1, 24));
+        etiquetaPuntaje.setForeground(new java.awt.Color(200, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

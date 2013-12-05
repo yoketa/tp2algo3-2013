@@ -25,12 +25,16 @@ public class PanelInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        getContentPane().setBackground(Color.black);
+
         Titulo.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
-        Titulo.setForeground(new java.awt.Color(0, 0, 153));
+        Titulo.setForeground(new java.awt.Color(0, 0, 250));
         Titulo.setText("Bienvenido a Gps Challence");
 
         jBSoyNuevo.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jBSoyNuevo.setText("Soy nuevo");
+        jBSoyNuevo.setForeground(Color.white);
+        jBSoyNuevo.setBackground(new java.awt.Color(0, 0, 153));
         jBSoyNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSoyNuevoActionPerformed(evt);
@@ -39,6 +43,8 @@ public class PanelInicial extends javax.swing.JFrame {
 
         jBsalir.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jBsalir.setText("Salir");
+        jBsalir.setForeground(Color.white);
+        jBsalir.setBackground(new java.awt.Color(0, 0, 153));
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBsalirActionPerformed(evt);
@@ -47,6 +53,8 @@ public class PanelInicial extends javax.swing.JFrame {
 
         jBYaTengoUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jBYaTengoUsuario.setText("Ya tengo usuario");
+        jBYaTengoUsuario.setForeground(Color.white);
+        jBYaTengoUsuario.setBackground(new java.awt.Color(0, 0, 153));
         jBYaTengoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBYaTengoUsuarioActionPerformed(evt);

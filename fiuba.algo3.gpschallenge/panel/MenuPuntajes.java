@@ -1,5 +1,6 @@
 package panel;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,9 @@ public class MenuPuntajes extends javax.swing.JFrame {
         etiquetaOrdenInicial.setBounds(50, numPosicion, 50, 50);
         etiquetaUsuarioInicial.setBounds(125, numPosicion, 50, 50);
         etiquetaPuntajeInicial.setBounds(250, numPosicion, 50, 50);
+        etiquetaOrdenInicial.setForeground(Color.white);
+        etiquetaUsuarioInicial.setForeground(Color.white);
+        etiquetaPuntajeInicial.setForeground(Color.white);
         add(etiquetaOrdenInicial);
         add(etiquetaUsuarioInicial);
         add(etiquetaPuntajeInicial);
@@ -65,6 +69,9 @@ public class MenuPuntajes extends javax.swing.JFrame {
             etiquetaOrden.setBounds(50, numPosicion, 50, 50);
             etiquetaUsuario.setBounds(125, numPosicion, 50, 50);
             etiquetaPuntaje.setBounds(250, numPosicion, 50, 50);
+            etiquetaOrden.setForeground(Color.white);
+            etiquetaUsuario.setForeground(Color.white);
+            etiquetaPuntaje.setForeground(Color.white);
             add(etiquetaOrden);
             add(etiquetaUsuario);
             add(etiquetaPuntaje);
@@ -83,12 +90,16 @@ public class MenuPuntajes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 204));
 
+        getContentPane().setBackground(Color.black);
+        
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Mejores Puntajes");
 
         volver.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         volver.setText("Volver");
+        volver.setForeground(Color.white);
+        volver.setBackground(new java.awt.Color(0, 0, 153));
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);

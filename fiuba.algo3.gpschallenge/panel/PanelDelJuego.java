@@ -203,7 +203,7 @@ public class PanelDelJuego {
 
 		int movimientos = modelo.movimientosLimites(this.dificultad) - modelo.getVehiculo().getMovimientos();
 		
-		if(movimientos == 0){
+		if(movimientos <= 0){
 	        PanelPerdedor panelPerdedor= new PanelPerdedor(this.dificultad,this.usuario);
 	        panelPerdedor.setBounds(400,50,panelPerdedor.getWidth(),panelPerdedor.getHeight());
 	        panelPerdedor.setVisible(true);

@@ -1,5 +1,7 @@
 package panel;
 
+import java.awt.Color;
+
 public class MenuRegistracion extends javax.swing.JFrame {
 
     private PanelInicial menu;
@@ -28,12 +30,16 @@ public class MenuRegistracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        getContentPane().setBackground(Color.black);
+        
         jLabel.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
         jLabel.setForeground(new java.awt.Color(0, 0, 153));
         jLabel.setText("Por favor elija un nombre");
 
         BotonGuardar.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         BotonGuardar.setText("Guardar");
+        BotonGuardar.setForeground(Color.white);
+        BotonGuardar.setBackground(new java.awt.Color(0, 0, 153));
         BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonGuardarActionPerformed(evt);
@@ -48,6 +54,8 @@ public class MenuRegistracion extends javax.swing.JFrame {
 
         BotonVolver.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         BotonVolver.setText("Volver");
+        BotonVolver.setForeground(Color.white);
+        BotonVolver.setBackground(new java.awt.Color(0, 0, 153));
         BotonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonVolverActionPerformed(evt);
