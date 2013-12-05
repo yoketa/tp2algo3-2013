@@ -25,6 +25,7 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
+			vehiculo.bajar();
 			sorpresa.afectar(vehiculo);
 			assertTrue(true);
 		}
@@ -39,6 +40,7 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
+			vehiculo.derecha();
 			sorpresa.afectar(vehiculo);
 			assertTrue(true);
 		}
@@ -53,6 +55,7 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
+			vehiculo.izquierda();
 			sorpresa.afectar(vehiculo);
 			assertTrue(true);
 		}
@@ -67,15 +70,15 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
 			
 			sorpresa.afectar(vehiculo);
 			
-			assertEquals(5*1.25, vehiculo.getPuntaje(), 0.01);
+			assertEquals(6, vehiculo.getMovimientos());
 		} catch (Exception e) {
 			fail();
 		}
@@ -87,15 +90,20 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		try {
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			vehiculo.mover(new Vector(1,0));
-			
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+			vehiculo.subir();
+
 			sorpresa.afectar(vehiculo);
-			
-			assertEquals(5*0.8, vehiculo.getPuntaje(), 0.01);
+
+			assertEquals(8, vehiculo.getMovimientos());
 		} catch (Exception e) {
 			fail();
 		}
@@ -107,6 +115,7 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Moto", 0, 0);
 		
 		Auto auto = new Auto();
+		vehiculo.subir();
 		sorpresa.afectar(vehiculo);
 		
 		assertEquals(auto.getClass(), vehiculo.getEstado().getClass());
@@ -119,6 +128,7 @@ public class SorpresaTest {
 		Vehiculo vehiculo = Vehiculo.crearConPiloto("", "Auto", 0, 0);
 		
 		CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
+		vehiculo.subir();
 		sorpresa.afectar(vehiculo);
 		
 		assertEquals(cuatroXCuatro.getClass(), vehiculo.getEstado().getClass());

@@ -173,9 +173,6 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		this.movimientos = this.movimientos + movimientoNuevo;
 	}
 
-	public void sumarPuntos(double puntos){
-		this.puntaje = this.puntaje + puntos;
-	}
 	
 //Mover a sacar
 	public void mover(Vector direccion) {

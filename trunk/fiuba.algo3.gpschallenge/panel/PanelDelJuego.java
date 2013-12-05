@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -41,7 +42,8 @@ public class PanelDelJuego {
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private PanelPerdedor panelPerdedor;
-	
+	private int movimientosRestantes;
+	private JLabel etiquetaMovimientos;
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
@@ -72,12 +74,21 @@ public class PanelDelJuego {
 		frame.setForeground(new Color(0, 0, 0));
 		
 		// Tamaño de toda la pantalla
-		frame.setBounds(0, 0, 1450, 1300);
+		frame.setBounds(50, 50, 1000, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Hola "+this.usuario+"         Partida "+this.dificultad);
 		
-		JButton btnIniciar = this.addBotonIniciar();
+		
+		//contador de movimientos disponibles
+		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
+		etiquetaMovimientos = new JLabel(String.valueOf(movimientosRestantes));
+		etiquetaMovimientos.setLocation(850, 650);
+	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 18));
+        etiquetaMovimientos.setForeground(new java.awt.Color(0, 0, 102));
+        this.frame.add(etiquetaMovimientos);
+		
+        JButton btnIniciar = this.addBotonIniciar();
 		
 		JButton btnGuardar = this.addBtnGuardar();
 
@@ -130,9 +141,7 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(sorpresa);
 			this.gameLoop.agregar(vistaDrpresa);
 		}
-		JOptionPane.showMessageDialog(null, "direccion"+Nivel.GetNivelPath(dificultad));
 		
-		JOptionPane.showMessageDialog(null, "sorpresas " +sorpresas.size()+"obstaculos "+obstaculos.size());
 		/*Nivel nivel = new Nivel ();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		nivel.setDificultad(this.dificultad);
@@ -247,6 +256,7 @@ public class PanelDelJuego {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
 						
 						chequeoDeMovimientosValidos();
 						
@@ -263,6 +273,7 @@ public class PanelDelJuego {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
 						
 						chequeoDeMovimientosValidos();
 						
@@ -279,7 +290,7 @@ public class PanelDelJuego {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
-						
+						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
 						chequeoDeMovimientosValidos();
 						
 			            break;
@@ -295,6 +306,7 @@ public class PanelDelJuego {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+						etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
 						
 						chequeoDeMovimientosValidos();
 			            break;

@@ -13,7 +13,7 @@ public class PanelGanador extends javax.swing.JFrame {
     private String dificultad;
     private MenuPrincipal menuPrincipal;
 	private int movimientos;
-	private int puntaje;
+	private double puntaje;
 	private Ranking ranking;
     
 public PanelGanador(String dificultad, String usuario,Juego juego) throws Exception {
@@ -21,9 +21,10 @@ public PanelGanador(String dificultad, String usuario,Juego juego) throws Except
         this.usuario = usuario;
         this.dificultad = dificultad;
         this.setTitle("Hola "+this.usuario+"                         Partida"+this.dificultad);
-        
+        //el puntaje es los movimientos que qedan por un valor segun sea la dificultad
         this.movimientos = juego.movimientosLimites(dificultad)-juego.getVehiculo().getMovimientos();
-        this.puntaje = juego.puntajePorMovimiento(dificultad);
+        juego.carlcularPuntajeDeVehiculo();
+        this.puntaje = juego.getVehiculo().getPuntaje();
         
         this.ranking = new Ranking();
         this.ranking = Archivador.cargar(ranking, ranking.rankingPath);
@@ -81,7 +82,7 @@ public PanelGanador(String dificultad, String usuario,Juego juego) throws Except
         jLabel3.setText("Tu Puntaje es: ");
 
         etiqueteMovimientos.setText(Integer.toString(this.movimientos));
-        etiquetaPuntaje.setText(Integer.toString(this.puntaje));
+        etiquetaPuntaje.setText(Double.toString(this.puntaje));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
