@@ -38,17 +38,14 @@ public class PanelDelJuego {
 	public JFrame frame;
 	private GameLoop gameLoop;
 	public Juego modelo;
-	private String vehiculo;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
-	private PanelPerdedor panelPerdedor;
 	private int movimientosRestantes;
 	private JLabel etiquetaMovimientos;
 	private VistaDeVehiculo vista;
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
-    	this.vehiculo = vehiculo;
         this.usuario = usuario;
         this.dificultad = dificultad;
         Nivel nivel = new Nivel();
@@ -73,7 +70,7 @@ public class PanelDelJuego {
 		frame.setForeground(new Color(0, 0, 0));
 		
 		// Tamaño de toda la pantalla
-		frame.setBounds(50, 50, 1000, 700);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Hola "+this.usuario+"         Partida "+this.dificultad);
@@ -82,7 +79,6 @@ public class PanelDelJuego {
 		
 		JButton btnGuardar = this.addBtnGuardar();
 
-		//TODO: Tamaño del panel según la dificultad
 		JPanel panel = this.addSuperficiePanel();
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
@@ -106,13 +102,6 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
 		
-		// Agrega la meta en el límite izquierdo
-		Meta meta = this.modelo.getMeta();
-		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
-		
-		this.gameLoop.agregar(meta);
-		this.gameLoop.agregar(vistaMeta);
-		
 		Nivel nivel = modelo.getNivel();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
 		
@@ -134,21 +123,14 @@ public class PanelDelJuego {
 		
 		//contador de movimientos disponibles
 		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
-		etiquetaMovimientos = new JLabel(String.valueOf(movimientosRestantes));
-		etiquetaMovimientos.setLocation(850, 650);
+		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
+		
+		etiquetaMovimientos.setBounds(550, 10, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 18));
         etiquetaMovimientos.setForeground(new java.awt.Color(0, 0, 102));
-        this.frame.add(etiquetaMovimientos);
-			
-		/*Nivel nivel = new Nivel ();
-		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
-		nivel.setDificultad(this.dificultad);
-		
-		// TODO: Agregar Vistas y modelos de Sorpresas y Obstáculos
-		modelo.agregarSorpresas(nivel.getSorpresas());
-		modelo.agregarObstaculos(nivel.getObstaculos());
-		*/
-		
+        etiquetaMovimientos.setVisible(true);
+        this.frame.getContentPane().add(etiquetaMovimientos);
+				
 		int ultimaCuadraX = Nivel.tamañoCalle;
 		int ultimaCuadraY = Nivel.tamañoCalle;
 		
@@ -174,6 +156,13 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(cuadra);
 			this.gameLoop.agregar(vistaCuadra);
 		}
+		
+		// Agrega la meta en el límite izquierdo
+		Meta meta = this.modelo.getMeta();
+		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
+		
+		this.gameLoop.agregar(meta);
+		this.gameLoop.agregar(vistaMeta);
 		
 	}
 
@@ -227,10 +216,12 @@ public class PanelDelJuego {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		etiquetaMovimientos.setText(String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
-		chequeoDeMovimientosValidos();
-		
-		cambioDeVista();
+		finally {
+			etiquetaMovimientos.setText("Movimientos restantes: " + String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
+			chequeoDeMovimientosValidos();
+			
+			cambioDeVista();
+		}		
 	}
 	
 	/* Captura que se haya apretado una tecla
@@ -253,12 +244,7 @@ public class PanelDelJuego {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				
-				/* TODO: Aquí creo que debe verse si al mover el vehículo
-				*		 para donde se quiere se choca con un evento y ver
-				*		 como aplicarlo según sea el caso
-				*/
-				
+								
 				// Dependiendo del código de la tecla
 				// La cantidad a mover es 40 (tamaño de cuadra) + 30
 				// (para ponerse en el medio de la calle) pixeles
@@ -325,9 +311,6 @@ public class PanelDelJuego {
 					
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				MouseEvent a = arg0;
-				int b = a.getXOnScreen();
-				int c = a.getYOnScreen();
 			}});
 	}
 
@@ -337,14 +320,12 @@ public class PanelDelJuego {
 	private JPanel addSuperficiePanel() throws IOException {
 		JPanel panel = new SuperficiePanel();
 		panel.setBackground(Color.WHITE);
-		// TODO: Tamaño según la dificultad del juego
 		
 		panel.setBounds(40, 40, this.modelo.getLimiteHorizontal(), this.modelo.getLimiteVertical());
 		frame.getContentPane().add(panel);
 		return panel;
 	}
 
-	// TODO: Funcionalidad del botón de guardar partida
 	/* Crea el botón de Guardar Partida
 	 * 
 	 * */
@@ -366,7 +347,6 @@ public class PanelDelJuego {
 		return btnDetener;
 	}
 
-	// TODO: Ver si el botón es redundante y no se debería sacar
 	/* Crea el botón de Inicio
 	 * 
 	 * */
@@ -377,7 +357,7 @@ public class PanelDelJuego {
 				gameLoop.iniciarEjecucion();
 			}
 		});
-		btnIniciar.setBounds(42, 10, 77, 19);
+		btnIniciar.setBounds(42, 10, 92, 19);
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
 	}
