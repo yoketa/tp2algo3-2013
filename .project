@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>images/oscurecimiento_transp.png</name>
+			<type>1</type>
+			<location>C:/Users/27176876544/tp2algo3-2013/images/oscurecimiento_transp.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
