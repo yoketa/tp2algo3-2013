@@ -23,6 +23,7 @@ import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
 import modelo.juego.Nivel;
+import modelo.juego.Oscurecimiento;
 import modelo.obstaculo.*;
 import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
@@ -43,6 +44,7 @@ public class PanelDelJuego {
 	private int movimientosRestantes;
 	private JLabel etiquetaMovimientos;
 	private VistaDeVehiculo vista;
+	private Oscurecimiento oscurecimiento;
 	
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
@@ -97,10 +99,28 @@ public class PanelDelJuego {
 	 * 
 	 * */
 	private void inicializarModelo() throws IOException {
+
+		
+		Oscurecimiento oscurecimiento = new Oscurecimiento();
+		oscurecimiento.setX(this.modelo.getVehiculo().getX());
+		oscurecimiento.setY(this.modelo.getVehiculo().getY());
+		VistaDeOscurecimiento vistaOscurecimiento = new VistaDeOscurecimiento(oscurecimiento);
+		this.oscurecimiento = oscurecimiento;
+		
+		this.gameLoop.agregar(oscurecimiento);
+		this.gameLoop.agregar(vistaOscurecimiento);
+		
 		vista = new VistaDeVehiculo(modelo.getVehiculo());
 
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
+		
+		// Agrega la meta en el límite izquierdo
+		Meta meta = this.modelo.getMeta();
+		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
+		
+		this.gameLoop.agregar(meta);
+		this.gameLoop.agregar(vistaMeta);
 		
 		Nivel nivel = modelo.getNivel();
 		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
@@ -156,13 +176,6 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(cuadra);
 			this.gameLoop.agregar(vistaCuadra);
 		}
-		
-		// Agrega la meta en el límite izquierdo
-		Meta meta = this.modelo.getMeta();
-		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
-		
-		this.gameLoop.agregar(meta);
-		this.gameLoop.agregar(vistaMeta);
 		
 	}
 
@@ -299,6 +312,10 @@ public class PanelDelJuego {
 							}
 			        		break;
 			     }
+			    
+			    // Actualiza la posición del oscurecimiento
+			    oscurecimiento.setX(modelo.getVehiculo().getX());
+			    oscurecimiento.setY(modelo.getVehiculo().getY());
 			}
 		});
 	}
