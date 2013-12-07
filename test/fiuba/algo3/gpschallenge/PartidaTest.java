@@ -152,8 +152,8 @@ public class PartidaTest {
 		partida.agregarUnaSorpresa(sorpresa3);
 		
 		try {
-			Archivador.guardar(partida, partida.getPath());
-			Partida partidaCargada = Archivador.cargar(partida.getPath());
+			Archivador.guardar(partida,partida.getPath());
+			Partida partidaCargada = Archivador.cargar(partida,partida.getPath());
 			List<Obstaculo> obstaculosRecargados = partidaCargada.getObstaculos();
 			obstaculos = partida.getObstaculos();
 			List<Sorpresa> sorpresasRecargadas = partidaCargada.getSorpresas();

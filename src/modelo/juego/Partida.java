@@ -16,6 +16,7 @@ import modelo.sorpresas.SorpresaFavorable;
 import modelo.vehiculo.Vehiculo;
 
 public class Partida {
+
 	private String usuario;
 	private Vehiculo vehiculo;
 	private List<Sorpresa> sorpresas;
