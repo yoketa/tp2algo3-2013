@@ -354,16 +354,22 @@ public class PanelDelJuego {
 				gameLoop.detenerEjecucion();
 			}
 
-			private void guardar() {
-//				modelo.
-//				Archivador.guardar(nivel, Nivel.nivelPath);
-			}
+			
 		});
 		btnDetener.setBounds(325, 10, 92, 19);
 		frame.getContentPane().add(btnDetener);
 		return btnDetener;
 	}
 
+	private void guardar() {
+		Nivel nivel = modelo.getNivel();
+		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
+		modelo.getPartida().agregarObstaculos(nivel.getObstaculos());
+		modelo.getPartida().agregarSorpresas(nivel.getSorpresas());
+		Archivador.guardar(modelo.getPartida(),modelo.getPartida().getPath());
+
+	}
+	
 	/* Crea el botón de Inicio
 	 * 
 	 * */

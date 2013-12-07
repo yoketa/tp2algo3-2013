@@ -26,7 +26,7 @@ public class Partida {
 		this.sorpresas = new ArrayList<Sorpresa>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.vehiculo = vehiculo;
-		this.partidaPath = "partidas/Partida"+this.vehiculo.getPiloto()+".xml";
+		this.partidaPath = "partidas/Partida "+this.vehiculo.getPiloto()+".xml";
 	}
 
 	public void setUsuario(String usuario){

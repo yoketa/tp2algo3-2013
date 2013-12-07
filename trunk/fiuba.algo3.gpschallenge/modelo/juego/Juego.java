@@ -20,7 +20,7 @@ public class Juego {
 	private Vehiculo vehiculo;
 	private Meta meta;
 	private String dificultadDeNivel;
-	
+	private Partida partida;
 	
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
 		//persistencia
@@ -31,6 +31,7 @@ public class Juego {
 		this.eventos = this.crearEventos();
 		this.ranking = new Ranking();
 		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
+		this.partida = new Partida(this.vehiculo);
 	}
 
 	/* Setea los límites del Juego según la dificultad
@@ -102,6 +103,10 @@ public class Juego {
         return this.ranking;
 	}
 
+	public Partida getPartida() {
+        return this.partida;
+	}
+	
 	public String getUsuario() {
 		return this.vehiculo.getPiloto();
 	}
