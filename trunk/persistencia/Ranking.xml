@@ -4,6 +4,22 @@
     <Vector x="420" y="210" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
+  <Vehiculo puntaje="28.0" piloto="Lucas" movimientos="18">
+    <Vector x="560" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="Luciana" movimientos="11">
+    <Vector x="420" y="210" />
+    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="Messi" movimientos="11">
+    <Vector x="420" y="210" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
+  </Vehiculo>
   <Vehiculo puntaje="23.0" piloto="Messi" movimientos="15">
     <Vector x="420" y="210" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
@@ -12,5 +28,5 @@
     <Vector x="350" y="350" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
- </Ranking>
+</Ranking>
 
