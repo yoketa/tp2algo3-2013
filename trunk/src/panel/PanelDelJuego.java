@@ -253,6 +253,7 @@ public class PanelDelJuego {
 		int movimientosHechos = this.partidaCargada.getVehiculo().getMovimientos();
 		
 		this.dificultad = this.partidaCargada.getDificultad();
+		modelo.setDificultadDeNivel(this.dificultad);
 		this.movimientosRestantes = modelo.movimientosLimites(this.dificultad) - movimientosHechos;
 		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
 	}
