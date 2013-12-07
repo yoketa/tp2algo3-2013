@@ -24,6 +24,7 @@ import modelo.juego.Juego;
 import modelo.juego.Meta;
 import modelo.juego.Nivel;
 import modelo.juego.Oscurecimiento;
+import modelo.juego.Partida;
 import modelo.obstaculo.*;
 import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
@@ -45,9 +46,14 @@ public class PanelDelJuego {
 	private JLabel etiquetaMovimientos;
 	private VistaDeVehiculo vista;
 	private Oscurecimiento oscurecimiento;
+	private Partida partidaCargada;
+	private boolean eligioPartidaNueva;
 	
+	
+	//Constructor para juego nuevo
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
+    	this.eligioPartidaNueva = true;
         this.usuario = usuario;
         this.dificultad = dificultad;
         Nivel nivel = new Nivel();
@@ -63,6 +69,25 @@ public class PanelDelJuego {
         //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     
+    //Constructor para juego ya empezado
+    public PanelDelJuego(MenuPrincipal menuPrincipal, String usuario) {
+    	
+		this.eligioPartidaNueva = false;      
+        this.usuario = usuario;
+
+		Nivel nivel = new Nivel();
+        nivel.setDificultad("Facil");
+
+        this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(this.usuario));
+        
+        try {
+			initialize();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        menuPrincipal.setVisible(false);
+        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
+    }
     /**
 	 * Initialize the contents of the frame.
 	 * @throws IOException 
@@ -122,28 +147,62 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
 		
-		Nivel nivel = modelo.getNivel();
-		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
-		
-		obstaculos = nivel.getObstaculos();
-		for(Obstaculo obstaculo : this.obstaculos ) {
-			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
-			modelo.agregarEvento(obstaculo);		
-			this.gameLoop.agregar(obstaculo);
-			this.gameLoop.agregar(vistaObstaculo);
+		if(this.eligioPartidaNueva){
+			
+				Nivel nivel = new Nivel();
+				nivel = modelo.getNivel();
+				nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
+				
+				obstaculos = nivel.getObstaculos();
+				for(Obstaculo obstaculo : this.obstaculos ) {
+					VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
+					modelo.agregarEvento(obstaculo);		
+					this.gameLoop.agregar(obstaculo);
+					this.gameLoop.agregar(vistaObstaculo);
+				}
+	
+				sorpresas = nivel.getSorpresas();
+				for(Sorpresa sorpresa : this.sorpresas ) {
+					VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
+					modelo.agregarEvento(sorpresa);		
+					this.gameLoop.agregar(sorpresa);
+					this.gameLoop.agregar(vistaDrpresa);
+				}
+				
+				//contador de movimientos disponibles
+				this.movimientosRestantes = modelo.movimientosLimites(dificultad);
+				etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
+				
+		}else{
+				Vehiculo vehiculo = new Vehiculo();
+		        vehiculo.setPiloto(this.usuario);
+		        
+		        //Aca va cargadesde partida.xml
+				Partida partida = new Partida(vehiculo);
+				this.partidaCargada = Archivador.cargar(partida,partida.getPath());
+				
+				obstaculos = this.partidaCargada.getObstaculos();
+				for(Obstaculo obstaculo : this.obstaculos ) {
+					VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
+					modelo.agregarEvento(obstaculo);		
+					this.gameLoop.agregar(obstaculo);
+					this.gameLoop.agregar(vistaObstaculo);
+				}
+	
+				sorpresas = this.partidaCargada.getSorpresas();
+				for(Sorpresa sorpresa : this.sorpresas ) {
+					VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
+					modelo.agregarEvento(sorpresa);		
+					this.gameLoop.agregar(sorpresa);
+					this.gameLoop.agregar(vistaDrpresa);
+				}
+				
+//				//contador de movimientos disponibles
+//				this.movimientosRestantes = modelo.movimientosLimites(dificultad)-this.partidaCargada.getMovimientos();
+//				etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
 		}
 
-		sorpresas = nivel.getSorpresas();
-		for(Sorpresa sorpresa : this.sorpresas ) {
-			VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
-			modelo.agregarEvento(sorpresa);		
-			this.gameLoop.agregar(sorpresa);
-			this.gameLoop.agregar(vistaDrpresa);
-		}
 		
-		//contador de movimientos disponibles
-		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
-		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
 		
 		etiquetaMovimientos.setBounds(550, 10, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 18));

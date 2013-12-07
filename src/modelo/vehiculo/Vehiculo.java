@@ -56,7 +56,7 @@ public class Vehiculo extends Observable implements ObjetoPosicionable, ObjetoVi
 		this.puntaje = 0;
 	}
 	
-	private void setPiloto(String piloto) {
+	public void setPiloto(String piloto) {
 		this.piloto = piloto;
 		ActualizarObservadores();
 	}
