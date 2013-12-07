@@ -153,7 +153,7 @@ public class PanelDelJuego {
 		etiquetaPuntaje = new JLabel("Puntaje actual: " + String.valueOf(this.puntaje));
 		etiquetaPuntaje.setBounds(790, 10, 300, 19);
 		etiquetaPuntaje.setFont(new java.awt.Font("Gabriola", 1, 24));
-		etiquetaPuntaje.setForeground(Color.blue);
+		etiquetaPuntaje.setForeground(Color.lightGray);
 		etiquetaPuntaje.setVisible(true);
         this.frame.getContentPane().add(etiquetaPuntaje);
 		
@@ -163,7 +163,7 @@ public class PanelDelJuego {
 		
 		etiquetaMovimientos.setBounds(490, 10, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
-        etiquetaMovimientos.setForeground(Color.blue);
+        etiquetaMovimientos.setForeground(Color.lightGray);
         etiquetaMovimientos.setVisible(true);
         this.frame.getContentPane().add(etiquetaMovimientos);
 	}
