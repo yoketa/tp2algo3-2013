@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Vehiculo puntaje="50.0" piloto="pepe">
-  <Vector x="2" y="3" />
-  <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  <Vector x="2" y="3" />
-</Vehiculo>
-
