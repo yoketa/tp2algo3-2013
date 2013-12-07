@@ -38,18 +38,46 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 
         this.usuariosGuardados = new ArrayList();
 		this.ranking = Archivador.cargar(new Ranking(), "persistencia/Ranking.xml");
-        this.usuariosGuardados = this.ranking.getPuntajes();
+        List<Vehiculo> usuariosRankeados = new ArrayList();
+        usuariosRankeados = this.ranking.getPuntajes();
         
+        //Filtra los usuarios que han jugado mas de una ves dejando solo su usuario una vez. 
+        this.filtroDeUsuarios(usuariosRankeados);
+
         if (this.usuariosGuardados.size() != 0){
             String user;
             
             for( int i=0; i<this.usuariosGuardados.size() ; i++ ){
                 user = this.usuariosGuardados.get(i).getPiloto();
+                
             	grupoDeUsuarios.addItem(user);
             }
         } else {
             botonAceptar.setEnabled(false);
         }
+	}
+
+	private void filtroDeUsuarios(List<Vehiculo> usuarios) {
+        
+		this.usuariosGuardados.add(usuarios.get(0));
+		usuarios.remove(0);
+		
+		for (Vehiculo vehiculo : usuarios){
+			
+			boolean usuarioExistente = false;
+			
+			for ( Vehiculo vehiculoGuardado : this.usuariosGuardados){
+				System.out.println("Vehiculoguardado: "+vehiculoGuardado.getPiloto()+"  vehiculoSacado: "+vehiculo.getPiloto());
+				
+				if ((vehiculo.getPiloto() == vehiculoGuardado.getPiloto()) ){
+					System.out.println("Hola");
+					usuarioExistente = true;
+				}
+			}
+			if(!usuarioExistente){
+				this.usuariosGuardados.add(vehiculo);
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
