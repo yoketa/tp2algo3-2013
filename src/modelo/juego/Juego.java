@@ -165,7 +165,7 @@ public class Juego {
 		return false;
 	}
 	
-	private Evento obtenerEvento(Vector posicion) {
+	public Evento obtenerEvento(Vector posicion) {
 		
 		Evento eventoADevolver = null;
 		
@@ -190,6 +190,20 @@ public class Juego {
 			this.vehiculo.avanzarAFinalDeCuadra();
 		}
 	}
+	
+//	public void aplicarEvento(){
+//		Vector posicion = this.vehiculo.getPosicion();
+//		Evento eventoAAplicar = obtenerEvento(posicion);
+//		
+//		boolean hayEvento = this.hayEvento(posicion);
+//		
+//		if ( hayEvento ) {
+//			eventoAAplicar.afectar(this.vehiculo);
+//			this.eventos.remove(eventoAAplicar);
+//		}else{
+//			this.vehiculo.avanzarAFinalDeCuadra();
+//		}
+//	}
 
 	public int puntajePorMovimiento(String dificultad){
 		switch (dificultad) {
