@@ -11,10 +11,8 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import persistencia.Archivador;
@@ -25,12 +23,13 @@ import modelo.juego.Meta;
 import modelo.juego.Nivel;
 import modelo.juego.Oscurecimiento;
 import modelo.juego.Partida;
+import modelo.juego.Ranking;
 import modelo.obstaculo.*;
 import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
+import excepciones.MovimientoFueraDeMapaException;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
-import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import modelo.vehiculo.*;
 public class PanelDelJuego {
@@ -48,6 +47,7 @@ public class PanelDelJuego {
 	private Oscurecimiento oscurecimiento;
 	private Partida partidaCargada;
 	private boolean eligioPartidaNueva;
+	private Ranking ranking;
 	
 	
 	//Constructor para juego nuevo
@@ -101,6 +101,7 @@ public class PanelDelJuego {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Hola "+this.usuario+"         Partida "+this.dificultad);
+		frame.getContentPane().setBackground(Color.black);
 		
         JButton btnIniciar = this.addBotonIniciar();
 		
@@ -131,15 +132,18 @@ public class PanelDelJuego {
 		
 		if(this.eligioPartidaNueva)	visualizarEventosDePartidaNueva();
 				else visualizarEventosDePartidaGuardada();
+
+		visualizarCuadras();
+		visualizarMovimientos();
+	}
+
+	private void visualizarMovimientos() {
 		
-		etiquetaMovimientos.setBounds(550, 10, 300, 19);
-	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 18));
-        etiquetaMovimientos.setForeground(new java.awt.Color(0, 0, 102));
+		etiquetaMovimientos.setBounds(750, 10, 300, 19);
+	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
+        etiquetaMovimientos.setForeground(Color.blue);
         etiquetaMovimientos.setVisible(true);
         this.frame.getContentPane().add(etiquetaMovimientos);
-			
-		visualizarCuadras();
-		
 	}
 
 	private void visualizarOscurecimiento() throws IOException {
@@ -427,18 +431,21 @@ public class PanelDelJuego {
 	 * 
 	 * */
 	private JButton addBtnGuardar() {
-		JButton btnDetener = new JButton("Guardar");
-		btnDetener.addActionListener(new ActionListener() {
+		JButton botonGuardarYSalir = new JButton("Guardar y salir");
+		botonGuardarYSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
-				gameLoop.detenerEjecucion();
+				System.exit(0);
 			}
 
 			
 		});
-		btnDetener.setBounds(325, 10, 92, 19);
-		frame.getContentPane().add(btnDetener);
-		return btnDetener;
+		botonGuardarYSalir.setBounds(325, 10, 150, 19);
+		botonGuardarYSalir.setFont(new java.awt.Font("Consola", 0, 12));
+        botonGuardarYSalir.setForeground(Color.white);
+        botonGuardarYSalir.setBackground(new java.awt.Color(0, 0, 153));
+		frame.getContentPane().add(botonGuardarYSalir);
+		return botonGuardarYSalir;
 	}
 
 	private void guardar() {
@@ -448,22 +455,33 @@ public class PanelDelJuego {
 		modelo.getPartida().agregarObstaculos(nivel.getObstaculos());
 		modelo.getPartida().agregarSorpresas(nivel.getSorpresas());
 		Archivador.guardar(modelo.getPartida(),modelo.getPartida().getPath());
-
+        
+        this.ranking = new Ranking();
+        this.ranking = Archivador.cargar(ranking, ranking.rankingPath);
+        try {
+			this.ranking.agregarPuntaje(modelo.getVehiculo());
+		} catch (MovimientoFueraDeMapaException e) {
+			e.printStackTrace();
+		}
+		Archivador.guardar(ranking, Ranking.rankingPath);
 	}
 	
 	/* Crea el botón de Inicio
 	 * 
 	 * */
 	private JButton addBotonIniciar() {
-		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.addActionListener(new ActionListener() {
+		JButton botonIniciar = new JButton("Iniciar");
+		botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gameLoop.iniciarEjecucion();
 			}
 		});
-		btnIniciar.setBounds(42, 10, 92, 19);
-		frame.getContentPane().add(btnIniciar);
-		return btnIniciar;
+		botonIniciar.setBounds(42, 10, 92, 19);
+		botonIniciar.setFont(new java.awt.Font("Consola", 0, 12));
+		botonIniciar.setForeground(Color.white);
+        botonIniciar.setBackground(new java.awt.Color(0, 0, 153));
+		frame.getContentPane().add(botonIniciar);
+		return botonIniciar;
 	}
 	
 	/* Determina la cantidad de cuadras a renderear dependiendo el 
