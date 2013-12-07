@@ -117,10 +117,10 @@ public class Archivador {
 		}
 	}
 
-	public static void guardar(Partida nivel, String pathArchivo) {
+	public static void guardar(Partida partida, String pathArchivo) {
 		try {
 	        
-			Element root = nivel.serializarXML();
+			Element root = partida.serializarXML();
 	        Document document = new Document(root);
 
 	        XMLOutputter outputter = new XMLOutputter();
@@ -136,7 +136,7 @@ public class Archivador {
 		
 	}
 
-	public static Partida cargar(String pathArchivo) {
+	public static Partida cargar(Partida dummy,String pathArchivo) {
 		try {
 	        SAXBuilder builder = new SAXBuilder();
 	        Document document = builder.build(pathArchivo);
