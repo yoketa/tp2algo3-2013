@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,20 +34,22 @@ import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import modelo.vehiculo.*;
 public class PanelDelJuego {
-    
-    private String usuario;
-    private String dificultad;
-	public JFrame frame;
-	private GameLoop gameLoop;
+
 	public Juego modelo;
+	public JFrame frame;    
+	private String usuario;
+    private String dificultad;
+	private boolean eligioPartidaNueva;
+	private int movimientosRestantes;
+	private double puntaje;
+	private JLabel etiquetaMovimientos;
+	private JLabel etiquetaPuntaje;
+	private GameLoop gameLoop;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
-	private int movimientosRestantes;
-	private JLabel etiquetaMovimientos;
 	private VistaDeVehiculo vista;
 	private Oscurecimiento oscurecimiento;
 	private Partida partidaCargada;
-	private boolean eligioPartidaNueva;
 	private Ranking ranking;
 	
 	
@@ -135,11 +138,25 @@ public class PanelDelJuego {
 
 		visualizarCuadras();
 		visualizarMovimientos();
+		visualizarPuntaje();
+	}
+
+	private void visualizarPuntaje() {
+
+		modelo.carlcularPuntajeDeVehiculo();
+		this.puntaje = modelo.getVehiculo().getPuntaje();
+		etiquetaPuntaje = new JLabel("Puntaje actual: " + String.valueOf(this.puntaje));
+		etiquetaPuntaje.setBounds(950, 40, 300, 19);
+		etiquetaPuntaje.setFont(new java.awt.Font("Gabriola", 1, 24));
+		etiquetaPuntaje.setForeground(Color.blue);
+		etiquetaPuntaje.setVisible(true);
+        this.frame.getContentPane().add(etiquetaPuntaje);
+		
 	}
 
 	private void visualizarMovimientos() {
 		
-		etiquetaMovimientos.setBounds(750, 10, 300, 19);
+		etiquetaMovimientos.setBounds(950, 10, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
         etiquetaMovimientos.setForeground(Color.blue);
         etiquetaMovimientos.setVisible(true);
@@ -197,7 +214,6 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(sorpresa);
 			this.gameLoop.agregar(vistaDeSorpresa);
 		}
-		
 		//contador de movimientos disponibles
 		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
 		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
@@ -308,6 +324,10 @@ public class PanelDelJuego {
 		finally {
 			etiquetaMovimientos.setText("Movimientos restantes: " + String.valueOf(movimientosRestantes - modelo.getVehiculo().getMovimientos()));
 			chequeoDeMovimientosValidos();
+
+			modelo.carlcularPuntajeDeVehiculo();
+			this.puntaje = modelo.getVehiculo().getPuntaje();
+			etiquetaPuntaje.setText("Puntaje actual: " + String.valueOf(this.puntaje));
 			
 			cambioDeVista();
 		}		
