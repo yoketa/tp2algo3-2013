@@ -106,11 +106,12 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
         
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setForeground(Color.lightGray);
         jLabel1.setText("Elija un usuario");
 
         jTextField1.setText("jTextField1");
 
-        botonAceptar.setFont(new java.awt.Font("Consolas", 0, 18));
+        botonAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         botonAceptar.setText("Aceptar");
         botonAceptar.setForeground(Color.white);
         botonAceptar.setBackground(new java.awt.Color(0, 0, 153));
@@ -128,7 +129,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
             }
         });
 
-        botonVolver.setFont(new java.awt.Font("Consolas", 0, 12));
+        botonVolver.setFont(new java.awt.Font("Comic Sans MS", 0, 17));
         botonVolver.setText("Volver a menu anterior");
         botonVolver.setForeground(Color.white);
         botonVolver.setBackground(new java.awt.Color(0, 0, 153));

@@ -27,8 +27,9 @@ public class PanelInicial extends javax.swing.JFrame {
 
         getContentPane().setBackground(Color.black);
 
-        Titulo.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Monotype Corsiva", 1, 30)); // NOI18N
         Titulo.setForeground(new java.awt.Color(0, 0, 250));
+        Titulo.setForeground(Color.lightGray);
         Titulo.setText("Bienvenido a Gps Challence");
 
         jBSoyNuevo.setFont(new java.awt.Font("Comic Sans MS", 0, 18));

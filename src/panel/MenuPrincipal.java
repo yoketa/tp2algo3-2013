@@ -77,7 +77,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         getContentPane().setBackground(Color.black);
         
-        comenzarPartida.setFont(new java.awt.Font("Consolas", 0, 14));
+        comenzarPartida.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         comenzarPartida.setText("Comenzar Partida");
         comenzarPartida.setForeground(Color.white);
         comenzarPartida.setBackground(new java.awt.Color(0, 0, 153));
@@ -87,7 +87,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        verPuntajes.setFont(new java.awt.Font("Consolas", 0, 14));
+        verPuntajes.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         verPuntajes.setText("Ver puntajes");
         verPuntajes.setForeground(Color.white);
         verPuntajes.setBackground(new java.awt.Color(0, 0, 153));
@@ -97,7 +97,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        retomarPartida.setFont(new java.awt.Font("Consolas", 0, 14));
+        retomarPartida.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         retomarPartida.setText("Retomar partida guardada");
         retomarPartida.setForeground(Color.white);
         retomarPartida.setBackground(new java.awt.Color(0, 0, 153));
@@ -107,7 +107,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        salir.setFont(new java.awt.Font("Consolas", 0, 14));
+        salir.setFont(new java.awt.Font("Comic Sans MS", 0, 14));
         salir.setText("Salir");
         salir.setForeground(Color.white);
         salir.setBackground(new java.awt.Color(0, 0, 153));
@@ -117,7 +117,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        volver.setFont(new java.awt.Font("Consolas", 0, 14));
+        volver.setFont(new java.awt.Font("Comic Sans MS", 0, 14));
         volver.setText("Volver");
         volver.setForeground(Color.white);
         volver.setBackground(new java.awt.Color(0, 0, 153));
