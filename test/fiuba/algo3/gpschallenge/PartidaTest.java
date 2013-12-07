@@ -42,7 +42,7 @@ public class PartidaTest {
 	private Obstaculo obstaculo2;
 	private Obstaculo obstaculo3;
 	
-	
+	private String dificultad;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private Partida partida;
@@ -52,7 +52,7 @@ public class PartidaTest {
 		sorpresa1 = new SorpresaDesfavorable(new Vector(110,140));
 		sorpresa2 = new SorpresaDesfavorable(new Vector(420,280));
 		sorpresa3 = new SorpresaFavorable(new Vector(530,280));
-		
+		dificultad = "facil";
 		obstaculo1 = new Pozo (new Vector(180,210));
 		obstaculo2 = new Pozo (new Vector(460,210));
 		obstaculo3 = new Piquete (new Vector(110,0));
@@ -144,6 +144,7 @@ public class PartidaTest {
 	@Test
 	public void testGuardarYCargarPartida() {
 		Partida partida = new Partida(vehiculo);
+		partida.setDificultad("facil");
 		partida.agregarUnObstaculo(obstaculo1);
 		partida.agregarUnObstaculo(obstaculo2);
 		partida.agregarUnObstaculo(obstaculo3);
@@ -154,11 +155,13 @@ public class PartidaTest {
 		try {
 			Archivador.guardar(partida,partida.getPath());
 			Partida partidaCargada = Archivador.cargar(partida,partida.getPath());
+			String dificultad = partidaCargada.getDificultad();
 			List<Obstaculo> obstaculosRecargados = partidaCargada.getObstaculos();
 			obstaculos = partida.getObstaculos();
 			List<Sorpresa> sorpresasRecargadas = partidaCargada.getSorpresas();
 			sorpresas = partida.getSorpresas();
 			Vehiculo vehiculoRecargado = partida.getVehiculo();
+			assertEquals(partida.getDificultad(),dificultad);
 			assertEquals(vehiculo.getPiloto(),vehiculoRecargado.getPiloto());
 			assertEquals(vehiculo.getEstado().getClass(),vehiculoRecargado.getEstado().getClass());
 			assertEquals(vehiculo.getMovimientos(),vehiculoRecargado.getMovimientos());

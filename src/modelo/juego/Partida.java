@@ -3,6 +3,7 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jdom.Attribute;
 import org.jdom.Element;
 
 import modelo.obstaculo.ControlPolicial;
@@ -22,12 +23,13 @@ public class Partida {
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private String partidaPath; ;
-	
+	private String dificultad;
 	public Partida(Vehiculo vehiculo){
 		this.sorpresas = new ArrayList<Sorpresa>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.vehiculo = vehiculo;
 		this.partidaPath = "partidas/Partida "+this.vehiculo.getPiloto()+".xml";
+		this.dificultad = dificultad;
 	}
 
 	public void setUsuario(String usuario){
@@ -75,6 +77,14 @@ public class Partida {
 			this.vehiculo = vehiculo;
 		} 
 		
+		public void setDificultad(String dificultad){
+			this.dificultad = dificultad;
+		} 
+		
+		public String getDificultad(){
+			return this.dificultad;
+		} 
+		
 		public Vehiculo getVehiculo(){
 			return this.vehiculo;
 		}
@@ -85,6 +95,10 @@ public class Partida {
 		
 		public Element serializarXML() {
 			Element element = new Element("Partida");
+			Element elementDificultad = new Element("Dificultad");
+			Attribute att1 = new Attribute("dificultad",String.valueOf(dificultad).toString());
+			elementDificultad.getAttributes().add(att1);
+			element.addContent(elementDificultad);
 			element.addContent(vehiculo.serializarXML());
 			for (Sorpresa sorpresa : sorpresas) {
 				Element entradaSorpresa = new Element("Sorpresa");
@@ -108,6 +122,7 @@ public class Partida {
 			List<Sorpresa> sorpresas = new ArrayList<Sorpresa>();
 			List<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
 			Vehiculo vehiculo = Vehiculo.cargarDesdeXML(element.getChild("Vehiculo"));
+			String dificultad = element.getChild("Dificultad").getAttributeValue("dificultad");
 			for (Object sorpresaGuardada : element.getChildren()) {
 				
 				
@@ -159,6 +174,7 @@ public class Partida {
 			Partida partida = new Partida (vehiculo);
 			partida.agregarSorpresas(sorpresas);
 			partida.agregarObstaculos(obstaculos);
+			partida.setDificultad(dificultad);
 			return partida;
 		}	
 

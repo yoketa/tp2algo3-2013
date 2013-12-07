@@ -32,6 +32,7 @@ public class Juego {
 		this.ranking = new Ranking();
 		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
 		this.partida = new Partida(this.vehiculo);
+		this.partida.setDificultad(this.getDificultadDeNivel());
 	}
 
 	/* Setea los límites del Juego según la dificultad
