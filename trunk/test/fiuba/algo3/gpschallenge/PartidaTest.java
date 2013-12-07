@@ -144,7 +144,7 @@ public class PartidaTest {
 	@Test
 	public void testGuardarYCargarPartida() {
 		Partida partida = new Partida(vehiculo);
-		partida.setDificultad("facil");
+		partida.setDificultad("Facil");
 		partida.agregarUnObstaculo(obstaculo1);
 		partida.agregarUnObstaculo(obstaculo2);
 		partida.agregarUnObstaculo(obstaculo3);

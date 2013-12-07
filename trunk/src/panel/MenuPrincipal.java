@@ -36,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setTitle("Hola "+usuario+"                       Gps Challenge");
         initComponents();
         this.menuRegistracion = menuRegistracion;
+        this.retomarPartida.setEnabled(false);
         menuRegistracion.setVisible(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
@@ -67,7 +68,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         comenzarPartida = new javax.swing.JButton();
         verPuntajes = new javax.swing.JButton();
-        retornarPartida = new javax.swing.JButton();
+        retomarPartida = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         volver = new javax.swing.JButton();
 
@@ -96,11 +97,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        retornarPartida.setFont(new java.awt.Font("Consolas", 0, 14));
-        retornarPartida.setText("Retomar partida guardada");
-        retornarPartida.setForeground(Color.white);
-        retornarPartida.setBackground(new java.awt.Color(0, 0, 153));
-        retornarPartida.addActionListener(new java.awt.event.ActionListener() {
+        retomarPartida.setFont(new java.awt.Font("Consolas", 0, 14));
+        retomarPartida.setText("Retomar partida guardada");
+        retomarPartida.setForeground(Color.white);
+        retomarPartida.setBackground(new java.awt.Color(0, 0, 153));
+        retomarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retornarPartidaActionPerformed(evt);
             }
@@ -135,7 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(comenzarPartida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                     .addComponent(verPuntajes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                    .addComponent(retornarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(retomarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(52, 52, 52))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -150,7 +151,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(comenzarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(retornarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(retomarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(verPuntajes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,7 +196,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton comenzarPartida;
-    private javax.swing.JButton retornarPartida;
+    private javax.swing.JButton retomarPartida;
     private javax.swing.JButton salir;
     private javax.swing.JButton verPuntajes;
     private javax.swing.JButton volver;
