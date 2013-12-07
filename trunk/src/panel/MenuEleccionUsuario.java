@@ -36,9 +36,9 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
     
     private void agregarUsuarios() {
 
-        this.usuariosGuardados = new ArrayList();
+        this.usuariosGuardados = new ArrayList<Vehiculo>();
 		this.ranking = Archivador.cargar(new Ranking(), "persistencia/Ranking.xml");
-        List<Vehiculo> usuariosRankeados = new ArrayList();
+        List<Vehiculo> usuariosRankeados = new ArrayList<Vehiculo>();
         usuariosRankeados = this.ranking.getPuntajes();
         
         //Filtra los usuarios que han jugado mas de una ves dejando solo su usuario una vez. 
@@ -76,6 +76,7 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 			}
 			if(!usuarioExistente){
 				this.usuariosGuardados.add(vehiculo);
+				
 			}
 		}
 	}
