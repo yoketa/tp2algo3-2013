@@ -34,6 +34,7 @@ public class MenuRegistracion extends javax.swing.JFrame {
         
         jLabel.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
         jLabel.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel.setForeground(Color.lightGray);
         jLabel.setText("Por favor elija un nombre");
 
         BotonGuardar.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
