@@ -67,7 +67,6 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 			boolean usuarioExistente = false;
 			
 			for ( Vehiculo vehiculoGuardado : this.usuariosGuardados){
-				System.out.println("Vehiculoguardado: "+vehiculoGuardado.getPiloto()+"  vehiculoSacado: "+vehiculo.getPiloto());
 				
 				if ((vehiculo.getPiloto() == vehiculoGuardado.getPiloto()) ){
 					System.out.println("Hola");
