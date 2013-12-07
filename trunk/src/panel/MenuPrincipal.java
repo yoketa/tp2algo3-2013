@@ -12,6 +12,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private PanelPerdedor panelPerdedor;
     private String usuario;
     private boolean accionPreviaEsRegistracion = false;
+	private PanelDelJuego juegoNuevo;
 
     
     public MenuPrincipal() {
@@ -173,7 +174,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }                                               
 
     private void retornarPartidaActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        juegoNuevo = new PanelDelJuego(this,this.usuario);
+        juegoNuevo.frame.setVisible(true);
     }                                               
 
     private void verPuntajesActionPerformed(java.awt.event.ActionEvent evt) {                                            
