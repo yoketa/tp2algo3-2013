@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partida>
+  <Dificultad dificultad="Facil" />
   <Vehiculo puntaje="0.0" piloto="nico" movimientos="0">
     <Vector x="0" y="0" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />

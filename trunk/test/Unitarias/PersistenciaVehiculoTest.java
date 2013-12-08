@@ -1,4 +1,4 @@
-package fiuba.algo3.gpschallenge;
+package Unitarias;
 
 import static org.junit.Assert.assertEquals;
 import modelo.interfaces.EstadoVehiculo;
