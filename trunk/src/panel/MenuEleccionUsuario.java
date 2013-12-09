@@ -58,9 +58,6 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 	}
 
 	private void filtroDeUsuarios(List<Vehiculo> usuarios) {
-        
-		this.usuariosGuardados.add(usuarios.get(0));
-		usuarios.remove(0);
 		
 		for (Vehiculo vehiculo : usuarios){
 			
@@ -68,14 +65,12 @@ public class MenuEleccionUsuario extends javax.swing.JFrame {
 			
 			for ( Vehiculo vehiculoGuardado : this.usuariosGuardados){
 				
-				if ((vehiculo.getPiloto() == vehiculoGuardado.getPiloto()) ){
-					System.out.println("Hola");
+				if (vehiculo.getPiloto().equals( vehiculoGuardado.getPiloto())){
 					usuarioExistente = true;
 				}
 			}
 			if(!usuarioExistente){
 				this.usuariosGuardados.add(vehiculo);
-				
 			}
 		}
 	}
