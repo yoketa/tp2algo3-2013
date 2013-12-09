@@ -134,9 +134,8 @@ public class PanelDelJuego {
 	 * */
 	private void inicializarModelo() throws IOException {
 
-		visualizarOscurecimiento();
 		visualizarVehiculo();
-		visualizarMeta();
+		
 		
 		if(this.eligioPartidaNueva)	visualizarEventosDePartidaNueva();
 				else visualizarEventosDePartidaGuardada();
@@ -144,6 +143,8 @@ public class PanelDelJuego {
 		visualizarCuadras();
 		visualizarMovimientos();
 		visualizarPuntaje();
+		visualizarOscurecimiento();
+		visualizarMeta();
 	}
 
 	private void visualizarPuntaje() {
