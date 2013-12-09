@@ -109,7 +109,7 @@ public class PanelDelJuego {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Hola "+this.usuario+"         Partida "+this.dificultad);
-		frame.getContentPane().setBackground(Color.black);
+		frame.getContentPane().setBackground(Color.BLUE);
 		
         JButton btnIniciar = this.addBotonIniciar();
 		
@@ -154,7 +154,7 @@ public class PanelDelJuego {
 		etiquetaPuntaje = new JLabel("Puntaje actual: " + String.valueOf(this.puntaje));
 		etiquetaPuntaje.setBounds(790, 10, 300, 19);
 		etiquetaPuntaje.setFont(new java.awt.Font("Gabriola", 1, 24));
-		etiquetaPuntaje.setForeground(Color.lightGray);
+		etiquetaPuntaje.setForeground(Color.white);
 		etiquetaPuntaje.setVisible(true);
         this.frame.getContentPane().add(etiquetaPuntaje);
 		
@@ -164,7 +164,7 @@ public class PanelDelJuego {
 		
 		etiquetaMovimientos.setBounds(490, 10, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
-        etiquetaMovimientos.setForeground(Color.lightGray);
+        etiquetaMovimientos.setForeground(Color.white);
         etiquetaMovimientos.setVisible(true);
         this.frame.getContentPane().add(etiquetaMovimientos);
 	}

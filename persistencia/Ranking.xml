@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ranking>
+  <Vehiculo puntaje="38.0" piloto="nico" movimientos="0">
+    <Vector x="0" y="0" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="38.0" piloto="nico" movimientos="0">
+    <Vector x="0" y="0" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="34.0" piloto="nico" movimientos="4">
+    <Vector x="70" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
   <Vehiculo puntaje="29.0" piloto="nico" movimientos="9">
     <Vector x="420" y="210" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
@@ -7,6 +19,26 @@
   <Vehiculo puntaje="28.0" piloto="Lucas" movimientos="18">
     <Vector x="560" y="210" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
+    <Vector x="420" y="210" />
+    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
+    <Vector x="420" y="210" />
+    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="Luciana" movimientos="11">
+    <Vector x="420" y="210" />
+    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
   </Vehiculo>
   <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
     <Vector x="420" y="210" />
@@ -23,6 +55,10 @@
   <Vehiculo puntaje="27.0" piloto="Luciana" movimientos="11">
     <Vector x="420" y="210" />
     <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
+  </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
   <Vehiculo puntaje="25.0" piloto="nico" movimientos="13">
     <Vector x="420" y="210" />
