@@ -1,7 +1,6 @@
 package Unitarias;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -9,12 +8,10 @@ import java.util.List;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Partida;
 import modelo.juego.Vector;
-import modelo.obstaculo.ControlPolicial;
+
 import modelo.obstaculo.Obstaculo;
 import modelo.obstaculo.Piquete;
 import modelo.obstaculo.Pozo;
-import modelo.probabilidades.ProbabilidadEquiprobable;
-import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
@@ -41,8 +38,6 @@ public class PartidaTest {
 	private Obstaculo obstaculo1;
 	private Obstaculo obstaculo2;
 	private Obstaculo obstaculo3;
-	
-	private String dificultad;
 	private List<Sorpresa> sorpresas;
 	private List<Obstaculo> obstaculos;
 	private Partida partida;
@@ -52,7 +47,6 @@ public class PartidaTest {
 		sorpresa1 = new SorpresaDesfavorable(new Vector(110,140));
 		sorpresa2 = new SorpresaDesfavorable(new Vector(420,280));
 		sorpresa3 = new SorpresaFavorable(new Vector(530,280));
-		dificultad = "facil";
 		obstaculo1 = new Pozo (new Vector(180,210));
 		obstaculo2 = new Pozo (new Vector(460,210));
 		obstaculo3 = new Piquete (new Vector(110,0));
@@ -76,7 +70,6 @@ public class PartidaTest {
 		assertEquals(2,partida.getSorpresas().size());
 		partida.agregarUnaSorpresa(sorpresa3);
 		assertEquals(3,partida.getSorpresas().size());
-		
 	}
 
 	@Test
@@ -86,11 +79,9 @@ public class PartidaTest {
 		partida.agregarUnObstaculo(obstaculo2);
 		assertEquals(2,partida.getObstaculos().size());
 		partida.agregarUnObstaculo(obstaculo3);
-		assertEquals(3,partida.getObstaculos().size());
-		
+		assertEquals(3,partida.getObstaculos().size());	
 	}
 
-	
 	@Test
 	public void testObtenerSorpresasDeLaPartida() {
 		partida.agregarUnaSorpresa(sorpresa1);
@@ -108,11 +99,8 @@ public class PartidaTest {
 		assertEquals(posicionSopresa2.getX(),420,1E-5);
 		assertEquals(posicionSopresa2.getY(),280,1E-5);
 		assertEquals(posicionSopresa3.getX(),530,1E-5);
-		assertEquals(posicionSopresa3.getY(),280,1E-5);
-		
-		
+		assertEquals(posicionSopresa3.getY(),280,1E-5);	
 	}
-	
 	
 	@Test
 	public void testObtenerObstaculosDeLaPartida() {
@@ -132,14 +120,6 @@ public class PartidaTest {
 		assertEquals(posicionObstaculo3.getY(),0,1E-5);
 	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Test
 	public void testGuardarYCargarPartida() {

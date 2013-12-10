@@ -9,9 +9,6 @@ import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
 import modelo.obstaculo.Piquete;
 import modelo.obstaculo.Pozo;
-import modelo.probabilidades.Probabilidad;
-import modelo.probabilidades.ProbabilidadFija;
-import modelo.vehiculo.CuatroXCuatro;
 import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
 
