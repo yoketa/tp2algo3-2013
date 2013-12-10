@@ -1,23 +1,16 @@
 package panel;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,6 +33,7 @@ import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import modelo.vehiculo.*;
+
 public class PanelDelJuego {
 
 	public Juego modelo;
@@ -58,7 +52,6 @@ public class PanelDelJuego {
 	private Oscurecimiento oscurecimiento;
 	private Partida partidaCargada;
 	private Ranking ranking;
-	
 	
 	//Constructor para juego nuevo
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
@@ -142,6 +135,10 @@ public class PanelDelJuego {
 			visualizarEventosDePartidaNueva();
 		} else {
 			visualizarEventosDePartidaGuardada();
+			this.modelo.getVehiculo().setPosicion(this.partidaCargada.getVehiculo().getPosicion());
+			this.modelo.getVehiculo().setEstado(this.partidaCargada.getVehiculo().getEstado());
+			frame.setTitle("Hola "+this.usuario+"         Partida "+this.partidaCargada.getDificultad());
+			this.dificultad = this.partidaCargada.getDificultad();
 		}
 
 		visualizarCuadras();
@@ -157,7 +154,7 @@ public class PanelDelJuego {
 		modelo.carlcularPuntajeDeVehiculo();
 		this.puntaje = modelo.getVehiculo().getPuntaje();
 		etiquetaPuntaje = new JLabel("Puntaje actual: " + String.valueOf(this.puntaje));
-		etiquetaPuntaje.setBounds(520, 120, 300, 19);
+		etiquetaPuntaje.setBounds(520, 15, 300, 19);
 		etiquetaPuntaje.setFont(new java.awt.Font("Gabriola", 1, 24));
 		etiquetaPuntaje.setForeground(Color.white);
 		etiquetaPuntaje.setVisible(true);
@@ -167,7 +164,7 @@ public class PanelDelJuego {
 
 	private void visualizarMovimientos() {
 		
-		etiquetaMovimientos.setBounds(520, 150, 300, 19);
+		etiquetaMovimientos.setBounds(720, 15, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
         etiquetaMovimientos.setForeground(Color.white);
         etiquetaMovimientos.setVisible(true);
@@ -333,8 +330,6 @@ public class PanelDelJuego {
 	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,modelo);
 	        panelGanador.setBounds(400,50,panelGanador.getWidth(),panelGanador.getHeight());
 	        panelGanador.setVisible(true);
-	        
-	        
 		}
 	}
 	
@@ -348,7 +343,6 @@ public class PanelDelJuego {
 	        panelPerdedor.setBounds(400,50,panelPerdedor.getWidth(),panelPerdedor.getHeight());
 	        panelPerdedor.setVisible(true);
 		}
-
 	} 
 	
 	//Chequea todo cambio en la vista, si llego a la meta, si posee movimientos restante
@@ -469,9 +463,7 @@ public class PanelDelJuego {
 			}});
 	}
 
-	/* Crea el Panel de la pantalla con el mapa
-	 * 
-	 * */
+	/* Crea el Panel de la pantalla con el mapa */
 	private JPanel addSuperficiePanel() throws IOException {
 		JPanel panel = new SuperficiePanel();
 		panel.setBackground(Color.WHITE);
@@ -481,9 +473,7 @@ public class PanelDelJuego {
 		return panel;
 	}
 
-	/* Crea el botón de Guardar Partida
-	 * 
-	 * */
+	/* Crea el botón de Guardar Partida */
 	private JButton addBtnGuardar() {
 		JButton botonGuardarYSalir = new JButton("Guardar y salir");
 		botonGuardarYSalir.addActionListener(new ActionListener() {
@@ -491,8 +481,6 @@ public class PanelDelJuego {
 				guardar();
 				System.exit(0);
 			}
-
-			
 		});
 		botonGuardarYSalir.setBounds(325, 10, 150, 19);
 		botonGuardarYSalir.setFont(new java.awt.Font("Consola", 0, 12));
@@ -520,9 +508,7 @@ public class PanelDelJuego {
 		Archivador.guardar(ranking, Ranking.rankingPath);
 	}
 	
-	/* Crea el botón de Inicio
-	 * 
-	 * */
+	/* Crea el botón de Inicio */
 	private JButton addBotonIniciar() {
 		JButton botonIniciar = new JButton("Iniciar");
 		botonIniciar.addActionListener(new ActionListener() {
@@ -539,9 +525,7 @@ public class PanelDelJuego {
 	}
 	
 	/* Determina la cantidad de cuadras a renderear dependiendo el 
-	 * nivel del juego
-	 * 
-	 * */
+	 * nivel del juego  */
 	private int determinarCantidadDeCuadras(Juego juego) {
 		int cuadrasHorizontales = (juego.getLimiteHorizontal() - Nivel.tamañoCalle) / Nivel.tamañoCuadraCalle;
 		
@@ -550,9 +534,7 @@ public class PanelDelJuego {
 	}
 	
 	/* Devuelve un objeto de tipo EstadoVehiculo según el tipo de 
-	 * vehículo que se haya elegido
-	 * 
-	 * */
+	 * vehículo que se haya elegido */
 	private EstadoVehiculo getVehiculoDesdeString(String tipoVehiculo) {
 		switch (tipoVehiculo) {
 		case "Auto":
