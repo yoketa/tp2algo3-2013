@@ -153,7 +153,7 @@ public class PanelDelJuego {
 		modelo.carlcularPuntajeDeVehiculo();
 		this.puntaje = modelo.getVehiculo().getPuntaje();
 		etiquetaPuntaje = new JLabel("Puntaje actual: " + String.valueOf(this.puntaje));
-		etiquetaPuntaje.setBounds(520, 15, 300, 19);
+		etiquetaPuntaje.setBounds(520, 110, 300, 19);
 		etiquetaPuntaje.setFont(new java.awt.Font("Gabriola", 1, 24));
 		etiquetaPuntaje.setForeground(Color.white);
 		etiquetaPuntaje.setVisible(true);
@@ -171,7 +171,7 @@ public class PanelDelJuego {
 			this.movimientosRestantes = modelo.movimientosLimites(this.dificultad) - movimientosHechos;
 		}
 		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
-		etiquetaMovimientos.setBounds(720, 15, 300, 19);
+		etiquetaMovimientos.setBounds(520, 150, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
         etiquetaMovimientos.setForeground(Color.white);
         etiquetaMovimientos.setVisible(true);
