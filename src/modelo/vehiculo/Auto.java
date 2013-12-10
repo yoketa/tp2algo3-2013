@@ -1,12 +1,8 @@
 package modelo.vehiculo;
 
-import static org.junit.Assert.fail;
-
 import javax.swing.JOptionPane;
 
 import modelo.interfaces.EstadoVehiculo;
-import modelo.juego.Vector;
-
 import org.jdom.Attribute;
 import org.jdom.Element;
 
@@ -42,7 +38,6 @@ public class Auto implements EstadoVehiculo {
 		}
 		vehiculo.avanzarAFinalDeCuadra();
 	}
-
 	
 	@Override
 	public void setProbabilidadDePasarUnControlPolicial(double probabilidad){
