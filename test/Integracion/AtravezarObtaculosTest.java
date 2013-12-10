@@ -17,10 +17,12 @@ import modelo.vehiculo.Moto;
 
 import org.junit.Test;
 
-public class AtravezarObtaculosTest {
+import excepciones.ValorDeProbabilidadInvalidoException;
+
+public class AtravesarObstaculosTest {
 
 	@Test
-	public void testAtravezarObtaculosConAuto() {
+	public void testAtravezarObtaculosConAuto() throws ValorDeProbabilidadInvalidoException {
 		
 			EstadoVehiculo auto = new Auto();
 			Nivel facil = new Nivel();
@@ -112,7 +114,7 @@ public class AtravezarObtaculosTest {
 	
 	
 	@Test
-	public void testAtravezarObtaculosConCuatroXcuatro() {
+	public void testAtravezarObtaculosConCuatroXcuatro() throws ValorDeProbabilidadInvalidoException {
 		
 			EstadoVehiculo cuatro = new CuatroXCuatro();
 			Nivel facil = new Nivel();
@@ -204,7 +206,7 @@ public class AtravezarObtaculosTest {
 	}
 	
 	@Test
-	public void testAtravezarObtaculosConMoto() {
+	public void testAtravezarObtaculosConMoto() throws ValorDeProbabilidadInvalidoException {
 		
 			EstadoVehiculo moto = new Moto();
 			Nivel facil = new Nivel();
@@ -294,4 +296,5 @@ public class AtravezarObtaculosTest {
 			assertEquals( movimientos , juego.getVehiculo().getMovimientos());
 	}
 }
+			
 			
