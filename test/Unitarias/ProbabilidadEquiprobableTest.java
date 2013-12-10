@@ -9,11 +9,16 @@ import excepciones.ValorDeProbabilidadInvalidoException;
 public class ProbabilidadEquiprobableTest {
 	
 	@Test
-	public void testCalcularDeberiaRetornarUnValorDeProbabilidadValidoSinoLanzarUnaException() throws ValorDeProbabilidadInvalidoException {
+	public void testCalcularDeberiaRetornarUnValorDeProbabilidadValidoSinoLanzarUnaException() {
 
-		ProbabilidadEquiprobable probabilidadEquiprobable = new ProbabilidadEquiprobable();
-		assertTrue( 0 <= probabilidadEquiprobable.calcular());
-		assertTrue( 1 >= probabilidadEquiprobable.calcular());		
+		try {
+			ProbabilidadEquiprobable probabilidadEquiprobable = new ProbabilidadEquiprobable();
+			assertTrue( 0 <= probabilidadEquiprobable.calcular());
+			assertTrue( 1 >= probabilidadEquiprobable.calcular());
+		}
+		catch ( ValorDeProbabilidadInvalidoException ex) {
+			System.out.println(ex.toString());
+		}		
 	}
 }
 
