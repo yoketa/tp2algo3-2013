@@ -17,7 +17,7 @@ import modelo.vehiculo.Moto;
 
 import org.junit.Test;
 
-public class IntegracionTest {
+public class AtravezarObtaculosTest {
 
 	@Test
 	public void testAtravezarObtaculosConAuto() {
