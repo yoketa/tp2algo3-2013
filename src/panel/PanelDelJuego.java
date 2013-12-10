@@ -77,9 +77,16 @@ public class PanelDelJuego {
     	
 		this.eligioPartidaNueva = false;      
         this.usuario = usuario;
-
+        
+		Vehiculo vehiculo = new Vehiculo();
+        vehiculo.setPiloto(this.usuario);
+        
+        //Aca va cargadesde partida.xml
+        Partida partida = new Partida(vehiculo);
+		this.partidaCargada = Archivador.cargar(partida,partida.getPath());
+		
 		Nivel nivel = new Nivel();
-        nivel.setDificultad("Facil");
+        nivel.setDificultad(this.partidaCargada.getDificultad());
 
         this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(this.usuario));
         
@@ -229,12 +236,6 @@ public class PanelDelJuego {
 	}
 	
 	private void visualizarEventosDePartidaGuardada() throws IOException {
-		Vehiculo vehiculo = new Vehiculo();
-        vehiculo.setPiloto(this.usuario);
-        
-        //Aca va cargadesde partida.xml
-        Partida partida = new Partida(vehiculo);
-		this.partidaCargada = Archivador.cargar(partida,partida.getPath());
 		
 		obstaculos = this.partidaCargada.getObstaculos();
 		for(Obstaculo obstaculo : this.obstaculos ) {
