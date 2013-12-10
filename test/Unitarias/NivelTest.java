@@ -7,7 +7,6 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import modelo.juego.Nivel;
-import modelo.juego.Ranking;
 import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
@@ -18,7 +17,6 @@ import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
-import modelo.vehiculo.Vehiculo;
 
 import org.junit.Before;
 import org.junit.Test;

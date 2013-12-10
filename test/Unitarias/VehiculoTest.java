@@ -1,7 +1,6 @@
 package Unitarias;
 
 import static org.junit.Assert.assertEquals;
-import junit.framework.Assert;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.vehiculo.Auto;
 import modelo.vehiculo.Vehiculo;
@@ -23,11 +22,11 @@ public class VehiculoTest {
 	@Test
 	public void testDeberiaCrearUnVehiculoConPuntajeEnCero() {
 		
-		double puntaje = 0;
+
 		EstadoVehiculo auto = new Auto();
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("Pepe",auto);
 		
-	    Assert.assertEquals( puntaje , vehiculo.getPuntaje());
+	    assertEquals( 0 , vehiculo.getPuntaje(),0);
 	}
 
 

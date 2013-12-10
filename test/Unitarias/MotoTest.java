@@ -3,7 +3,6 @@ package Unitarias;
 import static org.junit.Assert.*;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.vehiculo.Auto;
-import modelo.vehiculo.CuatroXCuatro;
 import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
 

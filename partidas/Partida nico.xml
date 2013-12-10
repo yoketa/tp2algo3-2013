@@ -1,38 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partida>
   <Dificultad dificultad="Facil" />
-  <Vehiculo puntaje="38.0" piloto="nico" movimientos="0">
+  <Vehiculo puntaje="0.0" piloto="nico" movimientos="0">
     <Vector x="0" y="0" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+    <Auto probabilidadDePasarUnControlPolicial="0.5" />
   </Vehiculo>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="70" y="320" />
+      <Vector x="110" y="140" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
     <SorpresaDesfavorable>
-      <Vector x="0" y="180" />
+      <Vector x="420" y="280" />
     </SorpresaDesfavorable>
   </Sorpresa>
   <Sorpresa>
     <SorpresaFavorable>
-      <Vector x="250" y="350" />
-    </SorpresaFavorable>
-  </Sorpresa>
-  <Sorpresa>
-    <CambioDeVehiculo>
-      <Vector x="250" y="0" />
-    </CambioDeVehiculo>
-  </Sorpresa>
-  <Sorpresa>
-    <CambioDeVehiculo>
-      <Vector x="110" y="140" />
-    </CambioDeVehiculo>
-  </Sorpresa>
-  <Sorpresa>
-    <SorpresaFavorable>
-      <Vector x="180" y="70" />
+      <Vector x="530" y="280" />
     </SorpresaFavorable>
   </Sorpresa>
   <Obstaculo>
@@ -41,28 +26,13 @@
     </Pozo>
   </Obstaculo>
   <Obstaculo>
-    <Piquete>
-      <Vector x="250" y="140" />
-    </Piquete>
+    <Pozo>
+      <Vector x="460" y="210" />
+    </Pozo>
   </Obstaculo>
   <Obstaculo>
     <Piquete>
       <Vector x="110" y="0" />
-    </Piquete>
-  </Obstaculo>
-  <Obstaculo>
-    <ControlPolicial>
-      <Vector x="320" y="70" />
-    </ControlPolicial>
-  </Obstaculo>
-  <Obstaculo>
-    <ControlPolicial>
-      <Vector x="390" y="280" />
-    </ControlPolicial>
-  </Obstaculo>
-  <Obstaculo>
-    <Piquete>
-      <Vector x="180" y="420" />
     </Piquete>
   </Obstaculo>
 </Partida>
