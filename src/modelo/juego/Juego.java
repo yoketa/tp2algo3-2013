@@ -6,7 +6,10 @@ import java.util.List;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.obstaculo.Obstaculo;
+import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
+import modelo.sorpresas.SorpresaDesfavorable;
+import modelo.sorpresas.SorpresaFavorable;
 import modelo.vehiculo.Vehiculo;
 
 public class Juego {
@@ -21,6 +24,7 @@ public class Juego {
 	private Meta meta;
 	private String dificultadDeNivel;
 	private Partida partida;
+
 	
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
 		//persistencia
@@ -186,10 +190,36 @@ public class Juego {
 		boolean hayEvento = this.hayEvento(posicion);
 		
 		if ( hayEvento ) {
-			obtenerEvento(posicion).afectar(this.vehiculo);
+			
+			Evento unEvento = obtenerEvento(posicion); 
+			unEvento.afectar(this.vehiculo);
+			this.quitarEventoSorpresa (unEvento);
+			
 		}else{
 			this.vehiculo.avanzarAFinalDeCuadra();
 		}
+	}
+	
+	public void quitarEventoSorpresa(Evento evento){
+		
+		if ( this.esUnaSorpresa(evento))
+		 this.eventos.remove(evento);	
+	}
+	
+	public boolean esUnaSorpresa(Evento evento){
+		
+		SorpresaFavorable sorFavorable = new SorpresaFavorable();
+		SorpresaDesfavorable sorDesFavorable = new SorpresaDesfavorable();
+		CambioDeVehiculo cambioVehiculo = new CambioDeVehiculo();
+		
+		if ( sorFavorable.getClass() == evento.getClass()){
+			return true;
+			} else if ( sorDesFavorable.getClass() == evento.getClass()){
+				return true;
+			}else if ( cambioVehiculo.getClass() == evento.getClass()){
+				return true;
+			}
+		return false;
 	}
 
 	public int puntajePorMovimiento(String dificultad){

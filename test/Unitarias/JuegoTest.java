@@ -7,7 +7,9 @@ import modelo.juego.Juego;
 import modelo.juego.Nivel;
 import modelo.juego.Vector;
 import modelo.obstaculo.Pozo;
+import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.vehiculo.Auto;
+
 
 
 import org.junit.Test;
@@ -143,5 +145,63 @@ public class JuegoTest {
 		assertEquals(2,juego.puntajePorMovimiento("Moderado"));
 		assertEquals(3,juego.puntajePorMovimiento("Dificil"));
 	}
+	
+	@Test
+	public void testquitarEventoSorpresaDeberiaQuitarSoloSiElEventoEsUnaSorpresa(){
+		
+		/* Arrange */
+		
+		EstadoVehiculo auto = new Auto();
+		Nivel facil = new Nivel();
+		Juego juego = new Juego("Pepe",facil,auto);
+		Vector posicion = new Vector(1,2);
+		Evento sorpresaDesfavorable = new SorpresaDesfavorable(posicion);
+		
+		/* Act */
+		juego.agregarEvento(sorpresaDesfavorable);
+		juego.quitarEventoSorpresa(sorpresaDesfavorable);
+		
+		/* Assert */
+		assertEquals( 0 , juego.getEventos().size());
+	}
+	
+	@Test
+	public void testquitarEventoSorpresaNoDeberiaQuitarSiElEventoEsUnObstaculo(){
+		
+		/* Arrange */
+		
+		EstadoVehiculo auto = new Auto();
+		Nivel facil = new Nivel();
+		Juego juego = new Juego("Pepe",facil,auto);
+		Vector posicion = new Vector(1,2);
+		Evento pozo = new Pozo(posicion);
+		
+		/* Act */
+		juego.agregarEvento(pozo);
+		juego.quitarEventoSorpresa(pozo);
+		
+		/* Assert */
+		assertEquals( 1 , juego.getEventos().size());
+	}
+	
+	@Test
+	public void testesUnaSorpresaDeberiaDevolverFalsoSiNoEsUnaSorpresa(){
+		
+		/* Arrange */
+		
+		EstadoVehiculo auto = new Auto();
+		Nivel facil = new Nivel();
+		Juego juego = new Juego("Pepe",facil,auto);
+		Vector posicion = new Vector(1,2);
+		Evento pozo = new Pozo(posicion);
+		
+		/* Act */
+		juego.agregarEvento(pozo);
+		
+		/* Assert */
+		assertTrue( ! juego.esUnaSorpresa(pozo));
+	}
+	
+	
 	
 }
