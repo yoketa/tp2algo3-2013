@@ -2,6 +2,8 @@ package panel;
 
 import java.awt.Color;
 
+import javax.swing.JOptionPane;
+
 public class MenuPrincipal extends javax.swing.JFrame {
 
     private MenuEleccionUsuario menuDeEleccion;
@@ -175,8 +177,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }                                               
 
     private void retornarPartidaActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        juegoNuevo = new PanelDelJuego(this,this.usuario);
-        juegoNuevo.frame.setVisible(true);
+        try{   
+	    	juegoNuevo = new PanelDelJuego(this,this.usuario);
+	        juegoNuevo.frame.setVisible(true);
+	    } catch ( RuntimeException e) {
+	    	JOptionPane.showMessageDialog(null, "No hay partida Guardada");
+	    }
     }                                               
 
     private void verPuntajesActionPerformed(java.awt.event.ActionEvent evt) {                                            

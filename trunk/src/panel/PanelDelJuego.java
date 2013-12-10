@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import persistencia.Archivador;
@@ -135,16 +137,19 @@ public class PanelDelJuego {
 	private void inicializarModelo() throws IOException {
 
 		visualizarVehiculo();
-		
-		
-		if(this.eligioPartidaNueva)	visualizarEventosDePartidaNueva();
-				else visualizarEventosDePartidaGuardada();
+				
+		if(this.eligioPartidaNueva){
+			visualizarEventosDePartidaNueva();
+		} else {
+			visualizarEventosDePartidaGuardada();
+		}
 
 		visualizarCuadras();
 		visualizarMovimientos();
 		visualizarPuntaje();
 		visualizarOscurecimiento();
 		visualizarMeta();
+		
 	}
 
 	private void visualizarPuntaje() {
@@ -231,7 +236,7 @@ public class PanelDelJuego {
         vehiculo.setPiloto(this.usuario);
         
         //Aca va cargadesde partida.xml
-		Partida partida = new Partida(vehiculo);
+        Partida partida = new Partida(vehiculo);
 		this.partidaCargada = Archivador.cargar(partida,partida.getPath());
 		
 		obstaculos = this.partidaCargada.getObstaculos();

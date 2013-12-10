@@ -57,7 +57,7 @@ public class MenuPuntajes extends javax.swing.JFrame {
         numPosicion+=15;
         int orden = 1;
         
-    	for( int i=0 ; i < this.puntajes.size() ; i++ ){
+    	for( int i=0 ; i < this.puntajes.size() && i < 15 ; i++ ){
     		
     		String puntaje = Double.toString(puntajes.get(i).getPuntaje());
     	    String usuario = puntajes.get(i).getPiloto();
