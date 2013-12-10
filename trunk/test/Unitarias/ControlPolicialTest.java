@@ -1,141 +1,114 @@
 package Unitarias;
 
 import static org.junit.Assert.*;
-
 import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Vector;
 import modelo.obstaculo.ControlPolicial;
-import modelo.obstaculo.Obstaculo;
 import modelo.probabilidades.Probabilidad;
+import modelo.probabilidades.ProbabilidadEquiprobable;
 import modelo.probabilidades.ProbabilidadFija;
 import modelo.vehiculo.Auto;
-import modelo.vehiculo.CuatroXCuatro;
-import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
 
 import org.junit.Test;
 
+import excepciones.ValorDeProbabilidadInvalidoException;
+
 public class ControlPolicialTest {
+	
+	@Test
+	public void testConstructorControlPolicialInizializaSuPosicionEnCeroCero(){
+	
+		/* Arrange */
+		ControlPolicial control = new ControlPolicial();
 
-	@Test
-	public void testafectarDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMenorAlaDelaMoto(){
-	
-		/* Arrange */
-		int penalizacion = 3;
-		EstadoVehiculo moto = new Moto();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",moto);
-		Probabilidad probabilidad = new ProbabilidadFija(0.79);
-		Vector posicion = new Vector(0,0);
-		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
-		
-		/* Act */
-		vehiculo.derecha();
-		int movimientos = vehiculo.getMovimientos()+ penalizacion;
-		controlPolicial.afectar(vehiculo);
-		
 		/* Assert*/
-		assertEquals( movimientos , vehiculo.getMovimientos());	
+		assertEquals( 0, control.getX());	
+		assertEquals( 0, control.getY());
 	}
 	
 	@Test
-	public void testafectarNoDeberiaSumarTresPenalizacionessSiLaProbabilidadDelControlPolicialEsMayorAlaDelaMoto(){
-		
-		/* Arrange */
-		int penalizacion = 0;
-		EstadoVehiculo moto = new Moto();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",moto);
-		Probabilidad probabilidad = new ProbabilidadFija(0.89);
-		Vector posicion = new Vector(0,0);
-		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
-		
-		/* Act */
-		vehiculo.derecha();
-		int movimientos = vehiculo.getMovimientos()+ penalizacion;
-		controlPolicial.afectar(vehiculo);
-		
-		/* Assert*/
-		assertEquals( movimientos , vehiculo.getMovimientos());	
-	}
+	public void testControlPolicialDeberiaCrearseConUnaProbabilidad() throws ValorDeProbabilidadInvalidoException{
 	
-	
-	@Test
-	public void testAfectarDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMenorAlaDelCuatroXCuatro(){
-		
 		/* Arrange */
-		int penalizacion = 3;
-		EstadoVehiculo cuatro = new CuatroXCuatro();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
-		Probabilidad probabilidad = new ProbabilidadFija(0.29);
-		Vector posicion = new Vector(0,0);
-		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
-		
-		/* Act */
-		vehiculo.derecha();
-		int movimientos = vehiculo.getMovimientos()+ penalizacion;
-		controlPolicial.afectar(vehiculo);
-		
+		Vector posicion = new Vector(4,4);
+		Probabilidad probabilidad = new ProbabilidadEquiprobable();
+		ControlPolicial controlPolicial = new ControlPolicial(posicion,probabilidad);
+
 		/* Assert*/
-		assertEquals( movimientos , vehiculo.getMovimientos());	
+		assertTrue( 1 >= controlPolicial.getProbabilidad());	
+		assertTrue( 0 <= controlPolicial.getProbabilidad());
 	}
 	
 	@Test
-	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayotAlaDelCuatroXCuatro(){
-		
+	public void testgetProbabilidadDeberiaDevolverUnValorDeProbabilidad(){
+	
 		/* Arrange */
-		int penalizacion = 0;
-		EstadoVehiculo cuatro = new CuatroXCuatro();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
-		Probabilidad probabilidad = new ProbabilidadFija(0.59);
-		Vector posicion = new Vector(0,0);
-		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
-		
-		/* Act */
-		vehiculo.derecha();
-		int movimientos = vehiculo.getMovimientos()+ penalizacion;
-		controlPolicial.afectar(vehiculo);
-		
-		/* Assert*/
-		assertEquals( movimientos , vehiculo.getMovimientos());	
+		Vector posicion = new Vector(4,4);
+		try {
+			Probabilidad probabilidad = new ProbabilidadFija(0.3);
+			ControlPolicial controlPolicial = new ControlPolicial(posicion,probabilidad);
+
+			/* Assert*/
+			assertEquals( 0.3, controlPolicial.getProbabilidad(), 0);
+			
+		} catch ( ValorDeProbabilidadInvalidoException ex) {
+			System.out.println(ex.toString());
+		}	
 	}
 	
 	@Test
-	public void testAfectarDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMenorAlaDelAuto(){
+	public void testgetProbabilidadDeberiaLanzarValorDeProbabilidadInvalidoException(){
+	
+		/* Arrange */
+		Vector posicion = new Vector(4,4);
+		try {
+			Probabilidad probabilidad = new ProbabilidadFija(-0.2);
+			ControlPolicial controlPolicial = new ControlPolicial(posicion,probabilidad);
+
+			/* Assert*/
+			assertEquals( 0.3, controlPolicial.getProbabilidad(), 0);
+			
+		} catch ( ValorDeProbabilidadInvalidoException ex) {
+			System.out.println(ex.toString());
+		}	
+	}
+	
+	@Test
+	public void testgetXeYDeberiaDevolverSuPosicionEnXeY(){
+	
+		/* Arrange */
+		Vector posicion = new Vector(4,4);
+		
+		try {
+			Probabilidad probabilidad = new ProbabilidadFija(0.79);
+			ControlPolicial controlPolicial = new ControlPolicial(posicion,probabilidad);
+
+			/* Assert*/
+			assertEquals( 4, controlPolicial.getX());	
+			assertEquals( 4, controlPolicial.getY());
+			
+		} catch ( ValorDeProbabilidadInvalidoException ex) {
+			System.out.println(ex.toString());
+		}
+	}
+	
+	@Test
+	public void testAfectarDeberiaAfectarUnVehiculoConUnControlPolicial(){
 		
 		/* Arrange */
-		int penalizacion = 3;
 		EstadoVehiculo auto = new Auto();
 		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		Probabilidad probabilidad = new ProbabilidadFija(0.49);
-		Vector posicion = new Vector(0,0);
-		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
+		ControlPolicial controlPolicial = new ControlPolicial();
 		
 		/* Act */
-		vehiculo.derecha();
-		int movimientos = vehiculo.getMovimientos()+ penalizacion;
-		controlPolicial.afectar(vehiculo);
-		
-		/* Assert*/
-		assertEquals( movimientos , vehiculo.getMovimientos());	
+		try {
+			vehiculo.bajar();
+			controlPolicial.afectar(vehiculo);
+			assertTrue(true);
+		}
+		catch (Exception ex) {
+			fail();
+		}	
 	}
-	
-	@Test
-	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayotAlaDelAuto(){
-		
-		/* Arrange */
-		int penalizacion = 0;
-		EstadoVehiculo auto = new Auto();
-		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
-		Probabilidad probabilidad = new ProbabilidadFija(0.59);
-		Vector posicion = new Vector(0,0);
-		Obstaculo controlPolicial = new ControlPolicial(posicion,probabilidad);
-		
-		/* Act */
-		vehiculo.derecha();
-		int movimientos = vehiculo.getMovimientos()+ penalizacion;
-		controlPolicial.afectar(vehiculo);
-		
-		/* Assert*/
-		assertEquals( movimientos , vehiculo.getMovimientos());	
-	}
-
 }
