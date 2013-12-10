@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import persistencia.Archivador;
@@ -52,6 +51,7 @@ public class PanelDelJuego {
 	private Oscurecimiento oscurecimiento;
 	private Partida partidaCargada;
 	private Ranking ranking;
+	private Nivel nivel;
 	
 	//Constructor para juego nuevo
     public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
@@ -63,13 +63,14 @@ public class PanelDelJuego {
         nivel.setDificultad(dificultad);
         this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(vehiculo));
         this.modelo.setDificultadDeNivel(dificultad);
+		
+		this.nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
         try {
 			initialize();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
         menuPartida.setVisible(false);
-        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     
     //Constructor para juego ya empezado
@@ -87,8 +88,11 @@ public class PanelDelJuego {
 		
 		Nivel nivel = new Nivel();
         nivel.setDificultad(this.partidaCargada.getDificultad());
-
         this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(this.usuario));
+        this.dificultad = nivel.getDificultad();
+        
+		this.modelo.getVehiculo().setPosicion(this.partidaCargada.getVehiculo().getPosicion());
+		this.modelo.getVehiculo().setEstado(this.partidaCargada.getVehiculo().getEstado());
         
         try {
 			initialize();
@@ -96,7 +100,6 @@ public class PanelDelJuego {
 			e.printStackTrace();
 		}
         menuPrincipal.setVisible(false);
-        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     /**
 	 * Initialize the contents of the frame.
@@ -137,23 +140,12 @@ public class PanelDelJuego {
 	private void inicializarModelo() throws IOException {
 
 		visualizarVehiculo();
-				
-		if(this.eligioPartidaNueva){
-			visualizarEventosDePartidaNueva();
-		} else {
-			visualizarEventosDePartidaGuardada();
-			this.modelo.getVehiculo().setPosicion(this.partidaCargada.getVehiculo().getPosicion());
-			this.modelo.getVehiculo().setEstado(this.partidaCargada.getVehiculo().getEstado());
-			frame.setTitle("Hola "+this.usuario+"         Partida "+this.partidaCargada.getDificultad());
-			this.dificultad = this.partidaCargada.getDificultad();
-		}
-
+		visualizarEventos();
 		visualizarCuadras();
 		visualizarMovimientos();
 		visualizarPuntaje();
 		visualizarOscurecimiento();
 		visualizarMeta();
-		
 	}
 
 	private void visualizarPuntaje() {
@@ -166,11 +158,19 @@ public class PanelDelJuego {
 		etiquetaPuntaje.setForeground(Color.white);
 		etiquetaPuntaje.setVisible(true);
         this.frame.getContentPane().add(etiquetaPuntaje);
-		
 	}
 
 	private void visualizarMovimientos() {
-		
+        
+		if (this.eligioPartidaNueva){
+			this.movimientosRestantes = modelo.movimientosLimites(dificultad);
+			
+		}else{
+			
+			int movimientosHechos = this.partidaCargada.getVehiculo().getMovimientos();			
+			this.movimientosRestantes = modelo.movimientosLimites(this.dificultad) - movimientosHechos;
+		}
+		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
 		etiquetaMovimientos.setBounds(720, 15, 300, 19);
 	    etiquetaMovimientos.setFont(new java.awt.Font("Gabriola", 1, 24));
         etiquetaMovimientos.setForeground(Color.white);
@@ -206,15 +206,25 @@ public class PanelDelJuego {
 		
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
-		
 	}
 	
-	private void visualizarEventosDePartidaNueva() throws IOException {
-		Nivel nivel = new Nivel();
-		nivel = modelo.getNivel();
-		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
+	private void visualizarEventos() throws IOException{
 		
-		obstaculos = nivel.getObstaculos();
+		if(this.eligioPartidaNueva){
+			obstaculos = this.nivel.getObstaculos();
+			sorpresas = this.nivel.getSorpresas();
+		
+		} else {
+			obstaculos = this.partidaCargada.getObstaculos();
+			sorpresas = this.partidaCargada.getSorpresas();
+	
+			frame.setTitle("Hola "+this.usuario+"             Partida "+this.partidaCargada.getDificultad());
+		}
+		cargarEventos();
+	}
+	
+	private void cargarEventos() throws IOException {		
+
 		for(Obstaculo obstaculo : this.obstaculos ) {
 			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
 			modelo.agregarEvento(obstaculo);		
@@ -222,44 +232,12 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(vistaObstaculo);
 		}
 
-		sorpresas = nivel.getSorpresas();
 		for(Sorpresa sorpresa : this.sorpresas ) {
 			VistaDeSorpresa vistaDeSorpresa = new VistaDeSorpresa(sorpresa);
 			modelo.agregarEvento(sorpresa);		
 			this.gameLoop.agregar(sorpresa);
 			this.gameLoop.agregar(vistaDeSorpresa);
 		}
-		//contador de movimientos disponibles
-		this.movimientosRestantes = modelo.movimientosLimites(dificultad);
-		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
-		
-	}
-	
-	private void visualizarEventosDePartidaGuardada() throws IOException {
-		
-		obstaculos = this.partidaCargada.getObstaculos();
-		for(Obstaculo obstaculo : this.obstaculos ) {
-			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
-			modelo.agregarEvento(obstaculo);		
-			this.gameLoop.agregar(obstaculo);
-			this.gameLoop.agregar(vistaObstaculo);
-		}
-
-		sorpresas = this.partidaCargada.getSorpresas();
-		for(Sorpresa sorpresa : this.sorpresas ) {
-			VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
-			modelo.agregarEvento(sorpresa);		
-			this.gameLoop.agregar(sorpresa);
-			this.gameLoop.agregar(vistaDrpresa);
-		}
-		
-		//contador de movimientos disponibles
-		int movimientosHechos = this.partidaCargada.getVehiculo().getMovimientos();
-		
-		this.dificultad = this.partidaCargada.getDificultad();
-		modelo.setDificultadDeNivel(this.dificultad);
-		this.movimientosRestantes = modelo.movimientosLimites(this.dificultad) - movimientosHechos;
-		etiquetaMovimientos = new JLabel("Movimientos restantes: " + String.valueOf(movimientosRestantes));
 	}
 	
 	private void visualizarCuadras() throws IOException {

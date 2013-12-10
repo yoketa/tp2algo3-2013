@@ -28,6 +28,7 @@ public class Juego {
 		setLimitesSegunDificultad(nivel.getDificultad());
 		this.meta = this.crearMeta();
 		
+		this.dificultadDeNivel = nivel.getDificultad();
 		this.eventos = this.crearEventos();
 		this.ranking = new Ranking();
 		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
