@@ -1,9 +1,10 @@
-package Unitarias;
-
 import static org.junit.Assert.*;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
+
+import org.junit.Assert;
 import org.junit.Test;
 public class CuatroXCuatroTest {
 
@@ -122,6 +123,117 @@ public class CuatroXCuatroTest {
 		assertEquals( 70 , vehiculo.getX());
 		assertEquals( 0 , vehiculo.getY());
 	}	
+	
+	@Test
+	public void testpenalizacionFavorableDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		
+		/* Act */
+		vehiculo.derecha();
+		cuatro.penalizacionFavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
+	}
+	
+	@Test
+	public void testpenalizacionFavorableDeberiaRestarEl20PorcientodeLosMovimientosHechos() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+
+		vehiculo.sumarMovimientos(15);
+		int movimientos = 13;
+		
+		/* Act */
+		vehiculo.derecha();
+		cuatro.penalizacionFavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( movimientos , vehiculo.getMovimientos());
+	}
+	
+	@Test
+	public void testpenalizacionDesFavorableDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		
+		/* Act */
+		vehiculo.derecha();
+		cuatro.penalizacionDesfavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
+	}
+	
+	@Test
+	public void testpenalizacionDesFavorableDeberiaSumarEl25PorcientodeLosMovimientosHechos() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		vehiculo.sumarMovimientos(15);
+		int movimientos = 20;
+		
+		/* Act */
+		vehiculo.derecha();
+		cuatro.penalizacionDesfavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( movimientos , vehiculo.getMovimientos());
+	}
+	
+	@Test
+	public void testcambiarEstadoDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		
+		/* Act */
+		vehiculo.derecha();
+		cuatro.cambiarEstado(vehiculo);
+		
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
+	}
+	
+	@Test
+	public void testcambiarEstadoDeberiaCambiarPorUnaCuatroXCuatro() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",cuatro);
+		EstadoVehiculo moto = new Moto();
+		
+		/* Act */
+		vehiculo.derecha();
+		cuatro.cambiarEstado(vehiculo);
+		
+		/* Assert*/
+		assertEquals( moto.getClass() , vehiculo.getEstado().getClass());
+	}
+	
+	@Test
+	public void testsetProbabilidadDePasarUnControlPolicialDeberiaCambiarSuProbabilidad() {
+		
+		/* Arrange */
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		/* Act */
+		cuatro.setProbabilidadDePasarUnControlPolicial(0.2);
+		
+		/* Assert*/
+		Assert.assertEquals(0.2, cuatro.getProbabilidadDePasarUnControlPolicial(), 0);
+	}
 }
 			
 			

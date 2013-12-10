@@ -2,12 +2,13 @@ package Unitarias;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import modelo.interfaces.EstadoVehiculo;
 import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
 import modelo.vehiculo.Vehiculo;
-
 
 public class AutoTest {
 
@@ -94,7 +95,7 @@ public class AutoTest {
 	}
 	
 	@Test
-	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayotAlaDelAuto(){
+	public void testAfectarNoDeberiaSumarTresPenalizacionesSiLaProbabilidadDelControlPolicialEsMayortAlaDelAuto(){
 		
 		/* Arrange */
 		int penalizacion = 0;
@@ -124,4 +125,115 @@ public class AutoTest {
 		assertEquals( 70 , vehiculo.getX());
 		assertEquals( 0 , vehiculo.getY());	
 	}
+	
+	@Test
+	public void testpenalizacionFavorableDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.penalizacionFavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
+	}
+	
+	@Test
+	public void testpenalizacionFavorableDeberiaRestarEl20PorcientodeLosMovimientosHechos() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		vehiculo.sumarMovimientos(15);
+		int movimientos = 13;
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.penalizacionFavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( movimientos , vehiculo.getMovimientos());
+	}
+	
+	@Test
+	public void testpenalizacionDesFavorableDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.penalizacionDesfavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
+	}
+	
+	@Test
+	public void testpenalizacionDesFavorableDeberiaSumarEl25PorcientodeLosMovimientosHechos() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		vehiculo.sumarMovimientos(15);
+		int movimientos = 20;
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.penalizacionDesfavorable(vehiculo);
+		
+		/* Assert*/
+		assertEquals( movimientos , vehiculo.getMovimientos());
+	}
+	
+	@Test
+	public void testcambiarEstadoDeberiaMoverALaSiguenteEsquina() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.cambiarEstado(vehiculo);
+		
+		/* Assert*/
+		assertEquals( 70 , vehiculo.getX());
+		assertEquals( 0 , vehiculo.getY());	
+	}
+	
+	@Test
+	public void testcambiarEstadoDeberiaCambiarPorUnaCuatroXCuatro() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		Vehiculo vehiculo = Vehiculo.crearConPilotoYVehiculo("",auto);
+		EstadoVehiculo cuatro = new CuatroXCuatro();
+		
+		/* Act */
+		vehiculo.derecha();
+		auto.cambiarEstado(vehiculo);
+		
+		/* Assert*/
+		assertEquals( cuatro.getClass() , vehiculo.getEstado().getClass());
+	}
+	
+	@Test
+	public void testsetProbabilidadDePasarUnControlPolicialDeberiaCambiarSuProbabilidad() {
+		
+		/* Arrange */
+		EstadoVehiculo auto = new Auto();
+		/* Act */
+		auto.setProbabilidadDePasarUnControlPolicial(0.2);
+		
+		/* Assert*/
+		Assert.assertEquals(0.2, auto.getProbabilidadDePasarUnControlPolicial(), 0);
+	}	
 }
