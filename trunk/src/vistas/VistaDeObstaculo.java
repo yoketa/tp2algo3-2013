@@ -1,13 +1,11 @@
 package vistas;
 
-import java.awt.Color;
+
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import modelo.obstaculo.*;
 import fiuba.algo3.titiritero.dibujables.Imagen;
-import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
+
 
 public class VistaDeObstaculo extends Imagen {
 
