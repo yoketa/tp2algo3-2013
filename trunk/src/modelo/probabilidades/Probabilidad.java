@@ -1,5 +1,7 @@
 package modelo.probabilidades;
 
+import excepciones.ValorDeProbabilidadInvalidoException;
+
 public abstract class Probabilidad {
 	
 	public double probabilidad;
@@ -8,7 +10,7 @@ public abstract class Probabilidad {
 		this.probabilidad = 0;
 	}
 	
-	public double calcular(){
+	public double calcular() throws ValorDeProbabilidadInvalidoException{
 		return this.probabilidad;
 	}
 }
