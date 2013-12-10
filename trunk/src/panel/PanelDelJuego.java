@@ -308,6 +308,7 @@ public class PanelDelJuego {
 		if( this.modelo.llegoALaMeta() ){
 	        PanelGanador panelGanador= new PanelGanador(this.dificultad,this.usuario,modelo);
 	        panelGanador.setBounds(400,50,panelGanador.getWidth(),panelGanador.getHeight());
+	        this.frame.setVisible(false);
 	        panelGanador.setVisible(true);
 		}
 	}
