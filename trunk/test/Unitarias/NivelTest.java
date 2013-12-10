@@ -23,6 +23,7 @@ import modelo.vehiculo.Vehiculo;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.ValorDeProbabilidadInvalidoException;
 import persistencia.Archivador;
 
 public class NivelTest {
@@ -60,7 +61,7 @@ public class NivelTest {
 	private Nivel nivel;
 	
 	@Before
-	public void setup() {
+	public void setup() throws ValorDeProbabilidadInvalidoException {
 		sorpresa1 = new SorpresaDesfavorable(new Vector(70,320));
 		sorpresa2 = new SorpresaDesfavorable(new Vector(740,0));
 		sorpresa3 = new SorpresaFavorable(new Vector(530,280));

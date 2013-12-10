@@ -20,8 +20,7 @@ public abstract class Obstaculo implements Evento, ObjetoPosicionable, ObjetoViv
 	}
 	
 	@Override
-	public void afectar(Vehiculo vehiculo) {		
-		
+	public void afectar(Vehiculo vehiculo) {
 	}
 	
 	public void setPosicion(Vector posicion){
@@ -34,3 +33,4 @@ public abstract class Obstaculo implements Evento, ObjetoPosicionable, ObjetoViv
 
 	public abstract Element serializarXML();
 }
+
