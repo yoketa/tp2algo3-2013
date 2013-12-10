@@ -6,6 +6,7 @@ import java.util.List;
 import org.jdom.Attribute;
 import org.jdom.Element;
 
+import excepciones.ValorDeProbabilidadInvalidoException;
 import modelo.obstaculo.ControlPolicial;
 import modelo.obstaculo.Obstaculo;
 import modelo.obstaculo.Piquete;
@@ -118,7 +119,7 @@ public class Partida {
 
 		
 		
-		public static Partida cargarDesdeXML(Element element) {
+		public static Partida cargarDesdeXML(Element element) throws ValorDeProbabilidadInvalidoException {
 			List<Sorpresa> sorpresas = new ArrayList<Sorpresa>();
 			List<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
 			Vehiculo vehiculo = Vehiculo.cargarDesdeXML(element.getChild("Vehiculo"));

@@ -11,7 +11,10 @@ import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
+
 import org.jdom.Element;
+
+import excepciones.ValorDeProbabilidadInvalidoException;
 
 public class Nivel {
 
@@ -94,7 +97,7 @@ public class Nivel {
 		return element;
 	}
 	
-	public static Nivel cargarDesdeXML(Element element) {
+	public static Nivel cargarDesdeXML(Element element) throws ValorDeProbabilidadInvalidoException {
 		List<Sorpresa> sorpresas = new ArrayList<Sorpresa>();
 		List<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
 		for (Object sorpresaGuardada : element.getChildren()) {

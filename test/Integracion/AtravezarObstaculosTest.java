@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import excepciones.ValorDeProbabilidadInvalidoException;
 
-public class AtravesarObstaculosTest {
+public class AtravezarObstaculosTest {
 
 	@Test
 	public void testAtravezarObtaculosConAuto() throws ValorDeProbabilidadInvalidoException {

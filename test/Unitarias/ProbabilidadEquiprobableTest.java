@@ -2,9 +2,10 @@ package Unitarias;
 
 import static org.junit.Assert.*;
 import modelo.probabilidades.ProbabilidadEquiprobable;
-import org.junit.Test;
 
+import org.junit.Test;
 import excepciones.ValorDeProbabilidadInvalidoException;
+
 
 public class ProbabilidadEquiprobableTest {
 	

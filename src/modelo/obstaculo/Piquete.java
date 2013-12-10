@@ -9,7 +9,7 @@ import modelo.vehiculo.Vehiculo;
 public class Piquete extends Obstaculo {
 
 	public Piquete (){
-		super(new Vector(0,0));
+		super();
 	}
 	
 	public Piquete (Vector posicion){
@@ -17,9 +17,20 @@ public class Piquete extends Obstaculo {
 	}
 	
 	@Override
+	public int getX() {
+		return this.getPosicion().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosicion().getY();
+	}
+	
+	@Override
 	public void afectar(Vehiculo vehiculo){
 		vehiculo.piquete();
 	}
+	
 	public Element serializarXML() {
 		Element element = new Element("Piquete");
 		element.addContent(this.getPosicion().serializarXML());
@@ -33,19 +44,8 @@ public class Piquete extends Obstaculo {
 		
 		return piquete;
 	}
-
-	@Override
-	public int getX() {
-		return this.getPosicion().getX();
-	}
-
-	@Override
-	public int getY() {
-		return this.getPosicion().getY();
-	}
-
+	
 	@Override
 	public void vivir() {
-		
 	}	
 }
