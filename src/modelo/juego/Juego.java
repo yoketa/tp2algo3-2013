@@ -27,7 +27,6 @@ public class Juego {
 	private Meta meta;
 	private String dificultadDeNivel;
 	private Partida partida;
-
 	
 	
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
