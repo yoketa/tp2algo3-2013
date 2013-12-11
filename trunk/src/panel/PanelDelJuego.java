@@ -305,6 +305,7 @@ public class PanelDelJuego {
 		}
 	} 
 	
+	
 	//Chequea todo cambio en la vista, si llego a la meta, si posee movimientos restante
 	private void actualizar() throws IOException {
 		try {
@@ -323,6 +324,19 @@ public class PanelDelJuego {
 		}		
 	}
 	
+	public int sorpresaBorradaEnposicion(){
+		
+		int contador =  0;
+		for( Sorpresa sorpresa : this.sorpresas){
+			contador++;
+			if (sorpresa != modelo.getListaDeSorpresas().get(contador)){
+				return contador;
+			}
+		}
+		this.sorpresas = modelo.getListaDeSorpresas();
+		return 0;
+	}
+	
 	private void cambioDeVista() throws IOException{
 
 		this.gameLoop.detenerEjecucion();
@@ -330,20 +344,14 @@ public class PanelDelJuego {
 		vista = new VistaDeVehiculo(modelo.getVehiculo());
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
-		this.sorpresas = modelo.getListaDeSorpresas();
-		for(Sorpresa unaSorpresa : this.sorpresas){
-			for (VistaDeSorpresa vistaSorpresa : this.vistaSorpresas){
-				int limiteSuperiorEvento = unaSorpresa.getPosicion().getY()+ Nivel.tamañoCalle;
-				int limiteInferiorEvento = unaSorpresa.getPosicion().getY()- Nivel.tamañoCalle;
-				
-				boolean enMismoX = unaSorpresa.getX() == modelo.getVehiculo().getX();
-				boolean enRangoY = (limiteSuperiorEvento >= modelo.getVehiculo().getY()) && (limiteInferiorEvento <= modelo.getVehiculo().getY());
-				
-				if (enMismoX && enRangoY) {
-					this.gameLoop.remover(unaSorpresa);
-					this.gameLoop.remover(vistaSorpresa);	
-				}
-			}
+		
+		int posicionEnLista = this.sorpresaBorradaEnposicion();
+		
+		if (posicionEnLista != 0){
+			
+			VistaDeSorpresa vistaSorpresa = this.vistaSorpresas.get(posicionEnLista );
+			this.vistaSorpresas.remove(vistaSorpresa);
+			this.gameLoop.remover(vistaSorpresa);
 		}
 		this.gameLoop.iniciarEjecucion();
 	}
