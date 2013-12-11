@@ -12,20 +12,23 @@ public class Oscurecimiento implements ObjetoPosicionable, ObjetoVivo {
 	private int x;
 	private int y;
 	
-	private static final int tamañoX = -1880;
-	private static final int tamañoY = -952;
+	private static final int tamañoX = -2012;
+	private static final int tamañoY = -1019;
+	
+	private static final int corrimientoX = 13;
+	private static final int corrimientoY = 13;
 	
 	public Oscurecimiento() {
-		this.x = Oscurecimiento.tamañoX/2;
-		this.y = Oscurecimiento.tamañoY/2;
+		this.x = Oscurecimiento.tamañoX/2 + corrimientoX;
+		this.y = Oscurecimiento.tamañoY/2 + corrimientoY;
 	}
 	
 	public void setX(int x) {
-		this.x = x + Oscurecimiento.tamañoX/2;
+		this.x = x + Oscurecimiento.tamañoX/2 + corrimientoX;
 	}
 	
 	public void setY(int y) {
-		this.y = y + Oscurecimiento.tamañoY/2;
+		this.y = y + Oscurecimiento.tamañoY/2 + corrimientoY;
 	}
 	
 	@Override

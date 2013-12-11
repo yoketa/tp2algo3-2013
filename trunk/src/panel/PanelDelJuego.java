@@ -63,7 +63,7 @@ public class PanelDelJuego {
         this.dificultad = dificultad;
         Nivel nivel = new Nivel();
         nivel.setDificultad(dificultad);
-        this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(vehiculo));
+        this.modelo = new Juego(usuario, nivel, vehiculo);
         this.modelo.setDificultadDeNivel(dificultad);
         this.vistaSorpresas = new ArrayList<VistaDeSorpresa>();
 		this.nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
@@ -90,7 +90,7 @@ public class PanelDelJuego {
 		
 		Nivel nivel = new Nivel();
         nivel.setDificultad(this.partidaCargada.getDificultad());
-        this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(this.usuario));
+        this.modelo = new Juego(usuario, nivel, this.usuario);
         this.dificultad = nivel.getDificultad();
         
 		this.modelo.getVehiculo().setPosicion(this.partidaCargada.getVehiculo().getPosicion());
@@ -275,25 +275,6 @@ public class PanelDelJuego {
 		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
 		this.gameLoop.agregar(meta);
 		this.gameLoop.agregar(vistaMeta);
-	
-		Nivel nivel = modelo.getNivel();
-		nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
-		
-		obstaculos = nivel.getObstaculos();
-		for(Obstaculo obstaculo : this.obstaculos ) {
-			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
-			modelo.agregarEvento(obstaculo);		
-			this.gameLoop.agregar(obstaculo);
-			this.gameLoop.agregar(vistaObstaculo);
-		}
-
-		sorpresas = nivel.getSorpresas();
-		for(Sorpresa sorpresa : this.sorpresas ) {
-			VistaDeSorpresa vistaDrpresa = new VistaDeSorpresa(sorpresa);
-			modelo.agregarEvento(sorpresa);		
-			this.gameLoop.agregar(sorpresa);
-			this.gameLoop.agregar(vistaDrpresa);
-		}
 		
 	}
 	
@@ -525,19 +506,5 @@ public class PanelDelJuego {
 		
 		// Se determina que son siempre 6 cuadras de alto
 		return cuadrasHorizontales * 6;
-	}
-	
-	/* Devuelve un objeto de tipo EstadoVehiculo según el tipo de 
-	 * vehículo que se haya elegido */
-	private EstadoVehiculo getVehiculoDesdeString(String tipoVehiculo) {
-		switch (tipoVehiculo) {
-		case "Auto":
-			return new Auto();
-		case "Moto":
-			return new Moto();
-		case "4x4":
-			return new CuatroXCuatro(); 
-		}
-		return new Auto();
 	}
 }
