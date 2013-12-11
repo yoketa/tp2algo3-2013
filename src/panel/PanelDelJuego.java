@@ -322,20 +322,9 @@ public class PanelDelJuego {
 			etiquetaPuntaje.setText("Puntaje actual: " + String.valueOf(this.puntaje));
 			
 			cambioDeVista();
+			this.sorpresas = modelo.getListaDeSorpresas();
 		}		
-	}
-	
-	public int sorpresaBorradaEnposicion(){
 		
-		int contador =  -1;
-		for( Sorpresa sorpresa : this.sorpresas){
-			contador++;
-			if (sorpresa != modelo.getListaDeSorpresas().get(contador)){
-				return contador;
-			}
-		}
-		this.sorpresas = modelo.getListaDeSorpresas();
-		return -1;
 	}
 	
 	private void cambioDeVista() throws IOException{
@@ -346,16 +335,35 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
 		
-		int posicionEnLista = this.sorpresaBorradaEnposicion();
-		
-		if (posicionEnLista != -1){
-			
+		if (this.seBorroUnaSorpresa()){
+			int posicionEnLista = this.obtenerPosicionDeSorpresaBorrada();
 			VistaDeSorpresa vistaSorpresa = this.vistaSorpresas.get(posicionEnLista );
 			this.vistaSorpresas.remove(vistaSorpresa);
 			this.gameLoop.remover(vistaSorpresa);
 		}
-		this.sorpresas = modelo.getListaDeSorpresas();
+
 		this.gameLoop.iniciarEjecucion();
+	}
+	
+	public int obtenerPosicionDeSorpresaBorrada(){
+		
+		int contador =  -1;
+		List<Sorpresa> sorpresasAux =  modelo.getListaDeSorpresas();
+		for( Sorpresa sorpresa : sorpresasAux){
+			contador++;
+			if (sorpresa != this.sorpresas.get(contador)){
+				return contador;
+			}
+		}
+		return this.sorpresas.size()-1;
+	}
+	
+	private boolean seBorroUnaSorpresa(){
+		
+		if (modelo.getListaDeSorpresas().size() == this.sorpresas.size()){
+			return false;
+		}
+		return true;
 	}
 	
 	/* Captura que se haya apretado una tecla
