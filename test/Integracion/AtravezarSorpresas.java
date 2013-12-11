@@ -15,10 +15,12 @@ import modelo.vehiculo.Moto;
 
 import org.junit.Test;
 
+import excepciones.OcupacionCoincidenteConOtroObjetoException;
+
 public class AtravezarSorpresas {
 	
 	@Test
-	public void testAtravezarSorpresasConAuto() {
+	public void testAtravezarSorpresasConAuto() throws OcupacionCoincidenteConOtroObjetoException {
 		
 		EstadoVehiculo auto = new Auto();
 		Nivel facil = new Nivel();
@@ -103,7 +105,7 @@ public class AtravezarSorpresas {
 	}
 	
 	@Test
-	public void testAtravezarSorpresasConMoto() {
+	public void testAtravezarSorpresasConMoto() throws OcupacionCoincidenteConOtroObjetoException {
 		
 		EstadoVehiculo moto = new Moto();
 		Nivel facil = new Nivel();
@@ -191,7 +193,7 @@ public class AtravezarSorpresas {
 	}	
 	
 	@Test
-	public void testAtravezarSorpresasConCuatroXCuatro() {
+	public void testAtravezarSorpresasConCuatroXCuatro() throws OcupacionCoincidenteConOtroObjetoException {
 		
 		EstadoVehiculo cuatro = new CuatroXCuatro();
 		Nivel facil = new Nivel();

@@ -29,6 +29,7 @@ import modelo.obstaculo.*;
 import modelo.sorpresas.*;
 import modelo.vehiculo.Auto;
 import excepciones.MovimientoFueraDeMapaException;
+import excepciones.OcupacionCoincidenteConOtroObjetoException;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
@@ -231,7 +232,12 @@ public class PanelDelJuego {
 
 		for(Obstaculo obstaculo : this.obstaculos ) {
 			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
-			modelo.agregarEvento(obstaculo);		
+			try {
+				modelo.agregarEvento(obstaculo);
+			} catch (OcupacionCoincidenteConOtroObjetoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 			this.gameLoop.agregar(obstaculo);
 			this.gameLoop.agregar(vistaObstaculo);
 		}
@@ -239,7 +245,12 @@ public class PanelDelJuego {
 		for(Sorpresa sorpresa : this.sorpresas ) {
 			VistaDeSorpresa vistaDeSorpresa = new VistaDeSorpresa(sorpresa);
 			this.vistaSorpresas.add (vistaDeSorpresa);
-			modelo.agregarEvento(sorpresa);		
+			try {
+				modelo.agregarEvento(sorpresa);
+			} catch (OcupacionCoincidenteConOtroObjetoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 			this.gameLoop.agregar(sorpresa);
 			this.gameLoop.agregar(vistaDeSorpresa);
 		}

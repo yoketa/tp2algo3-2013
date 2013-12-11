@@ -3,6 +3,7 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import excepciones.OcupacionCoincidenteConOtroObjetoException;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
 import modelo.obstaculo.Obstaculo;
@@ -148,14 +149,17 @@ public class Juego {
 		return this.vehiculo;
 	}
 
-	public void agregarEvento(Evento evento) {
-		this.eventos.add(evento);
+	public void agregarEvento(Evento evento) throws OcupacionCoincidenteConOtroObjetoException {
+		
+		if (  ! this.hayEvento(evento.getPosicion())){
+			this.eventos.add(evento);
+		}else throw new OcupacionCoincidenteConOtroObjetoException("Error, ya existe evento en esa posicion");
 	}
 	
 	public void quitarEvento(Evento evento) {
 		this.eventos.remove(evento);
-	}
-
+	}  
+	
 	public void agregarSorpresas(List<Sorpresa> sorpresas){
 		for (Sorpresa sorpresa : sorpresas) {
 			this.eventos.add(sorpresa);
