@@ -10,6 +10,9 @@ import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
 import modelo.sorpresas.SorpresaFavorable;
+import modelo.vehiculo.Auto;
+import modelo.vehiculo.CuatroXCuatro;
+import modelo.vehiculo.Moto;
 import modelo.vehiculo.Vehiculo;
 
 public class Juego {
@@ -26,6 +29,7 @@ public class Juego {
 	private Partida partida;
 
 	
+	
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
 		//persistencia
 		this.nivel = nivel;
@@ -39,7 +43,23 @@ public class Juego {
 		this.partida = new Partida(this.vehiculo);
 		this.partida.setDificultad(this.getDificultadDeNivel());
 	}
+	
+	public Juego(String piloto, Nivel nivel, String vehiculo){
+		this(piloto, nivel, getVehiculoDesdeString(vehiculo));
+	}
 
+	private static EstadoVehiculo getVehiculoDesdeString(String tipoVehiculo) {
+		switch (tipoVehiculo) {
+		case "Auto":
+			return new Auto();
+		case "Moto":
+			return new Moto();
+		case "4x4":
+			return new CuatroXCuatro(); 
+		}
+		return new Auto();
+	}
+	
 	/* Setea los límites del Juego según la dificultad
 	 * 
 	 * */

@@ -202,6 +202,11 @@ public class JuegoTest {
 		assertTrue( ! juego.esUnaSorpresa(pozo));
 	}
 	
-	
+	@Test
+	public void testDeberiaCrearVehiculoConEstadoPasadoPorString() {
+		Juego juego = new Juego("juan", new Nivel(), "Auto");
+		
+		assertEquals(juego.getVehiculo().getEstado().getClass(), (new Auto()).getClass());
+	}
 	
 }
