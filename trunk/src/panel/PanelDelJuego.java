@@ -326,7 +326,7 @@ public class PanelDelJuego {
 	
 	public int sorpresaBorradaEnposicion(){
 		
-		int contador =  0;
+		int contador =  -1;
 		for( Sorpresa sorpresa : this.sorpresas){
 			contador++;
 			if (sorpresa != modelo.getListaDeSorpresas().get(contador)){
@@ -334,7 +334,7 @@ public class PanelDelJuego {
 			}
 		}
 		this.sorpresas = modelo.getListaDeSorpresas();
-		return 0;
+		return -1;
 	}
 	
 	private void cambioDeVista() throws IOException{
@@ -347,12 +347,13 @@ public class PanelDelJuego {
 		
 		int posicionEnLista = this.sorpresaBorradaEnposicion();
 		
-		if (posicionEnLista != 0){
+		if (posicionEnLista != -1){
 			
 			VistaDeSorpresa vistaSorpresa = this.vistaSorpresas.get(posicionEnLista );
 			this.vistaSorpresas.remove(vistaSorpresa);
 			this.gameLoop.remover(vistaSorpresa);
 		}
+		this.sorpresas = modelo.getListaDeSorpresas();
 		this.gameLoop.iniciarEjecucion();
 	}
 	
