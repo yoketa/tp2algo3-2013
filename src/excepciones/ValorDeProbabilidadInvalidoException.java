@@ -2,9 +2,7 @@ package excepciones;
 
 	public class ValorDeProbabilidadInvalidoException extends Exception {
 		
-
 		/**
-		 * Se lanzan si el valor de probabilidad calculado es invalido
 		 * 
 		 */
 		

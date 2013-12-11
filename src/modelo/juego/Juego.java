@@ -3,10 +3,9 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
-import excepciones.OcupacionCoincidenteConOtroObjetoException;
 import modelo.interfaces.EstadoVehiculo;
 import modelo.interfaces.Evento;
-
+import modelo.obstaculo.Obstaculo;
 import modelo.sorpresas.CambioDeVehiculo;
 import modelo.sorpresas.Sorpresa;
 import modelo.sorpresas.SorpresaDesfavorable;
@@ -29,7 +28,7 @@ public class Juego {
 	private String dificultadDeNivel;
 	private Partida partida;
 	
-
+	
 	public Juego(String piloto, Nivel nivel, EstadoVehiculo vehiculo){
 		//persistencia
 		this.nivel = nivel;
@@ -42,7 +41,7 @@ public class Juego {
 		this.vehiculo = Vehiculo.crearConPilotoYVehiculo(piloto,vehiculo);
 		this.partida = new Partida(this.vehiculo);
 		this.partida.setDificultad(this.getDificultadDeNivel());
-	} 
+	}
 	
 	public Juego(String piloto, Nivel nivel, String vehiculo){
 		this(piloto, nivel, getVehiculoDesdeString(vehiculo));
@@ -149,16 +148,25 @@ public class Juego {
 		return this.vehiculo;
 	}
 
-	public void agregarEvento(Evento evento) throws OcupacionCoincidenteConOtroObjetoException {
-		
-		if (  ! this.hayEvento(evento.getPosicion())){
-			this.eventos.add(evento);
-		}else throw new OcupacionCoincidenteConOtroObjetoException("Error, ya existe evento en esa posicion");
+	public void agregarEvento(Evento evento) {
+		this.eventos.add(evento);
 	}
 	
 	public void quitarEvento(Evento evento) {
 		this.eventos.remove(evento);
-	}  
+	}
+
+	public void agregarSorpresas(List<Sorpresa> sorpresas){
+		for (Sorpresa sorpresa : sorpresas) {
+			this.eventos.add(sorpresa);
+		}
+		
+	}
+	public void agregarObstaculos(List<Obstaculo> obstaculos){
+		for (Obstaculo obstaculo : obstaculos){
+			this.eventos.add(obstaculo);
+		}
+	} 
 	
 	public void carlcularPuntajeDeVehiculo(){
 		int movimientosRealizados = this.vehiculo.getMovimientos();
@@ -277,7 +285,8 @@ public class Juego {
 			if(esUnaSorpresa(evento)){
 				listaDeSorpresas.add((Sorpresa) evento);
 			}
-		}	
+		}
+			
 		return 	listaDeSorpresas;	
 	}
 }

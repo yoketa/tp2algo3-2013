@@ -4,18 +4,14 @@ import java.awt.Color;
 
 import javax.swing.JOptionPane;
 
-import excepciones.OcupacionCoincidenteConOtroObjetoException;
-
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private MenuEleccionUsuario menuDeEleccion;
+    private MenuEleccionUsuario menuDeEleccion;
     private MenuRegistracion menuRegistracion;
     private MenuPartidaNueva menuPartidaNueva;
     private MenuPuntajes menuPuntajes;
+    private PanelGanador panelGanador;
+	private PanelPerdedor panelPerdedor;
     private String usuario;
     private boolean accionPreviaEsRegistracion = false;
 	private PanelDelJuego juegoNuevo;
@@ -52,6 +48,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.usuario = user;
         this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
         initComponents();
+        this.panelGanador = panelGanador;
         panelGanador.setVisible(false);
         volver.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
@@ -62,12 +59,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.usuario = user;
         this.setTitle("Hola "+this.usuario+"         Gps Challenge  Nueva Partida");
         initComponents();
+        this.panelPerdedor = panelPerdedor;
         panelPerdedor.setVisible(false);
         volver.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
-    
-                          
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         comenzarPartida = new javax.swing.JButton();
@@ -107,12 +105,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         retomarPartida.setBackground(new java.awt.Color(0, 0, 153));
         retomarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-					retornarPartidaActionPerformed(evt);
-				} catch (OcupacionCoincidenteConOtroObjetoException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                retornarPartidaActionPerformed(evt);
             }
         });
 
@@ -183,7 +176,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuPartidaNueva.setVisible(true);
     }                                               
 
-    private void retornarPartidaActionPerformed(java.awt.event.ActionEvent evt) throws OcupacionCoincidenteConOtroObjetoException {                                                
+    private void retornarPartidaActionPerformed(java.awt.event.ActionEvent evt) {                                                
         try{   
 	    	juegoNuevo = new PanelDelJuego(this,this.usuario);
 	        juegoNuevo.frame.setVisible(true);

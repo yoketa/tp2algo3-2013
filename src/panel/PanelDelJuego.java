@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 import persistencia.Archivador;
 import vistas.*;
-import modelo.interfaces.Evento;
+import modelo.interfaces.EstadoVehiculo;
 import modelo.juego.Juego;
 import modelo.juego.Meta;
 import modelo.juego.Nivel;
@@ -27,8 +27,8 @@ import modelo.juego.Partida;
 import modelo.juego.Ranking;
 import modelo.obstaculo.*;
 import modelo.sorpresas.*;
+import modelo.vehiculo.Auto;
 import excepciones.MovimientoFueraDeMapaException;
-import excepciones.OcupacionCoincidenteConOtroObjetoException;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
@@ -56,7 +56,7 @@ public class PanelDelJuego {
 	private Nivel nivel;
 	
 	//Constructor para juego nuevo
-    public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) throws OcupacionCoincidenteConOtroObjetoException {
+    public PanelDelJuego(MenuPartidaNueva menuPartida, String dificultad, String usuario,String vehiculo) {
         
     	this.eligioPartidaNueva = true;
         this.usuario = usuario;
@@ -76,7 +76,7 @@ public class PanelDelJuego {
     }
     
     //Constructor para juego ya empezado
-    public PanelDelJuego(MenuPrincipal menuPrincipal, String usuario) throws OcupacionCoincidenteConOtroObjetoException {
+    public PanelDelJuego(MenuPrincipal menuPrincipal, String usuario) {
     	
 		this.eligioPartidaNueva = false;      
         this.usuario = usuario;
@@ -108,9 +108,8 @@ public class PanelDelJuego {
     /**
 	 * Initialize the contents of the frame.
 	 * @throws IOException 
-     * @throws OcupacionCoincidenteConOtroObjetoException 
 	 */
-	private void initialize() throws IOException, OcupacionCoincidenteConOtroObjetoException {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setForeground(new Color(0, 0, 0));
 		
@@ -142,7 +141,7 @@ public class PanelDelJuego {
 	/* Inicializa el modelo y la vista a controlar por Titiritero
 	 * 
 	 * */
-	private void inicializarModelo() throws IOException, OcupacionCoincidenteConOtroObjetoException {
+	private void inicializarModelo() throws IOException {
 
 		visualizarVehiculo();
 		visualizarEventos();
@@ -213,7 +212,7 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(vistaMeta);
 	}
 	
-	private void visualizarEventos() throws IOException, OcupacionCoincidenteConOtroObjetoException{
+	private void visualizarEventos() throws IOException{
 		
 		if(this.eligioPartidaNueva){
 			obstaculos = this.nivel.getObstaculos();
@@ -228,11 +227,11 @@ public class PanelDelJuego {
 		cargarEventos();
 	}
 	
-	private void cargarEventos() throws IOException, OcupacionCoincidenteConOtroObjetoException {	
+	private void cargarEventos() throws IOException {	
 
 		for(Obstaculo obstaculo : this.obstaculos ) {
 			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
-			modelo.agregarEvento((Evento)obstaculo);		
+			modelo.agregarEvento(obstaculo);		
 			this.gameLoop.agregar(obstaculo);
 			this.gameLoop.agregar(vistaObstaculo);
 		}
@@ -240,7 +239,7 @@ public class PanelDelJuego {
 		for(Sorpresa sorpresa : this.sorpresas ) {
 			VistaDeSorpresa vistaDeSorpresa = new VistaDeSorpresa(sorpresa);
 			this.vistaSorpresas.add (vistaDeSorpresa);
-			modelo.agregarEvento((Evento)sorpresa);		
+			modelo.agregarEvento(sorpresa);		
 			this.gameLoop.agregar(sorpresa);
 			this.gameLoop.agregar(vistaDeSorpresa);
 		}
