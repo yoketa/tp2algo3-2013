@@ -302,6 +302,7 @@ public class PanelDelJuego {
 		if(movimientos <= 0){
 	        PanelPerdedor panelPerdedor= new PanelPerdedor(this.dificultad,this.usuario);
 	        panelPerdedor.setBounds(400,50,panelPerdedor.getWidth(),panelPerdedor.getHeight());
+	        this.frame.setVisible(false);
 	        panelPerdedor.setVisible(true);
 		}
 	} 

@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ranking>
-  <Vehiculo puntaje="38.0" piloto="nico" movimientos="0">
-    <Vector x="0" y="0" />
+  <Vehiculo puntaje="30.0" piloto="Lucas" movimientos="15">
+    <Vector x="490" y="70" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
-  <Vehiculo puntaje="38.0" piloto="nico" movimientos="0">
-    <Vector x="0" y="0" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
-  <Vehiculo puntaje="34.0" piloto="nico" movimientos="4">
-    <Vector x="70" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
-  <Vehiculo puntaje="29.0" piloto="nico" movimientos="9">
+  <Vehiculo puntaje="29.0" piloto="Juan" movimientos="9">
     <Vector x="420" y="210" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
@@ -20,68 +12,20 @@
     <Vector x="560" y="210" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
   <Vehiculo puntaje="27.0" piloto="Luciana" movimientos="11">
     <Vector x="420" y="210" />
     <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
   </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="Messi" movimientos="11">
-    <Vector x="420" y="210" />
-    <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
   <Vehiculo puntaje="27.0" piloto="Luciana" movimientos="11">
     <Vector x="420" y="210" />
     <CuatroXCuatro probabilidadDePasarUnControlPolicial="0.3" />
-  </Vehiculo>
-  <Vehiculo puntaje="27.0" piloto="nico" movimientos="11">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
   <Vehiculo puntaje="27.0" piloto="Luciana" movimientos="11">
     <Vector x="420" y="210" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />
-  </Vehiculo>
-  <Vehiculo puntaje="25.0" piloto="nico" movimientos="13">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
-  <Vehiculo puntaje="23.0" piloto="Messi" movimientos="15">
-    <Vector x="420" y="210" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
   <Vehiculo puntaje="17.0" piloto="Simon" movimientos="10">
     <Vector x="350" y="350" />
-    <Moto probabilidadDePasarUnControlPolicial="0.8" />
-  </Vehiculo>
-  <Vehiculo puntaje="13.0" piloto="nico" movimientos="25">
-    <Vector x="0" y="0" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>
 </Ranking>
