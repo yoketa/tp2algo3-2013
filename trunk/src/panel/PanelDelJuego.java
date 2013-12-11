@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -46,6 +47,7 @@ public class PanelDelJuego {
 	private JLabel etiquetaPuntaje;
 	private GameLoop gameLoop;
 	private List<Sorpresa> sorpresas;
+	private List<VistaDeSorpresa> vistaSorpresas;
 	private List<Obstaculo> obstaculos;
 	private VistaDeVehiculo vista;
 	private Oscurecimiento oscurecimiento;
@@ -63,7 +65,7 @@ public class PanelDelJuego {
         nivel.setDificultad(dificultad);
         this.modelo = new Juego(usuario, nivel, getVehiculoDesdeString(vehiculo));
         this.modelo.setDificultadDeNivel(dificultad);
-		
+        this.vistaSorpresas = new ArrayList<VistaDeSorpresa>();
 		this.nivel = Archivador.cargar(new Nivel(), Nivel.GetNivelPath(this.dificultad));
         try {
 			initialize();
@@ -223,7 +225,8 @@ public class PanelDelJuego {
 		cargarEventos();
 	}
 	
-	private void cargarEventos() throws IOException {		
+	private void cargarEventos() throws IOException {	
+		
 
 		for(Obstaculo obstaculo : this.obstaculos ) {
 			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
@@ -231,9 +234,10 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(obstaculo);
 			this.gameLoop.agregar(vistaObstaculo);
 		}
-
+		
 		for(Sorpresa sorpresa : this.sorpresas ) {
 			VistaDeSorpresa vistaDeSorpresa = new VistaDeSorpresa(sorpresa);
+			this.vistaSorpresas.add (vistaDeSorpresa);
 			modelo.agregarEvento(sorpresa);		
 			this.gameLoop.agregar(sorpresa);
 			this.gameLoop.agregar(vistaDeSorpresa);
@@ -350,6 +354,16 @@ public class PanelDelJuego {
 		vista = new VistaDeVehiculo(modelo.getVehiculo());
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
+		this.sorpresas = modelo.getListaDeSorpresas();
+		////////////////////////////////////////////
+		this.sorpresas = modelo.getListaDeSorpresas();
+		for(Sorpresa unaSorpresa : this.sorpresas){
+			for (VistaDeSorpresa vistaSorpresa : this.vistaSorpresas){
+				    this.gameLoop.remover(unaSorpresa);
+					this.gameLoop.remover(vistaSorpresa);	
+			}
+		}
+		//////////////////////////////////////////////
 		this.gameLoop.iniciarEjecucion();
 	}
 	

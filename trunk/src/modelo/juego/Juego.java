@@ -257,4 +257,17 @@ public class Juego {
 			return true;
 		return false;
 	}
+	
+	public List<Sorpresa> getListaDeSorpresas (){
+		
+		ArrayList<Sorpresa> listaDeSorpresas = new ArrayList<Sorpresa>();
+		
+		for (Evento evento : this.eventos){
+			if(esUnaSorpresa(evento)){
+				listaDeSorpresas.add((Sorpresa) evento);
+			}
+		}
+			
+		return 	listaDeSorpresas;	
+	}
 }
