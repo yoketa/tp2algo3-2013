@@ -2,9 +2,15 @@ package panel;
 
 import java.awt.Color;
 
+import excepciones.OcupacionCoincidenteConOtroObjetoException;
+
 public class MenuPartidaNueva extends javax.swing.JFrame {
     
-    private MenuPrincipal menuPrincipal;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private MenuPrincipal menuPrincipal;
     private PanelDelJuego juegoNuevo;
     private String usuario;
     private String dificultad;
@@ -52,9 +58,7 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
             jugar.setEnabled(false);
         }
     }
-    
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+                             
     private void initComponents() {
 
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -143,7 +147,12 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         jugar.setBackground(new java.awt.Color(0, 0, 153));
         jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jugarActionPerformed(evt);
+                try {
+					jugarActionPerformed(evt);
+				} catch (OcupacionCoincidenteConOtroObjetoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -254,7 +263,7 @@ public class MenuPartidaNueva extends javax.swing.JFrame {
         botonMoto.setSelected(false);
     }                                        
 
-    private void jugarActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void jugarActionPerformed(java.awt.event.ActionEvent evt) throws OcupacionCoincidenteConOtroObjetoException {                                      
         this.setDificultad();
         this.setTipoDeVehiculo();
         juegoNuevo = new PanelDelJuego(this,this.dificultad,this.usuario,this.vehiculo);
