@@ -181,8 +181,8 @@ public class Juego {
 		
 		for(Evento evento : this.eventos ) {
 			
-			int limiteSuperiorEvento = evento.getPosicion().getY()+30;
-			int limiteInferiorEvento = evento.getPosicion().getY()-30;
+			int limiteSuperiorEvento = evento.getPosicion().getY()+ Nivel.tamañoCalle;
+			int limiteInferiorEvento = evento.getPosicion().getY()- Nivel.tamañoCalle;
 			
 			if((evento.getPosicion().getX() == posicion.getX())&& ( limiteSuperiorEvento >= posicion.getY()) && (limiteInferiorEvento <= posicion.getY()))
 				return true;

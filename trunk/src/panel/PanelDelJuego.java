@@ -270,12 +270,7 @@ public class PanelDelJuego {
 			this.gameLoop.agregar(cuadra);
 			this.gameLoop.agregar(vistaCuadra);	
 		}
-		
-		Meta meta = this.modelo.getMeta();
-		VistaDeMeta vistaMeta = new VistaDeMeta(meta);
-		this.gameLoop.agregar(meta);
-		this.gameLoop.agregar(vistaMeta);
-		
+				
 	}
 	
 	/* Setea los botones del Frame
@@ -336,15 +331,20 @@ public class PanelDelJuego {
 		this.gameLoop.agregar(modelo.getVehiculo());
 		this.gameLoop.agregar(vista);
 		this.sorpresas = modelo.getListaDeSorpresas();
-		////////////////////////////////////////////
-		this.sorpresas = modelo.getListaDeSorpresas();
 		for(Sorpresa unaSorpresa : this.sorpresas){
 			for (VistaDeSorpresa vistaSorpresa : this.vistaSorpresas){
-				    this.gameLoop.remover(unaSorpresa);
+				int limiteSuperiorEvento = unaSorpresa.getPosicion().getY()+ Nivel.tamañoCalle;
+				int limiteInferiorEvento = unaSorpresa.getPosicion().getY()- Nivel.tamañoCalle;
+				
+				boolean enMismoX = unaSorpresa.getX() == modelo.getVehiculo().getX();
+				boolean enRangoY = (limiteSuperiorEvento >= modelo.getVehiculo().getY()) && (limiteInferiorEvento <= modelo.getVehiculo().getY());
+				
+				if (enMismoX && enRangoY) {
+					this.gameLoop.remover(unaSorpresa);
 					this.gameLoop.remover(vistaSorpresa);	
+				}
 			}
 		}
-		//////////////////////////////////////////////
 		this.gameLoop.iniciarEjecucion();
 	}
 	
