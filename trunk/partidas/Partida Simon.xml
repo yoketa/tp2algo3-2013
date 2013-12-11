@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partida>
   <Dificultad dificultad="Moderado" />
-  <Vehiculo puntaje="0.0" piloto="Simon" movimientos="10">
+  <Vehiculo puntaje="64.0" piloto="Simon" movimientos="0">
     <Vector x="350" y="350" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />
   </Vehiculo>

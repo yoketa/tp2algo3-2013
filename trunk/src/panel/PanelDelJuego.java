@@ -88,6 +88,8 @@ public class PanelDelJuego {
         Partida partida = new Partida(vehiculo);
 		this.partidaCargada = Archivador.cargar(partida,partida.getPath());
 		
+        this.vistaSorpresas = new ArrayList<VistaDeSorpresa>();
+		
 		Nivel nivel = new Nivel();
         nivel.setDificultad(this.partidaCargada.getDificultad());
         this.modelo = new Juego(usuario, nivel, this.usuario);
@@ -226,7 +228,6 @@ public class PanelDelJuego {
 	}
 	
 	private void cargarEventos() throws IOException {	
-		
 
 		for(Obstaculo obstaculo : this.obstaculos ) {
 			VistaDeObstaculo vistaObstaculo = new VistaDeObstaculo(obstaculo);
