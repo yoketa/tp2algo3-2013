@@ -24,6 +24,14 @@
     <Vector x="420" y="210" />
     <Auto probabilidadDePasarUnControlPolicial="0.5" />
   </Vehiculo>
+  <Vehiculo puntaje="27.0" piloto="Lucas" movimientos="11">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
+  <Vehiculo puntaje="25.0" piloto="Lucas" movimientos="13">
+    <Vector x="420" y="210" />
+    <Moto probabilidadDePasarUnControlPolicial="0.8" />
+  </Vehiculo>
   <Vehiculo puntaje="17.0" piloto="Simon" movimientos="10">
     <Vector x="350" y="350" />
     <Moto probabilidadDePasarUnControlPolicial="0.8" />

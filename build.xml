@@ -129,10 +129,21 @@
 		<javac srcdir="src" destdir="${build}/classes" debug="no"></javac>
 	</target>
 
-	<target name="empaquetar" depends="compilar.paquete">
-		<jar destfile="${build}/dist/titiritero.jar" basedir="${build}/classes"/>
+	<target name="empaquetar" depends="compilar.aplicacion">
+		<copydir src="images"
+		dest="${build}/classes/images"
+		includes="**/*.png"/>
+		<jar destfile="${build}/dist/gpsChallenge.jar" basedir="${build}/classes"/>
 	</target>
 
+	<target name="ejecutar.aplicacion" depends="empaquetar">
+		  <java classname="principal.Main" fork="true">
+		         <classpath refid="classpath" />
+		         <classpath location="${build}/dist/gpsChallenge.jar" />
+		         <classpath location="libs/titiritero.jar" />
+		   </java>
+	</target>
+	
 	<target name="integracion-continua" depends="coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes"/>
 
 
