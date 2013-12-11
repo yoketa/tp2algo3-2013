@@ -17,13 +17,12 @@ import modelo.vehiculo.Moto;
 
 import org.junit.Test;
 
-import excepciones.OcupacionCoincidenteConOtroObjetoException;
 import excepciones.ValorDeProbabilidadInvalidoException;
 
 public class AtravezarObstaculosTest {
 
 	@Test
-	public void testAtravezarObtaculosConAuto() throws ValorDeProbabilidadInvalidoException, OcupacionCoincidenteConOtroObjetoException {
+	public void testAtravezarObtaculosConAuto() throws ValorDeProbabilidadInvalidoException {
 		
 			EstadoVehiculo auto = new Auto();
 			Nivel facil = new Nivel();
@@ -115,7 +114,7 @@ public class AtravezarObstaculosTest {
 	
 	
 	@Test
-	public void testAtravezarObtaculosConCuatroXcuatro() throws ValorDeProbabilidadInvalidoException, OcupacionCoincidenteConOtroObjetoException {
+	public void testAtravezarObtaculosConCuatroXcuatro() throws ValorDeProbabilidadInvalidoException {
 		
 			EstadoVehiculo cuatro = new CuatroXCuatro();
 			Nivel facil = new Nivel();
@@ -207,7 +206,7 @@ public class AtravezarObstaculosTest {
 	}
 	
 	@Test
-	public void testAtravezarObtaculosConMoto() throws ValorDeProbabilidadInvalidoException, OcupacionCoincidenteConOtroObjetoException {
+	public void testAtravezarObtaculosConMoto() throws ValorDeProbabilidadInvalidoException {
 		
 			EstadoVehiculo moto = new Moto();
 			Nivel facil = new Nivel();

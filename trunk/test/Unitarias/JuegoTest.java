@@ -12,11 +12,9 @@ import modelo.vehiculo.Auto;
 
 
 
-
 import org.junit.Test;
 
 import excepciones.MovimientoFueraDeMapaException;
-import excepciones.OcupacionCoincidenteConOtroObjetoException;
 
 public class JuegoTest {
 	
@@ -88,7 +86,7 @@ public class JuegoTest {
 	}
 	
 	@Test
-	public void testDeberiaAgregarEvento() throws OcupacionCoincidenteConOtroObjetoException{
+	public void testDeberiaAgregarEvento(){
 		
 		/* Arrange */
 		EstadoVehiculo auto = new Auto();
@@ -102,27 +100,6 @@ public class JuegoTest {
 		
 		/* Assert */
 		assertEquals(1, juego.getEventos().size());
-	}
-	
-	@Test
-	public void testagregarEventoDeberiaLanzarUnaExcepcionSiYaHabiaUnEventoEnLaMismaPosicion() {
-		
-		/* Arrange */
-		EstadoVehiculo auto = new Auto();
-		Nivel facil = new Nivel();
-		Juego juego = new Juego("Pepe",facil,auto);
-		Vector unaPosicion = new Vector(1,2);
-		Evento unPozo = new Pozo(unaPosicion);
-		Vector otraPosicion = new Vector(1,2);
-		Evento otroPozo = new Pozo(otraPosicion);
-		
-		try {
-			juego.agregarEvento(unPozo);
-			juego.agregarEvento(otroPozo); 
-		}
-		catch ( OcupacionCoincidenteConOtroObjetoException ex) {
-			System.out.println(ex.toString());
-		}
 	}
 	
 	@Test 
@@ -170,7 +147,7 @@ public class JuegoTest {
 	}
 	
 	@Test
-	public void testquitarEventoSorpresaDeberiaQuitarSoloSiElEventoEsUnaSorpresa() throws OcupacionCoincidenteConOtroObjetoException{
+	public void testquitarEventoSorpresaDeberiaQuitarSoloSiElEventoEsUnaSorpresa(){
 		
 		/* Arrange */
 		
@@ -189,7 +166,7 @@ public class JuegoTest {
 	}
 	
 	@Test
-	public void testquitarEventoSorpresaNoDeberiaQuitarSiElEventoEsUnObstaculo() throws OcupacionCoincidenteConOtroObjetoException{
+	public void testquitarEventoSorpresaNoDeberiaQuitarSiElEventoEsUnObstaculo(){
 		
 		/* Arrange */
 		
@@ -208,7 +185,7 @@ public class JuegoTest {
 	}
 	
 	@Test
-	public void testesUnaSorpresaDeberiaDevolverFalsoSiNoEsUnaSorpresa() throws OcupacionCoincidenteConOtroObjetoException{
+	public void testesUnaSorpresaDeberiaDevolverFalsoSiNoEsUnaSorpresa(){
 		
 		/* Arrange */
 		
